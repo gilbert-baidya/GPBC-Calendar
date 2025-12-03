@@ -429,27 +429,34 @@ header p {
         padding: 2vw;
         margin: 0;
         font-size: 0.95em;
+        grid-template-columns: repeat(7, 1fr);
     }
     .day {
-        min-height: 12vw;
-        padding: 1vw;
+        min-height: 9vw;
+        padding: 0.5vw;
         font-size: 0.95em;
+        word-break: break-word;
+        white-space: normal;
     }
     .day-number {
         font-size: 1em;
     }
     .event-marker {
         font-size: 0.7em;
-        padding: 2px 4px;
+        padding: 2px 2px;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
+        margin-bottom: 2px;
     }
     header h1 {
-        font-size: 1.3em;
-    }
-    #currentMonth {
         font-size: 1.1em;
     }
+    #currentMonth {
+        font-size: 1em;
+    }
     .filters {
-        gap: 6px;
+        gap: 4px;
         font-size: 0.95em;
     }
     .action-buttons {

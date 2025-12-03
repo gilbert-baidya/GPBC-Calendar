@@ -7,10 +7,14 @@ let currentEvent = null;
 
 const CODE_OWNER = 'gilbert-baidya'; // Change to your GitHub username
 
+// Google Sheets Database Configuration
+const GOOGLE_SHEETS_URL = 'YOUR_WEB_APP_URL_HERE'; // Replace with your Google Apps Script Web app URL
+const USE_GOOGLE_SHEETS = true; // Set to false to use localStorage instead
+
 // EmailJS configuration - replace these with your actual values
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = '__rLqwMXgJLla26DS';
+const EMAILJS_SERVICE_ID = 'service_qndkrol';
+const EMAILJS_TEMPLATE_ID = 'template_y43v4f1';
 
 // Initialize EmailJS for notifications (only if configured)
 if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
@@ -18,7 +22,22 @@ if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') 
 }
 
 // Initialize calendar on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load events from Google Sheets if configured
+    if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
+        showLoadingIndicator('Loading events from database...');
+        const loaded = await loadEventsFromGoogleSheets();
+        hideLoadingIndicator();
+        
+        if (!loaded) {
+            // Fallback to localStorage if Google Sheets fails
+            loadCustomEvents();
+        }
+    } else {
+        // Use localStorage
+        loadCustomEvents();
+    }
+    
     initializeCalendar();
     setupEventListeners();
     checkAndShowReminders();
@@ -417,13 +436,15 @@ function showAddEventModal(dateString) {
     document.getElementById('eventName').focus();
 }
 
-function addGPBCEvent() {
+async function addGPBCEvent() {
     const name = document.getElementById('eventName').value.trim();
     const description = document.getElementById('eventDescription').value.trim();
+    
     if (!name) {
         alert('Please enter an event name');
         return;
     }
+    
     const newEvent = {
         date: selectedDate,
         name: name,
@@ -431,8 +452,27 @@ function addGPBCEvent() {
         description: description || 'Grace and Praise Bangladeshi Church event',
         owner: CODE_OWNER // Mark event as created by code owner
     };
-    events.push(newEvent);
-    saveCustomEvents();
+    
+    // Show loading
+    showLoadingIndicator('Saving event...');
+    
+    // Try to save to Google Sheets first
+    if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
+        const saved = await saveEventToGoogleSheets(newEvent);
+        if (saved) {
+            events.push(newEvent);
+        } else {
+            // Fallback to localStorage
+            events.push(newEvent);
+            saveCustomEvents();
+        }
+    } else {
+        // Use localStorage
+        events.push(newEvent);
+        saveCustomEvents();
+    }
+    
+    hideLoadingIndicator();
     
     // Send email notification
     sendEventNotification(newEvent);
@@ -443,29 +483,45 @@ function addGPBCEvent() {
     alert(`✓ Event "${name}" added successfully!`);
 }
 
-function deleteCurrentEvent() {
+async function deleteCurrentEvent() {
     if (!currentEvent || currentEvent.category !== 'gpbc' || currentEvent.owner !== CODE_OWNER) {
         alert('Only events created by the code owner can be deleted.');
         return;
     }
+    
     if (confirm(`Are you sure you want to delete "${currentEvent.name}"?`)) {
-        // Find and remove the event from the events array
+        showLoadingIndicator('Deleting event...');
+        
+        // Try to delete from Google Sheets first
+        if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
+            const deleted = await deleteEventFromGoogleSheets(currentEvent);
+            if (!deleted) {
+                // Fallback to localStorage
+                console.log('Using localStorage fallback for delete');
+            }
+        }
+        
+        // Remove from local array regardless
         const index = events.findIndex(e => 
             e.date === currentEvent.date && 
             e.name === currentEvent.name && 
             e.category === 'gpbc' &&
             e.owner === CODE_OWNER
         );
+        
         if (index !== -1) {
             events.splice(index, 1);
             saveCustomEvents();
-            // Close modal and refresh calendar
-            document.getElementById('eventDetailModal').style.display = 'none';
-            renderCalendar();
-            renderMonthEvents();
-            alert(`✓ Event "${currentEvent.name}" deleted successfully!`);
-            currentEvent = null;
         }
+        
+        hideLoadingIndicator();
+        
+        // Close modal and refresh calendar
+        document.getElementById('eventDetailModal').style.display = 'none';
+        renderCalendar();
+        renderMonthEvents();
+        alert(`✓ Event "${currentEvent.name}" deleted successfully!`);
+        currentEvent = null;
     }
 }
 

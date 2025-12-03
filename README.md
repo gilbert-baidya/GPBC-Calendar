@@ -2,7 +2,7 @@
 
 A beautiful, feature-rich interactive calendar application designed for **Grace and Praise Bangladeshi Church** (1325 Richardson Street, CA 92408). Track multi-cultural events, church services, member birthdays, anniversaries, and automatically share with your congregation!
 
-![Calendar Preview](https://img.shields.io/badge/Status-Active-success) ![License](https://img.shields.io/badge/License-MIT-blue) ![Version](https://img.shields.io/badge/Version-2.0-brightgreen)
+![Calendar Preview](https://img.shields.io/badge/Status-Active-success) ![License](https://img.shields.io/badge/License-MIT-blue) ![Version](https://img.shields.io/badge/Version-3.0-brightgreen)
 
 ## ✨ Key Features
 
@@ -20,6 +20,14 @@ A beautiful, feature-rich interactive calendar application designed for **Grace 
 - **🎂 Birthday Tracking**: Automatically adds member birthdays to calendar
 - **💒 Anniversary Tracking**: Track and celebrate wedding anniversaries
 - **Sunday Wishes**: See upcoming birthdays/anniversaries to celebrate during services
+
+### 🗄️ **NEW: Shared Database with Google Sheets**
+- **☁️ Cloud Sync**: Events saved to Google Sheets - everyone sees the same calendar!
+- **📱 Multi-Device**: Add events from any device - phone, tablet, computer
+- **🔄 Real-Time Updates**: Calendar syncs automatically across all users
+- **📊 Admin Dashboard**: View and manage all events in Google Sheets
+- **💾 Easy Backup**: Export your entire calendar database anytime
+- **🔒 Secure**: Owner verification for event deletion
 
 ### 🖼️ Advanced Sharing & Export
 - **📸 Mobile-Optimized Images**: Download calendar as vertical JPG (perfect for Instagram Stories, YouTube Shorts, Facebook Reels)
@@ -41,6 +49,12 @@ A beautiful, feature-rich interactive calendar application designed for **Grace 
 - **Browser Notifications**: Optional push notifications
 - **Export to Calendar**: Download .ics file for Google Calendar, Outlook, etc.
 
+### 💝 Donation Integration
+- **Bible Verse**: 2 Corinthians 9:7 for spiritual context
+- **Zelle & PayPal**: QR codes for easy mobile donations
+- **Mobile Optimized**: Scrollable modal for small screens
+- **Direct Links**: One-tap access to payment platforms
+
 ### 🎨 Beautiful User Experience
 - Gorgeous gradient design with smooth animations
 - Fully responsive - works on desktop, tablet, and mobile
@@ -56,14 +70,28 @@ A beautiful, feature-rich interactive calendar application designed for **Grace 
 2. Open `index.html` in any modern web browser
 3. No installation or server required!
 
+### Optional: Enable Google Sheets Database (Recommended)
+**To allow all users to share the same calendar:**
+1. Follow the step-by-step guide in `GOOGLE_SHEETS_SETUP.md`
+2. Takes ~15 minutes to set up
+3. Free forever with Google Sheets
+4. Events sync across all devices automatically!
+
 ### File Structure
 ```
 Calendar 2026/
-├── index.html          # Main application structure
-├── styles.css          # Responsive styling and print layouts
-├── events.js           # Events database and recurring services
-├── calendar.js         # Calendar logic, navigation, and interactions
-├── reminders.js        # Reminder system and notifications
+├── index.html                    # Main application structure
+├── styles.css                    # Responsive styling and print layouts
+├── events.js                     # Events database and recurring services
+├── googlesheets.js               # Google Sheets integration (NEW!)
+├── calendar.js                   # Calendar logic, navigation, and interactions
+├── reminders.js                  # Reminder system and notifications
+├── members.js                    # Member registration and birthday tracking
+├── README.md                     # Documentation (this file)
+├── GOOGLE_SHEETS_SETUP.md        # Step-by-step Google Sheets guide (NEW!)
+├── EMAIL_SETUP_INSTRUCTIONS.md   # EmailJS notification setup
+└── GITHUB_DESCRIPTION.md         # Repository setup guide
+```
 ├── members.js          # Member registration and birthday tracking
 └── README.md          # Documentation (this file)
 ```

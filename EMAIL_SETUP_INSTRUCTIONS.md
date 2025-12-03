@@ -1,126 +1,167 @@
 # Email Notification Setup Instructions
 
-To receive email notifications when people add events to the calendar, you need to set up EmailJS (a free service).
+## Current Status
 
-## Step 1: Create EmailJS Account
+✅ **Donation Modal**: Working - Click the "💝 Donate" button to see Zelle and PayPal options  
+⚠️ **Email Notifications**: Not configured yet - Events are added successfully but no emails are sent
+
+The calendar works perfectly without email setup. Email notifications are **optional** and won't affect any other features.
+
+---
+
+## Why No Emails Are Sent Yet
+
+You need to configure EmailJS (a free email service) to enable automatic notifications. Without this setup:
+- ✅ Events are still added normally
+- ✅ All features work perfectly
+- ❌ No email notifications sent
+
+---
+
+## Quick Setup (10 minutes)
+
+### Step 1: Create EmailJS Account
 
 1. Go to https://www.emailjs.com/
 2. Click "Sign Up" and create a free account
 3. Verify your email address
 
-## Step 2: Connect Your Gmail Account
+### Step 2: Connect Your Gmail
 
 1. In EmailJS dashboard, go to "Email Services"
 2. Click "Add New Service"
 3. Select "Gmail"
-4. Follow the instructions to connect your Gmail account (gracepraisebangladeshichurch@gmail.com)
-5. Copy your **Service ID** (you'll need this later)
+4. Connect: **gracepraisebangladeshichurch@gmail.com**
+5. Note your **Service ID** (looks like: `service_abc123`)
 
-## Step 3: Create Email Template
+### Step 3: Create Email Template
 
-1. Go to "Email Templates" in the EmailJS dashboard
+1. Go to "Email Templates"
 2. Click "Create New Template"
-3. Use this template:
+3. Copy this template:
 
-**Template Name:** Event Notification
-
-**Subject:** New Event Added to GPBC Calendar
-
-**Body:**
+**Subject:**
 ```
+New Event Added to GPBC Calendar 2026
+```
+
+**Content:**
+```html
 Hello,
 
 A new event has been added to the Grace and Praise Bangladeshi Church Calendar:
 
-Event Name: {{event_name}}
-Event Date: {{event_date}}
+━━━━━━━━━━━━━━━━━━━━━━━
+Event: {{event_name}}
+Date: {{event_date}}
 Description: {{event_description}}
-Added By: {{added_by}}
-Added On: {{timestamp}}
+━━━━━━━━━━━━━━━━━━━━━━━
 
-This is an automated notification from the GPBC Calendar system.
+Added by: {{added_by}}
+Added on: {{timestamp}}
+
+View the full calendar at: [Your Calendar URL]
 
 God Bless,
 GPBC Calendar System
 ```
 
-**To Email:** {{to_email}}
-**Reply To:** {{to_email}}
+**Settings:**
+- To Email: `{{to_email}}`
+- Reply To: `gracepraisebangladeshichurch@gmail.com`
 
 4. Click "Save"
-5. Copy your **Template ID**
+5. Note your **Template ID** (looks like: `template_abc123`)
 
-## Step 4: Get Your Public Key
+### Step 4: Get Your Public Key
 
-1. Go to "Account" in EmailJS dashboard
-2. Find your **Public Key** (also called User ID)
+1. Click "Account" in the dashboard
+2. Find your **Public Key** (looks like: `user_abc123xyz`)
 3. Copy it
 
-## Step 5: Update Calendar Code
+### Step 5: Update Your Code
 
-Open `calendar.js` and replace these placeholders:
+Open `/Users/gbaidya/Documents/Project cool/Calendar 2026/calendar.js`
 
-**Line 3:** Replace `YOUR_PUBLIC_KEY` with your actual Public Key
+Find lines 10-12 and replace:
 ```javascript
-emailjs.init('YOUR_PUBLIC_KEY_HERE');
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
 ```
 
-**Line 577:** Replace `YOUR_SERVICE_ID` and `YOUR_TEMPLATE_ID`
+With your actual values:
 ```javascript
-emailjs.send('YOUR_SERVICE_ID_HERE', 'YOUR_TEMPLATE_ID_HERE', templateParams)
+const EMAILJS_PUBLIC_KEY = 'user_abc123xyz';  // Your Public Key
+const EMAILJS_SERVICE_ID = 'service_abc123';   // Your Service ID
+const EMAILJS_TEMPLATE_ID = 'template_abc123'; // Your Template ID
 ```
 
-## Step 6: Set Up CC to gilbert.baidya@gmail.com
+### Step 6: Add CC to Gilbert
 
-In your EmailJS template settings:
-1. Go to "Settings" tab
-2. Add "Bcc Recipients" field
-3. Enter: gilbert.baidya@gmail.com
+In EmailJS template, add **gilbert.baidya@gmail.com** to CC field in settings.
 
-OR modify the template to include:
-**Cc:** gilbert.baidya@gmail.com
+### Step 7: Test It!
 
-## Email Notification Features
-
-✅ Automatic emails when someone adds an event
-✅ To: gracepraisebangladeshichurch@gmail.com
-✅ CC: gilbert.baidya@gmail.com
-✅ Includes event name, date, description
-✅ Shows who added the event and when
-
-## Free Tier Limits
-
-EmailJS free tier allows:
-- 200 emails per month
-- Perfect for church calendar notifications
-
-## Testing
-
-1. After setup, add a test event to the calendar
-2. Check your email (gracepraisebangladeshichurch@gmail.com)
-3. Verify CC to gilbert.baidya@gmail.com
-4. You should receive the notification within 1-2 minutes
-
-## Troubleshooting
-
-**No emails received?**
-- Check EmailJS dashboard for error logs
-- Verify your Public Key, Service ID, and Template ID are correct
-- Make sure your Gmail account is properly connected
-- Check spam folder
-
-**Need help?**
-- EmailJS documentation: https://www.emailjs.com/docs/
-- Support: https://www.emailjs.com/support/
+1. Save the file
+2. Refresh your calendar in browser (Ctrl+Shift+R / Cmd+Shift+R)
+3. Add a test event
+4. Check your email in 1-2 minutes!
 
 ---
 
-## Donation QR Codes
+## Troubleshooting
 
-The donation modal includes:
-- ✅ Zelle QR code (links to gracepraisebangladeshichurch@gmail.com)
-- ✅ PayPal QR code (links to PayPal.me page)
-- ✅ Bible verse: 2 Corinthians 9:7
-- ✅ Beautiful UI with church branding
+**Donate button not working?**
+- Hard refresh the page: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+- Check browser console (F12) for errors
+- Make sure you're viewing the latest version
 
-**Note:** Update the PayPal link in the code to your actual PayPal.me URL if you have one.
+**No emails received?**
+- Check the browser console (F12) for errors
+- Verify all 3 IDs are correct in calendar.js
+- Check EmailJS dashboard for error logs
+- Look in spam folder
+- Verify Gmail is connected in EmailJS
+
+**Still having issues?**
+- Open browser console (F12) and check for errors
+- Make sure QRCode library is loaded
+- Clear browser cache and reload
+
+---
+
+## What You Get
+
+### Email Notifications Include:
+- ✅ Event name, date, and description
+- ✅ Who added it and when
+- ✅ Sent to: gracepraisebangladeshichurch@gmail.com
+- ✅ CC to: gilbert.baidya@gmail.com
+
+### Donation Features:
+- ✅ Beautiful modal with Bible verse (2 Corinthians 9:7)
+- ✅ Zelle QR code
+- ✅ PayPal QR code
+- ✅ Direct links to payment platforms
+- ✅ Mobile responsive
+
+---
+
+## Free Tier Limits
+
+- 200 emails/month (plenty for calendar notifications)
+- No credit card required
+- Perfect for church use
+
+---
+
+## Need Help?
+
+- EmailJS Docs: https://www.emailjs.com/docs/
+- EmailJS Support: https://www.emailjs.com/support/
+
+---
+
+**Remember**: The calendar works perfectly right now! Email setup is optional and just adds automatic notifications.
+

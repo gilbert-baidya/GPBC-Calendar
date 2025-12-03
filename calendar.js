@@ -7,10 +7,15 @@ let currentEvent = null;
 
 const CODE_OWNER = 'gilbert-baidya'; // Change to your GitHub username
 
-// Initialize EmailJS for notifications
-(function() {
-    emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key from https://dashboard.emailjs.com/admin/account
-})();
+// EmailJS configuration - replace these with your actual values
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+// Initialize EmailJS for notifications (only if configured)
+if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 // Initialize calendar on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -563,38 +568,61 @@ function downloadCalendarAsImage() {
 function setupDonationModal() {
     // Generate Zelle QR code
     const zelleQR = document.getElementById('zelleQR');
-    if (zelleQR && zelleQR.innerHTML === '') {
-        new QRCode(zelleQR, {
-            text: 'mailto:gracepraisebangladeshichurch@gmail.com',
-            width: 180,
-            height: 180,
-            colorDark: '#667eea',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-        });
+    if (zelleQR && zelleQR.innerHTML === '' && typeof QRCode !== 'undefined') {
+        try {
+            new QRCode(zelleQR, {
+                text: 'mailto:gracepraisebangladeshichurch@gmail.com',
+                width: 180,
+                height: 180,
+                colorDark: '#667eea',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        } catch (e) {
+            console.log('Error generating Zelle QR code:', e);
+        }
     }
     
     // Generate PayPal QR code
     const paypalQR = document.getElementById('paypalQR');
-    if (paypalQR && paypalQR.innerHTML === '') {
-        new QRCode(paypalQR, {
-            text: 'https://www.paypal.com/paypalme/gpbchurch',
-            width: 180,
-            height: 180,
-            colorDark: '#0070ba',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-        });
+    if (paypalQR && paypalQR.innerHTML === '' && typeof QRCode !== 'undefined') {
+        try {
+            new QRCode(paypalQR, {
+                text: 'https://www.paypal.com/paypalme/gpbchurch',
+                width: 180,
+                height: 180,
+                colorDark: '#0070ba',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        } catch (e) {
+            console.log('Error generating PayPal QR code:', e);
+        }
     }
 }
 
 function showDonationModal() {
-    const modal = document.getElementById('donationModal');
-    setupDonationModal(); // Ensure QR codes are generated
-    modal.style.display = 'block';
+    try {
+        const modal = document.getElementById('donationModal');
+        if (!modal) {
+            console.error('Donation modal not found');
+            return;
+        }
+        setupDonationModal(); // Ensure QR codes are generated
+        modal.style.display = 'block';
+    } catch (e) {
+        console.error('Error showing donation modal:', e);
+        alert('Unable to open donation modal. Please refresh the page and try again.');
+    }
 }
 
 function sendEventNotification(event) {
+    // Skip if EmailJS is not configured
+    if (typeof emailjs === 'undefined' || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+        console.log('Email notifications not configured. Event added successfully without notification.');
+        return;
+    }
+    
     // Format the date nicely
     const [year, month, day] = event.date.split('-');
     const eventDate = new Date(year, month - 1, day);
@@ -617,13 +645,10 @@ function sendEventNotification(event) {
     };
     
     // Send email using EmailJS
-    // Note: You need to create a template in EmailJS dashboard with these variables:
-    // {{to_email}}, {{cc_email}}, {{event_name}}, {{event_date}}, {{event_description}}, {{added_by}}, {{timestamp}}
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
         .then(function(response) {
             console.log('Email notification sent successfully!', response.status, response.text);
         }, function(error) {
             console.log('Failed to send email notification:', error);
-            // Don't alert user about email failure - event is still added
         });
 }

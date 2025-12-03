@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setupMemberRegistration() {
     // Member registration button
-    document.getElementById('memberRegistrationBtn').addEventListener('click', showMemberRegistrationModal);
+    document.getElementById('specialDaysRegistrationBtn').addEventListener('click', showMemberRegistrationModal);
     
     // Show registration form button
     document.getElementById('showRegistrationForm').addEventListener('click', () => {
@@ -159,7 +159,7 @@ function displayMembers() {
     const membersList = document.getElementById('membersList');
     
     if (members.length === 0) {
-        membersList.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No members registered yet</p>';
+        membersList.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No special days registered yet</p>';
         return;
     }
     

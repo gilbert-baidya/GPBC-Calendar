@@ -34,7 +34,7 @@
                 <button id="downloadImageBtn" class="btn btn-primary">📸 Download as Image</button>
                 <button id="shareBtn" class="btn btn-primary">📤 Share Events</button>
                 <button id="reminderBtn" class="btn btn-secondary">🔔 View Reminders</button>
-                <button id="memberRegistrationBtn" class="btn" style="background: #28a745; color: white; border-color: #28a745;">👥 Member Registration</button>
+                <button id="specialDaysRegistrationBtn" class="btn" style="background: #28a745; color: white; border-color: #28a745;">🌟 Special Days Registration</button>
             </div>
         </div>
 
@@ -104,11 +104,13 @@
         <div id="memberRegistrationModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>👥 Member Registration</h2>
-                <p style="margin-bottom: 20px; color: #666;">Scan the QR code below to register your birthday and anniversary</p>
+                <h2>🌟 Special Days Registration</h2>
+                <p style="margin-bottom: 20px; color: #666;">Scan the QR code below to register your birthday and anniversary (open to all, not just members)</p>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <div id="qrcode" style="display: inline-block; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
+                    <div id="qrcode" style="display: inline-block; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); position: relative;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Jesus_icon.png/120px-Jesus_icon.png" alt="Jesus" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; opacity: 0.7; pointer-events: none;" />
+                    </div>
                     <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Scan with your phone camera</p>
                 </div>
 
@@ -117,7 +119,7 @@
                 </div>
 
                 <div id="viewMembersSection" style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e9ecef;">
-                    <h3 style="margin-bottom: 15px;">Registered Members</h3>
+                    <h3 style="margin-bottom: 15px;">Registered Special Days</h3>
                     <div id="membersList" style="max-height: 300px; overflow-y: auto;"></div>
                 </div>
             </div>

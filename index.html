@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace and Praise Bangladeshi Church - Calendar 2026</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 Grace and Praise Bangladeshi Church</h1>
+            <p>1325 Richardson Street, CA 92408</p>
+            <p style="margin-top: 10px; font-size: 0.95em;">Bangladeshi • American • Christian • Special Days</p>
+        </header>
+
+        <div class="controls">
+            <div class="navigation">
+                <button id="prevMonth" class="btn">‹ Previous</button>
+                <h2 id="currentMonth">January 2026</h2>
+                <button id="nextMonth" class="btn">Next ›</button>
+            </div>
+            
+            <div class="filters">
+                <label><input type="checkbox" class="filter" data-category="bangladeshi" checked> 🇧🇩 Bangladeshi</label>
+                <label><input type="checkbox" class="filter" data-category="american" checked> 🇺🇸 American</label>
+                <label><input type="checkbox" class="filter" data-category="christian" checked> ✝️ Christian</label>
+                <label><input type="checkbox" class="filter" data-category="special" checked> ❤️ Special Days</label>
+                <label><input type="checkbox" class="filter" data-category="gpbc" checked> ⛪ GPBC Events</label>
+            </div>
+
+            <div class="action-buttons">
+                <button id="printBtn" class="btn btn-primary">🖨️ Print Calendar</button>
+                <button id="downloadImageBtn" class="btn btn-primary">📸 Download as Image</button>
+                <button id="shareBtn" class="btn btn-primary">📤 Share Events</button>
+                <button id="reminderBtn" class="btn btn-secondary">🔔 View Reminders</button>
+                <button id="memberRegistrationBtn" class="btn" style="background: #28a745; color: white; border-color: #28a745;">👥 Member Registration</button>
+            </div>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="weekday">Sun</div>
+            <div class="weekday">Mon</div>
+            <div class="weekday">Tue</div>
+            <div class="weekday">Wed</div>
+            <div class="weekday">Thu</div>
+            <div class="weekday">Fri</div>
+            <div class="weekday">Sat</div>
+            <!-- Calendar days will be inserted here by JavaScript -->
+        </div>
+
+        <div class="events-sidebar">
+            <h3>Events This Month</h3>
+            <div id="monthEvents"></div>
+        </div>
+
+        <div id="reminderModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>🔔 Upcoming Event Reminders</h2>
+                <p class="reminder-info">Reminders are shown 2 months before each event</p>
+                <div id="reminderList"></div>
+            </div>
+        </div>
+
+        <div id="eventDetailModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="eventTitle"></h2>
+                <p id="eventDate"></p>
+                <p id="eventDescription"></p>
+                <div id="eventCategory"></div>
+                <div id="deleteButtonContainer" style="margin-top: 20px; display: none;">
+                    <button id="deleteEventBtn" class="btn" style="background: #dc3545; color: white; border-color: #dc3545;">🗑️ Delete Event</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="addEventModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>⛪ Add GPBC Event</h2>
+                <form id="addEventForm">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Event Name:</label>
+                        <input type="text" id="eventName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Date:</label>
+                        <input type="text" id="eventDateInput" readonly style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; background: #f8f9fa;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Description:</label>
+                        <textarea id="eventDescription" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; resize: vertical;"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">✓ Add Event</button>
+                        <button type="button" class="btn" id="cancelAddEvent" style="flex: 1;">✗ Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="memberRegistrationModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>👥 Member Registration</h2>
+                <p style="margin-bottom: 20px; color: #666;">Scan the QR code below to register your birthday and anniversary</p>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <div id="qrcode" style="display: inline-block; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Scan with your phone camera</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="showRegistrationForm" class="btn btn-primary">📝 Or Fill Form Directly</button>
+                </div>
+
+                <div id="viewMembersSection" style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e9ecef;">
+                    <h3 style="margin-bottom: 15px;">Registered Members</h3>
+                    <div id="membersList" style="max-height: 300px; overflow-y: auto;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="registrationFormModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>👤 Register Your Information</h2>
+                <p style="margin-bottom: 20px; color: #666;">Help us celebrate your special days!</p>
+                
+                <form id="memberRegistrationForm">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name: *</label>
+                        <input type="text" id="memberName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Birthday (Month & Day): *</label>
+                        <div style="display: flex; gap: 10px;">
+                            <select id="birthMonth" required style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                                <option value="">Month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            <select id="birthDay" required style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                                <option value="">Day</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <input type="checkbox" id="hasAnniversary" style="width: 18px; height: 18px;">
+                            <span style="font-weight: bold;">I have a wedding anniversary</span>
+                        </label>
+                        <div id="anniversarySection" style="display: none;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Anniversary (Month & Day):</label>
+                            <div style="display: flex; gap: 10px;">
+                                <select id="anniversaryMonth" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                                    <option value="">Month</option>
+                                    <option value="01">January</option>
+                                    <option value="02">February</option>
+                                    <option value="03">March</option>
+                                    <option value="04">April</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option value="09">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                                <select id="anniversaryDay" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                                    <option value="">Day</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">✓ Submit</button>
+                        <button type="button" class="btn" id="cancelRegistration" style="flex: 1;">✗ Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <script src="events.js"></script>
+    <script src="calendar.js"></script>
+    <script src="reminders.js"></script>
+    <script src="members.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>

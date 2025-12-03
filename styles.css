@@ -279,6 +279,8 @@ header p {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     animation: fadeIn 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 @keyframes fadeIn {
@@ -292,6 +294,9 @@ header p {
     padding: 30px;
     width: 90%;
     max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: 15px;
     position: relative;
     animation: slideDown 0.3s ease;
@@ -546,19 +551,42 @@ header p {
     .modal-content {
         width: 95%;
         max-width: 95%;
-        margin: 10% auto;
+        max-height: 85vh;
+        margin: 5% auto;
         padding: 20px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .modal {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     /* Donation modal mobile responsive */
     #donationModal .modal-content {
         width: 95%;
         max-width: 95%;
-        margin: 10% auto;
+        max-height: 85vh;
+        margin: 5% auto;
+        padding: 20px 15px;
     }
     
     #donationModal div[style*="grid-template-columns"] {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
+    }
+    
+    #donationModal h2 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    #donationModal h3 {
+        font-size: 1.1em;
+    }
+    
+    #donationModal p {
+        font-size: 0.9em;
     }
 }

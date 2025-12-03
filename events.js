@@ -41,7 +41,6 @@ const events = [
     { date: '2026-04-22', name: 'Earth Day', category: 'special', description: 'Promoting environmental protection and awareness' },
     { date: '2026-05-10', name: 'Mother\'s Day', category: 'special', description: 'Honoring mothers and motherhood' },
     { date: '2026-06-21', name: 'Father\'s Day', category: 'special', description: 'Honoring fathers and fatherhood' },
-    { date: '2026-10-31', name: 'Halloween', category: 'special', description: 'Traditional celebration with costumes and trick-or-treating' },
     { date: '2026-12-31', name: 'New Year\'s Eve', category: 'special', description: 'Celebration on the last day of the year' },
 ];
 

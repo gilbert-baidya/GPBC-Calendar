@@ -5,11 +5,19 @@ let activeFilters = new Set(['bangladeshi', 'american', 'christian', 'special', 
 let selectedDate = null;
 let currentEvent = null;
 
+const CODE_OWNER = 'gilbert-baidya'; // Change to your GitHub username
+
+// Initialize EmailJS for notifications
+(function() {
+    emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key from https://dashboard.emailjs.com/admin/account
+})();
+
 // Initialize calendar on page load
 document.addEventListener('DOMContentLoaded', function() {
     initializeCalendar();
     setupEventListeners();
     checkAndShowReminders();
+    setupDonationModal();
 });
 
 function initializeCalendar() {
@@ -93,6 +101,9 @@ function setupEventListeners() {
 
     // Delete event button
     document.getElementById('deleteEventBtn').addEventListener('click', deleteCurrentEvent);
+    
+    // Donation button
+    document.getElementById('donationBtn').addEventListener('click', showDonationModal);
 }
 
 function renderCalendar() {
@@ -273,9 +284,9 @@ function showEventDetail(event) {
     categoryDiv.innerHTML = '';
     categoryDiv.appendChild(categoryBadge);
     
-    // Show delete button only for GPBC events
+    // Show delete button only for GPBC events created by code owner
     const deleteContainer = document.getElementById('deleteButtonContainer');
-    if (event.category === 'gpbc') {
+    if (event.category === 'gpbc' && event.owner === CODE_OWNER) {
         deleteContainer.style.display = 'block';
     } else {
         deleteContainer.style.display = 'none';
@@ -404,52 +415,49 @@ function showAddEventModal(dateString) {
 function addGPBCEvent() {
     const name = document.getElementById('eventName').value.trim();
     const description = document.getElementById('eventDescription').value.trim();
-    
     if (!name) {
         alert('Please enter an event name');
         return;
     }
-    
     const newEvent = {
         date: selectedDate,
         name: name,
         category: 'gpbc',
-        description: description || 'Grace and Praise Bangladeshi Church event'
+        description: description || 'Grace and Praise Bangladeshi Church event',
+        owner: CODE_OWNER // Mark event as created by code owner
     };
-    
     events.push(newEvent);
     saveCustomEvents();
+    
+    // Send email notification
+    sendEventNotification(newEvent);
     
     document.getElementById('addEventModal').style.display = 'none';
     renderCalendar();
     renderMonthEvents();
-    
     alert(`✓ Event "${name}" added successfully!`);
 }
 
 function deleteCurrentEvent() {
-    if (!currentEvent || currentEvent.category !== 'gpbc') {
-        alert('Only GPBC events can be deleted.');
+    if (!currentEvent || currentEvent.category !== 'gpbc' || currentEvent.owner !== CODE_OWNER) {
+        alert('Only events created by the code owner can be deleted.');
         return;
     }
-    
     if (confirm(`Are you sure you want to delete "${currentEvent.name}"?`)) {
         // Find and remove the event from the events array
         const index = events.findIndex(e => 
             e.date === currentEvent.date && 
             e.name === currentEvent.name && 
-            e.category === 'gpbc'
+            e.category === 'gpbc' &&
+            e.owner === CODE_OWNER
         );
-        
         if (index !== -1) {
             events.splice(index, 1);
             saveCustomEvents();
-            
             // Close modal and refresh calendar
             document.getElementById('eventDetailModal').style.display = 'none';
             renderCalendar();
             renderMonthEvents();
-            
             alert(`✓ Event "${currentEvent.name}" deleted successfully!`);
             currentEvent = null;
         }
@@ -550,4 +558,72 @@ function downloadCalendarAsImage() {
         console.error('Screenshot failed:', err);
         alert('Failed to capture calendar. Please try again.');
     });
+}
+
+function setupDonationModal() {
+    // Generate Zelle QR code
+    const zelleQR = document.getElementById('zelleQR');
+    if (zelleQR && zelleQR.innerHTML === '') {
+        new QRCode(zelleQR, {
+            text: 'mailto:gracepraisebangladeshichurch@gmail.com',
+            width: 180,
+            height: 180,
+            colorDark: '#667eea',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+    
+    // Generate PayPal QR code
+    const paypalQR = document.getElementById('paypalQR');
+    if (paypalQR && paypalQR.innerHTML === '') {
+        new QRCode(paypalQR, {
+            text: 'https://www.paypal.com/paypalme/gpbchurch',
+            width: 180,
+            height: 180,
+            colorDark: '#0070ba',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+}
+
+function showDonationModal() {
+    const modal = document.getElementById('donationModal');
+    setupDonationModal(); // Ensure QR codes are generated
+    modal.style.display = 'block';
+}
+
+function sendEventNotification(event) {
+    // Format the date nicely
+    const [year, month, day] = event.date.split('-');
+    const eventDate = new Date(year, month - 1, day);
+    const formattedDate = eventDate.toLocaleDateString('en-US', { 
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long', 
+        day: 'numeric' 
+    });
+    
+    // Email template parameters
+    const templateParams = {
+        to_email: 'gracepraisebangladeshichurch@gmail.com',
+        cc_email: 'gilbert.baidya@gmail.com',
+        event_name: event.name,
+        event_date: formattedDate,
+        event_description: event.description,
+        added_by: event.owner || 'User',
+        timestamp: new Date().toLocaleString()
+    };
+    
+    // Send email using EmailJS
+    // Note: You need to create a template in EmailJS dashboard with these variables:
+    // {{to_email}}, {{cc_email}}, {{event_name}}, {{event_date}}, {{event_description}}, {{added_by}}, {{timestamp}}
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function(response) {
+            console.log('Email notification sent successfully!', response.status, response.text);
+        }, function(error) {
+            console.log('Failed to send email notification:', error);
+            // Don't alert user about email failure - event is still added
+        });
 }

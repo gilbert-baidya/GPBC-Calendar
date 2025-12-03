@@ -74,19 +74,23 @@ function showMemberRegistrationModal() {
 
 function submitMemberRegistration() {
     const name = document.getElementById('memberName').value.trim();
+    const phone = document.getElementById('memberPhone').value.trim();
+    const email = document.getElementById('memberEmail').value.trim();
+    const social = document.getElementById('memberSocial').value.trim();
     const birthMonth = document.getElementById('birthMonth').value;
     const birthDay = document.getElementById('birthDay').value;
     const hasAnniversary = document.getElementById('hasAnniversary').checked;
     const anniversaryMonth = document.getElementById('anniversaryMonth').value;
     const anniversaryDay = document.getElementById('anniversaryDay').value;
-    
     if (!name || !birthMonth || !birthDay) {
         alert('Please fill in all required fields (Name and Birthday)');
         return;
     }
-    
     const member = {
         name: name,
+        phone: phone,
+        email: email,
+        social: social,
         birthday: `${birthMonth}-${birthDay}`,
         anniversary: hasAnniversary && anniversaryMonth && anniversaryDay ? `${anniversaryMonth}-${anniversaryDay}` : null,
         registeredDate: new Date().toISOString()
@@ -176,13 +180,20 @@ function displayMembers() {
             <div style="font-weight: bold; margin-bottom: 5px;">${member.name}</div>
             <div style="font-size: 0.9em; color: #666;">🎂 Birthday: ${birthdayText}</div>
         `;
-        
+        if (member.phone) {
+            html += `<div style="font-size: 0.9em; color: #666;">📞 Phone: ${member.phone}</div>`;
+        }
+        if (member.email) {
+            html += `<div style="font-size: 0.9em; color: #666;">✉️ Email: ${member.email}</div>`;
+        }
+        if (member.social) {
+            html += `<div style="font-size: 0.9em; color: #666;">🔗 Social: ${member.social}</div>`;
+        }
         if (member.anniversary) {
             const [annMonth, annDay] = member.anniversary.split('-');
             const anniversaryText = `${monthNames[parseInt(annMonth) - 1]} ${parseInt(annDay)}`;
             html += `<div style="font-size: 0.9em; color: #666;">💒 Anniversary: ${anniversaryText}</div>`;
         }
-        
         memberDiv.innerHTML = html;
         membersList.appendChild(memberDiv);
     });

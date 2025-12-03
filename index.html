@@ -35,6 +35,7 @@
                 <button id="shareBtn" class="btn btn-primary">📤 Share Events</button>
                 <button id="reminderBtn" class="btn btn-secondary">🔔 View Reminders</button>
                 <button id="specialDaysRegistrationBtn" class="btn" style="background: #28a745; color: white; border-color: #28a745;">🌟 Special Days Registration</button>
+                <button id="donationBtn" class="btn" style="background: #FFD700; color: #333; border-color: #FFD700; font-weight: bold;">💝 Donate</button>
             </div>
         </div>
 
@@ -136,6 +137,18 @@
                         <label style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name: *</label>
                         <input type="text" id="memberName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
                     </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Phone Number:</label>
+                        <input type="tel" id="memberPhone" pattern="[0-9\-\+ ]*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Email ID:</label>
+                        <input type="email" id="memberEmail" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Social Media:</label>
+                        <input type="text" id="memberSocial" placeholder="Facebook, Instagram, WhatsApp, etc." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                    </div>
                     
                     <div style="margin-bottom: 15px;">
                         <label style="display: block; margin-bottom: 5px; font-weight: bold;">Birthday (Month & Day): *</label>
@@ -198,9 +211,46 @@
                 </form>
             </div>
         </div>
+
+        <div id="donationModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>💝 Support Our Ministry</h2>
+                
+                <div style="text-align: center; margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px;">
+                    <p style="color: white; font-size: 1.1em; font-style: italic; line-height: 1.6; margin: 0;">
+                        "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."<br>
+                        <strong>- 2 Corinthians 9:7</strong>
+                    </p>
+                </div>
+
+                <p style="text-align: center; color: #666; margin: 20px 0;">Your generous donations help us serve our community and spread God's love</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                    <div style="text-align: center;">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">💳 Zelle</h3>
+                        <div id="zelleQR" style="display: inline-block; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
+                        <p style="margin-top: 15px; font-size: 0.9em; color: #666;">gracepraisebangladeshichurch@gmail.com</p>
+                        <a href="https://www.zellepay.com/" target="_blank" class="btn btn-primary" style="margin-top: 10px; display: inline-block; text-decoration: none;">Open Zelle</a>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <h3 style="color: #0070ba; margin-bottom: 15px;">💰 PayPal</h3>
+                        <div id="paypalQR" style="display: inline-block; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
+                        <p style="margin-top: 15px; font-size: 0.9em; color: #666;">gracepraisebangladeshichurch@gmail.com</p>
+                        <a href="https://www.paypal.com/paypalme/gpbchurch" target="_blank" class="btn" style="margin-top: 10px; display: inline-block; text-decoration: none; background: #0070ba; color: white; border-color: #0070ba;">Open PayPal</a>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <p style="font-size: 0.95em; color: #666; margin: 0;">🙏 Thank you for your generosity and support!<br>May God bless you abundantly.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script src="events.js"></script>
     <script src="calendar.js"></script>

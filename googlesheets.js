@@ -9,11 +9,14 @@ async function loadEventsFromGoogleSheets() {
     }
 
     try {
-        const response = await fetch(`${GOOGLE_SHEETS_URL}?action=getEvents`, {
-            method: 'GET',
+        const response = await fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-            }
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify({
+                action: 'getEvents'
+            })
         });
 
         if (!response.ok) {
@@ -38,6 +41,8 @@ async function loadEventsFromGoogleSheets() {
                         name: event.name,
                         category: event.category || 'gpbc',
                         description: event.description || '',
+                        addedBy: event.addedBy || '',
+                        contact: event.contact || '',
                         owner: event.owner || '',
                         timestamp: event.timestamp || ''
                     });
@@ -66,7 +71,7 @@ async function saveEventToGoogleSheets(event) {
         const response = await fetch(GOOGLE_SHEETS_URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain',
             },
             body: JSON.stringify({
                 action: 'addEvent',
@@ -75,6 +80,8 @@ async function saveEventToGoogleSheets(event) {
                     name: event.name,
                     category: event.category,
                     description: event.description || '',
+                    addedBy: event.addedBy || '',
+                    contact: event.contact || '',
                     owner: event.owner || CODE_OWNER
                 }
             })
@@ -105,15 +112,15 @@ async function deleteEventFromGoogleSheets(event) {
         const response = await fetch(GOOGLE_SHEETS_URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain',
             },
             body: JSON.stringify({
                 action: 'deleteEvent',
                 event: {
                     date: event.date,
-                    name: event.name
-                },
-                owner: event.owner || CODE_OWNER
+                    name: event.name,
+                    owner: event.owner || CODE_OWNER
+                }
             })
         });
 

@@ -83,11 +83,19 @@
                 <h2>⛪ Add GPBC Event</h2>
                 <form id="addEventForm">
                     <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Event Name:</label>
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Your Name: *</label>
+                        <input type="text" id="eventAddedBy" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;" placeholder="Enter your full name">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Your Email or Phone: *</label>
+                        <input type="text" id="eventContact" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;" placeholder="Email or phone number">
+                    </div>
+                    <div style="border-top: 2px solid #e9ecef; padding-top: 15px; margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Event Name: *</label>
                         <input type="text" id="eventName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
                     </div>
                     <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Date:</label>
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Date: *</label>
                         <input type="text" id="eventDateInput" readonly style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; background: #f8f9fa;">
                     </div>
                     <div style="margin-bottom: 20px;">

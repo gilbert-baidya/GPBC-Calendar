@@ -292,6 +292,31 @@ function showEventDetail(event) {
     document.getElementById('eventDate').textContent = formattedDate;
     document.getElementById('eventDescription').textContent = event.description;
     
+    // Remove any existing contact info
+    const existingContactInfo = document.querySelector('.event-contact-info');
+    if (existingContactInfo) {
+        existingContactInfo.remove();
+    }
+    
+    // Add contact info if available
+    const descriptionElement = document.getElementById('eventDescription');
+    if (event.addedBy || event.contact) {
+        const contactInfo = document.createElement('div');
+        contactInfo.className = 'event-contact-info';
+        contactInfo.style.cssText = `
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9em;
+            color: #666;
+        `;
+        contactInfo.innerHTML = `
+            <strong>📋 Added by:</strong> ${event.addedBy || 'Unknown'}<br>
+            ${event.contact ? `<strong>📞 Contact:</strong> ${event.contact}` : ''}
+        `;
+        descriptionElement.parentNode.insertBefore(contactInfo, descriptionElement.nextSibling);
+    }
+    
     const categoryBadge = document.createElement('span');
     categoryBadge.style.cssText = `
         display: inline-block;
@@ -430,15 +455,29 @@ function showAddEventModal(dateString) {
     });
     
     document.getElementById('eventDateInput').value = formattedDate;
+    document.getElementById('eventAddedBy').value = '';
+    document.getElementById('eventContact').value = '';
     document.getElementById('eventName').value = '';
     document.getElementById('eventDescription').value = '';
     document.getElementById('addEventModal').style.display = 'block';
-    document.getElementById('eventName').focus();
+    document.getElementById('eventAddedBy').focus();
 }
 
 async function addGPBCEvent() {
+    const addedBy = document.getElementById('eventAddedBy').value.trim();
+    const contact = document.getElementById('eventContact').value.trim();
     const name = document.getElementById('eventName').value.trim();
     const description = document.getElementById('eventDescription').value.trim();
+    
+    if (!addedBy) {
+        alert('Please enter your name');
+        return;
+    }
+    
+    if (!contact) {
+        alert('Please enter your email or phone number');
+        return;
+    }
     
     if (!name) {
         alert('Please enter an event name');
@@ -450,6 +489,8 @@ async function addGPBCEvent() {
         name: name,
         category: 'gpbc',
         description: description || 'Grace and Praise Bangladeshi Church event',
+        addedBy: addedBy,
+        contact: contact,
         owner: CODE_OWNER // Mark event as created by code owner
     };
     
@@ -696,7 +737,8 @@ function sendEventNotification(event) {
         event_name: event.name,
         event_date: formattedDate,
         event_description: event.description,
-        added_by: event.owner || 'User',
+        added_by: event.addedBy || event.owner || 'User',
+        contact_info: event.contact || 'Not provided',
         timestamp: new Date().toLocaleString()
     };
     

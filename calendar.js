@@ -520,7 +520,8 @@ async function addGPBCEvent() {
         description: description || 'Grace and Praise Bangladeshi Church event',
         addedBy: addedBy,
         contact: contact,
-        owner: CODE_OWNER // Mark event as created by code owner
+        owner: CODE_OWNER, // Mark event as created by code owner
+        timestamp: new Date().toISOString() // Add timestamp for "NEW" badge
     };
     
     // Show loading

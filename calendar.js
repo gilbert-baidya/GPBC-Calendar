@@ -210,11 +210,26 @@ function createDayElement(dayNumber, isOtherMonth, isToday = false) {
         const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(dayNumber).padStart(2, '0')}`;
         const dayEvents = getEventsForDate(dateString);
         
+        const now = new Date();
+        const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
+        
         dayEvents.forEach(event => {
             if (activeFilters.has(event.category)) {
                 const eventMarker = document.createElement('div');
                 eventMarker.className = `event-marker ${event.category}`;
-                eventMarker.textContent = `${categoryEmojis[event.category]} ${event.name}`;
+                
+                // Check if event was added in the last 7 days
+                const isNew = event.timestamp && new Date(event.timestamp) > sevenDaysAgo;
+                const newIcon = isNew ? '🆕 ' : '';
+                
+                eventMarker.textContent = `${newIcon}${categoryEmojis[event.category]} ${event.name}`;
+                
+                // Add special styling for new events
+                if (isNew) {
+                    eventMarker.style.fontWeight = 'bold';
+                    eventMarker.style.animation = 'pulse 2s infinite';
+                }
+                
                 eventMarker.addEventListener('click', (e) => {
                     e.stopPropagation();
                     showEventDetail(event);
@@ -250,6 +265,9 @@ function renderMonthEvents() {
 
     monthEventsDiv.innerHTML = '';
     
+    const now = new Date();
+    const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
+    
     monthEvents.forEach(event => {
         if (activeFilters.has(event.category)) {
             const eventItem = document.createElement('div');
@@ -264,8 +282,19 @@ function renderMonthEvents() {
                 day: 'numeric' 
             });
             
+            // Check if event was added in the last 7 days
+            const isNew = event.timestamp && new Date(event.timestamp) > sevenDaysAgo;
+            const newBadge = isNew ? '<span style="background: #ff4444; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; margin-left: 8px; font-weight: bold;">NEW</span>' : '';
+            
+            // Add special styling for new events
+            if (isNew) {
+                eventItem.style.background = 'linear-gradient(135deg, #fff3cd 0%, #ffffff 100%)';
+                eventItem.style.borderLeft = '4px solid #ff4444';
+                eventItem.style.boxShadow = '0 2px 8px rgba(255, 68, 68, 0.2)';
+            }
+            
             eventItem.innerHTML = `
-                <div class="event-name">${categoryEmojis[event.category]} ${event.name}</div>
+                <div class="event-name">${categoryEmojis[event.category]} ${event.name}${newBadge}</div>
                 <div class="event-date">${formattedDate}</div>
             `;
             

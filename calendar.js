@@ -14,7 +14,7 @@ const USE_GOOGLE_SHEETS = true; // Set to false to use localStorage instead
 // EmailJS configuration - replace these with your actual values
 const EMAILJS_PUBLIC_KEY = '__rLqwMXgJLla26DS';
 const EMAILJS_SERVICE_ID = 'service_qndkrol';
-const EMAILJS_TEMPLATE_ID = 'template_y43v4f1';
+const EMAILJS_TEMPLATE_ID = 'template_tf8nnjr';
 
 // Initialize EmailJS for notifications (only if configured)
 if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {

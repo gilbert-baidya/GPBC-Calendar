@@ -58,9 +58,10 @@ Description: {{event_description}}
 ━━━━━━━━━━━━━━━━━━━━━━━
 
 Added by: {{added_by}}
+Contact: {{contact_info}}
 Added on: {{timestamp}}
 
-View the full calendar at: [Your Calendar URL]
+View the full calendar at: https://gilbert-baidya.github.io/GPBC-Calendar/
 
 God Bless,
 GPBC Calendar System

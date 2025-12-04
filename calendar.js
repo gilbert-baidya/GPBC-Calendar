@@ -8,7 +8,7 @@ let currentEvent = null;
 const CODE_OWNER = 'gilbert-baidya'; // Change to your GitHub username
 
 // Google Sheets Database Configuration
-const GOOGLE_SHEETS_URL = 'YOUR_WEB_APP_URL_HERE'; // Replace with your Google Apps Script Web app URL
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxN025_2hB-8X00M3cDDkit0HqTSUuh2VttI3GJ26gbaohwKFncar3ExvJtJW4PtuqERQ/exec';
 const USE_GOOGLE_SHEETS = true; // Set to false to use localStorage instead
 
 // EmailJS configuration - replace these with your actual values

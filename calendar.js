@@ -23,6 +23,9 @@ if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') 
 
 // Initialize calendar on page load
 document.addEventListener('DOMContentLoaded', async function() {
+    // Generate Calendar Access QR Code
+    generateCalendarAccessQR();
+    
     // Load events from Google Sheets if configured
     if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
         showLoadingIndicator('Loading events from database...');
@@ -44,6 +47,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     setupDonationModal();
     setupPrayerRequestModal();
 });
+
+function generateCalendarAccessQR() {
+    const qrDiv = document.getElementById('calendarAccessQR');
+    if (qrDiv && typeof QRCode !== 'undefined') {
+        new QRCode(qrDiv, {
+            text: 'https://gilbert-baidya.github.io/GPBC-Calendar/',
+            width: 180,
+            height: 180,
+            colorDark: "#667eea",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+}
 
 function initializeCalendar() {
     renderCalendar();

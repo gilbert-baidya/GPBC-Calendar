@@ -504,12 +504,18 @@ function checkAndShowReminders() {
 function showAddEventModal(dateString) {
     selectedDate = dateString;
     
-    // Set the date input value in YYYY-MM-DD format (what date inputs expect)
-    document.getElementById('eventDateInput').value = dateString;
+    // Clear form first
     document.getElementById('eventAddedBy').value = '';
     document.getElementById('eventContact').value = '';
     document.getElementById('eventName').value = '';
     document.getElementById('eventDescription').value = '';
+    
+    // Set the date input value in YYYY-MM-DD format (what date inputs expect)
+    // Use setTimeout to ensure the modal is rendered before setting the value
+    setTimeout(() => {
+        document.getElementById('eventDateInput').value = dateString;
+    }, 10);
+    
     document.getElementById('addEventModal').style.display = 'block';
     document.getElementById('eventAddedBy').focus();
 }

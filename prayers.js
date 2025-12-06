@@ -10,27 +10,27 @@ function setupPrayerRequestModal() {
     const nameSection = document.getElementById('nameSection');
     const nameInput = document.getElementById('prayerName');
 
-    // Generate QR code for prayer request URL
-    const prayerQrDiv = document.getElementById('prayerQrcode');
-    if (prayerQrDiv && typeof QRCode !== 'undefined') {
-        // Clear any existing QR code
-        prayerQrDiv.innerHTML = '';
-        
-        // Generate QR code with the prayer request page URL
-        new QRCode(prayerQrDiv, {
-            text: window.location.href,
-            width: 200,
-            height: 200,
-            colorDark: "#6f42c1",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
-    }
-
     // Open modal
     btn.addEventListener('click', () => {
         modal.style.display = 'block';
         resetPrayerForm();
+        
+        // Generate QR code when modal opens (ensures library is loaded)
+        const prayerQrDiv = document.getElementById('prayerQrcode');
+        if (prayerQrDiv && typeof QRCode !== 'undefined') {
+            // Clear any existing QR code
+            prayerQrDiv.innerHTML = '';
+            
+            // Generate QR code with the prayer request page URL
+            new QRCode(prayerQrDiv, {
+                text: window.location.href,
+                width: 200,
+                height: 200,
+                colorDark: "#6f42c1",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
     });
 
     // Close modal

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Grace and Praise Bangladeshi Church</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Section Links */
+        .section-nav {
+            background: #f8f9fa;
+            padding: 40px 20px;
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .section-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .section-nav a {
+            padding: 12px 25px;
+            background: white;
+            color: #1e3c72;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .section-nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Content Sections */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #1e3c72;
+            text-align: center;
+        }
+
+        .content-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .content-box p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .content-box ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .content-box li {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .leader-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .leader-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .leader-card .role {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .values-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .values-list li {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2em;
+            }
+
+            .section-nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⛪ GPBC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="calendar.html#prayer">Prayer</a></li>
+                <li><a href="calendar.html#donate">Give</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <h1>About Us</h1>
+        <p style="font-size: 1.3em;">Discover our story, mission, and values</p>
+    </section>
+
+    <!-- Section Navigation -->
+    <div class="section-nav">
+        <div class="section-nav-container">
+            <a href="#history">Our History</a>
+            <a href="#mission">Our Mission</a>
+            <a href="#leadership">Our Leadership</a>
+            <a href="#beliefs">Our Beliefs</a>
+            <a href="#values">Our Core Values</a>
+            <a href="#position">Position Papers</a>
+        </div>
+    </div>
+
+    <!-- Our History -->
+    <section id="history" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Our History</h2>
+            <div class="content-box">
+                <p>
+                    Grace and Praise Bangladeshi Church was founded with a vision to create a spiritual home 
+                    for the Bangladeshi community in California. Our journey began with a small group of believers 
+                    who gathered to worship God and celebrate their cultural heritage.
+                </p>
+                <p>
+                    Over the years, we have grown into a vibrant community that embraces both our Bangladeshi roots 
+                    and our identity as followers of Christ. We continue to welcome families from all backgrounds 
+                    who seek to grow in their faith and serve God together.
+                </p>
+                <p>
+                    Our church has become a beacon of hope, love, and spiritual growth in our community, 
+                    hosting regular services, cultural celebrations, and outreach programs that touch lives 
+                    and spread God's love.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission -->
+    <section id="mission">
+        <div class="container">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="content-box">
+                <p style="font-size: 1.3em; font-weight: 600; text-align: center; color: #667eea; margin-bottom: 30px;">
+                    "Passion for God, Compassion for People"
+                </p>
+                <p>
+                    Our mission is to glorify God by making disciples who love Jesus, love each other, 
+                    and love our community. We are committed to:
+                </p>
+                <ul>
+                    <li>Worshipping God with all our hearts in both English and Bangla</li>
+                    <li>Building strong, Christ-centered families</li>
+                    <li>Equipping believers for ministry and service</li>
+                    <li>Reaching our community with the Gospel of Jesus Christ</li>
+                    <li>Celebrating our Bangladeshi heritage while embracing all cultures</li>
+                    <li>Serving the needs of our local and global community</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Leadership -->
+    <section id="leadership" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Our Leadership</h2>
+            <div class="content-box">
+                <p>
+                    Our church is led by a dedicated team of pastors and leaders who are committed to 
+                    serving God and shepherding our congregation with wisdom, love, and integrity.
+                </p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <h3>Pastor Name</h3>
+                    <p class="role">Senior Pastor</p>
+                    <p>Leading our congregation with biblical teaching and pastoral care.</p>
+                </div>
+                <div class="leader-card">
+                    <h3>Pastor Name</h3>
+                    <p class="role">Associate Pastor</p>
+                    <p>Supporting ministry and community outreach programs.</p>
+                </div>
+                <div class="leader-card">
+                    <h3>Elder Board</h3>
+                    <p class="role">Church Elders</p>
+                    <p>Providing spiritual oversight and guidance for our church family.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Beliefs -->
+    <section id="beliefs">
+        <div class="container">
+            <h2 class="section-title">Our Beliefs</h2>
+            <div class="content-box">
+                <p>We believe in the fundamental truths of the Christian faith:</p>
+                <ul>
+                    <li><strong>The Bible:</strong> We believe the Bible is the inspired, infallible Word of God and our ultimate authority for faith and life.</li>
+                    <li><strong>The Trinity:</strong> We believe in one God eternally existing in three persons: Father, Son, and Holy Spirit.</li>
+                    <li><strong>Jesus Christ:</strong> We believe Jesus Christ is the Son of God, born of a virgin, lived a sinless life, died for our sins, rose from the dead, and will return again.</li>
+                    <li><strong>Salvation:</strong> We believe salvation is by grace alone, through faith alone, in Christ alone.</li>
+                    <li><strong>The Church:</strong> We believe in the universal Church, the body of Christ, made up of all true believers.</li>
+                    <li><strong>Baptism & Communion:</strong> We practice believer's baptism and regular communion as ordinances established by Christ.</li>
+                    <li><strong>Eternal Life:</strong> We believe in the resurrection of both the saved and the lost—the saved to eternal life and the lost to eternal separation from God.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Core Values -->
+    <section id="values" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="content-box">
+                <p>These values guide everything we do as a church community:</p>
+                <ul class="values-list">
+                    <li>🙏 WORSHIP - We worship God with passion and authenticity</li>
+                    <li>📖 WORD - We are committed to biblical teaching and learning</li>
+                    <li>❤️ LOVE - We love God and love people unconditionally</li>
+                    <li>🤝 COMMUNITY - We build authentic relationships and support one another</li>
+                    <li>🌍 OUTREACH - We reach out to our community and the world with the Gospel</li>
+                    <li>🌟 EXCELLENCE - We honor God by pursuing excellence in all we do</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Position Papers -->
+    <section id="position">
+        <div class="container">
+            <h2 class="section-title">Our Position Papers</h2>
+            <div class="content-box">
+                <p>
+                    We believe in being clear about where we stand on important theological and practical issues. 
+                    Our position papers provide detailed explanations of our beliefs and practices on various topics.
+                </p>
+                <p>
+                    <strong>Key positions include:</strong>
+                </p>
+                <ul>
+                    <li>Statement of Faith</li>
+                    <li>Marriage and Family</li>
+                    <li>The Sanctity of Life</li>
+                    <li>Cultural Integration and Heritage</li>
+                    <li>Community Engagement</li>
+                </ul>
+                <p style="margin-top: 30px;">
+                    <a href="calendar.html" style="color: #667eea; font-weight: 600;">For more information, please contact our church office →</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Grace and Praise Bangladeshi Church</strong></p>
+        <p>1325 Richardson Street, CA 92408</p>
+        <p>📧 gracepraisebangladeshichurch@gmail.com</p>
+        <p style="margin-top: 20px;">
+            <a href="index.html">Home</a> | 
+            <a href="about.html">About</a> | 
+            <a href="calendar.html">Calendar</a> | 
+            <a href="calendar.html#prayer">Prayer</a> | 
+            <a href="calendar.html#donate">Give</a>
+        </p>
+        <p style="margin-top: 20px; opacity: 0.7;">© 2026 GPBC - All rights reserved</p>
+    </footer>
+</body>
+</html>

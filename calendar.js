@@ -531,7 +531,8 @@ async function addGPBCEvent() {
     if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
         const saved = await saveEventToGoogleSheets(newEvent);
         if (saved) {
-            events.push(newEvent);
+            // Reload all events from Google Sheets to get the latest data
+            await loadEventsFromGoogleSheets();
         } else {
             // Fallback to localStorage
             events.push(newEvent);
@@ -566,23 +567,37 @@ async function deleteCurrentEvent() {
         // Try to delete from Google Sheets first
         if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
             const deleted = await deleteEventFromGoogleSheets(currentEvent);
-            if (!deleted) {
+            if (deleted) {
+                // Reload all events from Google Sheets to get the latest data
+                await loadEventsFromGoogleSheets();
+            } else {
                 // Fallback to localStorage
                 console.log('Using localStorage fallback for delete');
+                const index = events.findIndex(e => 
+                    e.date === currentEvent.date && 
+                    e.name === currentEvent.name && 
+                    e.category === 'gpbc' &&
+                    e.owner === CODE_OWNER
+                );
+                
+                if (index !== -1) {
+                    events.splice(index, 1);
+                    saveCustomEvents();
+                }
             }
-        }
-        
-        // Remove from local array regardless
-        const index = events.findIndex(e => 
-            e.date === currentEvent.date && 
-            e.name === currentEvent.name && 
-            e.category === 'gpbc' &&
-            e.owner === CODE_OWNER
-        );
-        
-        if (index !== -1) {
-            events.splice(index, 1);
-            saveCustomEvents();
+        } else {
+            // Remove from local array when using localStorage
+            const index = events.findIndex(e => 
+                e.date === currentEvent.date && 
+                e.name === currentEvent.name && 
+                e.category === 'gpbc' &&
+                e.owner === CODE_OWNER
+            );
+            
+            if (index !== -1) {
+                events.splice(index, 1);
+                saveCustomEvents();
+            }
         }
         
         hideLoadingIndicator();

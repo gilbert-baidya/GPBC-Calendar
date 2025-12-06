@@ -50,15 +50,25 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 function generateCalendarAccessQR() {
     const qrDiv = document.getElementById('calendarAccessQR');
-    if (qrDiv && typeof QRCode !== 'undefined') {
-        new QRCode(qrDiv, {
-            text: 'https://gilbert-baidya.github.io/GPBC-Calendar/',
-            width: 180,
-            height: 180,
-            colorDark: "#667eea",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+    if (qrDiv) {
+        // Wait for QRCode library to load
+        const generateQR = () => {
+            if (typeof QRCode !== 'undefined') {
+                qrDiv.innerHTML = ''; // Clear any existing content
+                new QRCode(qrDiv, {
+                    text: 'https://gilbert-baidya.github.io/GPBC-Calendar/',
+                    width: 180,
+                    height: 180,
+                    colorDark: "#667eea",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            } else {
+                // Retry after 100ms if library not loaded yet
+                setTimeout(generateQR, 100);
+            }
+        };
+        generateQR();
     }
 }
 

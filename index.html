@@ -3,311 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grace and Praise Bangladeshi Church - Calendar 2026</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Grace and Praise Bangladeshi Church - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+
+        .header .address {
+            font-size: 1.1em;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .welcome h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .welcome p {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .verse {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .verse p {
+            font-size: 1.3em;
+            font-style: italic;
+            color: #333;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .verse .reference {
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .nav-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-card .icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .nav-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .nav-card p {
+            font-size: 1em;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .nav-card.primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            grid-column: 1 / -1;
+        }
+
+        .nav-card.primary .icon {
+            font-size: 5em;
+        }
+
+        .nav-card.primary h3 {
+            font-size: 2em;
+        }
+
+        .qr-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .qr-section h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #homeQR {
+            display: inline-block;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .welcome h2 {
+                font-size: 1.8em;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-card.primary {
+                grid-column: 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>📅 Grace and Praise Bangladeshi Church</h1>
-            <p>1325 Richardson Street, CA 92408</p>
-            <p style="margin-top: 10px; font-size: 0.95em;">Bangladeshi • American • Christian • Special Days</p>
-            
-            <!-- QR Code for Calendar Access -->
-            <div style="text-align: center; margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px;">
-                <p style="color: white; font-weight: bold; margin-bottom: 10px; font-size: 1.1em;">📱 Scan to Access Calendar on Your Phone</p>
-                <div id="calendarAccessQR" style="display: inline-block; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></div>
-            </div>
-        </header>
-
-        <div class="controls">
-            <div class="navigation">
-                <button id="prevMonth" class="btn">‹ Previous</button>
-                <h2 id="currentMonth">January 2026</h2>
-                <button id="nextMonth" class="btn">Next ›</button>
-            </div>
-            
-            <div class="filters">
-                <label><input type="checkbox" class="filter" data-category="bangladeshi" checked> 🇧🇩 Bangladeshi</label>
-                <label><input type="checkbox" class="filter" data-category="american" checked> 🇺🇸 American</label>
-                <label><input type="checkbox" class="filter" data-category="christian" checked> ✝️ Christian</label>
-                <label><input type="checkbox" class="filter" data-category="special" checked> ❤️ Special Days</label>
-                <label><input type="checkbox" class="filter" data-category="gpbc" checked> ⛪ GPBC Events</label>
-            </div>
-
-            <div class="action-buttons">
-                <button id="printBtn" class="btn btn-primary">🖨️ Print Calendar</button>
-                <button id="downloadImageBtn" class="btn btn-primary">📸 Download as Image</button>
-                <button id="shareBtn" class="btn btn-primary">📤 Share Events</button>
-                <button id="reminderBtn" class="btn btn-secondary">🔔 View Reminders</button>
-                <button id="specialDaysRegistrationBtn" class="btn" style="background: #28a745; color: white; border-color: #28a745;">🌟 Special Days Registration</button>
-                <button id="prayerRequestBtn" class="btn" style="background: #6f42c1; color: white; border-color: #6f42c1; font-weight: bold;">🙏 Prayer Request</button>
-                <button id="donationBtn" class="btn" style="background: #FFD700; color: #333; border-color: #FFD700; font-weight: bold;">💝 Donate</button>
-            </div>
+        <div class="header">
+            <div class="icon">⛪</div>
+            <h1>Grace and Praise Bangladeshi Church</h1>
+            <p class="address">📍 1325 Richardson Street, CA 92408</p>
+            <p>Welcome to our community of faith, love, and worship</p>
         </div>
 
-        <div class="calendar-grid">
-            <div class="weekday">Sun</div>
-            <div class="weekday">Mon</div>
-            <div class="weekday">Tue</div>
-            <div class="weekday">Wed</div>
-            <div class="weekday">Thu</div>
-            <div class="weekday">Fri</div>
-            <div class="weekday">Sat</div>
-            <!-- Calendar days will be inserted here by JavaScript -->
-        </div>
-
-        <div class="events-sidebar">
-            <h3>Events This Month</h3>
-            <div id="monthEvents"></div>
-        </div>
-
-        <div id="reminderModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>🔔 Upcoming Event Reminders</h2>
-                <p class="reminder-info">Reminders are shown 2 months before each event</p>
-                <div id="reminderList"></div>
-            </div>
-        </div>
-
-        <div id="eventDetailModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 id="eventTitle"></h2>
-                <p id="eventDate"></p>
-                <p id="eventDescription"></p>
-                <div id="eventCategory"></div>
-                <div id="deleteButtonContainer" style="margin-top: 20px; display: none;">
-                    <button id="deleteEventBtn" class="btn" style="background: #dc3545; color: white; border-color: #dc3545;">🗑️ Delete Event</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="addEventModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>⛪ Add GPBC Event</h2>
-                <form id="addEventForm">
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Your Name: *</label>
-                        <input type="text" id="eventAddedBy" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;" placeholder="Enter your full name">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Your Email or Phone: *</label>
-                        <input type="text" id="eventContact" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;" placeholder="Email or phone number">
-                    </div>
-                    <div style="border-top: 2px solid #e9ecef; padding-top: 15px; margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Event Name: *</label>
-                        <input type="text" id="eventName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Date: *</label>
-                        <input type="date" id="eventDateInput" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                        <p style="font-size: 0.85em; color: #666; margin-top: 5px;">Click to select or change the date</p>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Description:</label>
-                        <textarea id="eventDescription" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; resize: vertical;"></textarea>
-                    </div>
-                    <div style="display: flex; gap: 10px;">
-                        <button type="submit" class="btn btn-primary" style="flex: 1;">✓ Add Event</button>
-                        <button type="button" class="btn" id="cancelAddEvent" style="flex: 1;">✗ Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="memberRegistrationModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>🌟 Special Days Registration</h2>
-                <p style="margin-bottom: 20px; color: #666;">Scan the QR code below to register your birthday and anniversary (open to all, not just members)</p>
-                
-                <div style="text-align: center; margin: 30px 0;">
-                    <div id="qrcode" style="display: inline-block; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); position: relative;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Jesus_icon.png/120px-Jesus_icon.png" alt="Jesus" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; opacity: 0.7; pointer-events: none;" />
-                    </div>
-                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Scan with your phone camera</p>
-                </div>
-
-                <div style="text-align: center; margin-top: 20px;">
-                    <button id="showRegistrationForm" class="btn btn-primary">📝 Or Fill Form Directly</button>
-                </div>
-
-                <div id="viewMembersSection" style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e9ecef;">
-                    <h3 style="margin-bottom: 15px;">Registered Special Days</h3>
-                    <div id="membersList" style="max-height: 300px; overflow-y: auto;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="registrationFormModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>👤 Register Your Information</h2>
-                <p style="margin-bottom: 20px; color: #666;">Help us celebrate your special days!</p>
-                
-                <form id="memberRegistrationForm">
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name: *</label>
-                        <input type="text" id="memberName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Phone Number:</label>
-                        <input type="tel" id="memberPhone" pattern="[0-9\-\+ ]*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Email ID:</label>
-                        <input type="email" id="memberEmail" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Social Media:</label>
-                        <input type="text" id="memberSocial" placeholder="Facebook, Instagram, WhatsApp, etc." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                    </div>
-                    <!-- Birthday and Anniversary Date Pickers -->
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Birthday: *</label>
-                        <input type="date" id="memberBirthday" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                        <p style="font-size: 0.85em; color: #666; margin-top: 5px;">You can select or change any date</p>
-                    </div>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                            <input type="checkbox" id="hasAnniversary" style="width: 18px; height: 18px;">
-                            <span style="font-weight: bold;">I have a wedding anniversary</span>
-                        </label>
-                        <div id="anniversarySection" style="display: none;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Wedding Anniversary Date:</label>
-                            <input type="date" id="memberAnniversary" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                            <p style="font-size: 0.85em; color: #666; margin-top: 5px;">You can select or change any date</p>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px;">
-                        <button type="submit" class="btn btn-primary" style="flex: 1;">✓ Submit</button>
-                        <button type="button" class="btn" id="cancelRegistration" style="flex: 1;">✗ Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="donationModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>💝 Support Our Ministry</h2>
-                
-                <div style="text-align: center; margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px;">
-                    <p style="color: white; font-size: 1.1em; font-style: italic; line-height: 1.6; margin: 0;">
-                        "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."<br>
-                        <strong>- 2 Corinthians 9:7</strong>
-                    </p>
-                </div>
-
-                <p style="text-align: center; color: #666; margin: 20px 0;">
-                    Your generous donations help us serve our community and spread God's love<br>
-                    <strong style="color: #667eea; font-size: 1.05em; margin-top: 8px; display: inline-block;">Send to: gracepraisebangladeshichurch@gmail.com</strong>
+        <div class="content">
+            <div class="welcome">
+                <h2>Welcome Home</h2>
+                <p>
+                    We are a vibrant community of believers dedicated to worshipping God, 
+                    celebrating our Bangladeshi heritage, and sharing Christ's love with our community. 
+                    Join us as we grow in faith together!
                 </p>
+            </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <h3 style="color: #667eea; margin-bottom: 15px;">💳 Zelle</h3>
-                        <div id="zelleQR" style="display: inline-block; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
-                        <a href="https://www.zellepay.com/" target="_blank" class="btn btn-primary" style="margin-top: 15px; display: inline-block; text-decoration: none;">Open Zelle</a>
-                    </div>
-                    
-                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <h3 style="color: #0070ba; margin-bottom: 15px;">💰 PayPal</h3>
-                        <div id="paypalQR" style="display: inline-block; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
-                        <a href="https://www.paypal.com/paypalme/gpbchurch" target="_blank" class="btn" style="margin-top: 15px; display: inline-block; text-decoration: none; background: #0070ba; color: white; border-color: #0070ba;">Open PayPal</a>
-                    </div>
-                </div>
+            <div class="verse">
+                <p>
+                    "For where two or three gather in my name, there am I with them."
+                </p>
+                <p class="reference">— Matthew 18:20</p>
+            </div>
 
-                <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                    <p style="font-size: 0.95em; color: #666; margin: 0;">🙏 Thank you for your generosity and support!<br>May God bless you abundantly.</p>
-                </div>
+            <div class="nav-grid">
+                <a href="calendar.html" class="nav-card primary">
+                    <div class="icon">📅</div>
+                    <h3>Church Calendar 2026</h3>
+                    <p>View all events, services, and special celebrations</p>
+                </a>
+
+                <a href="calendar.html#prayer" class="nav-card">
+                    <div class="icon">🙏</div>
+                    <h3>Prayer Requests</h3>
+                    <p>Share your prayer needs with our community</p>
+                </a>
+
+                <a href="calendar.html#donate" class="nav-card">
+                    <div class="icon">💝</div>
+                    <h3>Give</h3>
+                    <p>Support our ministry and community outreach</p>
+                </a>
+
+                <a href="calendar.html#register" class="nav-card">
+                    <div class="icon">🌟</div>
+                    <h3>Special Days</h3>
+                    <p>Register your birthday and anniversary</p>
+                </a>
+            </div>
+
+            <div class="qr-section">
+                <h3>📱 Access Our Calendar Anytime</h3>
+                <p style="color: #666; margin-bottom: 20px;">Scan with your phone to view the church calendar</p>
+                <div id="homeQR"></div>
+                <p style="color: #666; margin-top: 15px; font-size: 0.9em;">Bookmark this page on your phone for quick access!</p>
             </div>
         </div>
 
-        <!-- Prayer Request Modal -->
-        <div id="prayerRequestModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>🙏 Prayer Request</h2>
-                
-                <div style="text-align: center; margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 10px; border-left: 4px solid #6f42c1;">
-                    <p style="font-style: italic; color: #333; font-size: 1.1em; margin: 0; line-height: 1.6;">
-                        "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."
-                    </p>
-                    <p style="margin-top: 10px; color: #666; font-weight: bold;">— Philippians 4:6</p>
-                </div>
-
-                <p style="margin-bottom: 20px; color: #666; text-align: center;">Scan the QR code below to submit your prayer request directly</p>
-                
-                <div style="text-align: center; margin-bottom: 30px;">
-                    <div id="prayerQrcode" style="display: inline-block; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
-                    <p style="margin-top: 10px; color: #666; font-size: 0.9em;">Or fill out the form below</p>
-                </div>
-
-                <form id="prayerRequestForm">
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                            <input type="checkbox" id="isAnonymous" style="width: 18px; height: 18px;">
-                            <span style="font-weight: bold;">Submit as Anonymous</span>
-                        </label>
-                    </div>
-
-                    <div id="nameSection" style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Your Name: *</label>
-                        <input type="text" id="prayerName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Prayer Request Category / প্রার্থনার বিভাগ: *</label>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
-                                <input type="checkbox" name="prayerCategory" value="Finance" style="width: 18px; height: 18px;">
-                                <span>💰 Finance / আর্থিক</span>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
-                                <input type="checkbox" name="prayerCategory" value="Health" style="width: 18px; height: 18px;">
-                                <span>❤️ Health / স্বাস্থ্য</span>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
-                                <input type="checkbox" name="prayerCategory" value="Family" style="width: 18px; height: 18px;">
-                                <span>👨‍👩‍👧‍👦 Family / পরিবার</span>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
-                                <input type="checkbox" name="prayerCategory" value="Confidential" style="width: 18px; height: 18px;">
-                                <span>🔒 Confidential / গোপনীয়</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Prayer Request Details: *</label>
-                        <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;">You can type in English or Bangla (using phonetic typing)</p>
-                        <textarea id="prayerDetails" required rows="6" placeholder="Share your prayer request here... / আপনার প্রার্থনার অনুরোধ এখানে শেয়ার করুন..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; resize: vertical;"></textarea>
-                    </div>
-
-                    <div style="display: flex; gap: 10px;">
-                        <button type="submit" class="btn" style="flex: 1; background: #6f42c1; color: white; border-color: #6f42c1;">✓ Submit Prayer Request</button>
-                        <button type="button" class="btn" id="cancelPrayerRequest" style="flex: 1;">✗ Cancel</button>
-                    </div>
-                </form>
-            </div>
+        <div class="footer">
+            <p><strong>Grace and Praise Bangladeshi Church</strong></p>
+            <p>📧 gracepraisebangladeshichurch@gmail.com</p>
+            <p style="margin-top: 15px; opacity: 0.7;">© 2026 GPBC - All rights reserved</p>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-    <script src="events.js"></script>
-    <script src="googlesheets.js"></script>
-    <script src="calendar.js"></script>
-    <script src="reminders.js"></script>
-    <script src="members.js"></script>
-    <script src="prayers.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        // Generate QR code when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            const qrDiv = document.getElementById('homeQR');
+            
+            const generateQR = () => {
+                if (typeof QRCode !== 'undefined') {
+                    qrDiv.innerHTML = '';
+                    new QRCode(qrDiv, {
+                        text: window.location.origin + '/GPBC-Calendar/calendar.html',
+                        width: 200,
+                        height: 200,
+                        colorDark: "#667eea",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                } else {
+                    setTimeout(generateQR, 100);
+                }
+            };
+            
+            generateQR();
+        });
+    </script>
 </body>
 </html>

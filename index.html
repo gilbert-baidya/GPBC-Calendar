@@ -35,6 +35,7 @@
                 <button id="shareBtn" class="btn btn-primary">📤 Share Events</button>
                 <button id="reminderBtn" class="btn btn-secondary">🔔 View Reminders</button>
                 <button id="specialDaysRegistrationBtn" class="btn" style="background: #28a745; color: white; border-color: #28a745;">🌟 Special Days Registration</button>
+                <button id="prayerRequestBtn" class="btn" style="background: #6f42c1; color: white; border-color: #6f42c1; font-weight: bold;">🙏 Prayer Request</button>
                 <button id="donationBtn" class="btn" style="background: #FFD700; color: #333; border-color: #FFD700; font-weight: bold;">💝 Donate</button>
             </div>
         </div>
@@ -256,6 +257,68 @@
                 </div>
             </div>
         </div>
+
+        <!-- Prayer Request Modal -->
+        <div id="prayerRequestModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>🙏 Prayer Request</h2>
+                
+                <div style="text-align: center; margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 10px; border-left: 4px solid #6f42c1;">
+                    <p style="font-style: italic; color: #333; font-size: 1.1em; margin: 0; line-height: 1.6;">
+                        "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."
+                    </p>
+                    <p style="margin-top: 10px; color: #666; font-weight: bold;">— Philippians 4:6</p>
+                </div>
+
+                <form id="prayerRequestForm">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <input type="checkbox" id="isAnonymous" style="width: 18px; height: 18px;">
+                            <span style="font-weight: bold;">Submit as Anonymous</span>
+                        </label>
+                    </div>
+
+                    <div id="nameSection" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Your Name: *</label>
+                        <input type="text" id="prayerName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Prayer Request Category: *</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
+                                <input type="checkbox" name="prayerCategory" value="Finance" style="width: 18px; height: 18px;">
+                                <span>💰 Finance</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
+                                <input type="checkbox" name="prayerCategory" value="Health" style="width: 18px; height: 18px;">
+                                <span>❤️ Health</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
+                                <input type="checkbox" name="prayerCategory" value="Family" style="width: 18px; height: 18px;">
+                                <span>👨‍👩‍👧‍👦 Family</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer;">
+                                <input type="checkbox" name="prayerCategory" value="Confidential" style="width: 18px; height: 18px;">
+                                <span>🔒 Confidential</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Prayer Request Details: *</label>
+                        <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;">You can type in English or Bangla (using phonetic typing)</p>
+                        <textarea id="prayerDetails" required rows="6" placeholder="Share your prayer request here... / আপনার প্রার্থনার অনুরোধ এখানে শেয়ার করুন..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; resize: vertical;"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn" style="flex: 1; background: #6f42c1; color: white; border-color: #6f42c1;">✓ Submit Prayer Request</button>
+                        <button type="button" class="btn" id="cancelPrayerRequest" style="flex: 1;">✗ Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
@@ -266,6 +329,7 @@
     <script src="calendar.js"></script>
     <script src="reminders.js"></script>
     <script src="members.js"></script>
+    <script src="prayers.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>

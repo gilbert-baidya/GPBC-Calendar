@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     setupEventListeners();
     checkAndShowReminders();
     setupDonationModal();
+    setupPrayerRequestModal();
 });
 
 function initializeCalendar() {

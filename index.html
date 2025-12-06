@@ -166,27 +166,9 @@
                     </div>
                     
                     <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Birthday (Month & Day): *</label>
-                        <div style="display: flex; gap: 10px;">
-                            <select id="birthMonth" required style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                                <option value="">Month</option>
-                                <option value="01">January</option>
-                                <option value="02">February</option>
-                                <option value="03">March</option>
-                                <option value="04">April</option>
-                                <option value="05">May</option>
-                                <option value="06">June</option>
-                                <option value="07">July</option>
-                                <option value="08">August</option>
-                                <option value="09">September</option>
-                                <option value="10">October</option>
-                                <option value="11">November</option>
-                                <option value="12">December</option>
-                            </select>
-                            <select id="birthDay" required style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                                <option value="">Day</option>
-                            </select>
-                        </div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Birthday: *</label>
+                        <input type="date" id="memberBirthday" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                        <p style="font-size: 0.85em; color: #666; margin-top: 5px;">You can select or change any date</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
@@ -195,27 +177,9 @@
                             <span style="font-weight: bold;">I have a wedding anniversary</span>
                         </label>
                         <div id="anniversarySection" style="display: none;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Anniversary (Month & Day):</label>
-                            <div style="display: flex; gap: 10px;">
-                                <select id="anniversaryMonth" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                                    <option value="">Month</option>
-                                    <option value="01">January</option>
-                                    <option value="02">February</option>
-                                    <option value="03">March</option>
-                                    <option value="04">April</option>
-                                    <option value="05">May</option>
-                                    <option value="06">June</option>
-                                    <option value="07">July</option>
-                                    <option value="08">August</option>
-                                    <option value="09">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
-                                </select>
-                                <select id="anniversaryDay" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-                                    <option value="">Day</option>
-                                </select>
-                            </div>
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Wedding Anniversary Date:</label>
+                            <input type="date" id="memberAnniversary" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                            <p style="font-size: 0.85em; color: #666; margin-top: 5px;">You can select or change any date</p>
                         </div>
                     </div>
                     

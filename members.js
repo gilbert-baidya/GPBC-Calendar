@@ -31,20 +31,6 @@ function setupMemberRegistration() {
     document.getElementById('hasAnniversary').addEventListener('change', (e) => {
         document.getElementById('anniversarySection').style.display = e.target.checked ? 'block' : 'none';
     });
-    
-    // Populate day dropdowns (1-31)
-    populateDayDropdown('birthDay');
-    populateDayDropdown('anniversaryDay');
-}
-
-function populateDayDropdown(id) {
-    const select = document.getElementById(id);
-    for (let i = 1; i <= 31; i++) {
-        const option = document.createElement('option');
-        option.value = String(i).padStart(2, '0');
-        option.textContent = i;
-        select.appendChild(option);
-    }
 }
 
 function showMemberRegistrationModal() {
@@ -77,22 +63,32 @@ function submitMemberRegistration() {
     const phone = document.getElementById('memberPhone').value.trim();
     const email = document.getElementById('memberEmail').value.trim();
     const social = document.getElementById('memberSocial').value.trim();
-    const birthMonth = document.getElementById('birthMonth').value;
-    const birthDay = document.getElementById('birthDay').value;
+    const birthday = document.getElementById('memberBirthday').value;
     const hasAnniversary = document.getElementById('hasAnniversary').checked;
-    const anniversaryMonth = document.getElementById('anniversaryMonth').value;
-    const anniversaryDay = document.getElementById('anniversaryDay').value;
-    if (!name || !birthMonth || !birthDay) {
+    const anniversary = document.getElementById('memberAnniversary').value;
+    
+    if (!name || !birthday) {
         alert('Please fill in all required fields (Name and Birthday)');
         return;
     }
+    
+    // Extract month and day from birthday (YYYY-MM-DD format)
+    const birthdayParts = birthday.split('-');
+    const birthdayMonthDay = `${birthdayParts[1]}-${birthdayParts[2]}`;
+    
+    let anniversaryMonthDay = null;
+    if (hasAnniversary && anniversary) {
+        const annParts = anniversary.split('-');
+        anniversaryMonthDay = `${annParts[1]}-${annParts[2]}`;
+    }
+    
     const member = {
         name: name,
         phone: phone,
         email: email,
         social: social,
-        birthday: `${birthMonth}-${birthDay}`,
-        anniversary: hasAnniversary && anniversaryMonth && anniversaryDay ? `${anniversaryMonth}-${anniversaryDay}` : null,
+        birthday: birthdayMonthDay,
+        anniversary: anniversaryMonthDay,
         registeredDate: new Date().toISOString()
     };
     

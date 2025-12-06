@@ -503,15 +503,9 @@ function checkAndShowReminders() {
 
 function showAddEventModal(dateString) {
     selectedDate = dateString;
-    const date = new Date(dateString);
-    const formattedDate = date.toLocaleDateString('en-US', { 
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long', 
-        day: 'numeric' 
-    });
     
-    document.getElementById('eventDateInput').value = formattedDate;
+    // Set the date input value in YYYY-MM-DD format (what date inputs expect)
+    document.getElementById('eventDateInput').value = dateString;
     document.getElementById('eventAddedBy').value = '';
     document.getElementById('eventContact').value = '';
     document.getElementById('eventName').value = '';
@@ -525,6 +519,7 @@ async function addGPBCEvent() {
     const contact = document.getElementById('eventContact').value.trim();
     const name = document.getElementById('eventName').value.trim();
     const description = document.getElementById('eventDescription').value.trim();
+    const selectedDateFromInput = document.getElementById('eventDateInput').value; // Get date from input
     
     if (!addedBy) {
         alert('Please enter your name');
@@ -541,8 +536,13 @@ async function addGPBCEvent() {
         return;
     }
     
+    if (!selectedDateFromInput) {
+        alert('Please select a date');
+        return;
+    }
+    
     const newEvent = {
-        date: selectedDate,
+        date: selectedDateFromInput, // Use the date from the input field
         name: name,
         category: 'gpbc',
         description: description || 'Grace and Praise Bangladeshi Church event',

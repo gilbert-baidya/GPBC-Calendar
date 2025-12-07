@@ -4,9 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grace and Praise Bangladeshi Church - Calendar 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Navigation styles */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #667eea;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 10px 0;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 5px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            padding: 12px 20px;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⛪ GPBC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About</a>
+                    <div class="dropdown-content">
+                        <a href="about.html#history">Our History</a>
+                        <a href="about.html#mission">Our Mission</a>
+                        <a href="about.html#leadership">Our Leadership</a>
+                        <a href="about.html#beliefs">Our Beliefs</a>
+                        <a href="about.html#values">Our Core Values</a>
+                        <a href="about.html#position">Position Papers</a>
+                    </div>
+                </li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="calendar.html#prayer">Prayer</a></li>
+                <li><a href="calendar.html#donate">Give</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <header>
             <h1>📅 Grace and Praise Bangladeshi Church</h1>

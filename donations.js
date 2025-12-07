@@ -1,9 +1,9 @@
 // Donation System
 // Handles all donation-related functionality
 
-// Stripe Configuration (You'll need to create a Stripe account)
-const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_STRIPE_KEY_HERE'; // Replace with your Stripe publishable key
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/YOUR_PAYMENT_LINK'; // Replace with your Stripe payment link
+// Stripe Configuration
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_STRIPE_KEY_HERE'; // Not needed for payment links
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_fZu6oJ7PMb7794d6NsfEk00';
 
 let selectedDonationAmount = 0;
 
@@ -102,14 +102,9 @@ function handleStripePayment() {
         return;
     }
     
-    // For now, show instructions to set up Stripe
-    alert(`Stripe Payment Integration\n\nTo enable card payments:\n\n1. Create a free Stripe account at stripe.com\n2. Create a Payment Link in Stripe Dashboard\n3. Add your Stripe keys to donations.js\n\nAmount selected: $${selectedDonationAmount}\n\nFor now, please use PayPal, Zelle, or other methods below.`);
-    
-    // When you have Stripe set up, uncomment this:
-    /*
+    // Open Stripe payment page with prefilled amount
     const paymentUrl = `${STRIPE_PAYMENT_LINK}?prefilled_amount=${selectedDonationAmount * 100}`;
     window.open(paymentUrl, '_blank');
-    */
 }
 
 function handleDigitalWalletPayment() {

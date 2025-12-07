@@ -116,148 +116,171 @@ function addEvent(eventData) {
 If you want to replace the entire script, here's the complete code:
 
 ```javascript
-const ss = SpreadsheetApp.getActiveSpreadsheet();
-
 function doGet(e) {
-  return createJsonResponse({ message: 'Use POST requests for this API' });
+  // Handle direct browser access - default to getEvents
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const eventsSheet = ss.getSheetByName('Events') || ss.getSheets()[0];
+  
+  // If there's an action parameter, use it
+  if (e.parameter && e.parameter.action) {
+    return doPost(e);
+  }
+  
+  // Default: return events for browser access
+  return getEvents(eventsSheet);
 }
 
 function doPost(e) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const eventsSheet = ss.getSheetByName('Events') || ss.getSheets()[0];
+  
+  let data;
   try {
-    const data = JSON.parse(e.postData.contents);
-    
-    switch(data.action) {
-      case 'getEvents':
-        return createJsonResponse({ events: getEvents() });
-        
-      case 'addEvent':
-        const success = addEvent(data.event);
-        return createJsonResponse({ success: success });
-        
-      case 'deleteEvent':
-        const deleted = deleteEvent(data.event);
-        return createJsonResponse({ success: deleted });
-        
-      case 'addPrayerRequest':
-        const prayerAdded = addPrayerRequest(data.request);
-        return createJsonResponse({ success: prayerAdded });
-        
-      default:
-        return createJsonResponse({ error: 'Unknown action' });
+    // Try to parse POST data
+    if (e.postData && e.postData.contents) {
+      data = JSON.parse(e.postData.contents);
+    } else if (e.parameter) {
+      data = e.parameter;
+    } else {
+      return createJsonResponse({ error: 'No data received' });
     }
   } catch (error) {
-    return createJsonResponse({ error: error.toString() });
+    return createJsonResponse({ error: 'Parse error: ' + error.toString() });
+  }
+  
+  try {
+    // Get all events
+    if (data.action === 'getEvents') {
+      return getEvents(eventsSheet);
+    }
+    
+    // Add new event
+    if (data.action === 'addEvent') {
+      return addEvent(eventsSheet, data);
+    }
+    
+    // Delete event
+    if (data.action === 'deleteEvent') {
+      return deleteEvent(eventsSheet, data);
+    }
+    
+    // Add prayer request
+    if (data.action === 'addPrayerRequest') {
+      return addPrayerRequest(ss, data);
+    }
+    
+    return createJsonResponse({ 
+      error: 'Unknown action: ' + data.action,
+      receivedData: data
+    });
+    
+  } catch (error) {
+    return createJsonResponse({ error: 'Execution error: ' + error.toString() });
   }
 }
 
-function getEvents() {
-  const sheet = ss.getSheetByName('Events') || ss.getSheets()[0];
-  const data = sheet.getDataRange().getValues();
-  const events = [];
+function getEvents(sheet) {
+  const lastRow = sheet.getLastRow();
   
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    if (row[0] && row[1]) {
-      let dateString = '';
-      if (row[0] instanceof Date) {
-        const year = row[0].getFullYear();
-        const month = String(row[0].getMonth() + 1).padStart(2, '0');
-        const day = String(row[0].getDate()).padStart(2, '0');
-        dateString = `${year}-${month}-${day}`;
-      } else {
-        dateString = row[0];
-      }
+  if (lastRow <= 1) {
+    // No events yet
+    return createJsonResponse({ events: [] });
+  }
+  
+  const range = sheet.getRange(2, 1, lastRow - 1, 9); // Changed to 9 columns to include imageUrl
+  const values = range.getValues();
+  
+  const events = values.map(row => ({
+    date: typeof row[0] === 'object' ? Utilities.formatDate(row[0], Session.getScriptTimeZone(), 'yyyy-MM-dd') : row[0],
+    name: row[1],
+    category: row[2],
+    description: row[3] || '',
+    addedBy: row[4] || '',
+    contact: row[5] || '',
+    owner: row[6] || '',
+    timestamp: row[7] || '',
+    imageUrl: row[8] || '' // NEW: Image URL column
+  })).filter(event => event.date !== ''); // Filter empty rows
+  
+  return createJsonResponse({ events: events });
+}
+
+function addEvent(sheet, data) {
+  const event = data.event;
+  
+  // Add new row with event data including imageUrl
+  sheet.appendRow([
+    event.date,
+    event.name,
+    event.category,
+    event.description || '',
+    event.addedBy || '',
+    event.contact || '',
+    event.owner || '',
+    event.timestamp || new Date().toISOString(),
+    event.imageUrl || '' // NEW: Image URL column
+  ]);
+  
+  return createJsonResponse({ success: true, message: 'Event added successfully' });
+}
+
+function deleteEvent(sheet, data) {
+  const eventToDelete = data.event;
+  const owner = data.owner;
+  const lastRow = sheet.getLastRow();
+  
+  // Search for the event
+  for (let i = 2; i <= lastRow; i++) {
+    const row = sheet.getRange(i, 1, 1, 9).getValues()[0]; // Changed to 9 columns
+    const rowDate = typeof row[0] === 'object' ? Utilities.formatDate(row[0], Session.getScriptTimeZone(), 'yyyy-MM-dd') : row[0];
+    
+    if (rowDate === eventToDelete.date && 
+        row[1] === eventToDelete.name &&
+        row[6] === owner) {
+      // Found the event and owner matches
+      sheet.deleteRow(i);
       
-      events.push({
-        date: dateString,
-        name: row[1],
-        category: row[2] || 'gpbc',
-        description: row[3] || '',
-        addedBy: row[4] || '',
-        contact: row[5] || '',
-        owner: row[6] || '',
-        timestamp: row[7] || '',
-        imageUrl: row[8] || ''
-      });
+      return createJsonResponse({ success: true, message: 'Event deleted successfully' });
     }
   }
   
-  return events;
+  return createJsonResponse({ success: false, message: 'Event not found or permission denied' });
 }
 
-function addEvent(eventData) {
-  const sheet = ss.getSheetByName('Events') || ss.getSheets()[0];
-  let dateObj = new Date(eventData.date);
+function addPrayerRequest(ss, data) {
+  // Get or create Prayer Requests sheet
+  let prayerSheet = ss.getSheetByName('Prayer Requests');
+  if (!prayerSheet) {
+    prayerSheet = ss.insertSheet('Prayer Requests');
+    // Add headers
+    prayerSheet.appendRow([
+      'Timestamp',
+      'Name',
+      'Is Anonymous',
+      'Categories',
+      'Prayer Details',
+      'Status'
+    ]);
+    // Format header row
+    const headerRange = prayerSheet.getRange(1, 1, 1, 6);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#9b59b6');
+    headerRange.setFontColor('white');
+  }
   
-  sheet.appendRow([
-    dateObj,
-    eventData.name,
-    eventData.category || 'gpbc',
-    eventData.description || '',
-    eventData.addedBy || '',
-    eventData.contact || '',
-    eventData.owner || '',
-    eventData.timestamp || new Date().toISOString(),
-    eventData.imageUrl || ''
+  const prayer = data.prayer;
+  const timestamp = new Date().toLocaleString();
+  
+  prayerSheet.appendRow([
+    timestamp,
+    prayer.name,
+    prayer.isAnonymous ? 'Yes' : 'No',
+    prayer.categories,
+    prayer.details,
+    prayer.status || 'Active'
   ]);
   
-  return true;
-}
-
-function deleteEvent(eventData) {
-  const sheet = ss.getSheetByName('Events') || ss.getSheets()[0];
-  const data = sheet.getDataRange().getValues();
-  
-  let dateToDelete = '';
-  if (eventData.date instanceof Date) {
-    const year = eventData.date.getFullYear();
-    const month = String(eventData.date.getMonth() + 1).padStart(2, '0');
-    const day = String(eventData.date.getDate()).padStart(2, '0');
-    dateToDelete = `${year}-${month}-${day}`;
-  } else {
-    dateToDelete = eventData.date;
-  }
-  
-  for (let i = data.length - 1; i >= 1; i--) {
-    const row = data[i];
-    let rowDateString = '';
-    
-    if (row[0] instanceof Date) {
-      const year = row[0].getFullYear();
-      const month = String(row[0].getMonth() + 1).padStart(2, '0');
-      const day = String(row[0].getDate()).padStart(2, '0');
-      rowDateString = `${year}-${month}-${day}`;
-    } else {
-      rowDateString = row[0];
-    }
-    
-    if (rowDateString === dateToDelete && 
-        row[1] === eventData.name && 
-        row[6] === eventData.owner) {
-      sheet.deleteRow(i + 1);
-      return true;
-    }
-  }
-  
-  return false;
-}
-
-function addPrayerRequest(requestData) {
-  const sheet = ss.getSheetByName('Prayer Requests');
-  if (!sheet) {
-    return false;
-  }
-  
-  sheet.appendRow([
-    new Date().toISOString(),
-    requestData.name || 'Anonymous',
-    requestData.isAnonymous || false,
-    requestData.categories || '',
-    requestData.prayerDetails || '',
-    requestData.status || 'New'
-  ]);
-  
-  return true;
+  return createJsonResponse({ success: true, message: 'Prayer request added successfully' });
 }
 
 function createJsonResponse(data) {

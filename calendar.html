@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Cloudinary Upload Widget -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
     <style>
         /* Navigation styles */
         nav {
@@ -225,6 +227,16 @@
                     <div style="margin-bottom: 20px;">
                         <label style="display: block; margin-bottom: 5px; font-weight: bold;">Description:</label>
                         <textarea id="eventDescription" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; resize: vertical;"></textarea>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Event Image (Optional):</label>
+                        <button type="button" id="uploadImageBtn" class="btn" style="background: #5a67d8; color: white; border-color: #5a67d8; width: 100%; margin-bottom: 10px;">📸 Upload Image</button>
+                        <input type="hidden" id="eventImageUrl" value="">
+                        <div id="imagePreview" style="display: none; margin-top: 10px; text-align: center;">
+                            <img id="previewImg" src="" alt="Event preview" style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <p style="font-size: 0.85em; color: #28a745; margin-top: 5px;">✓ Image uploaded successfully</p>
+                            <button type="button" id="removeImageBtn" class="btn" style="background: #dc3545; color: white; border-color: #dc3545; padding: 5px 15px; font-size: 0.9em; margin-top: 5px;">Remove Image</button>
+                        </div>
                     </div>
                     <div style="display: flex; gap: 10px;">
                         <button type="submit" class="btn btn-primary" style="flex: 1;">✓ Add Event</button>

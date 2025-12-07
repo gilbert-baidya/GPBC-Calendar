@@ -44,7 +44,8 @@ async function loadEventsFromGoogleSheets() {
                         addedBy: event.addedBy || '',
                         contact: event.contact || '',
                         owner: event.owner || '',
-                        timestamp: event.timestamp || ''
+                        timestamp: event.timestamp || '',
+                        imageUrl: event.imageUrl || ''
                     });
                 }
             });

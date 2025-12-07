@@ -16,6 +16,11 @@ const EMAILJS_PUBLIC_KEY = '__rLqwMXgJLla26DS';
 const EMAILJS_SERVICE_ID = 'service_qndkrol';
 const EMAILJS_TEMPLATE_ID = 'template_tf8nnjr';
 
+// Cloudinary configuration
+const CLOUDINARY_CLOUD_NAME = 'duaygqnyk';
+const CLOUDINARY_UPLOAD_PRESET = 'gpbc-events';
+let cloudinaryWidget = null;
+
 // Initialize EmailJS for notifications (only if configured)
 if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
     emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -46,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     checkAndShowReminders();
     setupDonationModal();
     setupPrayerRequestModal();
+    initializeCloudinaryWidget();
 });
 
 function generateCalendarAccessQR() {
@@ -349,14 +355,32 @@ function showEventDetail(event) {
     document.getElementById('eventDate').textContent = formattedDate;
     document.getElementById('eventDescription').textContent = event.description;
     
-    // Remove any existing contact info
+    // Remove any existing contact info or image
     const existingContactInfo = document.querySelector('.event-contact-info');
     if (existingContactInfo) {
         existingContactInfo.remove();
     }
+    const existingImage = document.querySelector('.event-detail-image');
+    if (existingImage) {
+        existingImage.remove();
+    }
+    
+    // Add event image if available
+    const descriptionElement = document.getElementById('eventDescription');
+    if (event.imageUrl) {
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'event-detail-image';
+        imageContainer.style.cssText = `
+            margin-top: 15px;
+            text-align: center;
+        `;
+        imageContainer.innerHTML = `
+            <img src="${event.imageUrl}" alt="${event.name}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        `;
+        descriptionElement.parentNode.insertBefore(imageContainer, descriptionElement.nextSibling);
+    }
     
     // Add contact info if available
-    const descriptionElement = document.getElementById('eventDescription');
     if (event.addedBy || event.contact) {
         const contactInfo = document.createElement('div');
         contactInfo.className = 'event-contact-info';
@@ -371,7 +395,8 @@ function showEventDetail(event) {
             <strong>📋 Added by:</strong> ${event.addedBy || 'Unknown'}<br>
             ${event.contact ? `<strong>📞 Contact:</strong> ${event.contact}` : ''}
         `;
-        descriptionElement.parentNode.insertBefore(contactInfo, descriptionElement.nextSibling);
+        const insertAfter = document.querySelector('.event-detail-image') || descriptionElement;
+        insertAfter.parentNode.insertBefore(contactInfo, insertAfter.nextSibling);
     }
     
     const categoryBadge = document.createElement('span');
@@ -509,6 +534,8 @@ function showAddEventModal(dateString) {
     document.getElementById('eventContact').value = '';
     document.getElementById('eventName').value = '';
     document.getElementById('eventDescription').value = '';
+    document.getElementById('eventImageUrl').value = '';
+    document.getElementById('imagePreview').style.display = 'none';
     
     // Set the date input value in YYYY-MM-DD format (what date inputs expect)
     // Use setTimeout to ensure the modal is rendered before setting the value
@@ -526,6 +553,7 @@ async function addGPBCEvent() {
     const name = document.getElementById('eventName').value.trim();
     const description = document.getElementById('eventDescription').value.trim();
     const selectedDateFromInput = document.getElementById('eventDateInput').value; // Get date from input
+    const imageUrl = document.getElementById('eventImageUrl').value.trim();
     
     if (!addedBy) {
         alert('Please enter your name');
@@ -555,7 +583,8 @@ async function addGPBCEvent() {
         addedBy: addedBy,
         contact: contact,
         owner: CODE_OWNER, // Mark event as created by code owner
-        timestamp: new Date().toISOString() // Add timestamp for "NEW" badge
+        timestamp: new Date().toISOString(), // Add timestamp for "NEW" badge
+        imageUrl: imageUrl || '' // Add image URL
     };
     
     // Show loading
@@ -828,4 +857,66 @@ function sendEventNotification(event) {
         }, function(error) {
             console.log('Failed to send email notification:', error);
         });
+}
+
+// Cloudinary Widget Initialization
+function initializeCloudinaryWidget() {
+    if (typeof cloudinary === 'undefined') {
+        console.error('Cloudinary widget library not loaded');
+        return;
+    }
+
+    cloudinaryWidget = cloudinary.createUploadWidget({
+        cloudName: CLOUDINARY_CLOUD_NAME,
+        uploadPreset: CLOUDINARY_UPLOAD_PRESET,
+        sources: ['local', 'camera', 'url'],
+        multiple: false,
+        maxFiles: 1,
+        resourceType: 'image',
+        clientAllowedFormats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+        maxFileSize: 10000000, // 10MB
+        theme: 'minimal',
+        styles: {
+            palette: {
+                window: '#FFFFFF',
+                windowBorder: '#667eea',
+                tabIcon: '#667eea',
+                menuIcons: '#667eea',
+                textDark: '#000000',
+                textLight: '#FFFFFF',
+                link: '#667eea',
+                action: '#667eea',
+                inactiveTabIcon: '#999999',
+                error: '#F44235',
+                inProgress: '#667eea',
+                complete: '#28a745',
+                sourceBg: '#E4EBF1'
+            }
+        }
+    }, (error, result) => {
+        if (!error && result && result.event === 'success') {
+            const imageUrl = result.info.secure_url;
+            document.getElementById('eventImageUrl').value = imageUrl;
+            document.getElementById('previewImg').src = imageUrl;
+            document.getElementById('imagePreview').style.display = 'block';
+        }
+    });
+
+    // Upload button click handler
+    const uploadBtn = document.getElementById('uploadImageBtn');
+    if (uploadBtn) {
+        uploadBtn.addEventListener('click', () => {
+            cloudinaryWidget.open();
+        });
+    }
+
+    // Remove image button handler
+    const removeBtn = document.getElementById('removeImageBtn');
+    if (removeBtn) {
+        removeBtn.addEventListener('click', () => {
+            document.getElementById('eventImageUrl').value = '';
+            document.getElementById('previewImg').src = '';
+            document.getElementById('imagePreview').style.display = 'none';
+        });
+    }
 }

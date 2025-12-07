@@ -56,6 +56,11 @@
             display: flex;
             gap: 30px;
             list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
         }
 
         .nav-links a {
@@ -63,9 +68,46 @@
             color: #333;
             font-weight: 600;
             transition: color 0.3s;
+            padding: 10px 0;
+            display: block;
         }
 
         .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 5px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            padding: 12px 20px;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8f9fa;
             color: #667eea;
         }
 
@@ -331,7 +373,17 @@
             <a href="#" class="logo">⛪ GPBC</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About</a>
+                    <div class="dropdown-content">
+                        <a href="about.html#history">Our History</a>
+                        <a href="about.html#mission">Our Mission</a>
+                        <a href="about.html#leadership">Our Leadership</a>
+                        <a href="about.html#beliefs">Our Beliefs</a>
+                        <a href="about.html#values">Our Core Values</a>
+                        <a href="about.html#position">Position Papers</a>
+                    </div>
+                </li>
                 <li><a href="calendar.html">Calendar</a></li>
                 <li><a href="calendar.html#prayer">Prayer</a></li>
                 <li><a href="calendar.html#donate">Give</a></li>

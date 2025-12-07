@@ -321,9 +321,9 @@
         </div>
 
         <div id="donationModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content" style="max-width: 800px;">
                 <span class="close">&times;</span>
-                <h2>💝 Support Our Ministry</h2>
+                <h2 style="text-align: center; color: #333; margin-bottom: 10px;">💝 Give to Grace and Praise Church</h2>
                 
                 <div style="text-align: center; margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px;">
                     <p style="color: white; font-size: 1.1em; font-style: italic; line-height: 1.6; margin: 0;">
@@ -332,27 +332,110 @@
                     </p>
                 </div>
 
-                <p style="text-align: center; color: #666; margin: 20px 0;">
-                    Your generous donations help us serve our community and spread God's love<br>
-                    <strong style="color: #667eea; font-size: 1.05em; margin-top: 8px; display: inline-block;">Send to: gracepraisebangladeshichurch@gmail.com</strong>
-                </p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <h3 style="color: #667eea; margin-bottom: 15px;">💳 Zelle</h3>
-                        <div id="zelleQR" style="display: inline-block; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
-                        <a href="https://www.zellepay.com/" target="_blank" class="btn btn-primary" style="margin-top: 15px; display: inline-block; text-decoration: none;">Open Zelle</a>
+                <!-- Donation Amount Selection -->
+                <div style="margin: 30px 0;">
+                    <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Select Amount</h3>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px;">
+                        <button type="button" class="donation-amount-btn" data-amount="25" style="padding: 15px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s;">$25</button>
+                        <button type="button" class="donation-amount-btn" data-amount="50" style="padding: 15px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s;">$50</button>
+                        <button type="button" class="donation-amount-btn" data-amount="100" style="padding: 15px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s;">$100</button>
+                        <button type="button" class="donation-amount-btn" data-amount="250" style="padding: 15px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s;">$250</button>
                     </div>
-                    
-                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <h3 style="color: #0070ba; margin-bottom: 15px;">💰 PayPal</h3>
-                        <div id="paypalQR" style="display: inline-block; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></div>
-                        <a href="https://www.paypal.com/paypalme/gpbchurch" target="_blank" class="btn" style="margin-top: 15px; display: inline-block; text-decoration: none; background: #0070ba; color: white; border-color: #0070ba;">Open PayPal</a>
+                    <div style="text-align: center;">
+                        <input type="number" id="customAmount" placeholder="Or enter custom amount" style="width: 100%; max-width: 300px; padding: 15px; border: 2px solid #667eea; border-radius: 8px; font-size: 1.1em; text-align: center;" min="1">
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                    <p style="font-size: 0.95em; color: #666; margin: 0;">🙏 Thank you for your generosity and support!<br>May God bless you abundantly.</p>
+                <!-- Payment Methods -->
+                <div style="margin: 30px 0;">
+                    <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Choose Payment Method</h3>
+                    
+                    <!-- Stripe Payment (Credit/Debit Cards) -->
+                    <div style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+                        <h4 style="color: #667eea; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span>💳 Credit/Debit Card</span>
+                            <span style="font-size: 0.7em; color: #666;">(Visa, Mastercard, Amex, Discover)</span>
+                        </h4>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" style="height: 20px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 20px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" style="height: 20px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg" alt="Discover" style="height: 20px;">
+                        </div>
+                        <button id="stripePaymentBtn" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1em;">Pay with Card (Stripe)</button>
+                        <p style="font-size: 0.85em; color: #666; margin-top: 10px; text-align: center;">🔒 Secure payment powered by Stripe</p>
+                    </div>
+
+                    <!-- PayPal -->
+                    <div style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+                        <h4 style="color: #0070ba; margin-bottom: 15px;">💰 PayPal</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div style="text-align: center;">
+                                <div id="paypalQR" style="display: inline-block; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
+                                <p style="font-size: 0.85em; color: #666; margin-top: 8px;">Scan QR Code</p>
+                            </div>
+                            <div style="display: flex; flex-direction: column; justify-content: center;">
+                                <a href="https://www.paypal.com/paypalme/gpbchurch" target="_blank" class="btn" style="background: #0070ba; color: white; border-color: #0070ba; text-decoration: none; text-align: center; padding: 15px; margin-bottom: 10px;">Open PayPal</a>
+                                <p style="font-size: 0.85em; color: #666; text-align: center;">gracepraisebangladeshichurch@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zelle -->
+                    <div style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+                        <h4 style="color: #667eea; margin-bottom: 15px;">💳 Zelle (Bank Transfer)</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div style="text-align: center;">
+                                <div id="zelleQR" style="display: inline-block; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
+                                <p style="font-size: 0.85em; color: #666; margin-top: 8px;">Scan QR Code</p>
+                            </div>
+                            <div style="display: flex; flex-direction: column; justify-content: center;">
+                                <a href="https://www.zellepay.com/" target="_blank" class="btn btn-primary" style="text-decoration: none; text-align: center; padding: 15px; margin-bottom: 10px;">Open Zelle App</a>
+                                <p style="font-size: 0.85em; color: #666; text-align: center;">gracepraisebangladeshichurch@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Venmo -->
+                    <div style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+                        <h4 style="color: #3d95ce; margin-bottom: 15px;">📱 Venmo</h4>
+                        <div style="text-align: center;">
+                            <a href="https://venmo.com/" target="_blank" class="btn" style="background: #3d95ce; color: white; border-color: #3d95ce; text-decoration: none; padding: 15px; display: inline-block; width: 100%; max-width: 300px;">Send via Venmo</a>
+                            <p style="font-size: 0.85em; color: #666; margin-top: 10px;">Search: @GPBChurch</p>
+                        </div>
+                    </div>
+
+                    <!-- Cash App -->
+                    <div style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+                        <h4 style="color: #00d54b; margin-bottom: 15px;">💵 Cash App</h4>
+                        <div style="text-align: center;">
+                            <a href="https://cash.app/" target="_blank" class="btn" style="background: #00d54b; color: white; border-color: #00d54b; text-decoration: none; padding: 15px; display: inline-block; width: 100%; max-width: 300px;">Send via Cash App</a>
+                            <p style="font-size: 0.85em; color: #666; margin-top: 10px;">$GPBChurch</p>
+                        </div>
+                    </div>
+
+                    <!-- Apple Pay / Google Pay -->
+                    <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+                        <h4 style="color: #333; margin-bottom: 15px;">📲 Apple Pay / Google Pay</h4>
+                        <div style="text-align: center;">
+                            <button id="appleGooglePayBtn" class="btn" style="background: #000; color: white; border-color: #000; padding: 15px; width: 100%; max-width: 300px; font-size: 1.1em;">Pay with Digital Wallet</button>
+                            <p style="font-size: 0.85em; color: #666; margin-top: 10px;">Available on supported devices</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 10px;">
+                    <p style="font-size: 1em; color: #333; margin: 0; line-height: 1.6;">
+                        🙏 <strong>Thank you for your generosity!</strong><br>
+                        Your donations support our ministry, community outreach, and church operations.<br>
+                        <em>Tax receipts available upon request.</em>
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <p style="font-size: 0.9em; color: #856404; margin: 0;">
+                        <strong>Note:</strong> For Stripe card payments, you'll be redirected to a secure payment page. All other methods open in new windows or apps.
+                    </p>
                 </div>
             </div>
         </div>
@@ -436,6 +519,7 @@
     <script src="reminders.js"></script>
     <script src="members.js"></script>
     <script src="prayers.js"></script>
+    <script src="donations.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>

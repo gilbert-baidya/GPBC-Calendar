@@ -134,13 +134,26 @@
             </div>
         </header>
 
+        <!-- Month/Year Navigation -->
+        <div class="navigation">
+            <button id="prevMonth" class="btn">‹ Previous</button>
+            <h2 id="currentMonth">January 2026</h2>
+            <button id="nextMonth" class="btn">Next ›</button>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="weekday">Sun</div>
+            <div class="weekday">Mon</div>
+            <div class="weekday">Tue</div>
+            <div class="weekday">Wed</div>
+            <div class="weekday">Thu</div>
+            <div class="weekday">Fri</div>
+            <div class="weekday">Sat</div>
+            <!-- Calendar days will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Filters and Action Buttons -->
         <div class="controls">
-            <div class="navigation">
-                <button id="prevMonth" class="btn">‹ Previous</button>
-                <h2 id="currentMonth">January 2026</h2>
-                <button id="nextMonth" class="btn">Next ›</button>
-            </div>
-            
             <div class="filters">
                 <label><input type="checkbox" class="filter" data-category="bangladeshi" checked> 🇧🇩 Bangladeshi</label>
                 <label><input type="checkbox" class="filter" data-category="american" checked> 🇺🇸 American</label>
@@ -158,17 +171,6 @@
                 <button id="prayerRequestBtn" class="btn" style="background: #6f42c1; color: white; border-color: #6f42c1; font-weight: bold;">🙏 Prayer Request</button>
                 <button id="donationBtn" class="btn" style="background: #FFD700; color: #333; border-color: #FFD700; font-weight: bold;">💝 Donate</button>
             </div>
-        </div>
-
-        <div class="calendar-grid">
-            <div class="weekday">Sun</div>
-            <div class="weekday">Mon</div>
-            <div class="weekday">Tue</div>
-            <div class="weekday">Wed</div>
-            <div class="weekday">Thu</div>
-            <div class="weekday">Fri</div>
-            <div class="weekday">Sat</div>
-            <!-- Calendar days will be inserted here by JavaScript -->
         </div>
 
         <div class="events-sidebar">

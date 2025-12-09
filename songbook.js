@@ -23,20 +23,15 @@ async function loadSongsFromSheet() {
 
         const response = await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain',
             },
             body: JSON.stringify({
                 action: 'getSongs'
             })
         });
 
-        // Note: With no-cors mode, we can't read the response directly
-        // We'll use a workaround with JSONP or switch to a different approach
-        // For now, let's try without no-cors and see if CORS is enabled
-        const response2 = await fetch(GOOGLE_SCRIPT_URL + '?action=getSongs');
-        const data = await response2.json();
+        const data = await response.json();
         
         if (data.songs) {
             songs = data.songs;
@@ -50,10 +45,9 @@ async function loadSongsFromSheet() {
         grid.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
                 <p style="color: #dc3545; font-weight: bold;">⚠️ Could not load songs from database</p>
-                <p style="color: #666; margin-top: 10px;">Please update GOOGLE_SCRIPT_URL in songbook.js</p>
-                <p style="color: #666; font-size: 0.9em; margin-top: 10px;">
-                    Current URL: <code style="background: #f0f0f0; padding: 5px 10px; border-radius: 5px;">${GOOGLE_SCRIPT_URL}</code>
-                </p>
+                <p style="color: #666; margin-top: 10px;">Make sure you deployed the updated Google Apps Script with song functions.</p>
+                <p style="color: #666; font-size: 0.9em; margin-top: 10px;">Error: ${error.message}</p>
+                <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer;">🔄 Retry</button>
             </div>
         `;
     }
@@ -299,7 +293,7 @@ async function saveSongToSheet(song) {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain',
             },
             body: JSON.stringify({
                 action: 'addSong',
@@ -307,14 +301,16 @@ async function saveSongToSheet(song) {
             })
         });
 
-        // Since we may need to use no-cors, let's assume it worked
-        // and reload songs after a delay
-        setTimeout(() => {
+        const data = await response.json();
+        
+        if (data.success) {
             loadSongsFromSheet();
             document.getElementById('addSongModal').style.display = 'none';
             document.getElementById('addSongForm').reset();
             alert('✅ Song submitted successfully! Thank you for contributing to the GPBC Song Book!');
-        }, 1000);
+        } else {
+            throw new Error(data.message || 'Failed to add song');
+        }
         
     } catch (error) {
         console.error('Error saving song:', error);

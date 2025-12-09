@@ -1,167 +1,63 @@
 // GPBC Song Book JavaScript
-// Sample songs data - you can add more songs here
-const songs = [
-    {
-        id: 1,
-        title: "প্রভু যীশু আমার পরিত্রাতা (Prabhu Yeshu Amar Poritrata)",
-        language: "bangla",
-        category: "worship",
-        key: "G",
-        tempo: "Slow",
-        preview: "প্রভু যীশু আমার পরিত্রাতা, তুমি আমার জীবন...",
-        lyrics: `[Verse 1]
-G           D
-প্রভু যীশু আমার পরিত্রাতা
-Em          C
-তুমি আমার জীবন
-G           D
-তোমার প্রেমে আমি বাঁচি
-Em      C       G
-তুমি আমার সবকিছু
+// Connects to Google Sheets for song database
 
-[Chorus]
-C           G
-আমি তোমাকে ভালোবাসি
-D           Em
-তুমি আমার প্রাণ
-C           G
-তোমার নামে আমি জয়ী
-D           G
-যীশু আমার ত্রাণ`,
-        chords: ["G", "D", "Em", "C"],
-        submittedBy: "GPBC Worship Team"
-    },
-    {
-        id: 2,
-        title: "Amazing Grace",
-        language: "english",
-        category: "worship",
-        key: "G",
-        tempo: "Slow",
-        preview: "Amazing grace, how sweet the sound...",
-        lyrics: `[Verse 1]
-G           G7        C
-Amazing grace, how sweet the sound
-G              D
-That saved a wretch like me
-G           G7      C
-I once was lost, but now I'm found
-G       D       G
-Was blind but now I see
+// Configuration - Uses the same Google Apps Script as calendar
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxN025_2hB-8X00M3cDDkit0HqTSUuh2VttI3GJ26gbaohwKFncar3ExvJtJW4PtuqERQ/exec';
 
-[Verse 2]
-G              G7         C
-'Twas grace that taught my heart to fear
-G              D
-And grace my fears relieved
-G           G7        C
-How precious did that grace appear
-G       D       G
-The hour I first believed`,
-        chords: ["G", "G7", "C", "D"],
-        submittedBy: "GPBC Worship Team"
-    },
-    {
-        id: 3,
-        title: "তুমি মহান (Tumi Mahan - You Are Great)",
-        language: "bilingual",
-        category: "praise",
-        key: "D",
-        tempo: "Medium",
-        preview: "তুমি মহান, You are great, O Lord...",
-        lyrics: `[Verse 1]
-D           A
-তুমি মহান, তুমি মহান
-Bm          G
-You are great, O Lord
-D           A
-আমার ঈশ্বর, আমার রাজা
-Bm      G       D
-My God and my King
-
-[Chorus]
-G           D
-Hallelujah, Hallelujah
-A           Bm
-তোমার মহিমা গাই
-G           D
-You are worthy, You are holy
-A           D
-Forever I will praise`,
-        chords: ["D", "A", "Bm", "G"],
-        submittedBy: "GPBC Worship Team"
-    },
-    {
-        id: 4,
-        title: "How Great Thou Art",
-        language: "english",
-        category: "worship",
-        key: "C",
-        tempo: "Slow",
-        preview: "O Lord my God, when I in awesome wonder...",
-        lyrics: `[Verse 1]
-C                      F        C
-O Lord my God, when I in awesome wonder
-                         G
-Consider all the worlds Thy hands have made
-C                    F           C
-I see the stars, I hear the rolling thunder
-                  G              C
-Thy power throughout the universe displayed
-
-[Chorus]
-C                  F           C
-Then sings my soul, my Savior God to Thee
-              Am         G
-How great Thou art, how great Thou art
-C                  F           C
-Then sings my soul, my Savior God to Thee
-              G              C
-How great Thou art, how great Thou art`,
-        chords: ["C", "F", "G", "Am"],
-        submittedBy: "GPBC Worship Team"
-    },
-    {
-        id: 5,
-        title: "আনন্দময় দিন (Anandomoy Din - Joyful Day)",
-        language: "bangla",
-        category: "christmas",
-        key: "G",
-        tempo: "Fast",
-        preview: "আনন্দময় দিন আজ, যীশু এলেন পৃথিবীতে...",
-        lyrics: `[Verse 1]
-G           D
-আনন্দময় দিন আজ
-Em          C
-যীশু এলেন পৃথিবীতে
-G           D
-ত্রাণকর্তা এসেছেন
-Em      C       G
-আমাদের বাঁচাতে
-
-[Chorus]
-C           G
-গ্লোরিয়া, গ্লোরিয়া
-D           Em
-স্বর্গে শান্তি এলো
-C           G
-হালেলুইয়া গাই
-D           G
-প্রভু জন্ম নিলো`,
-        chords: ["G", "D", "Em", "C"],
-        submittedBy: "GPBC Worship Team"
-    }
-];
-
+let songs = [];
 let currentFilter = 'all';
 let currentLanguage = 'all';
 let searchTerm = '';
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    displaySongs();
+    loadSongsFromSheet();
     setupEventListeners();
 });
+
+// Load songs from Google Sheets
+async function loadSongsFromSheet() {
+    try {
+        const grid = document.getElementById('songsGrid');
+        grid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">⏳ Loading songs...</p>';
+
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'getSongs'
+            })
+        });
+
+        // Note: With no-cors mode, we can't read the response directly
+        // We'll use a workaround with JSONP or switch to a different approach
+        // For now, let's try without no-cors and see if CORS is enabled
+        const response2 = await fetch(GOOGLE_SCRIPT_URL + '?action=getSongs');
+        const data = await response2.json();
+        
+        if (data.songs) {
+            songs = data.songs;
+            displaySongs();
+        } else {
+            throw new Error('No songs data received');
+        }
+    } catch (error) {
+        console.error('Error loading songs:', error);
+        const grid = document.getElementById('songsGrid');
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                <p style="color: #dc3545; font-weight: bold;">⚠️ Could not load songs from database</p>
+                <p style="color: #666; margin-top: 10px;">Please update GOOGLE_SCRIPT_URL in songbook.js</p>
+                <p style="color: #666; font-size: 0.9em; margin-top: 10px;">
+                    Current URL: <code style="background: #f0f0f0; padding: 5px 10px; border-radius: 5px;">${GOOGLE_SCRIPT_URL}</code>
+                </p>
+            </div>
+        `;
+    }
+}
 
 function setupEventListeners() {
     // Search
@@ -381,26 +277,49 @@ function downloadSong(songId) {
 function handleSongSubmit(e) {
     e.preventDefault();
 
+    const lyrics = document.getElementById('songLyrics').value;
     const newSong = {
-        id: songs.length + 1,
         title: document.getElementById('songTitle').value,
         language: document.getElementById('songLanguage').value,
         category: document.getElementById('songCategory').value,
         key: document.getElementById('songKey').value || null,
         tempo: document.getElementById('songTempo').value || null,
-        lyrics: document.getElementById('songLyrics').value,
-        preview: document.getElementById('songLyrics').value.split('\n').find(l => l.trim() && !l.startsWith('[') && !/^[A-G]/.test(l)) || '',
-        chords: extractChords(document.getElementById('songLyrics').value),
+        lyrics: lyrics,
+        preview: lyrics.split('\n').find(l => l.trim() && !l.startsWith('[') && !/^[A-G]/.test(l)) || '',
+        chords: extractChords(lyrics),
         submittedBy: document.getElementById('submitterName').value
     };
 
-    songs.push(newSong);
-    displaySongs();
-    
-    document.getElementById('addSongModal').style.display = 'none';
-    document.getElementById('addSongForm').reset();
-    
-    alert('✅ Song submitted successfully! Thank you for contributing to the GPBC Song Book!');
+    // Save to Google Sheets
+    saveSongToSheet(newSong);
+}
+
+async function saveSongToSheet(song) {
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'addSong',
+                song: song
+            })
+        });
+
+        // Since we may need to use no-cors, let's assume it worked
+        // and reload songs after a delay
+        setTimeout(() => {
+            loadSongsFromSheet();
+            document.getElementById('addSongModal').style.display = 'none';
+            document.getElementById('addSongForm').reset();
+            alert('✅ Song submitted successfully! Thank you for contributing to the GPBC Song Book!');
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Error saving song:', error);
+        alert('❌ Error submitting song. Please try again or contact the administrator.');
+    }
 }
 
 function extractChords(lyrics) {

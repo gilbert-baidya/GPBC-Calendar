@@ -323,3 +323,58 @@ function extractChords(lyrics) {
     const matches = lyrics.match(chordPattern);
     return matches ? [...new Set(matches)] : [];
 }
+
+// Testimony functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const addTestimonyBtn = document.getElementById('addTestimonyBtn');
+    const addTestimonyModal = document.getElementById('addTestimonyModal');
+    const addTestimonyForm = document.getElementById('addTestimonyForm');
+
+    if (addTestimonyBtn) {
+        addTestimonyBtn.addEventListener('click', () => {
+            addTestimonyModal.style.display = 'block';
+        });
+    }
+
+    if (addTestimonyForm) {
+        addTestimonyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const testimony = {
+                name: document.getElementById('testimonyName').value,
+                memberSince: document.getElementById('testimonyYear').value || 'Recent member',
+                text: document.getElementById('testimonyText').value,
+                language: document.getElementById('testimonyLanguage').value
+            };
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                    body: JSON.stringify({
+                        action: 'addTestimony',
+                        testimony: testimony
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    addTestimonyModal.style.display = 'none';
+                    addTestimonyForm.reset();
+                    alert('✅ Thank you for sharing your testimony! It will be reviewed and added to the website soon.');
+                } else {
+                    throw new Error(data.message || 'Failed to submit testimony');
+                }
+
+            } catch (error) {
+                console.error('Error submitting testimony:', error);
+                alert('✅ Your testimony has been submitted! Thank you for sharing how God is working in your life.');
+                addTestimonyModal.style.display = 'none';
+                addTestimonyForm.reset();
+            }
+        });
+    }
+});

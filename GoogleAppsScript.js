@@ -64,6 +64,11 @@ function doPost(e) {
       return addSong(ss, data);
     }
     
+    // Add testimony
+    if (data.action === 'addTestimony') {
+      return addTestimony(ss, data);
+    }
+    
     return createJsonResponse({ 
       error: 'Unknown action: ' + data.action,
       receivedData: data
@@ -291,6 +296,42 @@ function addSampleSongs(sheet) {
   ];
   
   samples.forEach(song => sheet.appendRow(song));
+}
+
+function addTestimony(ss, data) {
+  let testimonySheet = ss.getSheetByName('Testimonies');
+  if (!testimonySheet) {
+    testimonySheet = ss.insertSheet('Testimonies');
+    testimonySheet.appendRow([
+      'ID',
+      'Name',
+      'Member Since',
+      'Testimony',
+      'Language',
+      'Timestamp',
+      'Status'
+    ]);
+    const headerRange = testimonySheet.getRange(1, 1, 1, 7);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#667eea');
+    headerRange.setFontColor('white');
+  }
+  
+  const testimony = data.testimony;
+  const lastRow = testimonySheet.getLastRow();
+  const newId = lastRow > 1 ? testimonySheet.getRange(lastRow, 1).getValue() + 1 : 1;
+  
+  testimonySheet.appendRow([
+    newId,
+    testimony.name,
+    testimony.memberSince || 'Recent member',
+    testimony.text,
+    testimony.language,
+    new Date().toLocaleString(),
+    'Pending Review'
+  ]);
+  
+  return createJsonResponse({ success: true, message: 'Testimony submitted successfully', id: newId });
 }
 
 function createJsonResponse(data) {

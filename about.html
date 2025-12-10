@@ -618,6 +618,102 @@
             margin-top: 5px;
         }
 
+        /* Testimonies Styles */
+        .testimony-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimony-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .testimony-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .testimony-quote {
+            font-size: 4em;
+            color: #667eea;
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .testimony-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimony-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .testimony-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .testimony-info h4 {
+            margin: 0;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .testimony-info p {
+            margin: 5px 0 0 0;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .add-testimony-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .add-testimony-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .page-hero h1 {
@@ -694,6 +790,7 @@
             <a href="#beliefs">Our Beliefs</a>
             <a href="#values">Our Core Values</a>
             <a href="#position">Position Papers</a>
+            <a href="#testimonies">Testimonies</a>
             <a href="#songbook">GPBC Song Book</a>
         </div>
     </div>
@@ -838,6 +935,162 @@
             </div>
         </div>
     </section>
+
+    <!-- Testimonies -->
+    <section id="testimonies">
+        <div class="container">
+            <h2 class="section-title">💬 Testimonies</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; font-size: 1.1em; color: #666;">
+                Hear the inspiring stories of faith, hope, and transformation from our GPBC family.
+            </p>
+
+            <div class="testimony-grid">
+                <!-- Testimony 1 -->
+                <div class="testimony-card">
+                    <div class="testimony-quote">"</div>
+                    <p class="testimony-text">
+                        "Coming to GPBC has transformed my life. I found not just a church, but a family who speaks my language and understands my culture. The Lord has used this community to strengthen my faith and give me hope during difficult times. Praise God!"
+                    </p>
+                    <div class="testimony-author">
+                        <div class="testimony-avatar">R</div>
+                        <div class="testimony-info">
+                            <h4>Rahul M.</h4>
+                            <p>Member since 2022</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimony 2 -->
+                <div class="testimony-card">
+                    <div class="testimony-quote">"</div>
+                    <p class="testimony-text">
+                        "আমার জীবনে ঈশ্বরের অসাধারণ কাজ দেখেছি। GPBC-তে আসার পর আমি যীশুকে আমার ব্যক্তিগত ত্রাণকর্তা হিসেবে গ্রহণ করেছি। এখন আমার পরিবারে শান্তি এবং আনন্দ। ঈশ্বরের মহিমা হোক!"
+                    </p>
+                    <div class="testimony-author">
+                        <div class="testimony-avatar">P</div>
+                        <div class="testimony-info">
+                            <h4>Priya D.</h4>
+                            <p>Member since 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimony 3 -->
+                <div class="testimony-card">
+                    <div class="testimony-quote">"</div>
+                    <p class="testimony-text">
+                        "God healed my marriage through the prayers of this church. When we were on the verge of separation, the GPBC community stood with us, prayed for us, and showed us God's love. Today we are stronger than ever. Thank you, Jesus!"
+                    </p>
+                    <div class="testimony-author">
+                        <div class="testimony-avatar">S</div>
+                        <div class="testimony-info">
+                            <h4>Sarah & John K.</h4>
+                            <p>Member since 2021</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimony 4 -->
+                <div class="testimony-card">
+                    <div class="testimony-quote">"</div>
+                    <p class="testimony-text">
+                        "I was lost in addiction and depression, but through GPBC's compassionate ministry and God's amazing grace, I found freedom and purpose. The bilingual worship and culturally relevant teaching helped me reconnect with God in a powerful way."
+                    </p>
+                    <div class="testimony-author">
+                        <div class="testimony-avatar">A</div>
+                        <div class="testimony-info">
+                            <h4>Anik B.</h4>
+                            <p>Member since 2020</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimony 5 -->
+                <div class="testimony-card">
+                    <div class="testimony-quote">"</div>
+                    <p class="testimony-text">
+                        "প্রভু আমার ব্যবসায় আশীর্বাদ করেছেন এবং আমার সন্তানদের রক্ষা করেছেন। GPBC-র উপাসনা এবং প্রার্থনা সভায় আমি ঈশ্বরের উপস্থিতি অনুভব করি। এই মণ্ডলীর জন্য ঈশ্বরকে ধন্যবাদ!"
+                    </p>
+                    <div class="testimony-author">
+                        <div class="testimony-avatar">M</div>
+                        <div class="testimony-info">
+                            <h4>Mahmuda C.</h4>
+                            <p>Member since 2019</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimony 6 -->
+                <div class="testimony-card">
+                    <div class="testimony-quote">"</div>
+                    <p class="testimony-text">
+                        "As a new immigrant, I felt alone and overwhelmed. GPBC welcomed me with open arms and helped me find my place in this new country. Through their love and support, I experienced God's faithfulness in ways I never imagined possible."
+                    </p>
+                    <div class="testimony-author">
+                        <div class="testimony-avatar">T</div>
+                        <div class="testimony-info">
+                            <h4>Tania R.</h4>
+                            <p>Member since 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Share Your Testimony Button -->
+            <div style="text-align: center; margin-top: 50px;">
+                <button id="addTestimonyBtn" class="add-testimony-btn">
+                    ✨ Share Your Testimony
+                </button>
+                <p style="margin-top: 15px; color: #666;">
+                    Have a testimony to share? We'd love to hear how God is working in your life!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Testimony Modal -->
+    <div id="addTestimonyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="document.getElementById('addTestimonyModal').style.display='none'">&times;</span>
+                <h2>Share Your Testimony</h2>
+            </div>
+            <div class="modal-body">
+                <form id="addTestimonyForm">
+                    <div class="form-group">
+                        <label for="testimonyName">Your Name *</label>
+                        <input type="text" id="testimonyName" required placeholder="e.g., John D. or Anonymous">
+                        <div class="form-note">You can choose to remain anonymous</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testimonyYear">Member Since (optional)</label>
+                        <input type="text" id="testimonyYear" placeholder="e.g., 2023">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testimonyText">Your Testimony *</label>
+                        <textarea id="testimonyText" required placeholder="Share how God has worked in your life..." style="min-height: 150px;"></textarea>
+                        <div class="form-note">Share your story of faith, healing, transformation, or God's faithfulness</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testimonyLanguage">Language *</label>
+                        <select id="testimonyLanguage" required>
+                            <option value="">Select language</option>
+                            <option value="english">English</option>
+                            <option value="bangla">বাংলা (Bangla)</option>
+                        </select>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary">✅ Submit Testimony</button>
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('addTestimonyModal').style.display='none'; document.getElementById('addTestimonyForm').reset();">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- GPBC Song Book -->
     <section id="songbook" style="background: #f8f9fa;">

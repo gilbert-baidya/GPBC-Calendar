@@ -61,9 +61,8 @@ class CountdownSystem {
             }
         ];
 
-        // Auto-init on home page OR if nextServiceCountdown container exists (About page)
-        if ((document.querySelector('.hero-content') && !document.getElementById('nextServiceCountdown')) || 
-            document.getElementById('nextServiceCountdown')) {
+        // Auto-init on home page OR About page
+        if (document.querySelector('.hero') || document.getElementById('nextServiceCountdown')) {
             this.init();
         }
     }
@@ -79,18 +78,18 @@ class CountdownSystem {
         const bannerDiv = document.createElement('div');
         bannerDiv.id = 'nextEventBanner';
 
-        // Check if we're on home page
-        const heroSection = document.querySelector('.hero');
-        if (heroSection && !document.getElementById('nextServiceCountdown')) {
-            // Home page: insert BEFORE hero section (after nav, before hero title)
-            bannerDiv.className = 'countdown-hero-banner';
-            heroSection.parentNode.insertBefore(bannerDiv, heroSection);
-        } else {
-            // About page or other: assume container exists
+        // Check if we're on About page first (has dedicated container)
+        const container = document.getElementById('nextServiceCountdown');
+        if (container) {
+            // About page: insert into dedicated container
             bannerDiv.className = 'next-event-banner';
-            const container = document.getElementById('nextServiceCountdown');
-            if (container) {
-                container.appendChild(bannerDiv);
+            container.appendChild(bannerDiv);
+        } else {
+            // Home page: insert BEFORE hero section (after nav, before hero title)
+            const heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                bannerDiv.className = 'countdown-hero-banner';
+                heroSection.parentNode.insertBefore(bannerDiv, heroSection);
             }
         }
     }

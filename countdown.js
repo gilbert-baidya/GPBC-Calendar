@@ -255,12 +255,11 @@ class CountdownSystem {
 }
 
 // Initialize countdown system when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        new CountdownSystem();
-    });
-} else {
+document.addEventListener('DOMContentLoaded', () => {
     new CountdownSystem();
-}
+});
 
-export default CountdownSystem;
+// Also try immediate initialization if DOM is already loaded
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(() => new CountdownSystem(), 1);
+}

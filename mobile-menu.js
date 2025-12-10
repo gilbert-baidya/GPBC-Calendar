@@ -120,10 +120,6 @@ class MobileMenu {
 }
 
 // Initialize mobile menu when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => new MobileMenu());
-} else {
+document.addEventListener('DOMContentLoaded', () => {
     new MobileMenu();
-}
-
-export default MobileMenu;
+});

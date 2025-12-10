@@ -1,11 +1,11 @@
 /**
  * Countdown Timer Styles
- * Dynamic service and event countdowns for GPBC
+ * Next upcoming service/event banner for GPBC
  */
 
 .countdown-section {
     background: var(--gradient-primary);
-    padding: 4rem 2rem;
+    padding: 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -20,120 +20,126 @@
 }
 
 .countdown-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
-.countdown-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    color: white;
-}
-
-.countdown-header h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.countdown-header p {
-    font-size: 1.2rem;
-    opacity: 0.95;
-}
-
-/* Service Timers Grid */
-.service-timers {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.service-card {
-    background: rgba(255, 255, 255, 0.95);
+/* Next Event Banner */
+.next-event-banner {
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     border-radius: var(--radius-xl);
-    padding: 2rem;
+    padding: 2.5rem;
     box-shadow: var(--shadow-xl);
-    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
     border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all var(--transition);
 }
 
-.service-card:hover {
-    transform: translateY(-5px) scale(1.02);
+.next-event-banner:hover {
+    transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border-color: white;
 }
 
-.service-card.happening-now {
+.next-event-banner.happening-now {
     border-color: var(--success);
-    background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(255, 255, 255, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.15) 0%, rgba(255, 255, 255, 0.98) 100%);
     animation: pulse 2s ease-in-out infinite;
 }
 
-.service-icon {
-    font-size: 3rem;
-    text-align: center;
+.event-info {
+    flex: 1;
+}
+
+.event-type {
+    display: inline-block;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 700;
     margin-bottom: 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.event-type.live {
+    background: var(--gradient-success);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.event-title-banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.event-icon-large {
+    font-size: 3rem;
     animation: float 3s ease-in-out infinite;
 }
 
-.service-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 0.5rem;
+.event-title-banner h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    margin: 0;
 }
 
-.service-time {
-    text-align: center;
+.event-datetime {
     color: var(--gray-600);
     font-weight: 600;
-    margin-bottom: 1.5rem;
     font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
-.service-status {
+.event-location {
+    color: var(--gray-500);
+    font-size: 0.95rem;
+}
+
+.countdown-display {
+    flex: 0 0 auto;
+    min-width: 280px;
+}
+
+.countdown-label {
     text-align: center;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-full);
-    font-weight: 700;
     font-size: 0.9rem;
+    color: var(--gray-600);
     margin-bottom: 1rem;
-}
-
-.status-live {
-    background: var(--gradient-success);
-    color: white;
-    animation: pulse 1.5s ease-in-out infinite;
-}
-
-.status-upcoming {
-    background: var(--gray-100);
-    color: var(--gray-700);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Countdown Timer Display */
 .countdown-timer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
-    margin-top: 1rem;
+    gap: 1rem;
 }
 
 .time-unit {
     text-align: center;
+    background: var(--gray-50);
+    padding: 1rem 0.5rem;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--gray-100);
 }
 
 .time-value {
     display: block;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 800;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -146,113 +152,30 @@
     display: block;
     font-size: 0.75rem;
     color: var(--gray-600);
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 
-/* Special Events Section */
-.special-events-header {
+.live-now-message {
     text-align: center;
-    color: white;
-    margin: 3rem 0 2rem;
-}
-
-.special-events-header h3 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.special-events-header p {
-    opacity: 0.9;
-}
-
-.special-events {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.event-card {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius-xl);
-    padding: 2.5rem;
-    box-shadow: var(--shadow-xl);
-    transition: all var(--transition);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.event-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: var(--gradient-primary);
-}
-
-.event-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    border-color: white;
-}
-
-.event-badge {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: var(--gradient-primary);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-full);
-    font-size: 0.85rem;
+    font-size: 1.5rem;
+    color: var(--success);
     font-weight: 700;
-    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.event-icon {
-    font-size: 4rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.event-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 0.75rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.event-date {
-    text-align: center;
-    color: var(--gray-600);
-    font-weight: 600;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-}
-
-.event-countdown {
-    background: var(--gray-50);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-.event-countdown-label {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--gray-600);
-    margin-bottom: 1rem;
-    font-weight: 600;
+.live-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
 /* Animations */
@@ -279,12 +202,23 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .countdown-section {
-        padding: 3rem 1rem;
+        padding: 1.5rem 1rem;
     }
     
-    .service-timers,
-    .special-events {
-        grid-template-columns: 1fr;
+    .next-event-banner {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        text-align: center;
+    }
+    
+    .event-title-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .countdown-display {
+        min-width: 100%;
+        width: 100%;
     }
     
     .countdown-timer {
@@ -292,32 +226,19 @@
         gap: 0.5rem;
     }
     
+    .time-unit {
+        padding: 0.75rem 0.25rem;
+    }
+    
     .time-value {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
     
     .time-label {
         font-size: 0.65rem;
     }
     
-    .event-badge {
-        position: static;
-        display: inline-block;
-        margin-bottom: 1rem;
+    .event-icon-large {
+        font-size: 2.5rem;
     }
-}
-
-/* Empty State */
-.no-upcoming-events {
-    text-align: center;
-    padding: 3rem;
-    color: white;
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-.no-upcoming-events .icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    opacity: 0.5;
 }

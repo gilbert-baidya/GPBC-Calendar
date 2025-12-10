@@ -1,6 +1,6 @@
 /**
  * Dynamic Countdown Timer System
- * GPBC Regular Services and Special Events
+ * GPBC Next Upcoming Service/Event Banner
  */
 
 class CountdownSystem {
@@ -12,21 +12,24 @@ class CountdownSystem {
                 day: 5, // Friday (0=Sunday, 5=Friday)
                 time: '17:30', // 5:30 PM
                 duration: 120, // 2 hours
-                icon: '🎵'
+                icon: '🎵',
+                type: 'service'
             },
             {
                 name: 'Fasting Prayer',
                 day: 6, // Saturday
                 time: '12:00', // 12:00 PM
                 duration: 120,
-                icon: '🙏'
+                icon: '🙏',
+                type: 'service'
             },
             {
                 name: 'Sunday Service',
                 day: 0, // Sunday
                 time: '17:00', // 5:00 PM
                 duration: 150,
-                icon: '⛪'
+                icon: '⛪',
+                type: 'service'
             }
         ];
 
@@ -37,21 +40,24 @@ class CountdownSystem {
                 date: '2025-12-13',
                 time: '17:00', // 5:00 PM
                 icon: '🎄',
-                badge: 'Special'
+                badge: 'Special Event',
+                type: 'event'
             },
             {
                 name: 'Christmas Eve Service',
                 date: '2025-12-24',
                 time: '17:00', // 5:00 PM
                 icon: '🌟',
-                badge: 'Christmas'
+                badge: 'Christmas',
+                type: 'event'
             },
             {
                 name: 'Gratitude & New Year Celebration',
                 date: '2025-12-31',
                 time: '22:30', // 10:30 PM
                 icon: '🎉',
-                badge: 'New Year'
+                badge: 'New Year',
+                type: 'event'
             }
         ];
 
@@ -59,29 +65,18 @@ class CountdownSystem {
     }
 
     init() {
-        this.createCountdownSection();
-        this.updateCountdowns();
+        this.createCountdownBanner();
+        this.updateCountdown();
         // Update every second
-        setInterval(() => this.updateCountdowns(), 1000);
+        setInterval(() => this.updateCountdown(), 1000);
     }
 
-    createCountdownSection() {
+    createCountdownBanner() {
         const section = document.createElement('section');
-        section.className = 'countdown-section fade-in';
+        section.className = 'countdown-section';
         section.innerHTML = `
             <div class="countdown-container">
-                <div class="countdown-header">
-                    <h2>⏰ Upcoming Services & Events</h2>
-                    <p>Join us in worship and celebration</p>
-                </div>
-                
-                <div class="service-timers" id="serviceTimers"></div>
-                
-                <div class="special-events-header">
-                    <h3>✨ Special Events</h3>
-                    <p>Don't miss these celebration services</p>
-                </div>
-                <div class="special-events" id="specialEvents"></div>
+                <div id="nextEventBanner"></div>
             </div>
         `;
 
@@ -129,8 +124,19 @@ class CountdownSystem {
         return { days, hours, minutes, seconds };
     }
 
-    createCountdownHTML(countdown) {
+    createCountdownHTML(countdown, isLive = false) {
+        if (isLive) {
+            return `
+                <div class="live-now-message">
+                    <span class="live-dot"></span>
+                    HAPPENING NOW!
+                    <span class="live-dot"></span>
+                </div>
+            `;
+        }
+
         return `
+            <div class="countdown-label">Time Remaining</div>
             <div class="countdown-timer">
                 <div class="time-unit">
                     <span class="time-value">${String(countdown.days).padStart(2, '0')}</span>
@@ -152,93 +158,87 @@ class CountdownSystem {
         `;
     }
 
-    updateCountdowns() {
-        this.updateServices();
-        this.updateSpecialEvents();
-    }
-
-    updateServices() {
-        const container = document.getElementById('serviceTimers');
-        if (!container) return;
-
+    getNextEvent() {
         const now = new Date();
-        let html = '';
+        const allEvents = [];
 
+        // Add all services with their next occurrences
         this.services.forEach(service => {
             const nextTime = this.getNextOccurrence(service.day, service.time);
             const isLive = this.isServiceHappeningNow(nextTime, service.duration);
-            const timeUntil = nextTime - now;
-
-            const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const formattedTime = this.formatTime(service.time);
-
-            html += `
-                <div class="service-card ${isLive ? 'happening-now' : ''}">
-                    <div class="service-icon">${service.icon}</div>
-                    <h3 class="service-title">${service.name}</h3>
-                    <p class="service-time">${dayNames[service.day]}s at ${formattedTime}</p>
-                    ${isLive ? 
-                        '<div class="service-status status-live">🔴 HAPPENING NOW!</div>' :
-                        '<div class="service-status status-upcoming">Upcoming</div>'
-                    }
-                    ${!isLive ? this.createCountdownHTML(this.formatCountdown(timeUntil)) : '<p style="text-align: center; font-size: 1.2rem; color: var(--success); font-weight: 700;">Join us now! 🙌</p>'}
-                </div>
-            `;
+            
+            allEvents.push({
+                ...service,
+                nextTime,
+                isLive,
+                sortTime: isLive ? now : nextTime
+            });
         });
 
-        container.innerHTML = html;
+        // Add special events that haven't passed
+        this.specialEvents.forEach(event => {
+            const [year, month, day] = event.date.split('-').map(Number);
+            const [hours, minutes] = event.time.split(':').map(Number);
+            const eventDate = new Date(year, month - 1, day, hours, minutes);
+            
+            if (eventDate > now) {
+                allEvents.push({
+                    ...event,
+                    nextTime: eventDate,
+                    isLive: false,
+                    sortTime: eventDate
+                });
+            }
+        });
+
+        // Sort by time and return the next one
+        allEvents.sort((a, b) => a.sortTime - b.sortTime);
+        return allEvents[0] || null;
     }
 
-    updateSpecialEvents() {
-        const container = document.getElementById('specialEvents');
+    updateCountdown() {
+        const container = document.getElementById('nextEventBanner');
         if (!container) return;
 
-        const now = new Date();
-        let html = '';
-        let hasUpcoming = false;
-
-        // Filter out past events and sort by date
-        const upcomingEvents = this.specialEvents
-            .map(event => {
-                const [year, month, day] = event.date.split('-').map(Number);
-                const [hours, minutes] = event.time.split(':').map(Number);
-                const eventDate = new Date(year, month - 1, day, hours, minutes);
-                return { ...event, eventDate };
-            })
-            .filter(event => event.eventDate > now)
-            .sort((a, b) => a.eventDate - b.eventDate);
-
-        if (upcomingEvents.length === 0) {
-            container.innerHTML = `
-                <div class="no-upcoming-events">
-                    <div class="icon">📅</div>
-                    <p>No special events scheduled at this time.<br>Check back soon for updates!</p>
-                </div>
-            `;
+        const nextEvent = this.getNextEvent();
+        if (!nextEvent) {
+            container.innerHTML = '';
             return;
         }
 
-        upcomingEvents.forEach(event => {
-            const timeUntil = event.eventDate - now;
-            const formattedDate = this.formatDate(event.eventDate);
-            const formattedTime = this.formatTime(event.time);
+        const now = new Date();
+        const timeUntil = nextEvent.nextTime - now;
+        const countdown = this.formatCountdown(timeUntil);
+        
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const formattedTime = this.formatTime(nextEvent.time);
+        const isService = nextEvent.type === 'service';
+        
+        let dateTimeStr;
+        if (isService) {
+            dateTimeStr = `${dayNames[nextEvent.day]}s at ${formattedTime}`;
+        } else {
+            dateTimeStr = `${this.formatDate(nextEvent.nextTime)} at ${formattedTime}`;
+        }
 
-            html += `
-                <div class="event-card">
-                    <div class="event-badge">${event.badge}</div>
-                    <div class="event-icon">${event.icon}</div>
-                    <h3 class="event-title">${event.name}</h3>
-                    <p class="event-date">${formattedDate} at ${formattedTime}</p>
-                    <div class="event-countdown">
-                        <div class="event-countdown-label">Countdown to Event</div>
-                        ${this.createCountdownHTML(this.formatCountdown(timeUntil))}
+        container.innerHTML = `
+            <div class="next-event-banner ${nextEvent.isLive ? 'happening-now' : ''}">
+                <div class="event-info">
+                    <div class="event-type ${nextEvent.isLive ? 'live' : ''}">
+                        ${nextEvent.badge || (isService ? 'Regular Service' : 'Special Event')}
                     </div>
+                    <div class="event-title-banner">
+                        <div class="event-icon-large">${nextEvent.icon}</div>
+                        <h2>${nextEvent.name}</h2>
+                    </div>
+                    <div class="event-datetime">📅 ${dateTimeStr}</div>
+                    <div class="event-location">📍 1325 Richardson Street, CA 92408</div>
                 </div>
-            `;
-            hasUpcoming = true;
-        });
-
-        container.innerHTML = html;
+                <div class="countdown-display">
+                    ${this.createCountdownHTML(countdown, nextEvent.isLive)}
+                </div>
+            </div>
+        `;
     }
 
     formatTime(time) {

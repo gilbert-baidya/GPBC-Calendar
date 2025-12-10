@@ -61,8 +61,9 @@ class CountdownSystem {
             }
         ];
 
-        // Only auto-init on home page
-        if (document.querySelector('.hero-content') && !document.getElementById('nextServiceCountdown')) {
+        // Auto-init on home page OR if nextServiceCountdown container exists (About page)
+        if ((document.querySelector('.hero-content') && !document.getElementById('nextServiceCountdown')) || 
+            document.getElementById('nextServiceCountdown')) {
             this.init();
         }
     }

@@ -7,8 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="countdown.css">
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <style>
+        :root {
+            --transition: 0.3s ease;
+            --radius-full: 50px;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -785,6 +791,7 @@
     <!-- Section Navigation -->
     <div class="section-nav">
         <div class="section-nav-container">
+            <a href="#next-service">Next Service</a>
             <a href="#history">Our History</a>
             <a href="#mission">Our Mission</a>
             <a href="#leadership">Our Leadership</a>
@@ -795,6 +802,14 @@
             <a href="#songbook">GPBC Song Book</a>
         </div>
     </div>
+
+    <!-- Next Service -->
+    <section id="next-service" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 20px;">
+        <div class="container">
+            <h2 class="section-title" style="color: white; margin-bottom: 40px;">Next Service</h2>
+            <div id="nextServiceCountdown" style="max-width: 900px; margin: 0 auto;"></div>
+        </div>
+    </section>
 
     <!-- Our History -->
     <section id="history" style="background: #f8f9fa;">
@@ -1234,6 +1249,14 @@ Then sings my soul..."></textarea>
     </div>
 
     <script src="songbook.js"></script>
+    <script src="countdown.js"></script>
+    <script>
+        // Initialize countdown for About page Next Service section
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutCountdown = new CountdownSystem();
+            aboutCountdown.init();
+        });
+    </script>
 
     <!-- Footer -->
     <footer>

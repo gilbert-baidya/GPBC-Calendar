@@ -19,9 +19,10 @@
     padding: 1rem 1.5rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+    text-align: center;
+    gap: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all var(--transition);
 }
@@ -41,6 +42,7 @@
 
 .event-info {
     flex: 1;
+    width: 100%;
 }
 
 .event-type {
@@ -64,6 +66,7 @@
 .event-title-banner {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.6rem;
     margin-bottom: 0.5rem;
 }
@@ -99,7 +102,9 @@
 
 .countdown-display {
     flex: 0 0 auto;
-    min-width: 280px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .countdown-label {
@@ -200,10 +205,8 @@
     }
     
     .next-event-banner {
-        flex-direction: column;
         padding: 1rem;
-        text-align: center;
-        gap: 1rem;
+        gap: 0.75rem;
     }
     
     .event-title-banner h2 {
@@ -217,11 +220,6 @@
     .event-datetime,
     .event-location {
         font-size: 0.8rem;
-    }
-    
-    .countdown-display {
-        min-width: auto;
-        width: 100%;
     }
     
     .countdown-timer {

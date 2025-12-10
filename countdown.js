@@ -72,18 +72,14 @@ class CountdownSystem {
     }
 
     createCountdownBanner() {
-        const section = document.createElement('section');
-        section.className = 'countdown-section';
-        section.innerHTML = `
-            <div class="countdown-container">
-                <div id="nextEventBanner"></div>
-            </div>
-        `;
+        const bannerDiv = document.createElement('div');
+        bannerDiv.className = 'countdown-hero-banner';
+        bannerDiv.id = 'nextEventBanner';
 
-        // Insert after hero section
-        const hero = document.querySelector('.hero');
-        if (hero && hero.nextElementSibling) {
-            hero.parentNode.insertBefore(section, hero.nextElementSibling);
+        // Insert inside hero section, before hero-content
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            heroContent.parentNode.insertBefore(bannerDiv, heroContent);
         }
     }
 

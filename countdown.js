@@ -75,6 +75,11 @@ class CountdownSystem {
     }
 
     createCountdownBanner() {
+        // Check if banner already exists to prevent duplicates
+        if (document.getElementById('nextEventBanner')) {
+            return;
+        }
+
         const bannerDiv = document.createElement('div');
         bannerDiv.id = 'nextEventBanner';
 

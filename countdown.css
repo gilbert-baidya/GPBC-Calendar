@@ -1,7 +1,15 @@
 /**
- * Countdown Timer Styles - Hero Integrated Version
+ * Countdown Timer Styles - Top Banner Version
  * Next upcoming service/event banner for GPBC
  */
+
+.countdown-top-banner {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1rem 0;
+}
 
 .countdown-hero-banner {
     position: relative;
@@ -11,26 +19,35 @@
     margin: 0 auto 2rem;
 }
 
-/* Next Event Banner */
+/* Next Event Banner - Both top banner and embedded versions */
+.countdown-top-banner .next-event-banner,
 .next-event-banner {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
-    border-radius: 16px;
+    border-radius: 0;
     padding: 1rem 1.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     transition: all var(--transition);
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
+/* For About page - keep rounded corners */
+#nextServiceCountdown .next-event-banner {
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-top-banner .next-event-banner:hover,
 .next-event-banner:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.3);
     background: rgba(255, 255, 255, 0.2);
 }
 

@@ -62,7 +62,7 @@ class CountdownSystem {
         ];
 
         // Only auto-init on home page
-        if (document.querySelector('.hero-content')) {
+        if (document.querySelector('nav') && !document.getElementById('nextServiceCountdown')) {
             this.init();
         }
     }
@@ -78,12 +78,12 @@ class CountdownSystem {
         const bannerDiv = document.createElement('div');
         bannerDiv.id = 'nextEventBanner';
 
-        // Check if we're on home page (has .hero-content)
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent) {
-            // Home page: insert as hero banner
-            bannerDiv.className = 'countdown-hero-banner';
-            heroContent.parentNode.insertBefore(bannerDiv, heroContent);
+        // Check if we're on home page (has nav element)
+        const nav = document.querySelector('nav');
+        if (nav && !document.getElementById('nextServiceCountdown')) {
+            // Home page: insert as top banner before nav
+            bannerDiv.className = 'countdown-top-banner';
+            document.body.insertBefore(bannerDiv, nav);
         } else {
             // About page or other: assume container exists
             bannerDiv.className = 'next-event-banner';

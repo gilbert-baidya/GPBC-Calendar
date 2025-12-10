@@ -3,318 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Grace and Praise Bangladeshi Church - A vibrant community of believers in San Bernardino, CA">
+    <meta name="theme-color" content="#667eea">
     <title>Grace and Praise Bangladeshi Church - Welcome Home</title>
+    
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Modern CSS Framework -->
+    <link rel="stylesheet" href="modern.css">
+    <link rel="stylesheet" href="mobile-menu.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: #fff;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5em;
-            font-weight: 800;
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links li {
-            position: relative;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: color 0.3s;
-            padding: 10px 0;
-            display: block;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        /* Dropdown Menu */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            border-radius: 8px;
-            padding: 10px 0;
-            margin-top: 5px;
-            z-index: 1000;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            padding: 12px 20px;
-            color: #333;
-            font-weight: 500;
-            font-size: 0.95em;
-        }
-
-        .dropdown-content a:hover {
-            background: #f8f9fa;
-            color: #667eea;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23667eea" width="1200" height="800"/></svg>');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 120px 20px;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .hero .tagline {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .hero .address {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
+    <!-- Modern CSS Framework -->
+    <link rel="stylesheet" href="modern.css">
+    
+    <style>
+        /* Page-specific styles */
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            gap: 1.5rem;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 2.5rem;
             flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
-        .btn {
-            padding: 15px 40px;
-            font-size: 1.1em;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #667eea;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #667eea;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 80px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 50px;
-            color: #333;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2em;
-            color: #666;
-            max-width: 700px;
-            margin: -30px auto 50px;
-        }
-
-        /* Cards Grid */
-        .cards-grid {
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
         }
 
-        .card {
+        .stat-card {
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: #333;
+            padding: 2rem;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
+            transition: all var(--transition);
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
         }
 
-        .card-icon {
-            font-size: 4em;
-            padding: 40px 20px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
-        .card-content {
-            padding: 30px;
-        }
-
-        .card h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-
-        .card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* Verse Section */
-        .verse-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 80px 20px;
-        }
-
-        .verse-box {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .verse-box p {
-            font-size: 2em;
-            font-style: italic;
-            color: #333;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .verse-reference {
-            font-size: 1.3em;
+        .stat-label {
+            color: var(--gray-600);
             font-weight: 600;
-            color: #667eea;
         }
 
-        /* QR Section */
         .qr-section {
-            background: #2c3e50;
+            background: var(--gray-900);
             color: white;
-            text-align: center;
         }
 
         .qr-box {
             background: white;
-            padding: 30px;
-            border-radius: 20px;
+            padding: 2rem;
+            border-radius: var(--radius-xl);
             display: inline-block;
-            margin: 30px 0;
+            box-shadow: var(--shadow-xl);
         }
 
-        /* Footer */
         footer {
-            background: #1a252f;
-            color: white;
-            padding: 60px 20px 30px;
+            background: var(--gray-900);
+            color: var(--gray-300);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
         }
 
         .footer-col h3 {
-            margin-bottom: 20px;
-            color: #667eea;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .footer-col ul {
@@ -322,46 +109,31 @@
         }
 
         .footer-col ul li {
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
         }
 
         .footer-col a {
-            color: #ccc;
+            color: var(--gray-400);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all var(--transition-fast);
+            display: inline-block;
         }
 
         .footer-col a:hover {
             color: white;
+            transform: translateX(5px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: #999;
+            color: var(--gray-500);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-
-            .hero .tagline {
-                font-size: 1.2em;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 2em;
-            }
-
-            .verse-box p {
-                font-size: 1.3em;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -370,9 +142,12 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">⛪ GPBC</a>
+            <a href="index.html" class="logo">
+                <span>⛪</span>
+                <span>GPBC</span>
+            </a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li class="dropdown">
                     <a href="about.html">About</a>
                     <div class="dropdown-content">
@@ -395,34 +170,58 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-particles"></div>
         <div class="hero-content">
             <h1>Grace and Praise Bangladeshi Church</h1>
-            <p class="tagline">Passion for God, Compassion for People!</p>
+            <p class="tagline">✨ Passion for God, Compassion for People! ✨</p>
             <p class="address">📍 1325 Richardson Street, CA 92408</p>
             <div class="cta-buttons">
-                <a href="calendar.html" class="btn btn-primary">📅 View Calendar</a>
-                <a href="#visit" class="btn btn-secondary">Plan Your Visit</a>
+                <a href="calendar.html" class="btn btn-primary btn-ripple">📅 View Calendar</a>
+                <a href="#welcome" class="btn btn-secondary btn-ripple">Discover More</a>
             </div>
         </div>
     </section>
 
     <!-- Welcome Section -->
-    <section>
+    <section id="welcome" class="fade-in">
+        <div class="section-decorator section-decorator-top" data-speed="0.2"></div>
         <div class="container">
             <h2 class="section-title">Welcome Home</h2>
             <p class="section-subtitle">
                 We are a vibrant community of believers dedicated to worshipping God, 
                 celebrating our Bangladeshi heritage, and sharing Christ's love with our community.
             </p>
+            
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card scale-in">
+                    <span class="stat-number" data-count="500">0</span>
+                    <span class="stat-label">Members</span>
+                </div>
+                <div class="stat-card scale-in">
+                    <span class="stat-number" data-count="52">0</span>
+                    <span class="stat-label">Events/Year</span>
+                </div>
+                <div class="stat-card scale-in">
+                    <span class="stat-number" data-count="15">0</span>
+                    <span class="stat-label">Years Serving</span>
+                </div>
+                <div class="stat-card scale-in">
+                    <span class="stat-number" data-count="100">0</span>
+                    <span class="stat-label">% Love</span>
+                </div>
+            </div>
         </div>
+        <div class="section-decorator section-decorator-bottom" data-speed="0.3"></div>
     </section>
 
     <!-- What's Happening -->
-    <section style="background: #f8f9fa;">
+    <section style="background: var(--gray-50);">
         <div class="container">
-            <h2 class="section-title">What's Happening at GPBC</h2>
-            <div class="cards-grid">
-                <a href="calendar.html" class="card">
+            <h2 class="section-title fade-in">What's Happening at GPBC</h2>
+            <div class="cards-grid card-3d">
+                <a href="calendar.html" class="card fade-in">
                     <div class="card-icon">📅</div>
                     <div class="card-content">
                         <h3>2026 Calendar</h3>
@@ -430,7 +229,7 @@
                     </div>
                 </a>
 
-                <a href="calendar.html#prayer" class="card">
+                <a href="calendar.html#prayer" class="card fade-in">
                     <div class="card-icon">🙏</div>
                     <div class="card-content">
                         <h3>Prayer Requests</h3>
@@ -438,7 +237,7 @@
                     </div>
                 </a>
 
-                <a href="calendar.html#register" class="card">
+                <a href="calendar.html#register" class="card fade-in">
                     <div class="card-icon">🎂</div>
                     <div class="card-content">
                         <h3>Special Days</h3>
@@ -446,7 +245,7 @@
                     </div>
                 </a>
 
-                <a href="calendar.html#donate" class="card">
+                <a href="give.html" class="card fade-in">
                     <div class="card-icon">💝</div>
                     <div class="card-content">
                         <h3>Give</h3>
@@ -458,23 +257,24 @@
     </section>
 
     <!-- Bible Verse -->
-    <section class="verse-section">
-        <div class="verse-box">
+    <section class="verse-section fade-in">
+        <div class="verse-box scale-in">
             <p>"For where two or three gather in my name, there am I with them."</p>
             <p class="verse-reference">— Matthew 18:20</p>
         </div>
     </section>
 
     <!-- Take Your Next Step -->
-    <section>
+    <section class="fade-in">
+        <div class="section-decorator section-decorator-top" data-speed="0.2"></div>
         <div class="container">
             <h2 class="section-title">Take Your Next Step</h2>
             <p class="section-subtitle">
                 Our hope is that you have found a home at Grace and Praise Bangladeshi Church. 
                 We've identified some next steps to help you grow in your relationship with Jesus.
             </p>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="calendar.html" class="btn btn-primary">Explore More</a>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="about.html" class="btn btn-gradient btn-ripple">Explore Our Story</a>
             </div>
         </div>
     </section>
@@ -483,46 +283,64 @@
     <section class="qr-section">
         <div class="container">
             <h2 class="section-title" style="color: white;">Access Our Calendar Anytime</h2>
-            <p style="font-size: 1.2em; margin-bottom: 20px;">Scan with your phone to stay connected</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--gray-300);">Scan with your phone to stay connected</p>
             <div class="qr-box">
                 <div id="homeQR"></div>
             </div>
-            <p style="opacity: 0.8;">Bookmark this page on your phone for quick access!</p>
+            <p style="opacity: 0.8; color: var(--gray-400);">Bookmark this page on your phone for quick access!</p>
         </div>
     </section>
 
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+
     <!-- Footer -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>Grace and Praise Bangladeshi Church</h3>
-                <p>Join us as we worship God and serve our community with love and compassion.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Grace and Praise Bangladeshi Church</h3>
+                    <p>Join us as we worship God and serve our community with love and compassion.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="calendar.html">📅 Calendar</a></li>
+                        <li><a href="calendar.html#prayer">🙏 Prayer Requests</a></li>
+                        <li><a href="give.html">💝 Give</a></li>
+                        <li><a href="about.html">ℹ️ About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>📍 1325 Richardson Street</li>
+                        <li>🏙️ CA 92408</li>
+                        <li>📧 gracepraisebangladeshichurch@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#">🔵 Facebook</a></li>
+                        <li><a href="#">📸 Instagram</a></li>
+                        <li><a href="#">▶️ YouTube</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="calendar.html">Calendar</a></li>
-                    <li><a href="calendar.html#prayer">Prayer Requests</a></li>
-                    <li><a href="calendar.html#donate">Give</a></li>
-                    <li><a href="calendar.html#register">Register Special Days</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>© 2026 Grace and Praise Bangladeshi Church - All rights reserved</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Built with ❤️ for God's glory</p>
             </div>
-            <div class="footer-col">
-                <h3>Contact Us</h3>
-                <ul>
-                    <li>📍 1325 Richardson Street</li>
-                    <li>CA 92408</li>
-                    <li>📧 gracepraisebangladeshichurch@gmail.com</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Grace and Praise Bangladeshi Church - All rights reserved</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="mobile-menu.js"></script>
+    <script src="modern.js" type="module"></script>
     <script>
+        // QR Code Generation
         window.addEventListener('DOMContentLoaded', function() {
             const qrDiv = document.getElementById('homeQR');
             

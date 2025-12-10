@@ -215,7 +215,7 @@ class CountdownSystem {
         // Add regular services
         this.services.forEach(service => {
             const nextTime = this.getNextOccurrence(service.day, service.time);
-            const isLive = this.isServiceHappeningNow(service);
+            const isLive = this.isServiceHappeningNow(nextTime, service.duration);
             const timeUntil = nextTime - now;
             
             allEvents.push({

@@ -209,6 +209,9 @@ class CountdownSystem {
 
         const now = new Date();
         
+        // Check if we're on About page (shows all services) or Home page (shows only next service)
+        const isAboutPage = document.getElementById('nextServiceCountdown') !== null;
+        
         // Get all events with their countdowns
         const allEvents = [];
         
@@ -252,10 +255,13 @@ class CountdownSystem {
             return;
         }
 
-        // Create HTML for all services
+        // Home page: show only the next event. About page: show all events
+        const eventsToShow = isAboutPage ? allEvents : [allEvents[0]];
+        
+        // Create HTML for services
         const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         
-        const servicesHTML = allEvents.map(event => {
+        const servicesHTML = eventsToShow.map(event => {
             const countdown = this.formatCountdown(event.timeUntil);
             const formattedTime = this.formatTime(event.time);
             const isService = event.type === 'service';
@@ -284,9 +290,12 @@ class CountdownSystem {
             `;
         }).join('');
         
+        // Different titles for home vs about page
+        const title = isAboutPage ? '⏰ Upcoming Services' : '⏰ Next Service';
+        
         container.innerHTML = `
             <div class="all-services-banner">
-                <h2 class="services-main-title">⏰ Upcoming Services</h2>
+                <h2 class="services-main-title">${title}</h2>
                 <div class="services-grid">
                     ${servicesHTML}
                 </div>

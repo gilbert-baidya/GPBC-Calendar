@@ -278,6 +278,7 @@ nav.scrolled {
     justify-content: center;
     overflow: hidden;
     padding: 2rem;
+    padding-top: 0; /* Remove top padding since countdown is now separate */
 }
 
 .hero-bg {

@@ -79,11 +79,11 @@ class CountdownSystem {
         bannerDiv.id = 'nextEventBanner';
 
         // Check if we're on home page
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent && !document.getElementById('nextServiceCountdown')) {
-            // Home page: insert inside hero before hero-content
+        const heroSection = document.querySelector('.hero');
+        if (heroSection && !document.getElementById('nextServiceCountdown')) {
+            // Home page: insert BEFORE hero section (after nav, before hero title)
             bannerDiv.className = 'countdown-hero-banner';
-            heroContent.parentNode.insertBefore(bannerDiv, heroContent);
+            heroSection.parentNode.insertBefore(bannerDiv, heroSection);
         } else {
             // About page or other: assume container exists
             bannerDiv.className = 'next-event-banner';

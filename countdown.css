@@ -5,11 +5,12 @@
 
 .countdown-hero-banner {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     width: 100%;
     max-width: 1100px;
-    margin: 0 auto 3rem;
-    padding: 0 2rem;
+    margin: 0 auto;
+    padding: 6rem 2rem 2rem; /* Top padding accounts for fixed nav */
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
 }
 
 /* Next Event Banner - Hero and embedded versions */
@@ -293,8 +294,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .countdown-hero-banner {
-        margin-bottom: 1.5rem;
-        padding: 0 1rem;
+        padding: 5rem 1rem 1.5rem; /* Adjust for mobile nav */
     }
     
     .services-main-title {

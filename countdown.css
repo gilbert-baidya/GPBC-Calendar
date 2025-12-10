@@ -7,8 +7,9 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
 }
 
 /* Next Event Banner - Hero and embedded versions */
@@ -17,7 +18,7 @@
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
     border-radius: 16px;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 2rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;

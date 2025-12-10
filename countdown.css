@@ -29,6 +29,90 @@
     transition: all var(--transition);
 }
 
+/* All Services Banner */
+.all-services-banner {
+    width: 100%;
+}
+
+.services-main-title {
+    color: white;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.service-card.happening-now {
+    border-color: rgba(74, 222, 128, 0.8);
+    background: rgba(74, 222, 128, 0.25);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+}
+
+.service-title h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0 0 0.3rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.service-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.service-datetime {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.service-countdown {
+    display: flex;
+    justify-content: center;
+}
+
+/* Old single banner styles - keep for backwards compatibility */
 .countdown-hero-banner .next-event-banner:hover,
 .next-event-banner:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -210,6 +294,33 @@
 @media (max-width: 768px) {
     .countdown-hero-banner {
         margin-bottom: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .services-main-title {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .service-card {
+        padding: 1rem;
+    }
+    
+    .service-icon {
+        font-size: 2rem;
+    }
+    
+    .service-title h3 {
+        font-size: 1rem;
+    }
+    
+    .service-datetime {
+        font-size: 0.85rem;
     }
     
     .next-event-banner {
@@ -250,38 +361,5 @@
     .live-now-message {
         font-size: 0.95rem;
         padding: 0.6rem 1rem;
-    }
-}
-    }
-    
-    .event-title-banner {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .countdown-display {
-        min-width: 100%;
-        width: 100%;
-    }
-    
-    .countdown-timer {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.5rem;
-    }
-    
-    .time-unit {
-        padding: 0.75rem 0.25rem;
-    }
-    
-    .time-value {
-        font-size: 1.75rem;
-    }
-    
-    .time-label {
-        font-size: 0.65rem;
-    }
-    
-    .event-icon-large {
-        font-size: 2.5rem;
     }
 }

@@ -207,42 +207,88 @@ class CountdownSystem {
         const container = document.getElementById('nextEventBanner');
         if (!container) return;
 
-        const nextEvent = this.getNextEvent();
-        if (!nextEvent) {
-            container.innerHTML = '';
+        const now = new Date();
+        
+        // Get all events with their countdowns
+        const allEvents = [];
+        
+        // Add regular services
+        this.services.forEach(service => {
+            const nextTime = this.getNextOccurrence(service.day, service.time);
+            const isLive = this.isServiceHappeningNow(service);
+            const timeUntil = nextTime - now;
+            
+            allEvents.push({
+                ...service,
+                nextTime: nextTime,
+                timeUntil: timeUntil,
+                isLive: isLive,
+                sortTime: nextTime,
+                badge: 'Regular Service'
+            });
+        });
+        
+        // Add special events
+        this.specialEvents.forEach(event => {
+            const eventDate = new Date(event.date + 'T' + event.time);
+            if (eventDate > now) {
+                const timeUntil = eventDate - now;
+                allEvents.push({
+                    ...event,
+                    nextTime: eventDate,
+                    timeUntil: timeUntil,
+                    isLive: false,
+                    sortTime: eventDate,
+                    badge: 'Special Event'
+                });
+            }
+        });
+        
+        // Sort by time
+        allEvents.sort((a, b) => a.sortTime - b.sortTime);
+        
+        if (allEvents.length === 0) {
+            container.innerHTML = '<p style="color: white; text-align: center;">No upcoming services</p>';
             return;
         }
 
-        const now = new Date();
-        const timeUntil = nextEvent.nextTime - now;
-        const countdown = this.formatCountdown(timeUntil);
-        
+        // Create HTML for all services
         const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const formattedTime = this.formatTime(nextEvent.time);
-        const isService = nextEvent.type === 'service';
         
-        let dateTimeStr;
-        if (isService) {
-            dateTimeStr = `${dayNames[nextEvent.day]}s at ${formattedTime}`;
-        } else {
-            dateTimeStr = `${this.formatDate(nextEvent.nextTime)} at ${formattedTime}`;
-        }
-
-        container.innerHTML = `
-            <div class="next-event-banner ${nextEvent.isLive ? 'happening-now' : ''}">
-                <div class="event-info">
-                    <div class="event-type ${nextEvent.isLive ? 'live' : ''}">
-                        ${nextEvent.badge || (isService ? 'Regular Service' : 'Special Event')}
+        const servicesHTML = allEvents.map(event => {
+            const countdown = this.formatCountdown(event.timeUntil);
+            const formattedTime = this.formatTime(event.time);
+            const isService = event.type === 'service';
+            
+            let dateTimeStr;
+            if (isService) {
+                dateTimeStr = `${dayNames[event.day]}s at ${formattedTime}`;
+            } else {
+                dateTimeStr = `${this.formatDate(event.nextTime)} at ${formattedTime}`;
+            }
+            
+            return `
+                <div class="service-card ${event.isLive ? 'happening-now' : ''}">
+                    <div class="service-header">
+                        <div class="service-icon">${event.icon}</div>
+                        <div class="service-title">
+                            <h3>${event.name}</h3>
+                            <div class="service-badge">${event.badge || (isService ? 'Regular Service' : 'Special Event')}</div>
+                        </div>
                     </div>
-                    <div class="event-title-banner">
-                        <div class="event-icon-large">${nextEvent.icon}</div>
-                        <h2>${nextEvent.name}</h2>
+                    <div class="service-datetime">📅 ${dateTimeStr}</div>
+                    <div class="service-countdown">
+                        ${this.createCountdownHTML(countdown, event.isLive)}
                     </div>
-                    <div class="event-datetime">📅 ${dateTimeStr}</div>
-                    <div class="event-location">📍 1325 Richardson Street, CA 92408</div>
                 </div>
-                <div class="countdown-display">
-                    ${this.createCountdownHTML(countdown, nextEvent.isLive)}
+            `;
+        }).join('');
+        
+        container.innerHTML = `
+            <div class="all-services-banner">
+                <h2 class="services-main-title">⏰ Upcoming Services</h2>
+                <div class="services-grid">
+                    ${servicesHTML}
                 </div>
             </div>
         `;

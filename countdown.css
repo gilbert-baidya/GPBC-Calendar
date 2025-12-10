@@ -4,29 +4,43 @@
  */
 
 .countdown-hero-banner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 6rem 2rem 2rem; /* Top padding accounts for fixed nav */
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+    width: auto;
+    max-width: 350px;
+    padding: 0;
+    background: transparent;
+}
+
+/* Next Service Title with Border */
+.countdown-hero-banner .services-main-title {
+    background: rgba(102, 126, 234, 0.95);
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 2px solid white;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Next Event Banner - Hero and embedded versions */
 .countdown-hero-banner .next-event-banner,
 .next-event-banner {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-radius: 16px;
-    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    gap: 0.75rem;
+    border: 2px solid rgba(102, 126, 234, 0.5);
     transition: all var(--transition);
 }
 
@@ -36,11 +50,12 @@
 }
 
 .services-main-title {
-    color: white;
-    font-size: 1.8rem;
+    color: #000000;
+    font-size: 2rem;
+    font-weight: 800;
     text-align: center;
     margin-bottom: 2rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
 }
 
 .services-grid {
@@ -51,18 +66,19 @@
 }
 
 .service-card {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 16px;
     padding: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(102, 126, 234, 0.3);
     transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .service-card:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 1);
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .service-card.happening-now {
@@ -73,39 +89,52 @@
 
 .service-header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
 .service-icon {
-    font-size: 2.5rem;
+    display: none;
+}
+
+.service-title {
+    text-align: center;
+    width: 100%;
 }
 
 .service-title h3 {
-    color: white;
+    color: #2d3748;
     font-size: 1.1rem;
     margin: 0 0 0.3rem 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
+    text-align: center;
 }
 
 .service-badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
     padding: 0.2rem 0.6rem;
     border-radius: 12px;
     font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    text-align: center;
 }
 
 .service-datetime {
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 0.9rem;
+    color: #4a5568;
+    font-size: 0.95rem;
     margin-bottom: 1rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    text-shadow: none;
+    background: rgba(102, 126, 234, 0.08);
+    padding: 0.5rem;
+    border-radius: 8px;
+    text-align: center;
 }
 
 .service-countdown {
@@ -140,15 +169,15 @@
 
 .event-type {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 0.3rem 0.8rem;
+    background: rgba(102, 126, 234, 0.2);
+    color: #667eea;
+    padding: 0.25rem 0.6rem;
     border-radius: var(--radius-full);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.4rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.3);
 }
 
 .event-type.live {
@@ -165,23 +194,25 @@
 }
 
 .event-icon-large {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     animation: float 3s ease-in-out infinite;
 }
 
 .event-title-banner h2 {
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    color: white;
+    font-size: 0.95rem;
+    color: #333;
     margin: 0;
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .event-datetime {
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    color: #333;
+    font-weight: 700;
+    font-size: 0.8rem;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
 }
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
@@ -208,39 +239,38 @@
 .countdown-timer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .time-unit {
     text-align: center;
-    background: rgba(255, 255, 255, 0.25);
-    padding: 0.5rem 0.4rem;
-    border-radius: 10px;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: rgba(102, 126, 234, 0.1);
+    padding: 0.35rem 0.25rem;
+    border-radius: 8px;
+    border: 1.5px solid rgba(102, 126, 234, 0.2);
     transition: all 0.3s ease;
-    min-width: 55px;
+    min-width: 45px;
 }
 
 .time-unit:hover {
     transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(102, 126, 234, 0.4);
+    background: rgba(102, 126, 234, 0.15);
 }
 
 .time-value {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 800;
-    color: white;
+    color: #667eea;
     line-height: 1;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .time-label {
     display: block;
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 0.25rem;
+    font-size: 0.55rem;
+    color: #666;
+    margin-top: 0.2rem;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -294,7 +324,10 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .countdown-hero-banner {
-        padding: 5rem 1rem 1.5rem; /* Adjust for mobile nav */
+        position: fixed;
+        top: 70px;
+        right: 10px;
+        max-width: 280px;
     }
     
     .services-main-title {

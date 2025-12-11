@@ -325,7 +325,8 @@ nav.scrolled {
 .hero-content {
     position: relative;
     z-index: 10;
-    max-width: 1000px;
+    max-width: 800px;
+    margin-right: 420px;
     text-align: center;
     color: white;
 }
@@ -742,7 +743,30 @@ section {
 
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        display: none !important;
+    }
+    
+    /* Force hide desktop dropdown on mobile - comprehensive fix */
+    .dropdown {
+        pointer-events: none !important;
+    }
+    
+    .dropdown > a {
+        pointer-events: auto !important;
+    }
+    
+    .dropdown-content {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    .dropdown:hover .dropdown-content,
+    .dropdown:active .dropdown-content,
+    .dropdown:focus .dropdown-content {
+        display: none !important;
+        visibility: hidden !important;
     }
     
     .cards-grid {
@@ -753,9 +777,45 @@ section {
         padding: 3rem 1rem;
     }
     
+    /* Hero section mobile adjustments */
+    .hero {
+        padding-top: 0;
+        min-height: 80vh;
+    }
+    
+    .hero-content {
+        padding-top: 2rem;
+        margin-right: 0;
+        max-width: 100%;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content .tagline {
+        font-size: 1rem;
+    }
+    
+    .hero-content .address {
+        font-size: 0.9rem;
+    }
+    
     .btn {
         padding: 0.875rem 2rem;
         font-size: 1rem;
+    }
+}
+
+/* ===================================
+   TOUCH DEVICE SUPPORT
+   =================================== */
+
+/* Disable dropdown hover on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .dropdown:hover .dropdown-content {
+        display: none !important;
     }
 }
 

@@ -166,6 +166,8 @@
         .qr-section {
             background: var(--gray-900);
             color: white;
+            text-align: center;
+            padding: 4rem 2rem;
         }
 
         .qr-box {
@@ -174,11 +176,12 @@
             border-radius: var(--radius-xl);
             display: inline-block;
             box-shadow: var(--shadow-xl);
+            margin: 0 auto;
         }
 
         footer {
             background: var(--gray-900);
-            color: var(--gray-300);
+            color: white;
         }
 
         .footer-grid {
@@ -195,6 +198,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 700;
+        }
+
+        .footer-col p {
+            color: white;
+            line-height: 1.6;
+            font-weight: 500;
         }
 
         .footer-col ul {
@@ -203,17 +213,20 @@
 
         .footer-col ul li {
             margin-bottom: 0.75rem;
+            color: white;
+            font-weight: 500;
         }
 
         .footer-col a {
-            color: var(--gray-400);
+            color: white;
             text-decoration: none;
             transition: all var(--transition-fast);
             display: inline-block;
+            font-weight: 500;
         }
 
         .footer-col a:hover {
-            color: white;
+            color: #667eea;
             transform: translateX(5px);
         }
 
@@ -221,12 +234,71 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--gray-500);
+            color: white;
         }
 
+        .footer-bottom p {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Hide desktop dropdown on mobile and prevent hover */
         @media (max-width: 768px) {
+            .dropdown {
+                pointer-events: none;
+            }
+            
+            .dropdown > a {
+                pointer-events: auto;
+            }
+            
+            .dropdown-content {
+                display: none !important;
+                pointer-events: none !important;
+            }
+            
+            .dropdown:hover .dropdown-content,
+            .dropdown:active .dropdown-content,
+            .dropdown:focus .dropdown-content {
+                display: none !important;
+            }
+            
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-col {
+                text-align: center;
+            }
+            
+            .footer-col h3 {
+                font-size: 1.25rem;
+            }
+            
+            .footer-col p,
+            .footer-col ul li,
+            .footer-col a {
+                font-size: 1rem;
+                color: white;
+                font-weight: 500;
+            }
+            
+            .footer-bottom p {
+                font-size: 0.95rem;
+                color: white;
+                font-weight: 500;
+            }
+        }
+        
+        /* Disable hover on touch devices */
+        @media (hover: none) {
+            .dropdown:hover .dropdown-content {
+                display: none;
             }
         }
     </style>
@@ -378,13 +450,13 @@
 
     <!-- QR Code Section -->
     <section class="qr-section">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Access Our Calendar Anytime</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--gray-300);">Scan with your phone to stay connected</p>
-            <div class="qr-box">
-                <div id="homeQR"></div>
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title" style="color: white; text-align: center; margin-bottom: 1rem;">Access Our Calendar Anytime</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: white; font-weight: 600; text-align: center;">Scan with your phone to stay connected</p>
+            <div class="qr-box" style="margin: 0 auto;">
+                <div id="homeQR" style="margin: 0 auto;"></div>
             </div>
-            <p style="opacity: 0.8; color: var(--gray-400);">Bookmark this page on your phone for quick access!</p>
+            <p style="color: white; font-weight: 600; margin-top: 1.5rem; font-size: 1.1rem; text-align: center;">Bookmark this page on your phone for quick access!</p>
         </div>
     </section>
 
@@ -392,42 +464,42 @@
     <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 
     <!-- Footer -->
-    <footer>
+    <footer style="background: #1a202c !important; color: white !important; padding: 4rem 2rem !important;">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>Grace and Praise Bangladeshi Church</h3>
-                    <p>Join us as we worship God and serve our community with love and compassion.</p>
+                    <p style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;">Join us as we worship God and serve our community with love and compassion.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="calendar.html">📅 Calendar</a></li>
-                        <li><a href="calendar.html#prayer">🙏 Prayer Requests</a></li>
-                        <li><a href="give.html">💝 Give</a></li>
-                        <li><a href="about.html">ℹ️ About Us</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="calendar.html" style="color: white !important; font-weight: 500 !important;">📅 Calendar</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="calendar.html#prayer" style="color: white !important; font-weight: 500 !important;">🙏 Prayer Requests</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="give.html" style="color: white !important; font-weight: 500 !important;">💝 Give</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="about.html" style="color: white !important; font-weight: 500 !important;">ℹ️ About Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li>📍 1325 Richardson Street</li>
-                        <li>🏙️ CA 92408</li>
-                        <li>📧 gracepraisebangladeshichurch@gmail.com</li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;">📍 1325 Richardson Street</li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;">🏙️ CA 92408</li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;">📧 gracepraisebangladeshichurch@gmail.com</li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Follow Us</h3>
                     <ul>
-                        <li><a href="#">🔵 Facebook</a></li>
-                        <li><a href="#">📸 Instagram</a></li>
-                        <li><a href="#">▶️ YouTube</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="#" style="color: white !important; font-weight: 500 !important;">🔵 Facebook</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="#" style="color: white !important; font-weight: 500 !important;">📸 Instagram</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="#" style="color: white !important; font-weight: 500 !important;">▶️ YouTube</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Grace and Praise Bangladeshi Church - All rights reserved</p>
-                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Built with ❤️ for God's glory</p>
+            <div class="footer-bottom" style="color: white !important;">
+                <p style="color: white !important; font-size: 1rem !important; font-weight: 500 !important;">© 2026 Grace and Praise Bangladeshi Church - All rights reserved</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; color: white !important; font-weight: 500 !important;">Built with ❤️ for God's glory</p>
             </div>
         </div>
     </footer>

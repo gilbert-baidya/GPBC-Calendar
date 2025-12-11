@@ -84,16 +84,31 @@ class MobileMenu {
                 e.preventDefault();
                 e.stopPropagation();
                 const dropdown = toggle.closest('.mobile-dropdown');
+                
+                // Close other dropdowns
+                document.querySelectorAll('.mobile-dropdown').forEach(d => {
+                    if (d !== dropdown) {
+                        d.classList.remove('active');
+                    }
+                });
+                
                 dropdown.classList.toggle('active');
             });
         });
 
-        // Close menu when clicking nav links
-        const navLinks = this.mobileMenu.querySelectorAll('.mobile-nav-links a:not(.mobile-dropdown > a)');
+        // Close menu when clicking nav links (including dropdown links)
+        const navLinks = this.mobileMenu.querySelectorAll('.mobile-nav-links a');
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(() => this.closeMenu(), 200);
-            });
+            // Skip the main dropdown toggle link, but close on dropdown content links
+            if (!link.querySelector('.mobile-dropdown-toggle')) {
+                link.addEventListener('click', () => {
+                    // Close all dropdowns first
+                    document.querySelectorAll('.mobile-dropdown').forEach(d => {
+                        d.classList.remove('active');
+                    });
+                    setTimeout(() => this.closeMenu(), 200);
+                });
+            }
         });
 
         // Close menu on escape key
@@ -116,6 +131,11 @@ class MobileMenu {
         this.overlay.classList.remove('active');
         document.body.classList.remove('mobile-menu-open');
         this.menuBtn.innerHTML = '☰';
+        
+        // Close all dropdowns when menu closes
+        document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
     }
 }
 

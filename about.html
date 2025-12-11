@@ -140,6 +140,35 @@
             color: #667eea;
         }
 
+        /* Hide desktop dropdown on mobile and prevent hover */
+        @media (max-width: 768px) {
+            .dropdown {
+                pointer-events: none;
+            }
+            
+            .dropdown > a {
+                pointer-events: auto;
+            }
+            
+            .dropdown-content {
+                display: none !important;
+                pointer-events: none !important;
+            }
+            
+            .dropdown:hover .dropdown-content,
+            .dropdown:active .dropdown-content,
+            .dropdown:focus .dropdown-content {
+                display: none !important;
+            }
+        }
+        
+        /* Disable hover on touch devices */
+        @media (hover: none) {
+            .dropdown:hover .dropdown-content {
+                display: none;
+            }
+        }
+
         /* Hero */
         .page-hero {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -155,25 +184,51 @@
 
         /* Section Links */
         .section-nav {
-            background: #f8f9fa;
-            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
             position: sticky;
             top: 70px;
-            z-index: 100;
-            border-bottom: 1px solid #dee2e6;
+            z-index: 999;
+            border-bottom: 2px solid #667eea;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .section-nav-container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 5px 0 10px 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin; /* Firefox - make scrollbar visible */
+            scrollbar-color: #667eea #f1f1f1; /* Firefox scrollbar colors */
+        }
+
+        .section-nav-container::-webkit-scrollbar {
+            height: 8px; /* Chrome/Safari - make scrollbar visible */
+        }
+        
+        .section-nav-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .section-nav-container::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+        
+        .section-nav-container::-webkit-scrollbar-thumb:hover {
+            background: #5568d3;
         }
 
         .section-nav a {
-            padding: 12px 25px;
+            padding: 10px 20px;
             background: white;
             color: #1e3c72;
             text-decoration: none;
@@ -181,9 +236,13 @@
             font-weight: 600;
             transition: all 0.3s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 0.95rem;
         }
 
-        .section-nav a:hover {
+        .section-nav a:hover,
+        .section-nav a:active {
             background: #667eea;
             color: white;
             transform: translateY(-2px);
@@ -748,9 +807,25 @@
                 font-size: 2em;
             }
 
+            .section-nav {
+                top: 60px;
+                padding: 10px 5px;
+            }
+
             .section-nav-container {
-                flex-direction: column;
-                align-items: center;
+                gap: 8px;
+                padding: 5px 10px;
+                justify-content: flex-start;
+            }
+
+            .section-nav a {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 60px 15px;
+                scroll-margin-top: 130px;
             }
 
             .nav-links {

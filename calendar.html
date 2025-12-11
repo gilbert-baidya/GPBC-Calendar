@@ -118,6 +118,33 @@
             background: #f8f9fa;
             color: #667eea;
         }
+        /* Hide desktop dropdown on mobile */
+        @media (max-width: 768px) {
+            .dropdown {
+                pointer-events: none;
+            }
+            
+            .dropdown > a {
+                pointer-events: auto;
+            }
+            
+            .dropdown-content {
+                display: none !important;
+                pointer-events: none !important;
+            }
+            
+            .dropdown:hover .dropdown-content,
+            .dropdown:active .dropdown-content,
+            .dropdown:focus .dropdown-content {
+                display: none !important;
+            }
+        }
+        
+        @media (hover: none) {
+            .dropdown:hover .dropdown-content {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>

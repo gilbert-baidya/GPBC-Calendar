@@ -326,7 +326,7 @@ nav.scrolled {
     position: relative;
     z-index: 10;
     max-width: 800px;
-    margin-right: 420px;
+    margin: 0 auto;
     text-align: center;
     color: white;
 }

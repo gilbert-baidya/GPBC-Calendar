@@ -3,9 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Grace and Praise Bangladeshi Church - A vibrant community of believers in San Bernardino, CA">
+    
+    <!-- Primary Meta Tags -->
+    <title>Grace and Praise Bangladeshi Church - San Bernardino, CA | GPBC</title>
+    <meta name="title" content="Grace and Praise Bangladeshi Church - San Bernardino, CA | GPBC">
+    <meta name="description" content="Join Grace and Praise Bangladeshi Church (GPBC) in San Bernardino, CA. A vibrant Christian community with worship services in Bengali and English. Sunday Service 5PM, Prayer meetings, and special events.">
+    <meta name="keywords" content="Grace and Praise Bangladeshi Church, GPBC, Bangladeshi church San Bernardino, Bengali church California, Christian church San Bernardino, Bangladeshi community church, worship service, prayer meeting, Richardson Street church">
+    <meta name="author" content="Grace and Praise Bangladeshi Church">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#667eea">
-    <title>Grace and Praise Bangladeshi Church - Welcome Home</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gilbert-baidya.github.io/GPBC-Calendar/">
+    <meta property="og:title" content="Grace and Praise Bangladeshi Church - San Bernardino, CA">
+    <meta property="og:description" content="Join our vibrant Christian community. Sunday Service 5PM at 1325 Richardson Street, San Bernardino, CA 92408. Worship in Bengali and English.">
+    <meta property="og:image" content="https://gilbert-baidya.github.io/GPBC-Calendar/church-preview.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Grace and Praise Bangladeshi Church">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gilbert-baidya.github.io/GPBC-Calendar/">
+    <meta property="twitter:title" content="Grace and Praise Bangladeshi Church - San Bernardino, CA">
+    <meta property="twitter:description" content="Join our vibrant Christian community. Sunday Service 5PM at 1325 Richardson Street, San Bernardino, CA 92408.">
+    <meta property="twitter:image" content="https://gilbert-baidya.github.io/GPBC-Calendar/church-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://gilbert-baidya.github.io/GPBC-Calendar/">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml">
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="US-CA">
+    <meta name="geo.placename" content="San Bernardino">
+    <meta name="geo.position" content="34.1083;-117.2898">
+    <meta name="ICBM" content="34.1083, -117.2898">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "name": "Grace and Praise Bangladeshi Church",
+      "alternateName": "GPBC",
+      "url": "https://gilbert-baidya.github.io/GPBC-Calendar/",
+      "logo": "https://gilbert-baidya.github.io/GPBC-Calendar/logo.png",
+      "description": "A vibrant Christian community serving the Bangladeshi population in San Bernardino, California with worship services in Bengali and English.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1325 Richardson Street",
+        "addressLocality": "San Bernardino",
+        "addressRegion": "CA",
+        "postalCode": "92408",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "34.1083",
+        "longitude": "-117.2898"
+      },
+      "telephone": "+1-XXX-XXX-XXXX",
+      "priceRange": "Free",
+      "hasMap": "https://maps.google.com/?q=1325+Richardson+Street,+San+Bernardino,+CA+92408",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "17:30",
+          "closes": "19:30",
+          "description": "Worship Practice & Session"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "12:00",
+          "closes": "14:00",
+          "description": "Fasting Prayer"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "17:00",
+          "closes": "19:30",
+          "description": "Sunday Service"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/gpbc",
+        "https://www.youtube.com/@gpbc"
+      ]
+    }
+    </script>
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,17 +233,18 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <header>
+    <nav role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span>⛪</span>
+            <a href="index.html" class="logo" aria-label="Grace and Praise Bangladeshi Church Home">
+                <span aria-hidden="true">⛪</span>
                 <span>GPBC</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="about.html">About</a>
-                    <div class="dropdown-content">
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li class="dropdown" role="none">
+                    <a href="about.html" role="menuitem" aria-haspopup="true" aria-expanded="false">About</a>
+                    <div class="dropdown-content" role="menu" aria-label="About submenu">
                         <a href="about.html#next-service">Next Service</a>
                         <a href="about.html#history">Our History</a>
                         <a href="about.html#mission">Our Mission</a>
@@ -163,15 +256,17 @@
                         <a href="about.html#songbook">GPBC Song Book</a>
                     </div>
                 </li>
-                <li><a href="calendar.html">Calendar</a></li>
-                <li><a href="calendar.html#prayer">Prayer</a></li>
-                <li><a href="give.html">Give</a></li>
+                <li role="none"><a href="calendar.html" role="menuitem">Calendar</a></li>
+                <li role="none"><a href="calendar.html#prayer" role="menuitem">Prayer</a></li>
+                <li role="none"><a href="give.html" role="menuitem">Give</a></li>
             </ul>
         </div>
     </nav>
+    </header>
 
+    <main role="main">
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-label="Welcome to Grace and Praise Bangladeshi Church">
         <div class="hero-bg"></div>
         <div class="hero-particles"></div>
         <div class="hero-content">
@@ -336,6 +431,7 @@
             </div>
         </div>
     </footer>
+    </main>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>

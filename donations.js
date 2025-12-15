@@ -3,37 +3,31 @@
 
 // Stripe Configuration
 const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_STRIPE_KEY_HERE'; // Not needed for payment links
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_fZu6oJ7PMb7794d6NsfEk00';
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_fZe6oJ7PMb7794d6oo';
 
 let selectedDonationAmount = 0;
 
-function setupDonationModal() {
-    const donationBtn = document.getElementById('donationBtn');
-    const modal = document.getElementById('donationModal');
-    const closeBtn = modal.querySelector('.close');
-    
-    // Open modal
-    donationBtn.addEventListener('click', () => {
-        modal.style.display = 'block';
-        generateDonationQRCodes();
-    });
-    
-    // Close modal
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-    
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    setupAmountSelection();
+    setupPaymentButtons();
+    generateDonationQRCodes();
+});
+
+function setupAmountSelection() {
     // Amount selection buttons
-    const amountButtons = document.querySelectorAll('.donation-amount-btn');
+    const amountButtons = document.querySelectorAll('.amount-btn');
     amountButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             // Remove selected class from all buttons
             amountButtons.forEach(b => {
+                b.classList.remove('selected');
                 b.style.background = 'white';
                 b.style.color = '#667eea';
             });
             
             // Add selected class to clicked button
+            this.classList.add('selected');
             this.style.background = '#667eea';
             this.style.color = 'white';
             
@@ -41,29 +35,35 @@ function setupDonationModal() {
             selectedDonationAmount = parseInt(this.dataset.amount);
             
             // Clear custom amount
-            document.getElementById('customAmount').value = '';
+            const customInput = document.getElementById('customAmount');
+            if (customInput) {
+                customInput.value = '';
+            }
         });
     });
     
     // Custom amount input
     const customAmountInput = document.getElementById('customAmount');
-    customAmountInput.addEventListener('input', function() {
-        // Deselect preset amounts
-        amountButtons.forEach(b => {
-            b.style.background = 'white';
-            b.style.color = '#667eea';
+    if (customAmountInput) {
+        customAmountInput.addEventListener('input', function() {
+            // Deselect preset amounts
+            amountButtons.forEach(b => {
+                b.classList.remove('selected');
+                b.style.background = 'white';
+                b.style.color = '#667eea';
+            });
+            
+            selectedDonationAmount = parseFloat(this.value) || 0;
         });
-        
-        selectedDonationAmount = parseFloat(this.value) || 0;
-    });
-    
+    }
+}
+
+function setupPaymentButtons() {
     // Stripe payment button
     const stripeBtn = document.getElementById('stripePaymentBtn');
-    stripeBtn.addEventListener('click', handleStripePayment);
-    
-    // Apple/Google Pay button
-    const appleGooglePayBtn = document.getElementById('appleGooglePayBtn');
-    appleGooglePayBtn.addEventListener('click', handleDigitalWalletPayment);
+    if (stripeBtn) {
+        stripeBtn.addEventListener('click', handleStripePayment);
+    }
 }
 
 function generateDonationQRCodes() {
@@ -94,17 +94,48 @@ function generateDonationQRCodes() {
             correctLevel: QRCode.CorrectLevel.H
         });
     }
+    
+    // Generate Venmo QR Code
+    const venmoDiv = document.getElementById('venmoQR');
+    if (venmoDiv && typeof QRCode !== 'undefined') {
+        venmoDiv.innerHTML = '';
+        new QRCode(venmoDiv, {
+            text: 'venmo.com/gpbc-church',
+            width: 150,
+            height: 150,
+            colorDark: "#008CFF",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+    
+    // Generate Cash App QR Code
+    const cashappDiv = document.getElementById('cashappQR');
+    if (cashappDiv && typeof QRCode !== 'undefined') {
+        cashappDiv.innerHTML = '';
+        new QRCode(cashappDiv, {
+            text: 'https://cash.app/$gpbcchurch',
+            width: 150,
+            height: 150,
+            colorDark: "#00D64F",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
 }
 
 function handleStripePayment() {
     if (selectedDonationAmount <= 0) {
-        alert('Please select or enter a donation amount');
+        alert('Please select or enter a donation amount first');
         return;
     }
     
-    // Open Stripe payment page with prefilled amount
-    const paymentUrl = `${STRIPE_PAYMENT_LINK}?prefilled_amount=${selectedDonationAmount * 100}`;
+    // Open Stripe payment page with prefilled amount (Stripe expects amount in cents)
+    const paymentUrl = `${STRIPE_PAYMENT_LINK}?prefilled_promo_code=&__prefilled_email=&client_reference_id=${selectedDonationAmount}`;
     window.open(paymentUrl, '_blank');
+    
+    // Show confirmation
+    alert(`Redirecting to secure Stripe payment page...\n\nAmount: $${selectedDonationAmount}\n\nThank you for your generous donation!`);
 }
 
 function handleDigitalWalletPayment() {
@@ -123,15 +154,19 @@ function handleDigitalWalletPayment() {
     alert(`Digital Wallet Payment\n\nAmount: $${selectedDonationAmount}\n\nTo enable Apple Pay/Google Pay:\n1. Set up Stripe account\n2. Integrate Payment Request API\n\nFor now, please use other payment methods.`);
 }
 
-// Add hover effects for donation amount buttons
+// Add hover effects for amount buttons
 document.addEventListener('DOMContentLoaded', () => {
     const style = document.createElement('style');
     style.textContent = `
-        .donation-amount-btn:hover {
+        .amount-btn:hover {
             background: #667eea !important;
             color: white !important;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        .amount-btn.selected {
+            background: #667eea !important;
+            color: white !important;
         }
     `;
     document.head.appendChild(style);

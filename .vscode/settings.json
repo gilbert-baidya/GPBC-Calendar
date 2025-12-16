@@ -1,3 +1,36 @@
 {
-    "liveServer.settings.port": 5501
+    // ===============================
+    // Your existing settings
+    // ===============================
+    "liveServer.settings.port": 5501,
+
+    "remote.portsAttributes": {
+        "443": {
+            "protocol": "https"
+        },
+        "8443": {
+            "protocol": "https"
+        }
+    },
+
+    // ===============================
+    // Copilot Chat STABILITY FIXES
+    // ===============================
+
+    // Prevent broken Copilot Chat restore
+    "workbench.editor.restoreViewState": false,
+
+    // Prevent chat opening in preview (which silently closes it)
+    "workbench.editor.enablePreview": false,
+
+    // Ensure Copilot is enabled everywhere
+    "github.copilot.enable": {
+        "*": true
+    },
+
+    // (Optional but helpful) Reduce UI glitches
+    "window.restoreWindows": "none",
+
+    // (Optional) Improves WebView stability
+    "webview.experimental.useSharedProcess": true
 }

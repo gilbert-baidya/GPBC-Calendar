@@ -130,11 +130,14 @@ function handleStripePayment() {
         return;
     }
     
-    // Temporary message until Stripe is set up
-    alert(`Credit Card Payments Coming Soon!\n\nYour selected amount: $${selectedDonationAmount}\n\nFor now, please use one of these payment methods:\n\n💰 PayPal - Scan QR code below\n📱 Zelle - gracepraisebangladeshichurch@gmail.com\n💚 Venmo - Scan QR code below\n💵 Cash App - Scan QR code below\n\nThank you for your generous support!`);
+    // Open Stripe payment page in new tab
+    const paymentUrl = `${STRIPE_PAYMENT_LINK}`;
+    window.open(paymentUrl, '_blank');
     
-    // Scroll to payment options
-    document.querySelector('.payment-methods').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Show confirmation
+    setTimeout(() => {
+        alert(`Opening secure Stripe payment page...\n\nAmount: $${selectedDonationAmount}\n\nThank you for your generous donation!`);
+    }, 100);
 }
 
 function handleDigitalWalletPayment() {

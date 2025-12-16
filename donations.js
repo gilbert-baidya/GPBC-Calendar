@@ -3,7 +3,7 @@
 
 // Stripe Configuration
 const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_STRIPE_KEY_HERE'; // Not needed for payment links
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_fZe6oJ7PMb7794d6oo';
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/test_dRmbJ3eeaa33fsBfjYfEk01';
 
 let selectedDonationAmount = 0;
 
@@ -130,12 +130,11 @@ function handleStripePayment() {
         return;
     }
     
-    // Open Stripe payment page with prefilled amount (Stripe expects amount in cents)
-    const paymentUrl = `${STRIPE_PAYMENT_LINK}?prefilled_promo_code=&__prefilled_email=&client_reference_id=${selectedDonationAmount}`;
-    window.open(paymentUrl, '_blank');
+    // Temporary message until Stripe is set up
+    alert(`Credit Card Payments Coming Soon!\n\nYour selected amount: $${selectedDonationAmount}\n\nFor now, please use one of these payment methods:\n\n💰 PayPal - Scan QR code below\n📱 Zelle - gracepraisebangladeshichurch@gmail.com\n💚 Venmo - Scan QR code below\n💵 Cash App - Scan QR code below\n\nThank you for your generous support!`);
     
-    // Show confirmation
-    alert(`Redirecting to secure Stripe payment page...\n\nAmount: $${selectedDonationAmount}\n\nThank you for your generous donation!`);
+    // Scroll to payment options
+    document.querySelector('.payment-methods').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function handleDigitalWalletPayment() {

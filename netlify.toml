@@ -1,0 +1,19 @@
+[build]
+  publish = "."
+  
+[build.environment]
+  NODE_VERSION = "18"
+
+# Only build on production branch
+[context.production]
+  publish = "."
+
+# Don't auto-publish on every commit - save credits
+[context.deploy-preview]
+  publish = "."
+  
+# Optimize image handling
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

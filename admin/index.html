@@ -9,9 +9,6 @@
   <!-- Netlify Identity (Required for login) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-
   <style>
     body {
       margin: 0;
@@ -23,13 +20,18 @@
 </head>
 
 <body>
-  <!-- Decap CMS mounts automatically -->
+  <!-- Decap CMS will mount here -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
     // Auto-redirect after login (optional but recommended)
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
       });
     }
   </script>

@@ -2,50 +2,36 @@ backend:
   name: git-gateway
   branch: main
 
-# Netlify Identity widget
-publish_mode: editorial_workflow
-
-# Media files configuration
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# Collections
 collections:
   - name: "gallery"
     label: "Church Gallery"
-    label_singular: "Image"
-    folder: "images/uploads"
+    folder: "content/gallery"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}{{month}}{{day}}-{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Upload Date", name: "date", widget: "datetime"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Category", name: "category", widget: "select", options: ["Worship Service", "Special Events", "Community", "Youth", "Christmas", "Other"], default: "Worship Service"}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - label: "Title"
+        name: "title"
+        widget: "string"
 
-  - name: "events"
-    label: "Events"
-    folder: "content/events"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Event Name", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "body", widget: "markdown"}
-      - {label: "Event Image", name: "image", widget: "image", required: false}
-      - {label: "Category", name: "category", widget: "select", options: ["Bangladeshi", "American", "Christian", "Special Days"], default: "Christian"}
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        required: false
 
-  - name: "testimonies"
-    label: "Testimonies"
-    folder: "content/testimonies"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Name", name: "name", widget: "string"}
-      - {label: "Member Since", name: "member_since", widget: "string", required: false}
-      - {label: "Testimony", name: "body", widget: "markdown"}
-      - {label: "Photo", name: "photo", widget: "image", required: false}
-      - {label: "Language", name: "language", widget: "select", options: ["English", "Bengali", "Bilingual"], default: "English"}
-      - {label: "Date", name: "date", widget: "datetime"}
+      - label: "Image"
+        name: "image"
+        widget: "image"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - Worship Service
+          - Special Events
+          - Community
+          - Youth
+          - Christmas
+          - Other

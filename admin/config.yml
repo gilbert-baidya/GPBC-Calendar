@@ -2,6 +2,13 @@ backend:
   name: git-gateway
   branch: main
 
+# Use Cloudinary for media storage (saves Netlify bandwidth)
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: duaygqnyk
+    api_key: 738154674568177
+
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 

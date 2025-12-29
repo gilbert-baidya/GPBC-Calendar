@@ -1,7 +1,7 @@
 // Calendar Logic
 let currentMonth = 0; // January 2026
 let currentYear = 2026;
-let activeFilters = new Set(['bangladeshi', 'american', 'christian', 'special', 'gpbc']);
+let activeFilters = new Set(); // Start with no filters - user can check boxes to show events
 let selectedDate = null;
 let currentEvent = null;
 

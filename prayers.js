@@ -184,15 +184,21 @@ function resetPrayerForm() {
     document.getElementById('prayerName').value = '';
 }
 
-// Auto-open prayer modal if URL has ?prayer=true
+// Auto-open prayer modal if URL has ?prayer=true or #prayer hash
 function checkPrayerUrlParameter() {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('prayer') === 'true') {
+    const hash = window.location.hash;
+    
+    if (urlParams.get('prayer') === 'true' || hash === '#prayer') {
         // Wait for modal to be set up, then open it
         setTimeout(() => {
             const modal = document.getElementById('prayerRequestModal');
             if (modal) {
                 document.getElementById('prayerRequestBtn').click();
+                // Clear the hash to prevent reopening on page refresh
+                if (hash === '#prayer') {
+                    history.replaceState(null, null, ' ');
+                }
             }
         }, 500);
     }

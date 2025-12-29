@@ -21,9 +21,10 @@ function setupPrayerRequestModal() {
             // Clear any existing QR code
             prayerQrDiv.innerHTML = '';
             
-            // Generate QR code with the prayer request page URL
+            // Generate QR code with prayer request direct link
+            const prayerUrl = 'https://gilbert-baidya.github.io/GPBC-Calendar/calendar.html?prayer=true';
             new QRCode(prayerQrDiv, {
-                text: window.location.href,
+                text: prayerUrl,
                 width: 200,
                 height: 200,
                 colorDark: "#6f42c1",
@@ -181,4 +182,25 @@ function resetPrayerForm() {
     document.getElementById('nameSection').style.display = 'block';
     document.getElementById('prayerName').required = true;
     document.getElementById('prayerName').value = '';
+}
+
+// Auto-open prayer modal if URL has ?prayer=true
+function checkPrayerUrlParameter() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('prayer') === 'true') {
+        // Wait for modal to be set up, then open it
+        setTimeout(() => {
+            const modal = document.getElementById('prayerRequestModal');
+            if (modal) {
+                document.getElementById('prayerRequestBtn').click();
+            }
+        }, 500);
+    }
+}
+
+// Call on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkPrayerUrlParameter);
+} else {
+    checkPrayerUrlParameter();
 }

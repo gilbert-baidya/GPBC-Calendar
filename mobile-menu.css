@@ -3,6 +3,15 @@
  * Ultra Modern Responsive Menu for GPBC
  */
 
+:root {
+    --gray-800: #333;
+    --gray-100: #f8f9fa;
+    --gray-300: #666;
+    --gray-700: #495057;
+    --gray-900: #212529;
+    --transition: 0.3s ease;
+}
+
 /* Mobile Menu Button */
 .mobile-menu-btn {
     display: none;

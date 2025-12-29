@@ -86,7 +86,7 @@ function generateDonationQRCodes() {
     if (paypalDiv && typeof QRCode !== 'undefined') {
         paypalDiv.innerHTML = '';
         new QRCode(paypalDiv, {
-            text: 'https://www.paypal.com/paypalme/gpbchurch',
+            text: 'https://www.paypal.com/ncp/payment/V3AF32ZHJSAME',
             width: 150,
             height: 150,
             colorDark: "#0070ba",

@@ -2,7 +2,7 @@
     // ===============================
     // Your existing settings
     // ===============================
-    "liveServer.settings.port": 5501,
+    "liveServer.settings.port": 5502,
 
     "remote.portsAttributes": {
         "443": {

@@ -3,56 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPBC Song Book - Grace and Praise Bangladeshi Church</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- Modern CSS -->
-    <link rel="stylesheet" href="modern.css">
-    <link rel="stylesheet" href="mobile-menu.css">
-    <link rel="stylesheet" href="styles-songbook.css?v=7">
+    <title>Grace and Praise - Bangladeshi Church Song Book</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="index.html" class="logo" aria-label="Grace and Praise Bangladeshi Church Home">
-                GPBC
-            </a>
-            <ul class="nav-links" role="menubar">
-                <li role="none"><a href="https://www.youtube.com/@GracePraise.Church/live" target="_blank" class="live-btn" style="background: linear-gradient(45deg, #FF0000, #CC0000); color: white; padding: 0.5rem 1.2rem; border-radius: 25px; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; box-shadow: 0 2px 8px rgba(255,0,0,0.3); animation: pulse 2s infinite;" role="menuitem">🔴 LIVE</a></li>
-                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-                <li class="dropdown" role="none">
-                    <a href="about.html" role="menuitem">About</a>
-                    <div class="dropdown-content" role="menu">
-                        <a href="about.html#next-service">Next Service</a>
-                        <a href="about.html#history">Our History</a>
-                        <a href="about.html#mission">Our Mission</a>
-                        <a href="about.html#leadership">Our Leadership</a>
-                        <a href="about.html#beliefs">Our Beliefs</a>
-                        <a href="about.html#values">Our Core Values</a>
-                        <a href="about.html#position">Position Papers</a>
-                        <a href="about.html#testimonies">Testimonies</a>
-                        <a href="about.html#songbook">GPBC Song Book</a>
-                    </div>
-                </li>
-                <li role="none"><a href="calendar.html" role="menuitem">Calendar</a></li>
-                <li role="none"><a href="gallery.html" role="menuitem">Gallery</a></li>
-                <li role="none"><a href="calendar.html#prayer" role="menuitem">Prayer</a></li>
-                <li role="none"><a href="give.html" role="menuitem">Give</a></li>
-            </ul>
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-    
-    <div class="container" style="margin-top: 80px;">
+    <div class="container">
         <header>
             <div class="header-content">
                 <div>
@@ -79,11 +34,6 @@
             <button class="tab-btn active" id="allSongsTab">সব গান (All Songs)</button>
             <button class="tab-btn" id="chordsOnlyTab">🎸 কর্ড সহ গান (Songs with Chords)</button>
             <button class="tab-btn" id="bilingualTab">🌐 দ্বিভাষিক (Bilingual)</button>
-            <button class="tab-btn" id="christmasTab">🎄 বড়দিন (Christmas)</button>
-            <button class="tab-btn" id="easterTab">✝️ পুনরুত্থান (Easter)</button>
-            <button class="tab-btn" id="goodFridayTab">✞ গুড ফ্রাইডে (Good Friday)</button>
-            <button class="tab-btn" id="communionTab">🍞 প্রভুভোজ (Holy Communion)</button>
-            <button class="tab-btn" id="newYearTab">🎊 নববর্ষ (New Year)</button>
         </div>
 
         <div class="saved-playlists-section" id="savedPlaylistsSection" style="display: none;">
@@ -164,8 +114,6 @@
     
     <script src="firebase-config.js"></script>
     <script src="songs-data.js"></script>
-    <script src="songbook-app.js"></script>
-    <script src="mobile-menu.js"></script>
-    <script src="logo-loader.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

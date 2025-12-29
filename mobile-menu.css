@@ -20,8 +20,9 @@
     font-size: 1.75rem;
     cursor: pointer;
     padding: 0.5rem;
-    color: var(--gray-800);
+    color: white;
     transition: all var(--transition);
+    z-index: 1001;
 }
 
 .mobile-menu-btn:hover {

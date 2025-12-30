@@ -778,8 +778,9 @@ section {
     }
     
     /* Hero section mobile adjustments */
+    /* Add top padding to account for fixed navbar (approx 70px height) */
     .hero {
-        padding-top: 0;
+        padding-top: 70px;
         min-height: 80vh;
     }
     

@@ -352,7 +352,7 @@
                 <li class="dropdown language-dropdown" role="none">
                     <a href="#" class="language-selector" role="menuitem" aria-haspopup="true" aria-expanded="false">
                         <span class="language-flag">🌐</span>
-                        <span class="language-text">EN</span>
+                        <span class="language-text" id="langDisplay">EN</span>
                         <span class="language-arrow">
                             <svg width="12" height="16" viewBox="0 0 12 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.266616 6.69976C0.622104 7.05806 1.19635 7.05806 1.55184 6.69976L5.08849 3.14432L5.08849 15.0813C5.08849 15.5866 5.49867 16 6 16C6.50133 16 6.91151 15.5866 6.91151 15.0813L6.91151 3.14432L10.4482 6.70894C10.8036 7.06724 11.3779 7.06724 11.7334 6.70894C12.0889 6.35064 12.0889 5.77185 11.7334 5.41355L6.63805 0.268725C6.28257 -0.0895751 5.70832 -0.0895751 5.35283 0.268725L0.266616 5.40436C-0.088872 5.76266 -0.088872 6.35064 0.266616 6.69976Z"></path>
@@ -599,6 +599,22 @@
     
     <!-- Google Translate -->
     <script type="text/javascript">
+    // Detect and display current language on page load
+    window.addEventListener('DOMContentLoaded', function() {
+        var langDisplay = document.getElementById('langDisplay');
+        if (langDisplay) {
+            var cookie = document.cookie.split(';').find(c => c.trim().startsWith('googtrans='));
+            if (cookie) {
+                var lang = cookie.split('/')[2];
+                var langMap = {
+                    'en': 'EN', 'es': 'ES', 'bn': 'বাং', 'hi': 'हि',
+                    'ur': 'ار', 'ar': 'عر', 'zh-CN': '中', 'pt': 'PT', 'fr': 'FR'
+                };
+                langDisplay.textContent = langMap[lang] || 'EN';
+            }
+        }
+    });
+    
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'en',
@@ -681,6 +697,11 @@
     
     body {
         top: 0px !important;
+        position: static !important;
+    }
+    
+    html {
+        margin-top: 0px !important;
     }
     
     .goog-logo-link {

@@ -696,12 +696,20 @@
     }
     
     body {
-        top: 0px !important;
+        top: 0 !important;
         position: static !important;
+        margin-top: 0 !important;
     }
     
     html {
-        margin-top: 0px !important;
+        margin-top: 0 !important;
+    }
+    
+    /* Force body to stay in place */
+    body.translated-ltr,
+    body.translated-rtl {
+        top: 0 !important;
+        margin-top: 0 !important;
     }
     
     .goog-logo-link {

@@ -62,7 +62,7 @@ function generateCalendarAccessQR() {
             if (typeof QRCode !== 'undefined') {
                 qrDiv.innerHTML = ''; // Clear any existing content
                 new QRCode(qrDiv, {
-                    text: 'https://gilbert-baidya.github.io/GPBC-Calendar/',
+                    text: 'https://gilbert-baidya.github.io/gracepraise.church/',
                     width: 180,
                     height: 180,
                     colorDark: "#667eea",

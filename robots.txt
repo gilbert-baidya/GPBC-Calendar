@@ -1,11 +1,11 @@
 # Grace and Praise Bangladeshi Church - Robots.txt
-# https://gilbert-baidya.github.io/GPBC-Calendar/
+# https://gilbert-baidya.github.io/gracepraise.church/
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://gilbert-baidya.github.io/GPBC-Calendar/sitemap.xml
+Sitemap: https://gilbert-baidya.github.io/gracepraise.church/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 10

@@ -56,7 +56,7 @@ GPBC-Calendar/
 ## 🚀 Deployment
 
 Hosted on GitHub Pages:
-- **URL**: https://gilbert-baidya.github.io/GPBC-Calendar/
+- **URL**: https://gilbert-baidya.github.io/gracepraise.church/
 - **Auto-deploy**: Pushes to `main` branch automatically deploy
 
 ## 📝 Development

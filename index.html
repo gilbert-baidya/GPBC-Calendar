@@ -359,7 +359,7 @@
                             </svg>
                         </span>
                     </a>
-                    <div class="dropdown-content language-menu" role="menu" id="google_translate_element">
+                    <div class="dropdown-content language-menu" role="menu">
                         <a href="#" onclick="translatePage('en'); return false;">🇺🇸 English</a>
                         <a href="#" onclick="translatePage('es'); return false;">🇪🇸 Español</a>
                         <a href="#" onclick="translatePage('bn'); return false;">🇧🇩 বাংলা</a>
@@ -603,66 +603,45 @@
         new google.translate.TranslateElement({
             pageLanguage: 'en',
             includedLanguages: 'en,es,bn,hi,ur,ar,zh-CN,pt,fr',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-        }, 'google_translate_hidden');
-        
-        // Check if translation was restored from cookie
-        setTimeout(function() {
-            var lang = getCookie('googtrans');
-            if (lang) {
-                var langCode = lang.split('/')[2];
-                updateLanguageDisplay(langCode);
-            }
-        }, 1000);
-    }
-    
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-    }
-    
-    function updateLanguageDisplay(lang) {
-        const langMap = {
-            'en': 'EN',
-            'es': 'ES',
-            'bn': 'BN',
-            'hi': 'HI',
-            'ur': 'UR',
-            'ar': 'AR',
-            'zh-CN': 'ZH',
-            'pt': 'PT',
-            'fr': 'FR'
-        };
-        var langText = document.querySelector('.language-text');
-        if (langText) {
-            langText.textContent = langMap[lang] || 'EN';
-        }
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
     }
     
     function translatePage(lang) {
-        // Wait for Google Translate to be ready
-        var checkExist = setInterval(function() {
+        var retryCount = 0;
+        var maxRetries = 50; // Try for 5 seconds
+        
+        var checkInterval = setInterval(function() {
             var selectField = document.querySelector('.goog-te-combo');
+            
             if (selectField) {
-                clearInterval(checkExist);
+                clearInterval(checkInterval);
                 selectField.value = lang;
                 selectField.dispatchEvent(new Event('change'));
-                updateLanguageDisplay(lang);
+                
+                // Update display
+                const langMap = {
+                    'en': 'EN', 'es': 'ES', 'bn': 'BN', 'hi': 'HI',
+                    'ur': 'UR', 'ar': 'AR', 'zh-CN': 'ZH', 'pt': 'PT', 'fr': 'FR'
+                };
+                var langText = document.querySelector('.language-text');
+                if (langText) {
+                    langText.textContent = langMap[lang] || 'EN';
+                }
+            } else {
+                retryCount++;
+                if (retryCount >= maxRetries) {
+                    clearInterval(checkInterval);
+                    console.log('Google Translate widget not ready');
+                }
             }
         }, 100);
-        
-        // Stop checking after 5 seconds
-        setTimeout(function() {
-            clearInterval(checkExist);
-        }, 5000);
     }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
     <!-- Hidden Google Translate element -->
-    <div id="google_translate_hidden" style="display: none;"></div>
+    <div id="google_translate_element" style="display: none;"></div>
     
     <style>
     /* Language Dropdown Styles */

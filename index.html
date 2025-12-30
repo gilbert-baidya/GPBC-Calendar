@@ -373,12 +373,12 @@
     <!-- Next Service Banner -->
     <section class="next-service-banner">
         <div class="container">
+            <div class="next-service-header">
+                <span class="service-icon">🎉</span>
+                <h2>Next Service</h2>
+            </div>
             <div class="next-service-card">
                 <div id="nextServiceContent" class="next-service-content">
-                    <div class="next-service-header">
-                        <span class="service-icon">🎉</span>
-                        <h2>Next Service</h2>
-                    </div>
                     <h3 class="service-title">Sunday Worship Service</h3>
                     <div class="service-badge">Regular Service</div>
                     <p class="service-time">📅 Every Sunday at 5:00 PM</p>
@@ -592,10 +592,6 @@
                     const badge = nextEvent.type === 'Special Event' ? 'SPECIAL EVENT' : nextEvent.type.toUpperCase();
                     
                     contentDiv.innerHTML = `
-                        <div class="next-service-header">
-                            <span class="service-icon">🎉</span>
-                            <h2>Next Service</h2>
-                        </div>
                         <h3 class="service-title">${nextEvent.title}</h3>
                         <div class="service-badge">${badge}</div>
                         <p class="service-time">📅 ${nextEvent.date} at ${nextEvent.time}</p>
@@ -669,20 +665,19 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        margin-bottom: 1rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 2px solid #f0f0f0;
+        margin-bottom: 1.5rem;
     }
     
     .service-icon {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     
     .next-service-header h2 {
-        font-size: 1.25rem;
-        color: #667eea;
+        font-size: 1.75rem;
+        color: white;
         margin: 0;
         font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
     .service-title {

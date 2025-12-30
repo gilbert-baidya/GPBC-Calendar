@@ -613,6 +613,24 @@
                 langDisplay.textContent = langMap[lang] || 'EN';
             }
         }
+        
+        // Forcefully remove translate banner and fix body position
+        var checkBanner = setInterval(function() {
+            var banner = document.querySelector('.goog-te-banner-frame');
+            if (banner) {
+                banner.remove();
+            }
+            // Force body to stay at top
+            if (document.body) {
+                document.body.style.top = '0';
+                document.body.style.position = 'static';
+            }
+        }, 10);
+        
+        // Stop checking after 3 seconds
+        setTimeout(function() {
+            clearInterval(checkBanner);
+        }, 3000);
     });
     
     function googleTranslateElementInit() {

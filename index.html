@@ -349,7 +349,28 @@
                 <li role="none"><a href="gallery.html" role="menuitem">Gallery</a></li>
                 <li role="none"><a href="calendar.html#prayer" role="menuitem">Prayer</a></li>
                 <li role="none"><a href="give.html" role="menuitem">Give</a></li>
-                <li role="none" id="google_translate_element" style="display: inline-flex; align-items: center;"></li>
+                <li class="dropdown language-dropdown" role="none">
+                    <a href="#" class="language-selector" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        <span class="language-flag">🌐</span>
+                        <span class="language-text">EN</span>
+                        <span class="language-arrow">
+                            <svg width="12" height="16" viewBox="0 0 12 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.266616 6.69976C0.622104 7.05806 1.19635 7.05806 1.55184 6.69976L5.08849 3.14432L5.08849 15.0813C5.08849 15.5866 5.49867 16 6 16C6.50133 16 6.91151 15.5866 6.91151 15.0813L6.91151 3.14432L10.4482 6.70894C10.8036 7.06724 11.3779 7.06724 11.7334 6.70894C12.0889 6.35064 12.0889 5.77185 11.7334 5.41355L6.63805 0.268725C6.28257 -0.0895751 5.70832 -0.0895751 5.35283 0.268725L0.266616 5.40436C-0.088872 5.76266 -0.088872 6.35064 0.266616 6.69976Z"></path>
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="dropdown-content language-menu" role="menu" id="google_translate_element">
+                        <a href="#" onclick="translatePage('en'); return false;">🇺🇸 English</a>
+                        <a href="#" onclick="translatePage('es'); return false;">🇪🇸 Español</a>
+                        <a href="#" onclick="translatePage('bn'); return false;">🇧🇩 বাংলা</a>
+                        <a href="#" onclick="translatePage('hi'); return false;">🇮🇳 हिन्दी</a>
+                        <a href="#" onclick="translatePage('ur'); return false;">🇵🇰 اردو</a>
+                        <a href="#" onclick="translatePage('ar'); return false;">🇸🇦 العربية</a>
+                        <a href="#" onclick="translatePage('zh-CN'); return false;">🇨🇳 中文</a>
+                        <a href="#" onclick="translatePage('pt'); return false;">🇵🇹 Português</a>
+                        <a href="#" onclick="translatePage('fr'); return false;">🇫🇷 Français</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -581,50 +602,89 @@
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'en',
-            includedLanguages: 'en,es,bn,hi,ur,ar,zh-CN,pt,fr', // English, Spanish, Bengali, Hindi, Urdu, Arabic, Chinese, Portuguese, French
+            includedLanguages: 'en,es,bn,hi,ur,ar,zh-CN,pt,fr',
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false
-        }, 'google_translate_element');
+        }, 'google_translate_hidden');
+    }
+    
+    function translatePage(lang) {
+        var selectField = document.querySelector('.goog-te-combo');
+        if (selectField) {
+            selectField.value = lang;
+            selectField.dispatchEvent(new Event('change'));
+            
+            // Update displayed language
+            const langMap = {
+                'en': 'EN',
+                'es': 'ES',
+                'bn': 'BN',
+                'hi': 'HI',
+                'ur': 'UR',
+                'ar': 'AR',
+                'zh-CN': 'ZH',
+                'pt': 'PT',
+                'fr': 'FR'
+            };
+            document.querySelector('.language-text').textContent = langMap[lang] || 'EN';
+        }
     }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
+    <!-- Hidden Google Translate element -->
+    <div id="google_translate_hidden" style="display: none;"></div>
+    
     <style>
-    /* Style Google Translate Widget */
-    #google_translate_element {
-        margin-left: 1rem;
+    /* Language Dropdown Styles */
+    .language-dropdown {
+        position: relative;
     }
     
-    .goog-te-gadget {
-        font-family: 'Open Sans', sans-serif !important;
-        color: white !important;
-    }
-    
-    .goog-te-gadget-simple {
-        background-color: transparent !important;
-        border: 2px solid white !important;
+    .language-selector {
+        display: flex !important;
+        align-items: center;
+        gap: 0.5rem;
         padding: 0.5rem 1rem !important;
-        border-radius: 25px !important;
-        font-size: 0.95rem !important;
-        color: white !important;
-        transition: all 0.3s ease !important;
+        border: 2px solid white;
+        border-radius: 25px;
+        transition: all 0.3s ease;
     }
     
-    .goog-te-gadget-simple:hover {
-        background-color: rgba(255,255,255,0.1) !important;
+    .language-selector:hover {
+        background-color: rgba(255,255,255,0.1);
         transform: scale(1.05);
     }
     
-    .goog-te-gadget-simple span {
-        color: white !important;
+    .language-flag {
+        font-size: 1.2rem;
     }
     
-    .goog-te-gadget-simple img {
-        display: none !important;
+    .language-text {
+        font-weight: 700;
+        letter-spacing: 0.05em;
     }
     
-    .goog-te-gadget-icon {
-        display: none !important;
+    .language-arrow {
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+        transform: rotate(180deg);
+    }
+    
+    .language-dropdown:hover .language-arrow {
+        transform: rotate(0deg);
+    }
+    
+    .language-menu {
+        min-width: 200px !important;
+    }
+    
+    .language-menu a {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1rem !important;
     }
     
     /* Hide Google Translate banner */
@@ -636,17 +696,23 @@
         top: 0px !important;
     }
     
+    .goog-logo-link {
+        display: none !important;
+    }
+    
+    .goog-te-gadget {
+        color: transparent !important;
+        font-size: 0 !important;
+    }
+    
     /* Mobile adjustments */
     @media (max-width: 768px) {
-        #google_translate_element {
-            margin: 0;
-            width: 100%;
-            text-align: center;
+        .language-arrow {
+            display: none;
         }
         
-        .goog-te-gadget-simple {
-            width: 100% !important;
-            text-align: center !important;
+        .language-text {
+            font-size: 0.9rem;
         }
     }
     </style>

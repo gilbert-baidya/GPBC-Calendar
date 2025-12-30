@@ -769,6 +769,11 @@ section {
         visibility: hidden !important;
     }
     
+    /* Fix: Push all content below fixed navbar on mobile */
+    main {
+        padding-top: 80px;
+    }
+    
     .cards-grid {
         grid-template-columns: 1fr;
     }
@@ -778,9 +783,8 @@ section {
     }
     
     /* Hero section mobile adjustments */
-    /* Add top padding to account for fixed navbar (approx 70px height) */
     .hero {
-        padding-top: 70px;
+        padding-top: 0;
         min-height: 80vh;
     }
     

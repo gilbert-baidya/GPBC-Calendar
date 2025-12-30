@@ -655,8 +655,14 @@
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'en',
-            includedLanguages: 'en,es,bn,hi,ur,ar,zh-CN,pt,fr'
+            includedLanguages: 'en,es,bn,hi,ur,ar,zh-CN,pt,fr',
+            autoDisplay: false
         }, 'google_translate_element');
+        
+        // Disable the banner immediately
+        var style = document.createElement('style');
+        style.innerHTML = 'body { top: 0 !important; } .goog-te-banner-frame { display: none !important; }';
+        document.head.appendChild(style);
     }
     
     function translatePage(lang) {

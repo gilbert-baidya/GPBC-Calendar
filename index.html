@@ -599,6 +599,34 @@
     
     <!-- Google Translate -->
     <script type="text/javascript">
+    // Prevent body from being pushed down
+    (function() {
+        // Immediately set body position
+        if (document.body) {
+            document.body.style.top = '0 !important';
+            document.body.style.position = 'static !important';
+        }
+        
+        // Watch for changes to body style
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    if (document.body.style.top !== '0px' && document.body.style.top !== '') {
+                        document.body.style.top = '0';
+                        document.body.style.position = 'static';
+                    }
+                }
+            });
+        });
+        
+        if (document.body) {
+            observer.observe(document.body, {
+                attributes: true,
+                attributeFilter: ['style', 'class']
+            });
+        }
+    })();
+    
     // Detect and display current language on page load
     window.addEventListener('DOMContentLoaded', function() {
         var langDisplay = document.getElementById('langDisplay');
@@ -614,23 +642,14 @@
             }
         }
         
-        // Forcefully remove translate banner and fix body position
-        var checkBanner = setInterval(function() {
+        // Remove translate banner
+        setInterval(function() {
             var banner = document.querySelector('.goog-te-banner-frame');
             if (banner) {
                 banner.remove();
             }
-            // Force body to stay at top
-            if (document.body) {
-                document.body.style.top = '0';
-                document.body.style.position = 'static';
-            }
-        }, 10);
-        
-        // Stop checking after 3 seconds
-        setTimeout(function() {
-            clearInterval(checkBanner);
-        }, 3000);
+            document.body.style.top = '0';
+        }, 100);
     });
     
     function googleTranslateElementInit() {
@@ -641,13 +660,10 @@
     }
     
     function translatePage(lang) {
-        // Create a cookie to set the language
         var hostname = window.location.hostname;
         var domain = hostname.substring(hostname.lastIndexOf(".", hostname.lastIndexOf(".") - 1));
         document.cookie = 'googtrans=/en/' + lang + '; path=/; domain=' + domain;
         document.cookie = 'googtrans=/en/' + lang + '; path=/';
-        
-        // Reload the page to apply translation
         window.location.reload();
     }
     </script>

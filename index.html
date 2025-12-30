@@ -602,40 +602,19 @@
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'en',
-            includedLanguages: 'en,es,bn,hi,ur,ar,zh-CN,pt,fr',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            includedLanguages: 'en,es,bn,hi,ur,ar,zh-CN,pt,fr'
         }, 'google_translate_element');
     }
     
     function translatePage(lang) {
-        var retryCount = 0;
-        var maxRetries = 50; // Try for 5 seconds
+        // Create a cookie to set the language
+        var hostname = window.location.hostname;
+        var domain = hostname.substring(hostname.lastIndexOf(".", hostname.lastIndexOf(".") - 1));
+        document.cookie = 'googtrans=/en/' + lang + '; path=/; domain=' + domain;
+        document.cookie = 'googtrans=/en/' + lang + '; path=/';
         
-        var checkInterval = setInterval(function() {
-            var selectField = document.querySelector('.goog-te-combo');
-            
-            if (selectField) {
-                clearInterval(checkInterval);
-                selectField.value = lang;
-                selectField.dispatchEvent(new Event('change'));
-                
-                // Update display
-                const langMap = {
-                    'en': 'EN', 'es': 'ES', 'bn': 'BN', 'hi': 'HI',
-                    'ur': 'UR', 'ar': 'AR', 'zh-CN': 'ZH', 'pt': 'PT', 'fr': 'FR'
-                };
-                var langText = document.querySelector('.language-text');
-                if (langText) {
-                    langText.textContent = langMap[lang] || 'EN';
-                }
-            } else {
-                retryCount++;
-                if (retryCount >= maxRetries) {
-                    clearInterval(checkInterval);
-                    console.log('Google Translate widget not ready');
-                }
-            }
-        }, 100);
+        // Reload the page to apply translation
+        window.location.reload();
     }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

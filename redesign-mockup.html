@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grace and Praise Bangladeshi Church - San Bernardino, CA</title>
+    <link rel="stylesheet" href="redesign-styles.css">
 </head>
 <body>
     <!-- Sticky Header/Nav -->
@@ -44,9 +45,19 @@
         <section class="next-service" id="next-service">
             <h2>Next Service</h2>
             <div class="service-info">
+                <div class="service-badge">Regular Service</div>
                 <h3>Sunday Worship Service</h3>
-                <p class="service-time">Every Sunday at 5:00 PM</p>
-                <p class="service-location">1325 Richardson Street, CA 92408</p>
+                <div class="service-details">
+                    <div class="service-detail-item">
+                        <span class="service-icon">🕐</span>
+                        <span class="service-time">Every Sunday at 5:00 PM</span>
+                    </div>
+                    <div class="service-detail-item">
+                        <span class="service-icon">📍</span>
+                        <span class="service-location">1325 Richardson Street, CA 92408</span>
+                    </div>
+                </div>
+                <a href="#calendar" class="btn btn-add-calendar">📅 Add to Calendar</a>
             </div>
         </section>
 
@@ -57,19 +68,19 @@
             
             <div class="stats">
                 <div class="stat-item">
-                    <span class="stat-number">500+</span>
+                    <span class="stat-number" data-count="500">0</span>
                     <span class="stat-label">Members</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">20+</span>
+                    <span class="stat-number" data-count="20">0</span>
                     <span class="stat-label">Years Serving</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">100+</span>
+                    <span class="stat-number" data-count="100">0</span>
                     <span class="stat-label">Weekly Attendance</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">24/7</span>
+                    <span class="stat-number" data-count="24">0</span>
                     <span class="stat-label">Prayer Support</span>
                 </div>
             </div>
@@ -80,31 +91,51 @@
             <h2>What's Happening</h2>
             <div class="feature-cards">
                 <article class="feature-card">
-                    <div class="card-icon">[Calendar Icon]</div>
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
                     <h3>Calendar</h3>
                     <p>Stay connected with upcoming services, events, and special gatherings throughout the year.</p>
-                    <a href="calendar.html" class="card-link">View Events</a>
+                    <a href="calendar.html" class="card-link">View Events →</a>
                 </article>
 
                 <article class="feature-card">
-                    <div class="card-icon">[Prayer Icon]</div>
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
                     <h3>Prayer Requests</h3>
                     <p>Share your prayer needs with our community. We're here to lift you up in prayer.</p>
-                    <a href="#prayer" class="card-link">Submit Request</a>
+                    <a href="#prayer" class="card-link">Submit Request →</a>
                 </article>
 
                 <article class="feature-card">
-                    <div class="card-icon">[Calendar Icon]</div>
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                        </svg>
+                    </div>
                     <h3>Special Days</h3>
                     <p>Celebrate special occasions, holidays, and milestones together as a church family.</p>
-                    <a href="calendar.html" class="card-link">See Schedule</a>
+                    <a href="calendar.html" class="card-link">See Schedule →</a>
                 </article>
 
                 <article class="feature-card">
-                    <div class="card-icon">[Heart Icon]</div>
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
                     <h3>Give</h3>
                     <p>Support our mission and ministry through generous giving. Every gift makes a difference.</p>
-                    <a href="give.html" class="card-link">Give Now</a>
+                    <a href="give.html" class="card-link">Give Now →</a>
                 </article>
             </div>
         </section>
@@ -168,5 +199,62 @@
             <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms &amp; Conditions</a></p>
         </div>
     </footer>
+
+    <!-- Stats Counter Animation Script -->
+    <script>
+        // Intersection Observer for stats animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        if (!stat.classList.contains('animated')) {
+                            animateCounter(stat);
+                            stat.classList.add('animated');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        // Count-up animation function
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                    // Add suffix based on label
+                    const label = element.nextElementSibling.textContent;
+                    if (label.includes('Members') || label.includes('Attendance')) {
+                        element.textContent = target + '+';
+                    } else if (label.includes('Years')) {
+                        element.textContent = target + '+';
+                    } else if (label.includes('Prayer')) {
+                        element.textContent = target + '/7';
+                    }
+                }
+            };
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Observe stats section when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+        });
+    </script>
 </body>
 </html>

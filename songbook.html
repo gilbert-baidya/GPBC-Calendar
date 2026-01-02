@@ -11,8 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Modern CSS -->
-    <link rel="stylesheet" href="modern.css">
-    <link rel="stylesheet" href="mobile-menu.css">
+    <link rel="stylesheet" href="redesign-styles.css">
     <link rel="stylesheet" href="styles-songbook.css?v=7">
 </head>
 <body>
@@ -25,23 +24,22 @@
             <ul class="nav-links" role="menubar">
                 <li role="none"><a href="https://www.youtube.com/@GracePraise.Church/live" target="_blank" class="live-btn" style="background: linear-gradient(45deg, #FF0000, #CC0000); color: white; padding: 0.5rem 1.2rem; border-radius: 25px; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; box-shadow: 0 2px 8px rgba(255,0,0,0.3); animation: pulse 2s infinite;" role="menuitem">🔴 LIVE</a></li>
                 <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-                <li class="dropdown" role="none">
-                    <a href="about.html" role="menuitem">About</a>
-                    <div class="dropdown-content" role="menu">
-                        <a href="about.html#next-service">Next Service</a>
-                        <a href="about.html#history">Our History</a>
-                        <a href="about.html#mission">Our Mission</a>
-                        <a href="about.html#leadership">Our Leadership</a>
-                        <a href="about.html#beliefs">Our Beliefs</a>
-                        <a href="about.html#values">Our Core Values</a>
-                        <a href="about.html#position">Position Papers</a>
-                        <a href="about.html#testimonies">Testimonies</a>
-                        <a href="about.html#songbook">GPBC Song Book</a>
-                    </div>
+                <li class="nav-dropdown" role="none">
+                    <a href="about.html" role="menuitem" aria-haspopup="true" aria-expanded="false">About <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="history.html">Our History</a></li>
+                        <li><a href="mission.html">Our Mission</a></li>
+                        <li><a href="leadership.html">Our Leadership</a></li>
+                        <li><a href="beliefs.html">Our Beliefs</a></li>
+                        <li><a href="core-values.html">Our Core Values</a></li>
+                        <li><a href="position-papers.html">Position Papers</a></li>
+                        <li><a href="testimonies.html">Testimonies</a></li>
+                        <li><a href="songbook.html">GPBC Song Book</a></li>
+                    </ul>
                 </li>
                 <li role="none"><a href="calendar.html" role="menuitem">Calendar</a></li>
                 <li role="none"><a href="gallery.html" role="menuitem">Gallery</a></li>
-                <li role="none"><a href="calendar.html#prayer" role="menuitem">Prayer</a></li>
+                <li role="none"><a href="prayer-request.html" role="menuitem">Prayer</a></li>
                 <li role="none"><a href="daily-devotion.html" role="menuitem">Daily Devotion</a></li>
                 <li role="none"><a href="give.html" role="menuitem">Give</a></li>
             </ul>
@@ -166,7 +164,6 @@
     <script src="firebase-config.js"></script>
     <script src="songs-data.js"></script>
     <script src="songbook-app.js"></script>
-    <script src="mobile-menu.js"></script>
     <script src="logo-loader.js"></script>
 </body>
 </html>

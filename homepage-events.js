@@ -3,21 +3,34 @@
  * Automatically renders upcoming special events from events.js data
  */
 
-console.log('Homepage Events script loaded');
-
 class HomepageEvents {
     constructor() {
         this.container = document.getElementById('dynamic-events-container');
         if (this.container) {
-            console.log('Dynamic events container found');
             this.init();
-        } else {
-            console.warn('No dynamic events container found on this page');
         }
     }
 
     init() {
         this.renderUpcomingEvents();
+    }
+
+    convertTo24Hour(timeStr) {
+        // Convert "5:00 PM" to "17:00"
+        if (timeStr.includes('PM') || timeStr.includes('AM')) {
+            const [time, period] = timeStr.split(' ');
+            let [hours, minutes] = time.split(':');
+            hours = parseInt(hours);
+            
+            if (period === 'PM' && hours !== 12) {
+                hours += 12;
+            } else if (period === 'AM' && hours === 12) {
+                hours = 0;
+            }
+            
+            return `${String(hours).padStart(2, '0')}:${minutes || '00'}`;
+        }
+        return timeStr;
     }
 
     getSpecialGPBCEvents() {
@@ -26,20 +39,22 @@ class HomepageEvents {
         
         // Get events from the global events array (from events.js)
         if (typeof events === 'undefined') {
-            console.error('Events array not found. Make sure events.js is loaded before homepage-events.js');
             return [];
         }
 
         // Get ALL upcoming GPBC events (regular + special)
         const gpbcEvents = events.filter(event => {
-            const eventDateTime = new Date(event.date + 'T' + (event.eventTime || '17:00'));
+            const time24 = this.convertTo24Hour(event.eventTime || '17:00');
+            const eventDateTime = new Date(event.date + 'T' + time24);
             return event.category === 'gpbc' && eventDateTime > now;
         });
 
         // Sort by date/time (earliest first)
         gpbcEvents.sort((a, b) => {
-            const dateA = new Date(a.date + 'T' + (a.eventTime || '17:00'));
-            const dateB = new Date(b.date + 'T' + (b.eventTime || '17:00'));
+            const timeA = this.convertTo24Hour(a.eventTime || '17:00');
+            const timeB = this.convertTo24Hour(b.eventTime || '17:00');
+            const dateA = new Date(a.date + 'T' + timeA);
+            const dateB = new Date(b.date + 'T' + timeB);
             return dateA - dateB;
         });
 
@@ -190,12 +205,9 @@ class HomepageEvents {
     renderUpcomingEvents() {
         const upcomingEvents = this.getSpecialGPBCEvents();
 
-        console.log('Found special events:', upcomingEvents.length);
-
         if (upcomingEvents.length === 0) {
             // Hide the container if no events
             this.container.style.display = 'none';
-            console.log('No upcoming special events to display');
             return;
         }
 
@@ -208,8 +220,6 @@ class HomepageEvents {
             const eventCard = this.createEventCard(event);
             this.container.appendChild(eventCard);
         });
-
-        console.log(`Rendered ${upcomingEvents.length} event card(s)`);
     }
 }
 

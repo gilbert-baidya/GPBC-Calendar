@@ -774,8 +774,24 @@ async function addGPBCEvent() {
 
 async function deleteCurrentEvent() {
     const eventOwner = currentEvent?.owner || CODE_OWNER;
-    if (!currentEvent || currentEvent.category !== 'gpbc' || (eventOwner !== CODE_OWNER)) {
-        alert('Only GPBC events created by the code owner can be deleted.');
+    
+    // Debug logging
+    console.log('Delete attempt:', {
+        currentEvent,
+        eventOwner,
+        CODE_OWNER,
+        category: currentEvent?.category,
+        ownerMatch: eventOwner === CODE_OWNER
+    });
+    
+    if (!currentEvent || currentEvent.category !== 'gpbc') {
+        alert('Only GPBC events can be deleted.');
+        return;
+    }
+    
+    // Allow deletion if owner matches CODE_OWNER OR if owner is missing (legacy events)
+    if (eventOwner !== CODE_OWNER) {
+        alert(`You can only delete events created by ${CODE_OWNER}. This event was created by ${eventOwner}.`);
         return;
     }
     

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Daily Devotion | Grace and Praise Bangladeshi Church</title>
+    <meta name="title" content="Daily Devotion | Grace and Praise Bangladeshi Church">
+    <meta name="description" content="Read today's Bible-based daily devotion and prayer from Grace and Praise Bangladeshi Church.">
+    <meta name="keywords" content="daily devotion, Bible devotional, Christian devotion, daily prayer, Scripture reading, spiritual reflection, GPBC devotion">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://gilbert-baidya.github.io/gracepraise.church/daily-devotion.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://gilbert-baidya.github.io/gracepraise.church/daily-devotion.html">
+    <meta property="og:title" content="Daily Devotion | Grace and Praise Bangladeshi Church">
+    <meta property="og:description" content="Read today's Bible-based daily devotion and prayer from Grace and Praise Bangladeshi Church.">
+    <meta property="og:image" content="https://gilbert-baidya.github.io/gracepraise.church/images/devotion-og-image.jpg" id="ogImage">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gilbert-baidya.github.io/gracepraise.church/daily-devotion.html">
+    <meta property="twitter:title" content="Daily Devotion | Grace and Praise Bangladeshi Church">
+    <meta property="twitter:description" content="Read today's Bible-based daily devotion and prayer from Grace and Praise Bangladeshi Church.">
+    <meta property="twitter:image" content="https://gilbert-baidya.github.io/gracepraise.church/images/devotion-og-image.jpg" id="twitterImage">
+    
+    <link rel="stylesheet" href="redesign-styles.css">
+    <link rel="stylesheet" href="countdown.css">
+    
+    <style>
+        /* Daily Devotion Page Specific Styles */
+        
+        .devotion-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-text-inverse);
+            padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .devotion-hero h1 {
+            color: var(--color-text-inverse);
+            font-size: var(--font-4xl);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .devotion-hero h2 {
+            color: var(--color-secondary);
+            font-size: var(--font-xl);
+            font-weight: var(--font-normal);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .devotion-date {
+            font-size: var(--font-lg);
+            font-weight: var(--font-medium);
+            color: var(--color-text-inverse);
+            opacity: 0.9;
+        }
+        
+        /* Hero Image Section */
+        .devotion-hero-image {
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-xl);
+            padding: 0 var(--spacing-md);
+        }
+        
+        .devotion-hero-image img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .devotion-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+        
+        .devotion-section {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .scripture-section {
+            background: linear-gradient(to bottom right, #faf8f5, #f5f1ea);
+            border-left: 4px solid var(--color-secondary);
+        }
+        
+        .scripture-section h3 {
+            color: var(--color-primary);
+            font-size: var(--font-2xl);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .scripture-section h3::before {
+            content: '📖';
+            font-size: var(--font-3xl);
+        }
+        
+        .scripture-text {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: var(--font-lg);
+            line-height: var(--leading-relaxed);
+            font-style: italic;
+            color: var(--color-text);
+            margin: 0;
+            padding: var(--spacing-md);
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+        }
+        
+        .reflection-section h3,
+        .prayer-section h3 {
+            color: var(--color-primary);
+            font-size: var(--font-2xl);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .reflection-section h3::before {
+            content: '💭';
+            font-size: var(--font-3xl);
+        }
+        
+        .prayer-section h3::before {
+            content: '🙏';
+            font-size: var(--font-3xl);
+        }
+        
+        .reflection-section {
+            border-left: 4px solid var(--color-primary);
+        }
+        
+        .prayer-section {
+            border-left: 4px solid var(--color-accent);
+            background: linear-gradient(to bottom right, #fefefe, #faf8f5);
+        }
+        
+        .devotion-text {
+            font-size: var(--font-base);
+            line-height: var(--leading-relaxed);
+            color: var(--color-text);
+        }
+        
+        /* Share Section */
+        .share-section {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .share-section h3 {
+            color: var(--color-primary);
+            font-size: var(--font-xl);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-md);
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: var(--font-base);
+            font-weight: var(--font-medium);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            color: var(--color-text-inverse);
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .share-btn:active {
+            transform: translateY(0);
+        }
+        
+        .share-btn:focus-visible {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+        
+        .share-btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+        
+        .share-btn-facebook {
+            background: linear-gradient(135deg, #1877F2, #0C63D4);
+        }
+        
+        .share-btn-twitter {
+            background: linear-gradient(135deg, #000000, #333333);
+        }
+        
+        .share-btn-email {
+            background: linear-gradient(135deg, #6b6b6b, #4a4a4a);
+        }
+        
+        .share-btn-copy {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+        }
+        
+        .share-btn-copy.copied {
+            background: linear-gradient(135deg, #28a745, #218838);
+        }
+        
+        /* Loading/Fallback State */
+        .devotion-loading {
+            text-align: center;
+            padding: var(--spacing-2xl) var(--spacing-md);
+            color: var(--color-text-light);
+        }
+        
+        .devotion-loading p {
+            font-size: var(--font-lg);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .devotion-fallback {
+            text-align: center;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .devotion-fallback::before {
+            content: '📖';
+            font-size: 4rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.3;
+        }
+        
+        .devotion-fallback h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-2xl);
+        }
+        
+        .devotion-fallback p {
+            color: var(--color-text);
+            font-size: var(--font-lg);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .devotion-fallback .fallback-scripture {
+            background: linear-gradient(to bottom right, #faf8f5, #f5f1ea);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-secondary);
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .devotion-fallback .fallback-scripture p {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            color: var(--color-text);
+            font-size: var(--font-base);
+            margin: 0;
+        }
+        
+        .devotion-fallback .fallback-links {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .devotion-fallback .fallback-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            font-weight: var(--font-medium);
+            transition: all var(--transition-base);
+        }
+        
+        .devotion-fallback .fallback-links a:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* Action Buttons Section */
+        .action-buttons-section {
+            max-width: 800px;
+            margin: var(--spacing-xl) auto 0;
+            padding: 0 var(--spacing-md);
+            text-align: center;
+        }
+        
+        .action-buttons-section h3 {
+            color: var(--color-primary);
+            font-size: var(--font-xl);
+            margin-bottom: var(--spacing-md);
+            font-weight: var(--font-semibold);
+        }
+        
+        .action-buttons-section p {
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-base);
+        }
+        
+        .action-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-lg);
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .action-btn:hover {
+            border-color: var(--color-secondary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .action-btn:focus-visible {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+        
+        .action-btn-icon {
+            font-size: var(--font-3xl);
+            line-height: 1;
+        }
+        
+        .action-btn-title {
+            font-weight: var(--font-semibold);
+            font-size: var(--font-lg);
+            color: var(--color-primary);
+        }
+        
+        .action-btn-desc {
+            font-size: var(--font-sm);
+            color: var(--color-text-light);
+            line-height: var(--leading-relaxed);
+        }
+        
+        /* Simple Share Section */
+        .simple-share-section {
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+        
+        .simple-share-section p {
+            font-size: var(--font-sm);
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .simple-share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+        
+        .simple-share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: var(--font-sm);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+        
+        .simple-share-btn:hover {
+            border-color: var(--color-secondary);
+            background: var(--color-background);
+        }
+        
+        .simple-share-btn:focus-visible {
+            outline: 2px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+        
+        /* Devotion Navigation */
+        .devotion-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: var(--spacing-xl) auto 0;
+            padding: var(--spacing-lg) var(--spacing-md);
+            gap: var(--spacing-md);
+        }
+        
+        .devotion-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--font-base);
+            font-weight: var(--font-medium);
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+        
+        .devotion-nav-btn:hover {
+            border-color: var(--color-primary);
+            background: var(--color-background);
+            transform: translateX(0);
+        }
+        
+        .devotion-nav-btn.prev:hover {
+            transform: translateX(-2px);
+        }
+        
+        .devotion-nav-btn.next:hover {
+            transform: translateX(2px);
+        }
+        
+        .devotion-nav-btn:focus-visible {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+        
+        .devotion-nav-btn[disabled] {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .devotion-hero h1 {
+                font-size: var(--font-3xl);
+            }
+            
+            .devotion-hero h2 {
+                font-size: var(--font-lg);
+            }
+            
+            .devotion-container {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+            
+            .devotion-section {
+                padding: var(--spacing-md);
+            }
+            
+            .scripture-text {
+                font-size: var(--font-base);
+            }
+            
+            .share-buttons {
+                gap: var(--spacing-sm);
+            }
+            
+            .share-btn {
+                font-size: var(--font-sm);
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Sticky Header/Nav -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="redesign-mockup.html" class="logo" aria-label="Grace and Praise Bangladeshi Church Home">GPBC</a>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="redesign-mockup.html#live">LIVE</a></li>
+                    <li><a href="redesign-mockup.html">Home</a></li>
+                    <li class="nav-dropdown">
+                        <a href="about.html" aria-haspopup="true" aria-expanded="false">About <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="history.html">Our History</a></li>
+                            <li><a href="mission.html">Our Mission</a></li>
+                            <li><a href="leadership.html">Our Leadership</a></li>
+                            <li><a href="beliefs.html">Our Beliefs</a></li>
+                            <li><a href="core-values.html">Our Core Values</a></li>
+                            <li><a href="position-papers.html">Position Papers</a></li>
+                            <li><a href="testimonies.html">Testimonies</a></li>
+                            <li><a href="songbook.html">GPBC Song Book</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="redesign-mockup.html#next-service">Next Service</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="prayer-request.html">Prayer</a></li>
+                    <li><a href="daily-devotion.html" class="active">Daily Devotion</a></li>
+                    <li><a href="give.html">Give</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="mobile-overlay"></div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="devotion-hero">
+            <h1>Daily Devotion</h1>
+            <h2>A Daily Word from Scripture</h2>
+            <p class="devotion-date" id="devotionDate">{{devotion_date}}</p>
+        </section>
+
+        <!-- Hero Image Section -->
+        <section class="devotion-hero-image">
+            <!-- Image placeholder (only show if image exists) -->
+            <img 
+                src="/images/devotion-placeholder.jpg" 
+                alt="Daily devotion image"
+                loading="lazy"
+                width="1200"
+                height="400"
+                id="devotionImage">
+        </section>
+
+        <!-- Devotion Content Container -->
+        <div class="devotion-container">
+            <!-- Content will be dynamically loaded here -->
+            <div id="devotionContent">
+                <!-- Scripture Section -->
+                <article class="devotion-section scripture-section">
+                    <h3 id="bibleReference">{{bible_reference}}</h3>
+                    <blockquote class="scripture-text" id="bibleText">
+                        {{bible_text}}
+                    </blockquote>
+                    
+                    <!-- Simple Share Section (directly below Scripture) -->
+                    <div class="simple-share-section">
+                        <p>Share this devotion:</p>
+                        <div class="simple-share-buttons">
+                            <a href="#" 
+                               class="simple-share-btn" 
+                               id="shareSimpleFacebook"
+                               aria-label="Share on Facebook"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <span aria-hidden="true">👥</span> Facebook
+                            </a>
+                            <a href="#" 
+                               class="simple-share-btn" 
+                               id="shareSimpleWhatsApp"
+                               aria-label="Share on WhatsApp"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <span aria-hidden="true">📱</span> WhatsApp
+                            </a>
+                            <button 
+                                class="simple-share-btn" 
+                                id="copySimpleLink"
+                                aria-label="Copy link">
+                                <span aria-hidden="true">🔗</span> <span id="copySimpleLinkText">Copy Link</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Reflection Section -->
+                <article class="devotion-section reflection-section">
+                    <h3>Reflection</h3>
+                    <div class="devotion-text" id="devotionMessage">
+                        <p>{{devotion_message}}</p>
+                    </div>
+                </article>
+
+                <!-- Prayer Section -->
+                <article class="devotion-section prayer-section">
+                    <h3>Prayer</h3>
+                    <div class="devotion-text" id="devotionPrayer">
+                        <p>{{devotion_prayer}}</p>
+                    </div>
+                </article>
+
+                <!-- Devotion Navigation (Previous/Next) -->
+                <nav class="devotion-navigation" aria-label="Navigate between devotions">
+                    <a href="{{previous_devotion_url}}" 
+                       class="devotion-nav-btn prev" 
+                       id="prevDevotionBtn"
+                       aria-label="Go to previous devotion">
+                        <span aria-hidden="true">←</span> Previous Devotion
+                    </a>
+                    <a href="{{next_devotion_url}}" 
+                       class="devotion-nav-btn next" 
+                       id="nextDevotionBtn"
+                       aria-label="Go to next devotion">
+                        Next Devotion <span aria-hidden="true">→</span>
+                    </a>
+                </nav>
+
+                <!-- Action Buttons Section -->
+                <section class="action-buttons-section">
+                    <h3>Continue Your Spiritual Journey</h3>
+                    <p>Explore more ways to connect with God and our church community</p>
+                    
+                    <div class="action-buttons-grid">
+                        <a href="calendar.html#prayer" class="action-btn" aria-label="Submit a prayer request">
+                            <span class="action-btn-icon" aria-hidden="true">🙏</span>
+                            <span class="action-btn-title">Prayer Requests</span>
+                            <span class="action-btn-desc">Share your prayer needs with our community</span>
+                        </a>
+                        
+                        <a href="calendar.html" class="action-btn" aria-label="View upcoming church services">
+                            <span class="action-btn-icon" aria-hidden="true">📅</span>
+                            <span class="action-btn-title">Upcoming Services</span>
+                            <span class="action-btn-desc">Join us for worship and fellowship</span>
+                        </a>
+                        
+                        <a href="testimonies.html" class="action-btn" aria-label="Read testimonies from our members">
+                            <span class="action-btn-icon" aria-hidden="true">💬</span>
+                            <span class="action-btn-title">Testimonies</span>
+                            <span class="action-btn-desc">Be encouraged by God's work in our lives</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Fallback Message (hidden by default, shown when content unavailable) -->
+            <div class="devotion-fallback" id="devotionFallback" style="display: none;">
+                <h3>Today's devotion is being prepared</h3>
+                <p>We are prayerfully preparing today's devotional message. Please check back shortly.</p>
+                
+                <div class="fallback-scripture">
+                    <p>"Wait for the LORD; be strong and take heart and wait for the LORD."</p>
+                    <p style="margin-top: var(--spacing-xs); font-size: var(--font-sm); opacity: 0.8;">— Psalm 27:14</p>
+                </div>
+                
+                <p style="margin-top: var(--spacing-lg);">
+                    While you wait, we invite you to explore other ways to connect with our church community.
+                </p>
+                
+                <div class="fallback-links">
+                    <a href="calendar.html#prayer">
+                        <span aria-hidden="true">🙏</span> Prayer Requests
+                    </a>
+                    <a href="calendar.html">
+                        <span aria-hidden="true">📅</span> Upcoming Services
+                    </a>
+                    <a href="testimonies.html">
+                        <span aria-hidden="true">💬</span> Testimonies
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--color-primary); color: var(--color-text-inverse); padding: var(--spacing-xl) var(--spacing-md);">
+        <div class="container" style="max-width: var(--container-max-width); margin: 0 auto;">
+            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
+                <div class="footer-col">
+                    <h3 style="color: var(--color-text-inverse); margin-bottom: var(--spacing-md);">Grace and Praise Bangladeshi Church</h3>
+                    <p style="color: var(--color-text-inverse); opacity: 0.9;">A non-profit Christian church serving the Bangladeshi community with love and compassion.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 style="color: var(--color-text-inverse); margin-bottom: var(--spacing-md);">Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="redesign-mockup.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">Home</a></li>
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="about.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">About</a></li>
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="calendar.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">Calendar</a></li>
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="gallery.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 style="color: var(--color-text-inverse); margin-bottom: var(--spacing-md);">Connect</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="prayer-request.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">Prayer Requests</a></li>
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="daily-devotion.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">Daily Devotion</a></li>
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="give.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">Give</a></li>
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="testimonies.html" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">Testimonies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 style="color: var(--color-text-inverse); margin-bottom: var(--spacing-md);">Contact Us</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: var(--spacing-xs); color: var(--color-text-inverse); opacity: 0.9;">📍 1325 Richardson Street</li>
+                        <li style="margin-bottom: var(--spacing-xs); color: var(--color-text-inverse); opacity: 0.9;">🏙️ CA 92408</li>
+                        <li style="margin-bottom: var(--spacing-xs);"><a href="mailto:info@gracepraise.church" style="color: var(--color-text-inverse); text-decoration: none; opacity: 0.9;">📧 info@gracepraise.church</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: var(--spacing-xl); padding-top: var(--spacing-md); text-align: center;">
+                <p style="color: var(--color-text-inverse); opacity: 0.9;">© 2026 Grace and Praise Bangladeshi Church - All rights reserved</p>
+                <p style="margin-top: var(--spacing-xs); opacity: 0.8;">
+                    <a href="privacy-policy.html" style="color: var(--color-text-inverse); text-decoration: underline;">Privacy Policy</a> | 
+                    <a href="terms-conditions.html" style="color: var(--color-text-inverse); text-decoration: underline;">Terms & Conditions</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // ================================================================
+        // DAILY DEVOTION PAGE - SOCIAL SHARING & CONTENT INJECTION
+        // ================================================================
+        
+        /**
+         * This script handles:
+         * 1. Dynamic content injection (placeholders ready for backend)
+         * 2. Social sharing functionality
+         * 3. Graceful fallback when content unavailable
+         */
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // ============================================================
+            // AUTO-GENERATE CURRENT DATE
+            // ============================================================
+            
+            function formatDevotionDate() {
+                const date = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                return date.toLocaleDateString('en-US', options);
+            }
+            
+            // Set current date if placeholder is still present
+            const dateElement = document.getElementById('devotionDate');
+            if (dateElement && dateElement.textContent.includes('{{')) {
+                dateElement.textContent = formatDevotionDate();
+            }
+            
+            // ============================================================
+            // DYNAMIC IMAGE HANDLING WITH FALLBACK
+            // ============================================================
+            
+            const imageElement = document.getElementById('devotionImage');
+            
+            // Default fallback image if file doesn't exist
+            const defaultImageUrl = '/images/devotion-placeholder.jpg';
+            const defaultImageAlt = 'Daily devotion image';
+            
+            // Image error handling - use Unsplash if local image fails to load
+            if (imageElement) {
+                imageElement.onerror = function() {
+                    this.src = 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1200&h=400&fit=crop&q=80';
+                    this.alt = 'Open Bible with morning light, symbolizing daily spiritual reflection and God\'s Word';
+                };
+            }
+            
+            // ============================================================
+            // CONTENT INJECTION POINT
+            // ============================================================
+            // Backend/CMS can inject devotional content here by replacing
+            // placeholders or directly updating these elements
+            
+            const devotionData = {
+                date: dateElement.textContent,
+                bibleReference: '{{bible_reference}}',
+                bibleText: '{{bible_text}}',
+                message: '{{devotion_message}}',
+                prayer: '{{devotion_prayer}}'
+            };
+            
+            // Check if content is available (not placeholder)
+            const isContentAvailable = !devotionData.bibleReference.includes('{{');
+            
+            if (!isContentAvailable) {
+                // Show fallback message if content not loaded
+                showFallback();
+            } else {
+                // Content is available, ensure it's displayed
+                document.getElementById('devotionContent').style.display = 'block';
+                document.getElementById('devotionFallback').style.display = 'none';
+                
+                // Update Open Graph meta tags with actual content for better sharing
+                updateSocialMetaTags();
+            }
+            
+            // ============================================================
+            // UPDATE SOCIAL META TAGS FOR SHARING
+            // ============================================================
+            
+            function updateSocialMetaTags() {
+                const reference = document.getElementById('bibleReference').textContent;
+                if (reference && !reference.includes('{{')) {
+                    const title = `Today's Devotion: ${reference} | Grace and Praise Bangladeshi Church`;
+                    const description = getShareText().substring(0, 160);
+                    
+                    // Update OG tags
+                    document.querySelector('meta[property="og:title"]').setAttribute('content', title);
+                    document.querySelector('meta[property="og:description"]').setAttribute('content', description);
+                    
+                    // Update Twitter tags
+                    document.querySelector('meta[property="twitter:title"]').setAttribute('content', title);
+                    document.querySelector('meta[property="twitter:description"]').setAttribute('content', description);
+                }
+            }
+            
+            // ============================================================
+            // SOCIAL SHARING FUNCTIONALITY (Simple)
+            // ============================================================
+            
+            // Get page URL
+            const pageUrl = encodeURIComponent(window.location.href);
+            
+            // Prepare share content
+            function getShareText() {
+                const reference = document.getElementById('bibleReference').textContent;
+                const message = document.getElementById('devotionMessage').textContent;
+                
+                // Extract first 100 chars of message as excerpt
+                let excerpt = message.trim().substring(0, 100);
+                if (message.length > 100) {
+                    excerpt += '...';
+                }
+                
+                return `Today's Devotion – ${reference}\n\n${excerpt}\n\nRead more: ${window.location.href}`;
+            }
+            
+            function getShareTextEncoded() {
+                return encodeURIComponent(getShareText());
+            }
+            
+            // Simple Facebook Share
+            const simpleFbBtn = document.getElementById('shareSimpleFacebook');
+            if (simpleFbBtn) {
+                simpleFbBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+                    window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
+                });
+            }
+            
+            // Simple WhatsApp Share
+            const simpleWaBtn = document.getElementById('shareSimpleWhatsApp');
+            if (simpleWaBtn) {
+                simpleWaBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = `https://wa.me/?text=${getShareTextEncoded()}`;
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                });
+            }
+            
+            // Simple Copy Link
+            const simpleCopyBtn = document.getElementById('copySimpleLink');
+            const simpleCopyText = document.getElementById('copySimpleLinkText');
+            if (simpleCopyBtn && simpleCopyText) {
+                simpleCopyBtn.addEventListener('click', function() {
+                    navigator.clipboard.writeText(window.location.href).then(function() {
+                        simpleCopyText.textContent = 'Copied!';
+                        setTimeout(function() {
+                            simpleCopyText.textContent = 'Copy Link';
+                        }, 2000);
+                    }).catch(function() {
+                        simpleCopyText.textContent = 'Unable to copy';
+                        setTimeout(function() {
+                            simpleCopyText.textContent = 'Copy Link';
+                        }, 2000);
+                    });
+                });
+            }
+            
+            // ============================================================
+            // DEVOTION NAVIGATION (Previous/Next)
+            // ============================================================
+            
+            const prevBtn = document.getElementById('prevDevotionBtn');
+            const nextBtn = document.getElementById('nextDevotionBtn');
+            
+            // Check if navigation URLs are placeholders and disable if needed
+            if (prevBtn && prevBtn.href.includes('{{')) {
+                prevBtn.setAttribute('disabled', 'true');
+                prevBtn.style.opacity = '0.4';
+                prevBtn.style.cursor = 'not-allowed';
+                prevBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            }
+            
+            if (nextBtn && nextBtn.href.includes('{{')) {
+                nextBtn.setAttribute('disabled', 'true');
+                nextBtn.style.opacity = '0.4';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            }
+            
+            // ============================================================
+            // FALLBACK DISPLAY FUNCTION
+            // ============================================================
+            
+            function showFallback() {
+                document.getElementById('devotionContent').style.display = 'none';
+                document.getElementById('devotionFallback').style.display = 'block';
+            }
+            
+            // ============================================================
+            // EXAMPLE: BACKEND CONTENT INJECTION
+            // ============================================================
+            // Backend services can call this function to inject devotional content:
+            /*
+            window.loadDevotionContent = function(data) {
+                // Update text content
+                document.getElementById('devotionDate').textContent = data.date;
+                document.getElementById('bibleReference').textContent = data.bibleReference;
+                document.getElementById('bibleText').textContent = data.bibleText;
+                document.getElementById('devotionMessage').innerHTML = data.message;
+                document.getElementById('devotionPrayer').innerHTML = data.prayer;
+                
+                // Update hero image if provided
+                if (data.imageUrl) {
+                    document.getElementById('devotionImage').src = data.imageUrl;
+                    document.getElementById('devotionImage').alt = data.imageAlt || 'Daily devotion image';
+                }
+                
+                // Show content and hide fallback
+                document.getElementById('devotionContent').style.display = 'block';
+                document.getElementById('devotionFallback').style.display = 'none';
+                
+                // Update social sharing meta tags
+                updateSocialMetaTags();
+            };
+            
+            // Example usage:
+            // window.loadDevotionContent({
+            //     date: 'Wednesday, January 1, 2026',
+            //     bibleReference: 'Philippians 4:6-7',
+            //     bibleText: 'Do not be anxious about anything...',
+            //     message: '<p>Today we are reminded...</p>',
+            //     prayer: '<p>Heavenly Father, thank You...</p>',
+            //     imageUrl: 'https://example.com/devotion-images/2026-01-01.jpg',
+            //     imageAlt: 'Peaceful morning sunrise over mountains'
+            // });
+            */
+        });
+    </script>
+    
+    <!-- Mobile Menu Script -->
+    <script src="mobile-menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Request | Grace and Praise Bangladeshi Church</title>
+    <meta name="description" content="Share your prayer request with Grace and Praise Bangladeshi Church. We're here to pray with you and support you.">
+    <link rel="stylesheet" href="redesign-styles.css">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="redesign-mockup.html" class="logo">GPBC</a>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="redesign-mockup.html#live">LIVE</a></li>
+                    <li><a href="redesign-mockup.html">Home</a></li>
+                    <li class="nav-dropdown">
+                        <a href="about.html" aria-haspopup="true" aria-expanded="false">About <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="history.html">Our History</a></li>
+                            <li><a href="mission.html">Our Mission</a></li>
+                            <li><a href="leadership.html">Our Leadership</a></li>
+                            <li><a href="beliefs.html">Our Beliefs</a></li>
+                            <li><a href="core-values.html">Our Core Values</a></li>
+                            <li><a href="position-papers.html">Position Papers</a></li>
+                            <li><a href="testimonies.html">Testimonies</a></li>
+                            <li><a href="songbook.html">GPBC Song Book</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="redesign-mockup.html#next-service">Next Service</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="prayer-request.html" class="active">Prayer</a></li>
+                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
+                    <li><a href="give.html">Give</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="mobile-overlay"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section - EXACT match to redesign-mockup.html -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>You Are Not Alone</h1>
+                    <p class="tagline">We would be honored to pray for you. Whatever you're walking through, we are here.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intro Statement - Same pattern as Home "Welcome" intro -->
+        <section class="welcome">
+            <div class="welcome-content">
+                <p class="intro">Your prayer matters. No request is too small, and every request is handled with care and confidentiality.</p>
+            </div>
+        </section>
+
+        <!-- Trust Cards - REUSE "What's Happening" card grid -->
+        <section class="whats-happening">
+            <div class="feature-cards">
+                <article class="feature-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h3>Your Privacy Matters</h3>
+                    <p>Every prayer request is handled with the utmost care and confidentiality. Shared only with our trusted prayer team.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <h3>You Are Heard</h3>
+                    <p>Real people—your church family—will be praying for you by name, believing with you for God's peace, healing, and provision.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Prayer Form - Emotional Centerpiece -->
+        <section class="next-step">
+            <h2>How Can We Pray for You?</h2>
+            <p>Take your time. Even a few words are enough.</p>
+            
+            <div class="prayer-form-container" style="max-width: 700px; margin-left: auto; margin-right: auto; padding: var(--spacing-3xl); background: var(--color-surface); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--color-border);">
+                <form class="prayer-form" id="prayer-form" aria-label="Prayer request form" style="display: flex; flex-direction: column; gap: var(--spacing-xl);">
+                    <div class="form-group">
+                        <label for="prayer-name" style="display: block; margin-bottom: var(--spacing-sm); color: var(--color-text); font-size: var(--font-base); font-weight: var(--font-medium);">Your Name (optional)</label>
+                        <input 
+                            type="text" 
+                            id="prayer-name" 
+                            name="name"
+                            placeholder="You may leave this blank"
+                            autocomplete="name"
+                            style="width: 100%; padding: var(--spacing-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--font-base); transition: all var(--transition-base); background: var(--color-background);"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prayer-email" style="display: block; margin-bottom: var(--spacing-sm); color: var(--color-text); font-size: var(--font-base); font-weight: var(--font-medium);">Your Email (optional)</label>
+                        <input 
+                            type="email" 
+                            id="prayer-email" 
+                            name="email"
+                            placeholder="Only if you'd like us to follow up"
+                            autocomplete="email"
+                            style="width: 100%; padding: var(--spacing-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--font-base); transition: all var(--transition-base); background: var(--color-background);"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prayer-request" style="display: block; margin-bottom: var(--spacing-sm); color: var(--color-text); font-size: var(--font-base); font-weight: var(--font-medium);">Your Prayer <span style="color: var(--color-secondary);">*</span></label>
+                        <textarea 
+                            id="prayer-request" 
+                            name="request"
+                            rows="5"
+                            required
+                            placeholder="You can write just a few words. God understands."
+                            aria-required="true"
+                            style="width: 100%; padding: var(--spacing-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--font-base); line-height: var(--leading-relaxed); transition: all var(--transition-base); background: var(--color-background); resize: vertical; min-height: 140px;"
+                        ></textarea>
+                    </div>
+
+                    <div style="padding: var(--spacing-lg); background: linear-gradient(135deg, rgba(201, 169, 97, 0.06) 0%, rgba(212, 175, 106, 0.06) 100%); border-radius: var(--radius-md); border-left: 3px solid var(--color-secondary);">
+                        <p style="margin: 0 0 var(--spacing-md) 0; font-size: var(--font-sm); color: var(--color-text); line-height: var(--leading-relaxed);">Your prayer is handled with care and confidentiality.</p>
+                        
+                        <label class="checkbox-label" style="display: flex; align-items: flex-start; gap: var(--spacing-sm); cursor: pointer;">
+                            <input 
+                                type="checkbox" 
+                                id="prayer-private" 
+                                name="private"
+                                value="yes"
+                                style="margin-top: 2px; width: 18px; height: 18px; cursor: pointer;"
+                            >
+                            <span style="font-size: var(--font-sm); color: var(--color-text-light); line-height: var(--leading-normal);">Keep my request private (shared only with the prayer team)</span>
+                        </label>
+                    </div>
+
+                    <div class="next-step-cta" style="text-align: center; margin-top: var(--spacing-md);">
+                        <button type="submit" class="btn btn-primary" style="padding: var(--spacing-md) var(--spacing-2xl); font-size: var(--font-lg); min-width: 240px;">Share My Prayer</button>
+                    </div>
+                    
+                    <p style="text-align: center; font-size: var(--font-sm); color: var(--color-text-light); line-height: var(--leading-relaxed); margin: var(--spacing-md) 0 0 0; font-style: italic;">We pray over every request with love and respect.</p>
+                </form>
+
+                <!-- Success Message (hidden by default) -->
+                <div class="prayer-success-message" id="prayer-success" style="display: none;">
+                    <div class="success-icon">✨</div>
+                    <h3>Thank You for Trusting Us with Your Request</h3>
+                    <p class="success-main">We are praying for you right now. You've taken a step of faith by reaching out, and we want you to know that you are deeply cared for.</p>
+                    
+                    <div class="success-assurance">
+                        <p><strong>What happens next:</strong></p>
+                        <p>Our prayer team has received your request and is already bringing your needs before God. You are not forgotten, and you are not alone in this.</p>
+                    </div>
+                    
+                    <div class="peace-verse">
+                        <p class="verse-icon">📖</p>
+                        <p class="verse-text">"Cast all your anxiety on him because he cares for you."</p>
+                        <p class="verse-reference">— 1 Peter 5:7</p>
+                    </div>
+                    
+                    <p class="success-closing">May you feel God's presence and peace in the days ahead. We're here for you.</p>
+                    
+                    <div class="success-actions">
+                        <button type="button" class="btn btn-secondary" onclick="resetPrayerForm()">Submit Another Request</button>
+                        <a href="index.html" class="btn btn-outline">Return Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Care Process - REUSE "New Here" card grid pattern -->
+        <section class="new-here">
+            <h2>How We Care for Your Prayer Request</h2>
+            <p class="new-here-intro">Your trust means everything to us. Here's how we honor it.</p>
+            
+            <div class="new-here-cards">
+                <div class="new-here-card">
+                    <div class="card-icon">🙏</div>
+                    <h3>We Pray Immediately</h3>
+                    <p>Your request goes directly to our dedicated prayer team. You'll be in our prayers today and in the days to come.</p>
+                </div>
+                
+                <div class="new-here-card">
+                    <div class="card-icon">💝</div>
+                    <h3>We Handle with Care</h3>
+                    <p>Your request is treated with complete confidentiality and respect. We honor your trust by handling every prayer with sensitivity and love.</p>
+                </div>
+                
+                <div class="new-here-card">
+                    <div class="card-icon">🤝</div>
+                    <h3>We Walk with You</h3>
+                    <p>If you've shared contact info, we may reach out to check on you or offer encouragement. You're part of our church family.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bible Verse - EXACT match to Home -->
+        <section class="bible-verse" aria-label="Featured Bible Verse">
+            <blockquote>
+                <p class="verse-text">Cast all your anxiety on him because he cares for you.</p>
+                <cite class="verse-reference">— 1 Peter 5:7</cite>
+            </blockquote>
+        </section>
+
+        <!-- Pastor Contact - REUSE "Next Step" callout -->
+        <section class="next-step">
+            <h2>Need Someone to Talk To?</h2>
+            <p>If you need immediate pastoral care or just want to talk with someone, please don't hesitate to reach out directly.</p>
+            <div class="next-step-cta">
+                <a href="mailto:info@gracepraise.church" class="btn btn-primary">📧 Email a Pastor</a>
+            </div>
+            <p style="margin-top: var(--spacing-md); font-size: var(--font-sm); color: var(--color-text-light);"><strong>Crisis Support:</strong> If you're experiencing a life-threatening emergency, please call 911 or contact the <a href="tel:988" style="color: var(--color-primary); text-decoration: underline;">988 Suicide & Crisis Lifeline</a> (call or text 988).</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Grace and Praise Bangladeshi Church</h3>
+                <address>
+                    1325 Richardson Street<br>
+                    San Bernardino, CA 92408
+                </address>
+                <p>📧 gracepraisebangladeshichurch@gmail.com</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="redesign-mockup.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="prayer-request.html">Prayer Requests</a></li>
+                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
+                    <li><a href="give.html">Give</a></li>
+                    <li><a href="testimonies.html">Testimonies</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Grace and Praise Bangladeshi Church. All rights reserved.</p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms &amp; Conditions</a></p>
+        </div>
+    </footer>
+
+    <script src="redesign-scripts.js" defer></script>
+    <script src="prayer-form.js" defer></script>
+    
+    <!-- Dropdown menu accessibility script -->
+    <script>
+        // Dropdown menu accessibility and keyboard navigation
+        const navDropdown = document.querySelector('.nav-dropdown');
+        if (navDropdown) {
+            const dropdownToggle = navDropdown.querySelector('a[aria-haspopup]');
+            const dropdownMenu = navDropdown.querySelector('.dropdown-menu');
+            const dropdownLinks = dropdownMenu ? dropdownMenu.querySelectorAll('a') : [];
+
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const isExpanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+                        dropdownToggle.setAttribute('aria-expanded', !isExpanded);
+                        
+                        if (!isExpanded && dropdownLinks.length > 0) {
+                            dropdownLinks[0].focus();
+                        }
+                    } else if (e.key === 'Escape') {
+                        dropdownToggle.setAttribute('aria-expanded', 'false');
+                        dropdownToggle.focus();
+                    }
+                });
+
+                navDropdown.addEventListener('mouseenter', () => {
+                    dropdownToggle.setAttribute('aria-expanded', 'true');
+                });
+
+                navDropdown.addEventListener('mouseleave', () => {
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            dropdownLinks.forEach((link, index) => {
+                link.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        if (index < dropdownLinks.length - 1) {
+                            dropdownLinks[index + 1].focus();
+                        }
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        if (index > 0) {
+                            dropdownLinks[index - 1].focus();
+                        } else {
+                            dropdownToggle.focus();
+                        }
+                    } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        dropdownToggle.setAttribute('aria-expanded', 'false');
+                        dropdownToggle.focus();
+                    }
+                });
+            });
+        }
+
+        // Mobile menu toggle
+        const header = document.querySelector('header');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('mobile-open');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', toggleMobileMenu);
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('mobile-open')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

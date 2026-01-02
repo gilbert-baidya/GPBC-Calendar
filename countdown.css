@@ -1,47 +1,86 @@
 /**
- * Countdown Timer Styles - Hero Integrated Version
+ * Countdown Timer Styles - Warm Minimal Design
  * Next upcoming service/event banner for GPBC
+ * Aligned with homepage warm cream aesthetic
  */
 
+/* Color Palette (matches redesign-styles.css) */
+:root {
+    --countdown-bg: #faf8f5;
+    --countdown-surface: #ffffff;
+    --countdown-text: #2c2c2c;
+    --countdown-text-light: #6b6b6b;
+    --countdown-accent: #ffff80;
+    --countdown-accent-solid: #ffff00;
+    --countdown-navy: #1e3a5f;
+    --countdown-border: #e8e4dd;
+    --countdown-shadow: rgba(30, 58, 95, 0.08);
+    --countdown-shadow-md: rgba(30, 58, 95, 0.10);
+}
+
+/* === Warm Minimal Next Service Card === */
 .countdown-hero-banner {
     position: fixed;
     top: 90px;
     right: 30px;
     z-index: 1000;
-    width: 360px;
-    max-width: 360px;
+    width: 380px;
+    max-width: 380px;
     padding: 0;
     background: transparent;
 }
 
-/* Next Service Title with Border */
+/* Next Service Title - Warm Minimal Style */
 .countdown-hero-banner .services-main-title {
-    background: rgba(102, 126, 234, 0.95);
-    color: white;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: 2px solid white;
+    background: var(--countdown-surface);
+    color: var(--countdown-navy);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.65rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid var(--countdown-border);
     margin-bottom: 0.75rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    box-shadow: 
+        0 2px 4px var(--countdown-shadow),
+        0 4px 12px var(--countdown-shadow-md);
+    backdrop-filter: blur(10px);
 }
 
-/* Next Event Banner - Hero and embedded versions */
+/* Next Event Banner - Warm Minimal Card */
 .countdown-hero-banner .next-event-banner,
 .next-event-banner {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 12px;
-    padding: 1rem 1.25rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: var(--countdown-surface);
+    backdrop-filter: blur(24px);
+    border-radius: 16px;
+    padding: 1.5rem 1.5rem;
+    box-shadow: 
+        0 4px 6px var(--countdown-shadow),
+        0 10px 20px var(--countdown-shadow-md);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 0.75rem;
-    border: 2px solid rgba(102, 126, 234, 0.5);
-    transition: all var(--transition);
+    gap: 1rem;
+    border: 1px solid var(--countdown-border);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle gold accent bar on card */
+.countdown-hero-banner .next-event-banner::before,
+.next-event-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--countdown-accent);
+    opacity: 0.6;
 }
 
 /* All Services Banner */
@@ -50,12 +89,11 @@
 }
 
 .services-main-title {
-    color: #000000;
+    color: var(--countdown-navy);
     font-size: 2rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 2rem;
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
 }
 
 .services-grid {
@@ -65,33 +103,61 @@
     width: 100%;
 }
 
+/* Warm Minimal Service Card */
 .service-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
+    background: var(--countdown-surface);
+    backdrop-filter: blur(24px);
     border-radius: 16px;
-    padding: 1.5rem;
-    border: 2px solid rgba(102, 126, 234, 0.3);
+    padding: 1.75rem;
+    border: 1px solid var(--countdown-border);
     transition: all 0.3s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        0 4px 6px var(--countdown-shadow),
+        0 10px 20px var(--countdown-shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--countdown-accent);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
 }
 
 .service-card:hover {
-    background: rgba(255, 255, 255, 1);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    background: var(--countdown-surface);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 8px 12px rgba(30, 58, 95, 0.12),
+        0 16px 32px rgba(30, 58, 95, 0.15);
+    border-color: var(--countdown-accent);
+}
+
+.service-card:hover::before {
+    opacity: 0.8;
 }
 
 .service-card.happening-now {
-    border-color: rgba(74, 222, 128, 0.8);
-    background: rgba(74, 222, 128, 0.25);
-    animation: pulse 2s ease-in-out infinite;
+    border-color: rgba(74, 222, 128, 0.4);
+    background: var(--countdown-surface);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.service-card.happening-now::before {
+    background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%);
 }
 
 .service-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     margin-bottom: 1rem;
 }
 
@@ -105,36 +171,39 @@
 }
 
 .service-title h3 {
-    color: #2d3748;
-    font-size: 1.1rem;
-    margin: 0 0 0.3rem 0;
-    text-shadow: none;
+    color: var(--countdown-navy);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
     text-align: center;
+    line-height: 1.4;
 }
 
+/* Warm Minimal Service Badge */
 .service-badge {
     display: inline-block;
-    background: rgba(102, 126, 234, 0.15);
-    color: #667eea;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.65rem;
+    background: rgba(255, 255, 0, 0.12);
+    color: #808000;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 0, 0.25);
 }
 
 .service-datetime {
-    color: #4a5568;
+    color: var(--countdown-text-light);
     font-size: 0.95rem;
     margin-bottom: 1rem;
     font-weight: 600;
-    text-shadow: none;
-    background: rgba(102, 126, 234, 0.08);
-    padding: 0.5rem;
-    border-radius: 8px;
+    background: rgba(232, 228, 221, 0.5);
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
     text-align: center;
+    border: 1px solid var(--countdown-border);
 }
 
 .service-countdown {
@@ -142,24 +211,32 @@
     justify-content: center;
 }
 
-/* Old single banner styles - keep for backwards compatibility */
+/* Hover Effects */
 .countdown-hero-banner .next-event-banner:hover,
 .next-event-banner:hover {
-    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 
+        0 6px 12px rgba(30, 58, 95, 0.12),
+        0 16px 32px rgba(30, 58, 95, 0.15);
+    border-color: var(--countdown-accent);
 }
 
-/* For About page - maintain styling */
+/* For About page - warm minimal styling */
 #nextServiceCountdown .next-event-banner {
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 4px 6px var(--countdown-shadow),
+        0 10px 20px var(--countdown-shadow-md);
 }
 
 .next-event-banner.happening-now {
-    border-color: rgba(74, 222, 128, 0.6);
-    background: rgba(74, 222, 128, 0.2);
-    animation: pulse 2s ease-in-out infinite;
+    border-color: rgba(74, 222, 128, 0.3);
+    background: var(--countdown-surface);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.next-event-banner.happening-now::before {
+    background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%);
 }
 
 .event-info {
@@ -167,63 +244,62 @@
     width: 100%;
 }
 
+/* Warm Minimal Event Type Badge */
 .event-type {
     display: inline-block;
-    background: rgba(102, 126, 234, 0.2);
-    color: #667eea;
-    padding: 0.25rem 0.6rem;
-    border-radius: var(--radius-full);
-    font-size: 0.65rem;
+    background: rgba(255, 255, 0, 0.12);
+    color: #808000;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
     font-weight: 700;
-    margin-bottom: 0.4rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(102, 126, 234, 0.3);
+    margin-bottom: 0.6rem;
+    box-shadow: 0 2px 4px var(--countdown-shadow);
+    border: 1px solid rgba(255, 255, 0, 0.25);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .event-type.live {
-    background: rgba(74, 222, 128, 0.9);
-    animation: pulse 1.5s ease-in-out infinite;
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.9) 0%, rgba(34, 197, 94, 0.9) 100%);
+    color: white;
+    animation: pulse-glow 1.5s ease-in-out infinite;
+    border-color: rgba(74, 222, 128, 0.4);
 }
 
 .event-title-banner {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    margin-bottom: 0.5rem;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 
 .event-icon-large {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .event-title-banner h2 {
-    font-size: 0.95rem;
-    color: #333;
+    font-size: 1.1rem;
+    color: var(--countdown-navy);
     margin: 0;
     font-weight: 700;
+    line-height: 1.4;
 }
 
+/* Warm Minimal Event DateTime */
 .event-datetime {
-    color: #333;
-    font-weight: 700;
-    font-size: 0.8rem;
-    background: rgba(102, 126, 234, 0.1);
-    padding: 0.4rem 0.6rem;
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
-}
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.event-location {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--countdown-text-light);
+    font-weight: 600;
     font-size: 0.85rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    background: rgba(232, 228, 221, 0.5);
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--countdown-border);
 }
-
 .countdown-display {
     flex: 0 0 auto;
     width: 100%;
@@ -235,93 +311,134 @@
     display: none;
 }
 
-/* Countdown Timer Display */
+/* Warm Minimal Countdown Timer Display */
 .countdown-timer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
+    gap: 0.65rem;
+    width: 100%;
 }
 
 .time-unit {
     text-align: center;
-    background: rgba(102, 126, 234, 0.1);
-    padding: 0.35rem 0.25rem;
-    border-radius: 8px;
-    border: 1.5px solid rgba(102, 126, 234, 0.2);
+    background: rgba(232, 228, 221, 0.4);
+    padding: 0.6rem 0.4rem;
+    border-radius: 12px;
+    border: 1px solid var(--countdown-border);
     transition: all 0.3s ease;
-    min-width: 45px;
+    min-width: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle shine effect on hover */
+.time-unit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.time-unit:hover::before {
+    left: 100%;
 }
 
 .time-unit:hover {
-    transform: scale(1.05);
-    border-color: rgba(102, 126, 234, 0.4);
-    background: rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 0, 0.4);
+    background: rgba(255, 255, 0, 0.1);
+    box-shadow: 0 4px 8px var(--countdown-shadow-md);
 }
 
 .time-value {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    color: #667eea;
+    color: var(--countdown-navy);
     line-height: 1;
 }
 
 .time-label {
     display: block;
-    font-size: 0.55rem;
-    color: #666;
-    margin-top: 0.2rem;
+    font-size: 0.6rem;
+    color: var(--countdown-text-light);
+    margin-top: 0.3rem;
     text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 }
 
+/* Live Now Message (Green kept for urgency/status) */
 .live-now-message {
     text-align: center;
     font-size: 1.1rem;
     color: white;
     font-weight: 700;
-    padding: 0.75rem 1.25rem;
+    padding: 0.85rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    background: rgba(72, 187, 120, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.5);
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+    border-radius: 12px;
+    box-shadow: 
+        0 4px 12px rgba(74, 222, 128, 0.3),
+        0 0 20px rgba(74, 222, 128, 0.2);
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .live-dot {
-    width: 12px;
-    height: 12px;
-    background: var(--success);
+    width: 10px;
+    height: 10px;
+    background: white;
     border-radius: 50%;
-    animation: pulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: pulse-dot 1.5s ease-in-out infinite;
 }
 
-/* Animations */
-@keyframes pulse {
+/* Warm Minimal Animations */
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 
+            0 4px 6px var(--countdown-shadow),
+            0 10px 20px rgba(74, 222, 128, 0.15);
+    }
+    50% {
+        opacity: 0.95;
+        box-shadow: 
+            0 4px 6px var(--countdown-shadow),
+            0 10px 20px rgba(74, 222, 128, 0.25),
+            0 0 30px rgba(74, 222, 128, 0.15);
+    }
+}
+
+@keyframes pulse-dot {
     0%, 100% {
         opacity: 1;
         transform: scale(1);
     }
     50% {
-        opacity: 0.9;
-        transform: scale(1.02);
+        opacity: 0.7;
+        transform: scale(1.2);
     }
 }
 
 @keyframes float {
     0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0px);
     }
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-8px);
     }
 }
 
-/* Responsive Design */
+/* Responsive Design - Mobile Optimized */
 @media (max-width: 768px) {
     /* Mobile: Position countdown at top, not fixed */
     .countdown-hero-banner {
@@ -331,13 +448,14 @@
         max-width: 100%;
         width: 100%;
         padding: 70px 1rem 1rem;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
     }
     
     .countdown-hero-banner .services-main-title {
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin-bottom: 1rem;
         text-align: center;
+        padding: 0.4rem 0.8rem;
     }
     
     .services-grid {
@@ -346,7 +464,7 @@
     }
     
     .service-card {
-        padding: 1rem;
+        padding: 1.25rem;
     }
     
     .service-icon {
@@ -359,13 +477,15 @@
     
     .service-datetime {
         font-size: 0.85rem;
+        padding: 0.5rem 0.6rem;
     }
     
     .countdown-hero-banner .next-event-banner,
     .next-event-banner {
-        padding: 1rem;
-        gap: 0.75rem;
+        padding: 1.25rem;
+        gap: 0.85rem;
         margin: 0;
+        border-radius: 14px;
     }
     
     .event-title-banner h2 {
@@ -373,12 +493,12 @@
     }
     
     .event-icon-large {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
-    .event-datetime,
-    .event-location {
+    .event-datetime {
         font-size: 0.8rem;
+        padding: 0.45rem 0.65rem;
     }
     
     .countdown-timer {
@@ -386,20 +506,45 @@
     }
     
     .time-unit {
-        padding: 0.5rem 0.25rem;
-        min-width: auto;
+        padding: 0.5rem 0.3rem;
+        min-width: 50px;
+        border-radius: 10px;
     }
     
     .time-value {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
     }
     
     .time-label {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
+        margin-top: 0.25rem;
     }
     
     .live-now-message {
-        font-size: 0.95rem;
-        padding: 0.6rem 1rem;
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+        border-radius: 10px;
+    }
+    
+    .live-dot {
+        width: 9px;
+        height: 9px;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .countdown-hero-banner {
+        width: 340px;
+        max-width: 340px;
+        right: 20px;
+    }
+    
+    .time-unit {
+        min-width: 55px;
+    }
+    
+    .time-value {
+        font-size: 1.4rem;
     }
 }

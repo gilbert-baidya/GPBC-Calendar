@@ -1,0 +1,83 @@
+{
+  "_comment": "GPBC Content Configuration - Update this file to change site content without editing HTML",
+  "_instructions": "Edit the values below. Save the file and refresh the website. Keep fallback text in HTML for safety.",
+  
+  "church": {
+    "name": "Grace and Praise Bangladeshi Church",
+    "shortName": "GPBC",
+    "tagline": "✨ Passion for God, Compassion for People! ✨",
+    "address": {
+      "street": "1325 Richardson Street",
+      "city": "San Bernardino",
+      "state": "CA",
+      "zip": "92408",
+      "fullAddress": "1325 Richardson Street, CA 92408",
+      "mapsUrl": "https://maps.google.com/?q=1325+Richardson+Street+CA+92408"
+    }
+  },
+  
+  "services": {
+    "sunday": {
+      "name": "Sunday Worship Service",
+      "day": "Sunday",
+      "time": "5:00 PM",
+      "duration": "90 minutes",
+      "description": "Join us for worship, prayer, and Bible-based message in Bengali and English.",
+      "displayText": "Every Sunday at 5:00 PM",
+      "type": "Regular Service"
+    },
+    "friday": {
+      "name": "Worship Practice & Session",
+      "day": "Friday",
+      "time": "5:30 PM - 7:30 PM",
+      "description": "Weekly worship practice and fellowship."
+    },
+    "saturday": {
+      "name": "Fasting Prayer",
+      "day": "Saturday",
+      "time": "12:00 PM - 2:00 PM",
+      "description": "Dedicated time for prayer and fasting."
+    }
+  },
+  
+  "homepage": {
+    "welcomeTitle": "Welcome Home",
+    "welcomeSubtitle": "We are a vibrant community of believers dedicated to worshipping God, celebrating our Bangladeshi heritage, and sharing Christ's love with our community.",
+    "announcement": {
+      "enabled": true,
+      "title": "Next Service",
+      "icon": "🎉"
+    }
+  },
+  
+  "planVisit": {
+    "heroSubtitle": "We're so glad you're thinking about visiting. Here's everything you need to know to feel welcomed and prepared.",
+    "videoCaption": "A short welcome from our church family.",
+    "postVideoInvitation": "If you feel led, we would love to meet you in person this Sunday."
+  },
+  
+  "whatToExpect": {
+    "parking": "Free parking is available at the building and in the surrounding area.",
+    "firstTimeVisitors": "When you arrive, let someone know it's your first time! Our greeters will be happy to help you find a seat and answer any questions.",
+    "serviceLanguage": "Our services are primarily in Bengali, with portions in English. We provide translation support when needed."
+  },
+  
+  "footer": {
+    "copyright": "© 2025 Grace and Praise Bangladeshi Church. All rights reserved.",
+    "note": "Join us in worship and fellowship. Everyone is welcome!",
+    "email": "info@gracepraise.church"
+  },
+  
+  "social": {
+    "facebook": "#",
+    "youtube": "#",
+    "instagram": "#"
+  },
+  
+  "stats": {
+    "members": 500,
+    "eventsPerYear": 52,
+    "yearsServing": 15,
+    "lovePercentage": 100
+  }
+}

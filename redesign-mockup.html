@@ -5,17 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grace and Praise Bangladeshi Church - San Bernardino, CA</title>
     <link rel="stylesheet" href="redesign-styles.css">
+    <link rel="stylesheet" href="countdown.css">
+    
+    <!-- Structured Data for Special Event -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Gratitude & New Year Celebration",
+      "description": "Join us for a special evening of worship, thanksgiving, and hope as we celebrate the new year together.",
+      "startDate": "2025-12-31T22:30:00-08:00",
+      "endDate": "2026-01-01T01:00:00-08:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Grace and Praise Bangladeshi Church",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1325 Richardson Street",
+          "addressLocality": "San Bernardino",
+          "addressRegion": "CA",
+          "postalCode": "92408",
+          "addressCountry": "US"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Grace and Praise Bangladeshi Church",
+        "url": "https://gracepraise.church"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://gracepraise.church"
+      }
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Sticky Header/Nav -->
     <header>
         <nav>
             <div class="nav-container">
                 <a href="#" class="logo">GPBC</a>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <ul class="nav-links">
                     <li><a href="#live">LIVE</a></li>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li class="nav-dropdown">
+                        <a href="about.html" aria-haspopup="true" aria-expanded="false">About <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="history.html">Our History</a></li>
+                            <li><a href="mission.html">Our Mission</a></li>
+                            <li><a href="leadership.html">Our Leadership</a></li>
+                            <li><a href="beliefs.html">Our Beliefs</a></li>
+                            <li><a href="core-values.html">Our Core Values</a></li>
+                            <li><a href="position-papers.html">Position Papers</a></li>
+                            <li><a href="testimonies.html">Testimonies</a></li>
+                            <li><a href="songbook.html">GPBC Song Book</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#next-service">Next Service</a></li>
                     <li><a href="calendar.html">Calendar</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
@@ -24,62 +83,225 @@
                 </ul>
             </div>
         </nav>
+        <div class="mobile-overlay"></div>
     </header>
+
+    <!-- Special Event Inline Countdown Banner -->
+    <div id="specialEventBanner" class="inline-countdown-banner" role="region" aria-live="polite" aria-atomic="true">
+        <div class="inline-banner-content">
+            <span class="event-icon" aria-hidden="true">🎉</span>
+            <span class="event-label">
+                <strong>Gratitude & New Year Celebration</strong> starts in
+            </span>
+            <time class="inline-countdown" datetime="2025-12-31T22:30:00">
+                <span class="countdown-value" data-unit="days">01</span><span class="countdown-unit">d</span>
+                <span class="countdown-value" data-unit="hours">00</span><span class="countdown-unit">h</span>
+                <span class="countdown-value" data-unit="minutes">30</span><span class="countdown-unit">m</span>
+                <span class="countdown-value" data-unit="seconds">47</span><span class="countdown-unit">s</span>
+            </time>
+            <a href="#event-details" class="banner-link" aria-label="View Gratitude & New Year Celebration details">Details →</a>
+        </div>
+    </div>
 
     <main>
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1>Grace and Praise Bangladeshi Church</h1>
-                <p class="tagline">Passion for God, Compassion for People!</p>
-                <p class="address">📍 1325 Richardson Street, CA 92408</p>
-                <div class="cta-buttons">
-                    <a href="calendar.html" class="btn btn-primary">View Calendar</a>
-                    <a href="#live" class="btn btn-secondary">Watch Live</a>
-                    <a href="#prayer" class="btn btn-tertiary">Prayer Request</a>
+                <div class="hero-text">
+                    <h1>
+                        <span data-lang="en">Grace and Praise Bangladeshi Church</span>
+                        <span data-lang="bn" style="display:none;">[গ্রেস এন্ড প্রেইজ বাংলাদেশী চার্চ]</span>
+                    </h1>
+                    <p class="tagline">
+                        <span data-lang="en">A Christ-centered community worshiping, growing, and serving together</span>
+                        <span data-lang="bn" style="display:none;">[খ্রীষ্ট-কেন্দ্রিক সম্প্রদায়]</span>
+                    </p>
+                    <p class="address">1325 Richardson Street, CA 92408</p>
+                    <div class="cta-buttons">
+                        <a href="#next-service" class="btn btn-primary">
+                            <span data-lang="en">Join the Next Service</span>
+                            <span data-lang="bn" style="display:none;">[পরবর্তী সেবায় যোগদান করুন]</span>
+                        </a>
+                        <a href="#live" class="btn btn-secondary">
+                            <span data-lang="en">Watch Live</span>
+                            <span data-lang="bn" style="display:none;">[সরাসরি দেখুন]</span>
+                        </a>
+                        <a href="#new-here" class="btn btn-secondary">
+                            <span data-lang="en">New Here?</span>
+                            <span data-lang="bn" style="display:none;">[নতুন?]</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-video">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/videoseries?list=UULFOrkCWKNIiDpCzabSxZ2HcQ" 
+                            title="Grace and Praise Bangladeshi Church YouTube Channel"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Next Service -->
-        <section class="next-service" id="next-service">
-            <h2>Next Service</h2>
-            <div class="service-info">
-                <div class="service-badge">Regular Service</div>
-                <h3>Sunday Worship Service</h3>
-                <div class="service-details">
-                    <div class="service-detail-item">
-                        <span class="service-icon">🕐</span>
-                        <span class="service-time">Every Sunday at 5:00 PM</span>
-                    </div>
-                    <div class="service-detail-item">
-                        <span class="service-icon">📍</span>
-                        <span class="service-location">1325 Richardson Street, CA 92408</span>
+        <!-- New Here -->
+        <section class="new-here" id="new-here" aria-labelledby="new-here-heading">
+            <h2 id="new-here-heading">
+                <span data-lang="en">New Here? You Are Welcome</span>
+                <span data-lang="bn" style="display:none;">[নতুন এসেছেন? স্বাগতম]</span>
+            </h2>
+            <p class="new-here-intro">
+                <span data-lang="en">We're so glad you're here! Whether this is your first time or you're just curious about what we're about, you belong. No pressure, no expectations—just a warm welcome waiting for you.</span>
+                <span data-lang="bn" style="display:none;">[আপনাকে স্বাগতম বার্তা]</span>
+            </p>
+            
+            <div class="new-here-questions">
+                <dl>
+                    <dt>
+                        <span data-lang="en">What is the service like?</span>
+                        <span data-lang="bn" style="display:none;">[সেবা কেমন?]</span>
+                    </dt>
+                    <dd>
+                        <span data-lang="en">Think of it as a time to sing, pray, and learn together. You'll hear uplifting music, a down-to-earth message from the Bible, and feel the care of people who are genuinely happy you're there.</span>
+                        <span data-lang="bn" style="display:none;">[সেবার বিবরণ]</span>
+                    </dd>
+                    
+                    <dt>
+                        <span data-lang="en">What language is used?</span>
+                        <span data-lang="bn" style="display:none;">[কোন ভাষা ব্যবহার করা হয়?]</span>
+                    </dt>
+                    <dd>
+                        <span data-lang="en">We use both Bengali and English throughout our services, making everyone feel at home whether they're more comfortable in one language or the other.</span>
+                        <span data-lang="bn" style="display:none;">[বাংলা এবং ইংরেজি উভয়]</span>
+                    </dd>
+                    
+                    <dt>
+                        <span data-lang="en">How long is the service?</span>
+                        <span data-lang="bn" style="display:none;">[সেবা কতক্ষণ?]</span>
+                    </dt>
+                    <dd>
+                        <span data-lang="en">Services typically last about 90 minutes. We know life is busy, so we make every moment count while respecting your time.</span>
+                        <span data-lang="bn" style="display:none;">[প্রায় ৯০ মিনিট]</span>
+                    </dd>
+                    
+                    <dt>What should I expect when I arrive?</dt>
+                    <dd>Just come as you are—no dress code, no need to know anything in advance. You'll see friendly faces ready to help you find a seat. Don't worry about doing anything "wrong"—there's no wrong way to visit us!</dd>
+                </dl>
+            </div>
+            
+            <div class="new-here-cards">
+                <div class="new-here-card">
+                    <div class="card-icon">🎵</div>
+                    <h3>Worship & Prayer</h3>
+                    <p>Sing along or just listen—whatever feels right to you.</p>
+                </div>
+                
+                <div class="new-here-card">
+                    <div class="card-icon">📖</div>
+                    <h3>Bible-Based Message</h3>
+                    <p>Real-life wisdom from the Bible, no complicated language.</p>
+                </div>
+                
+                <div class="new-here-card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Friendly Community</h3>
+                    <p>People who will remember your name and check in on you.</p>
+                </div>
+                
+                <div class="new-here-card">
+                    <div class="card-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Families Welcome</h3>
+                    <p>Kids, babies, everyone—you're all invited, no exceptions.</p>
+                </div>
+            </div>
+            
+            <div class="new-here-cta">
+                <p class="cta-message">We would love to meet you in person.</p>
+                <div class="cta-buttons">
+                    <a href="#next-service" class="btn btn-primary">Plan My Visit</a>
+                    <a href="#prayer" class="btn btn-secondary">Request Prayer</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Event Details -->
+        <section class="special-event-details" id="event-details" aria-labelledby="event-details-heading">
+            <div class="event-details-content">
+                <div class="event-header-section">
+                    <span class="event-icon-large" aria-hidden="true">🎉</span>
+                    <div>
+                        <h2 id="event-details-heading">Gratitude & New Year Celebration</h2>
+                        <p class="event-tagline">Join us for a special evening of worship, thanksgiving, and hope</p>
                     </div>
                 </div>
-                <a href="#calendar" class="btn btn-add-calendar">📅 Add to Calendar</a>
+                
+                <div class="event-info-grid">
+                    <div class="event-info-item">
+                        <span class="info-icon">📅</span>
+                        <div>
+                            <h3>When</h3>
+                            <time datetime="2025-12-31T22:30:00">December 31, 2025 at 10:30 PM</time>
+                            <p class="info-subtext">Ring in the New Year with us!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="event-info-item">
+                        <span class="info-icon">📍</span>
+                        <div>
+                            <h3>Where</h3>
+                            <address>1325 Richardson St<br>San Bernardino, CA 92408</address>
+                            <a href="https://maps.google.com/?q=1325+Richardson+St,+San+Bernardino,+CA+92408" target="_blank" rel="noopener noreferrer" class="map-link">Get Directions →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="event-info-item">
+                        <span class="info-icon">🎵</span>
+                        <div>
+                            <h3>What to Expect</h3>
+                            <p>Worship music, testimonies of gratitude, prayer for the new year, and fellowship</p>
+                        </div>
+                    </div>
+                    
+                    <div class="event-info-item">
+                        <span class="info-icon">👥</span>
+                        <div>
+                            <h3>Who's Invited</h3>
+                            <p>Everyone! Bring family and friends. All ages welcome.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-cta">
+                    <a href="give.html" class="btn btn-primary">RSVP / Support Event</a>
+                    <a href="calendar.html" class="btn btn-secondary">View Full Calendar</a>
+                </div>
             </div>
         </section>
 
         <!-- Welcome Home -->
-        <section class="welcome" id="about">
-            <h2>Welcome Home</h2>
-            <p class="intro">We are a vibrant community of believers who gather to worship God, grow in faith, and serve our community. Whether you're new to church or returning after time away, you'll find a warm welcome here.</p>
+        <section class="welcome" id="about" aria-labelledby="welcome-heading">
+            <div class="welcome-content">
+                <h2 id="welcome-heading">Welcome Home</h2>
+                <p class="intro">We are a vibrant community of believers who gather to worship God, grow in faith, and serve our community. Whether you're new to church or returning after time away, you'll find a warm welcome here.</p>
+            </div>
             
             <div class="stats">
-                <div class="stat-item">
+                <div class="stat-card">
                     <span class="stat-number" data-count="500">0</span>
                     <span class="stat-label">Members</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <span class="stat-number" data-count="20">0</span>
                     <span class="stat-label">Years Serving</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <span class="stat-number" data-count="100">0</span>
                     <span class="stat-label">Weekly Attendance</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <span class="stat-number" data-count="24">0</span>
                     <span class="stat-label">Prayer Support</span>
                 </div>
@@ -87,8 +309,8 @@
         </section>
 
         <!-- What's Happening -->
-        <section class="whats-happening">
-            <h2>What's Happening</h2>
+        <section class="whats-happening" aria-labelledby="happening-heading">
+            <h2 id="happening-heading">What's Happening</h2>
             <div class="feature-cards">
                 <article class="feature-card">
                     <div class="card-icon">
@@ -141,16 +363,16 @@
         </section>
 
         <!-- Bible Verse Highlight -->
-        <section class="bible-verse">
+        <section class="bible-verse" aria-label="Featured Bible Verse">
             <blockquote>
-                <p>"For where two or three gather in my name, there am I with them."</p>
-                <cite>— Matthew 18:20</cite>
+                <p class="verse-text">For where two or three gather in my name, there am I with them.</p>
+                <cite class="verse-reference">— Matthew 18:20</cite>
             </blockquote>
         </section>
 
         <!-- Take Your Next Step -->
-        <section class="next-step">
-            <h2>Take Your Next Step</h2>
+        <section class="next-step" aria-labelledby="next-step-heading">
+            <h2 id="next-step-heading">Take Your Next Step</h2>
             <p>Ready to get more connected? We'd love to help you find your place in our community.</p>
             <div class="next-step-cta">
                 <a href="calendar.html" class="btn btn-primary">Join Us Sunday</a>
@@ -170,6 +392,7 @@
                     <li><a href="calendar.html">Calendar</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="#prayer">Prayer</a></li>
+                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
                     <li><a href="give.html">Give</a></li>
                 </ul>
             </div>
@@ -202,6 +425,108 @@
 
     <!-- Stats Counter Animation Script -->
     <script>
+        // Scroll detection for header
+        const header = document.querySelector('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('mobile-open');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('mobile-open')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Dropdown menu accessibility and keyboard navigation
+        const navDropdown = document.querySelector('.nav-dropdown');
+        if (navDropdown) {
+            const dropdownToggle = navDropdown.querySelector('a[aria-haspopup]');
+            const dropdownMenu = navDropdown.querySelector('.dropdown-menu');
+            const dropdownLinks = dropdownMenu ? dropdownMenu.querySelectorAll('a') : [];
+
+            // Handle keyboard navigation
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const isExpanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+                        dropdownToggle.setAttribute('aria-expanded', !isExpanded);
+                        
+                        if (!isExpanded && dropdownLinks.length > 0) {
+                            dropdownLinks[0].focus();
+                        }
+                    } else if (e.key === 'Escape') {
+                        dropdownToggle.setAttribute('aria-expanded', 'false');
+                        dropdownToggle.focus();
+                    }
+                });
+
+                // Update aria-expanded on hover
+                navDropdown.addEventListener('mouseenter', () => {
+                    dropdownToggle.setAttribute('aria-expanded', 'true');
+                });
+
+                navDropdown.addEventListener('mouseleave', () => {
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            // Handle keyboard navigation within dropdown
+            dropdownLinks.forEach((link, index) => {
+                link.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        if (index < dropdownLinks.length - 1) {
+                            dropdownLinks[index + 1].focus();
+                        }
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        if (index > 0) {
+                            dropdownLinks[index - 1].focus();
+                        } else {
+                            dropdownToggle.focus();
+                        }
+                    } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        dropdownToggle.setAttribute('aria-expanded', 'false');
+                        dropdownToggle.focus();
+                    }
+                });
+            });
+        }
+
         // Intersection Observer for stats animation
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -256,5 +581,6 @@
             }
         });
     </script>
+    <script src="countdown.js"></script>
 </body>
 </html>

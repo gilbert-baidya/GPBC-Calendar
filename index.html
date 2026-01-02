@@ -104,6 +104,7 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://identity.netlify.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Modern CSS Framework -->
@@ -111,11 +112,137 @@
     <link rel="stylesheet" href="mobile-menu.css">
     <link rel="stylesheet" href="countdown.css">
     
+    <!-- Content Manager (loads content.json) -->
+    <script src="content-manager.js" defer></script>
+    
     <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
     
     <style>
         /* Page-specific styles */
+        
+        /* Hero Two-Column Layout */
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .hero-content {
+            text-align: left;
+            color: white;
+        }
+        
+        /* Hero Media Column (Video + Service Info) */
+        .hero-media {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        /* YouTube Video */
+        .hero-video {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Compact Next Service Info (Below Video) */
+        .hero-next-service {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid rgba(255, 255, 0, 0.6);
+        }
+        
+        .service-compact-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .service-icon-small {
+            font-size: 1.3rem;
+        }
+        
+        .service-title-small {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 0;
+        }
+        
+        .service-details-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        
+        .service-details-compact .event-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin: 0;
+        }
+        
+        .service-details-compact .event-datetime {
+            font-size: 0.9rem;
+            color: #6b6b6b;
+            margin: 0;
+        }
+        
+        .service-details-compact .event-location {
+            font-size: 0.85rem;
+            color: #6b6b6b;
+            margin: 0;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero-media {
+                order: 2;
+            }
+        }
+        
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
@@ -348,6 +475,7 @@
                 <li role="none"><a href="calendar.html" role="menuitem">Calendar</a></li>
                 <li role="none"><a href="gallery.html" role="menuitem">Gallery</a></li>
                 <li role="none"><a href="calendar.html#prayer" role="menuitem">Prayer</a></li>
+                <li role="none"><a href="daily-devotion.html" role="menuitem">Daily Devotion</a></li>
                 <li role="none"><a href="give.html" role="menuitem">Give</a></li>
             </ul>
         </div>
@@ -359,30 +487,43 @@
     <section class="hero" id="home" aria-label="Welcome to Grace and Praise Bangladeshi Church">
         <div class="hero-bg"></div>
         <div class="hero-particles"></div>
-        <div class="hero-content">
-            <h1>Grace and Praise Bangladeshi Church</h1>
-            <p class="tagline">✨ Passion for God, Compassion for People! ✨</p>
-            <p class="address">📍 1325 Richardson Street, CA 92408</p>
-            <div class="cta-buttons">
-                <a href="calendar.html" class="btn btn-primary btn-ripple">📅 View Calendar</a>
-                <a href="#welcome" class="btn btn-secondary btn-ripple">Discover More</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Grace and Praise Bangladeshi Church</h1>
+                <p class="tagline">✨ Passion for God, Compassion for People! ✨</p>
+                <p class="address">📍 1325 Richardson Street, CA 92408</p>
+                <div class="cta-buttons">
+                    <a href="calendar.html" class="btn btn-primary btn-ripple">📅 View Calendar</a>
+                    <a href="#welcome" class="btn btn-secondary btn-ripple">Discover More</a>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Next Service Banner -->
-    <section class="next-service-banner">
-        <div class="container">
-            <div class="next-service-header">
-                <span class="service-icon">🎉</span>
-                <h2>Next Service</h2>
-            </div>
-            <div class="next-service-card">
-                <div id="nextServiceContent" class="next-service-content">
-                    <h3 class="service-title">Sunday Worship Service</h3>
-                    <div class="service-badge">Regular Service</div>
-                    <p class="service-time">📅 Every Sunday at 5:00 PM</p>
-                    <div class="service-location">📍 1325 Richardson Street, San Bernardino, CA 92408</div>
+            <div class="hero-media">
+                <!-- YouTube Video Embed -->
+                <div class="hero-video">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/videoseries?list=UULFOrkCWKNIiDpCzabSxZ2HcQ" 
+                            title="Grace and Praise Bangladeshi Church YouTube Channel"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                <!-- Next Service Info (Integrated below video) -->
+                <div class="hero-next-service">
+                    <div id="heroServiceContent" class="hero-service-content">
+                        <div class="service-compact-header">
+                            <span class="service-icon-small">🎉</span>
+                            <h2 class="service-title-small">Next Service</h2>
+                        </div>
+                        <div class="service-details-compact">
+                            <h3 class="event-name">Sunday Worship Service</h3>
+                            <p class="event-datetime">📅 Every Sunday at 5:00 PM</p>
+                            <p class="event-location">📍 1325 Richardson St, San Bernardino, CA</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -512,6 +653,7 @@
                     <ul>
                         <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="calendar.html" style="color: white !important; font-weight: 500 !important;">📅 Calendar</a></li>
                         <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="calendar.html#prayer" style="color: white !important; font-weight: 500 !important;">🙏 Prayer Requests</a></li>
+                        <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="daily-devotion.html" style="color: white !important; font-weight: 500 !important;">📖 Daily Devotion</a></li>
                         <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="give.html" style="color: white !important; font-weight: 500 !important;">💝 Give</a></li>
                         <li style="color: white !important; font-size: 1.1rem !important; font-weight: 500 !important;"><a href="about.html" style="color: white !important; font-weight: 500 !important;">ℹ️ About Us</a></li>
                     </ul>

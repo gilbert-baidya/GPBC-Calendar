@@ -30,6 +30,13 @@
     transform: scale(1.1);
 }
 
+.mobile-menu-btn:focus,
+.mobile-menu-btn:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
 .mobile-menu-btn:active {
     transform: scale(0.95);
 }

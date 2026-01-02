@@ -1,5 +1,63 @@
 // Comprehensive Events Database for 2026
 const events = [
+    // GPBC RECURRING WEEKLY EVENTS (Generated for 2026)
+    // Sunday Worship Services - Every Sunday at 5:00 PM
+    ...Array.from({length: 52}, (_, i) => {
+        const date = new Date(2026, 0, 4 + (i * 7)); // Start Jan 4, 2026 (Sunday)
+        return {
+            date: date.toISOString().split('T')[0],
+            name: 'Sunday Worship Service',
+            category: 'gpbc',
+            eventCategory: 'GPBC',
+            eventType: 'worship',
+            eventDay: 'Sunday',
+            eventTime: '5:00 PM',
+            description: 'Weekly worship service at Grace and Praise Bangladeshi Church'
+        };
+    }),
+    // Sunday Connection - Every Sunday at 4:30 PM
+    ...Array.from({length: 52}, (_, i) => {
+        const date = new Date(2026, 0, 4 + (i * 7)); // Start Jan 4, 2026 (Sunday)
+        return {
+            date: date.toISOString().split('T')[0],
+            name: 'Sunday Connection',
+            category: 'gpbc',
+            eventCategory: 'GPBC',
+            eventType: 'fellowship',
+            eventDay: 'Sunday',
+            eventTime: '4:30 PM',
+            description: 'A time of fellowship and spiritual preparation before worship'
+        };
+    }),
+    // Friday Connection - Every Friday at 5:30 PM
+    ...Array.from({length: 52}, (_, i) => {
+        const date = new Date(2026, 0, 2 + (i * 7)); // Start Jan 2, 2026 (Friday)
+        return {
+            date: date.toISOString().split('T')[0],
+            name: 'Friday Connection',
+            category: 'gpbc',
+            eventCategory: 'GPBC',
+            eventType: 'prayer',
+            eventDay: 'Friday',
+            eventTime: '5:30 PM',
+            description: 'Preparing our hearts for worship through prayer'
+        };
+    }),
+    // Saturday Fasting Prayer - Every Saturday at 12:00 PM
+    ...Array.from({length: 52}, (_, i) => {
+        const date = new Date(2026, 0, 3 + (i * 7)); // Start Jan 3, 2026 (Saturday)
+        return {
+            date: date.toISOString().split('T')[0],
+            name: 'Saturday Fasting Prayer',
+            category: 'gpbc',
+            eventCategory: 'GPBC',
+            eventType: 'prayer',
+            eventDay: 'Saturday',
+            eventTime: '12:00 PM',
+            description: 'A dedicated time of fasting and prayer'
+        };
+    }),
+    
     // BANGLADESHI NATIONAL EVENTS
     { date: '2026-02-21', name: 'International Mother Language Day', category: 'bangladeshi', description: 'UNESCO declared day celebrating martyrs who fought for Bengali language rights' },
     { date: '2026-03-17', name: 'Birthday of Bangabandhu Sheikh Mujibur Rahman', category: 'bangladeshi', description: 'National Children\'s Day - Birth anniversary of Father of the Nation' },
@@ -25,6 +83,8 @@ const events = [
     { date: '2026-02-17', name: 'Ash Wednesday', category: 'christian', description: 'Beginning of Lent - 40 days before Easter' },
     { date: '2026-03-29', name: 'Palm Sunday', category: 'christian', description: 'Commemorating Jesus\'s entry into Jerusalem' },
     { date: '2026-04-02', name: 'Maundy Thursday', category: 'christian', description: 'Commemorating the Last Supper' },
+    { date: '2026-04-02', name: 'Holy Thursday Feet Washing Service', category: 'gpbc', eventCategory: 'GPBC', eventType: 'worship', eventDay: 'Thursday', eventTime: 'TBA', description: 'Special service commemorating Jesus washing the disciples\' feet - a beautiful act of humility and servant leadership' },
+    { date: '2026-04-03', name: 'Good Friday Service', category: 'gpbc', eventCategory: 'GPBC', eventType: 'worship', eventDay: 'Friday', eventTime: 'TBA', description: 'Special service commemorating the crucifixion of Jesus Christ' },
     { date: '2026-04-03', name: 'Good Friday', category: 'christian', description: 'Commemorating the crucifixion of Jesus Christ' },
     { date: '2026-04-05', name: 'Easter Sunday', category: 'christian', description: 'Celebrating the resurrection of Jesus Christ' },
     { date: '2026-04-06', name: 'Easter Monday', category: 'christian', description: 'Day after Easter Sunday' },

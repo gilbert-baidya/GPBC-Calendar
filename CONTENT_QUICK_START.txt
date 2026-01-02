@@ -1,0 +1,108 @@
+╔════════════════════════════════════════════════════════════════╗
+║          GPBC Website Content Update - Quick Guide            ║
+╚════════════════════════════════════════════════════════════════╝
+
+📝 HOW TO UPDATE CONTENT (3 Easy Steps)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣  OPEN content.json in GitHub
+   → Click on the file
+   → Click the pencil icon (✏️) to edit
+
+2️⃣  CHANGE the text values (inside quotes)
+   Example:
+   "time": "5:00 PM"  →  "time": "6:00 PM"
+
+3️⃣  SAVE (Commit changes)
+   → Scroll down
+   → Click "Commit changes"
+   → Wait 2 minutes, then refresh website
+
+
+🎯 MOST COMMON UPDATES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Change Service Time
+   Find: "sunday" → "time"
+   Change: "5:00 PM" → "YOUR NEW TIME"
+   Also update: "displayText"
+
+✅ Update Welcome Message  
+   Find: "homepage" → "welcomeSubtitle"
+   Change: The text inside quotes
+
+✅ Change Address
+   Find: "church" → "address" → "fullAddress"
+   Change: "YOUR NEW ADDRESS"
+
+✅ Update Email
+   Find: "footer" → "email"
+   Change: "your-new-email@church.org"
+
+
+⚠️  IMPORTANT RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ DO:
+   • Change text inside quotes "like this"
+   • Update numbers for stats
+   • Use emojis 🎉 for fun
+
+❌ DON'T:
+   • Remove commas ,
+   • Delete brackets { } [ ]
+   • Remove quote marks " "
+   • Change property names
+
+
+🔧 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: Changes don't show
+Solution: 
+  1. Wait 2 minutes after saving
+  2. Hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+  3. Try incognito/private mode
+
+Problem: Error after saving
+Solution:
+  1. Check for missing commas
+  2. Make sure quotes match: "text"
+  3. Use JSONLint.com to find errors
+  4. Restore previous version if needed
+
+
+✨ PRO TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Make ONE change at a time
+• Use clear commit messages
+• Test changes on website after saving
+• Keep a backup copy before big changes
+
+
+🛡️  SAFETY NET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Don't worry! Even if content.json breaks:
+→ Website uses backup text from HTML
+→ Site keeps working normally
+→ No data is lost
+
+
+📱 QUICK ACCESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Edit Content: github.com/YOUR-REPO/edit/main/content.json
+Validate JSON: jsonlint.com
+Full Guide: See CONTENT_MANAGEMENT.md
+
+
+═══════════════════════════════════════════════════════════════════
+
+Need Help? 
+1. Check CONTENT_MANAGEMENT.md (detailed guide)
+2. Use JSONLint.com to check for errors
+3. Restore previous version from GitHub history
+
+═══════════════════════════════════════════════════════════════════

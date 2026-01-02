@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Visit | Grace and Praise Bangladeshi Church</title>
+    <meta name="description" content="Everything you need to know before visiting Grace and Praise Bangladeshi Church. Service times, what to expect, parking, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="modern.css">
+    <link rel="stylesheet" href="mobile-menu.css">
+    
+    <!-- Content Manager (loads content.json) -->
+    <script src="content-manager.js" defer></script>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav aria-label="Main navigation">
+            <div class="nav-container">
+                <a href="index.html" class="logo">GPBC</a>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="plan-visit.html" class="active">Visit</a></li>
+                    <li><a href="prayer-request.html">Prayer</a></li>
+                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
+                    <li><a href="give.html">Give</a></li>
+                    <li class="language-toggle">
+                        <button id="langToggleBtn" class="lang-btn" aria-label="Switch language">
+                            <span class="lang-option" data-lang-btn="en">EN</span>
+                            <span class="lang-divider">|</span>
+                            <span class="lang-option" data-lang-btn="bn">বাংলা</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay"></div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero-lite Section -->
+        <section class="plan-visit-hero">
+            <h1>
+                <span data-lang="en">Plan Your Visit</span>
+                <span data-lang="bn" style="display:none;">আপনার পরিদর্শনের পরিকল্পনা করুন</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span data-lang="en">We're so glad you're thinking about visiting. Here's everything you need to know to feel welcomed and prepared.</span>
+                <span data-lang="bn" style="display:none;">আমরা খুবই আনন্দিত যে আপনি আমাদের পরিদর্শন করার কথা ভাবছেন। এখানে আপনার জানা প্রয়োজন সবকিছু আছে।</span>
+            </p>
+            <p class="hero-address">📍 1325 Richardson Street, CA 92408</p>
+        </section>
+
+        <!-- Welcome Video Section -->
+        <section class="plan-visit-section welcome-video-section">
+            <h2 class="visually-hidden">
+                <span data-lang="en">Welcome Video</span>
+                <span data-lang="bn" style="display:none;">স্বাগত ভিডিও</span>
+            </h2>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Welcome to Grace and Praise Bangladeshi Church"
+                        frameborder="0" 
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy"
+                        aria-label="Church welcome video">
+                    </iframe>
+                </div>
+                <p class="video-caption">
+                    <span data-lang="en">A short welcome from our church family.</span>
+                    <span data-lang="bn" style="display:none;">আমাদের চার্চ পরিবার থেকে একটি সংক্ষিপ্ত স্বাগত বার্তা।</span>
+                </p>
+            </div>
+
+            <!-- Post-Video Invitation -->
+            <div class="video-next-step">
+                <p class="next-step-text">
+                    <span data-lang="en">If you feel led, we would love to meet you in person this Sunday.</span>
+                    <span data-lang="bn" style="display:none;">আপনি যদি অনুভব করেন, আমরা এই রবিবার আপনার সাথে দেখা করতে চাই।</span>
+                </p>
+                <div class="next-step-buttons">
+                    <a href="#service-info" class="next-step-link">
+                        <span data-lang="en">Plan My Visit</span>
+                        <span data-lang="bn" style="display:none;">আমার পরিদর্শনের পরিকল্পনা করুন</span>
+                    </a>
+                    <a href="calendar.html" class="next-step-link">
+                        <span data-lang="en">View Full Calendar</span>
+                        <span data-lang="bn" style="display:none;">সম্পূর্ণ ক্যালেন্ডার দেখুন</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Time & Location -->
+        <section class="plan-visit-section" id="service-info">
+        <section class="plan-visit-section">
+            <h2>
+                <span data-lang="en">Service Time & Location</span>
+                <span data-lang="bn" style="display:none;">সেবা সময় এবং অবস্থান</span>
+            </h2>
+            <div class="info-card">
+                <div class="info-item">
+                    <span class="info-icon">🕐</span>
+                    <div>
+                        <h3>
+                            <span data-lang="en">Sunday Worship</span>
+                            <span data-lang="bn" style="display:none;">রবিবার উপাসনা</span>
+                        </h3>
+                        <p><strong>
+                            <span data-lang="en">Every Sunday at 5:00 PM</span>
+                            <span data-lang="bn" style="display:none;">প্রতি রবিবার সন্ধ্যা ৫:০০ টা</span>
+                        </strong></p>
+                        <p>
+                            <span data-lang="en">Services last about 90 minutes</span>
+                            <span data-lang="bn" style="display:none;">সেবা প্রায় ৯০ মিনিট স্থায়ী হয়</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <div>
+                        <h3>
+                            <span data-lang="en">Location</span>
+                            <span data-lang="bn" style="display:none;">অবস্থান</span>
+                        </h3>
+                        <p><strong>1325 Richardson Street, CA 92408</strong></p>
+                        <p><a href="https://maps.google.com/?q=1325+Richardson+Street+CA+92408" target="_blank" rel="noopener">
+                            <span data-lang="en">Get Directions →</span>
+                            <span data-lang="bn" style="display:none;">দিকনির্দেশনা পান →</span>
+                        </a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add to Calendar Section -->
+            <div class="add-to-calendar">
+                <p class="calendar-intro">
+                    <span data-lang="en">📅 Never miss a service! Add our Sunday Worship to your calendar:</span>
+                    <span data-lang="bn" style="display:none;">📅 কোনো সেবা মিস করবেন না! আপনার ক্যালেন্ডারে আমাদের রবিবার উপাসনা যোগ করুন:</span>
+                </p>
+                <div class="calendar-buttons">
+                    <a href="#" class="calendar-link" id="addToGoogleCal" target="_blank" rel="noopener">
+                        <span class="calendar-icon">🗓️</span>
+                        <span data-lang="en">Google Calendar</span>
+                        <span data-lang="bn" style="display:none;">গুগল ক্যালেন্ডার</span>
+                    </a>
+                    <a href="#" class="calendar-link" id="addToAppleCal" download="sunday-worship.ics">
+                        <span class="calendar-icon">🍎</span>
+                        <span data-lang="en">Apple / iCal</span>
+                        <span data-lang="bn" style="display:none;">অ্যাপল / iCal</span>
+                    </a>
+                    <a href="#" class="calendar-link" id="addToOutlookCal" download="sunday-worship.ics">
+                        <span class="calendar-icon">📆</span>
+                        <span data-lang="en">Outlook</span>
+                        <span data-lang="bn" style="display:none;">আউটলুক</span>
+                    </a>
+                </div>
+                <p class="calendar-note">
+                    <span data-lang="en">This will add a recurring reminder for every Sunday at 5:00 PM</span>
+                    <span data-lang="bn" style="display:none;">এটি প্রতি রবিবার সন্ধ্যা ৫:০০ টার জন্য একটি পুনরাবৃত্ত অনুস্মারক যোগ করবে</span>
+                </p>
+            </div>
+            
+            <div class="section-cta">
+                <a href="calendar.html" class="btn btn-primary">
+                    <span data-lang="en">View Full Calendar</span>
+                    <span data-lang="bn" style="display:none;">সম্পূর্ণ ক্যালেন্ডার দেখুন</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- What to Expect -->
+        <section class="plan-visit-section alt-bg">
+            <h2>
+                <span data-lang="en">What to Expect</span>
+                <span data-lang="bn" style="display:none;">কী প্রত্যাশা করবেন</span>
+            </h2>
+            <div class="expect-content">
+                <p class="intro-text">
+                    <span data-lang="en">Our Sunday worship is designed to be warm, meaningful, and welcoming. Here's what a typical service looks like:</span>
+                    <span data-lang="bn" style="display:none;">আমাদের রবিবার উপাসনা উষ্ণ, অর্থবহ এবং স্বাগত জানানোর জন্য ডিজাইন করা হয়েছে। একটি সাধারণ সেবা এরকম হয়:</span>
+                </p>
+                <ul class="expect-list">
+                    <li>
+                        <span data-lang="en">Worship music with heartfelt singing</span>
+                        <span data-lang="bn" style="display:none;">হৃদয় দিয়ে গান গাওয়ার সাথে উপাসনা সঙ্গীত</span>
+                    </li>
+                    <li>
+                        <span data-lang="en">Prayer time as a community</span>
+                        <span data-lang="bn" style="display:none;">সম্প্রদায় হিসাবে প্রার্থনার সময়</span>
+                    </li>
+                    <li>
+                        <span data-lang="en">Bible-based message that's practical and encouraging</span>
+                        <span data-lang="bn" style="display:none;">বাইবেল-ভিত্তিক বার্তা যা ব্যবহারিক এবং উৎসাহজনক</span>
+                    </li>
+                    <li>
+                        <span data-lang="en">Fellowship before and after the service</span>
+                        <span data-lang="bn" style="display:none;">সেবার আগে এবং পরে সহভাগিতা</span>
+                    </li>
+                </ul>
+                <p class="reassurance">
+                    <span data-lang="en">You can participate as much or as little as you're comfortable with. No one will put you on the spot.</span>
+                    <span data-lang="bn" style="display:none;">আপনি যতটা সহজ মনে করেন ততটা অংশগ্রহণ করতে পারেন। কেউ আপনাকে চাপে ফেলবে না।</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Language & Worship Style -->
+        <section class="plan-visit-section">
+            <h2>
+                <span data-lang="en">Language & Worship Style</span>
+                <span data-lang="bn" style="display:none;">ভাষা এবং উপাসনা শৈলী</span>
+            </h2>
+            <div class="language-content">
+                <div class="language-block">
+                    <h3>
+                        <span data-lang="en">🗣️ Both Bengali and English</span>
+                        <span data-lang="bn" style="display:none;">🗣️ বাংলা এবং ইংরেজি উভয়</span>
+                    </h3>
+                    <p>
+                        <span data-lang="en">We use both languages throughout our services, making everyone feel at home. Whether you're more comfortable in Bengali or English, you'll be able to follow along and participate.</span>
+                        <span data-lang="bn" style="display:none;">আমরা আমাদের সেবায় উভয় ভাষা ব্যবহার করি, যা সবাইকে বাড়ির মতো অনুভব করায়।</span>
+                    </p>
+                </div>
+                <div class="language-block">
+                    <h3>
+                        <span data-lang="en">👔 Come As You Are</span>
+                        <span data-lang="bn" style="display:none;">👔 যেমন আছেন তেমনই আসুন</span>
+                    </h3>
+                    <p>
+                        <span data-lang="en">There's no dress code. People wear everything from casual clothes to more formal attire. What matters most is that you're here.</span>
+                        <span data-lang="bn" style="display:none;">কোনো পোশাক কোড নেই। সবচেয়ে গুরুত্বপূর্ণ বিষয় হল আপনি এখানে আছেন।</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Highlights -->
+        <section class="plan-visit-section alt-bg">
+            <h2>
+                <span data-lang="en">Upcoming Highlights</span>
+                <span data-lang="bn" style="display:none;">আগামী গুরুত্বপূর্ণ অনুষ্ঠান</span>
+            </h2>
+            <p class="intro-text">
+                <span data-lang="en">Here are some important dates coming up. Join us as we celebrate and worship together!</span>
+                <span data-lang="bn" style="display:none;">এখানে কিছু গুরুত্বপূর্ণ তারিখ আসছে। আমাদের সাথে উদযাপন এবং উপাসনা করুন!</span>
+            </p>
+            
+            <div class="highlights-list" id="upcomingHighlights">
+                <!-- Sunday Worship (Always shown) -->
+                <div class="highlight-item sunday-worship">
+                    <div class="highlight-icon">🙏</div>
+                    <div class="highlight-content">
+                        <h3>
+                            <span data-lang="en">Sunday Worship Service</span>
+                            <span data-lang="bn" style="display:none;">রবিবার উপাসনা সেবা</span>
+                        </h3>
+                        <p class="highlight-date">
+                            <span data-lang="en">Every Sunday at 5:00 PM</span>
+                            <span data-lang="bn" style="display:none;">প্রতি রবিবার সন্ধ্যা ৫:০০ টা</span>
+                        </p>
+                        <p class="highlight-desc">
+                            <span data-lang="en">Join us for worship, prayer, and fellowship</span>
+                            <span data-lang="bn" style="display:none;">উপাসনা, প্রার্থনা এবং সহভাগিতার জন্য আমাদের সাথে যোগ দিন</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Dynamic events will be inserted here -->
+            </div>
+            
+            <div class="section-cta">
+                <a href="calendar.html" class="btn btn-primary">
+                    <span data-lang="en">View Full Calendar</span>
+                    <span data-lang="bn" style="display:none;">সম্পূর্ণ ক্যালেন্ডার দেখুন</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Arrival & Parking -->
+        <section class="plan-visit-section">
+            <h2>
+                <span data-lang="en">Arrival & Parking</span>
+                <span data-lang="bn" style="display:none;">আগমন এবং পার্কিং</span>
+            </h2>
+            <div class="arrival-content">
+                <p>
+                    <strong>
+                        <span data-lang="en">When to Arrive:</span>
+                        <span data-lang="bn" style="display:none;">কখন আসবেন:</span>
+                    </strong>
+                    <span data-lang="en"> We recommend arriving 10-15 minutes early (around 4:45-4:50 PM). This gives you time to find parking, meet a few friendly faces, and settle in before we start.</span>
+                    <span data-lang="bn" style="display:none;"> আমরা ১০-১৫ মিনিট আগে আসার পরামর্শ দিই (প্রায় ৪:৪৫-৪:৫০ মিনিট)।</span>
+                </p>
+                <p>
+                    <strong>
+                        <span data-lang="en">Parking:</span>
+                        <span data-lang="bn" style="display:none;">পার্কিং:</span>
+                    </strong>
+                    <span data-lang="en"> Free parking is available at the building and in the surrounding area.</span>
+                    <span data-lang="bn" style="display:none;"> বিল্ডিং এবং আশেপাশে বিনামূল্যে পার্কিং উপলব্ধ।</span>
+                </p>
+                <p>
+                    <strong>
+                        <span data-lang="en">First-Time Visitors:</span>
+                        <span data-lang="bn" style="display:none;">প্রথমবার পরিদর্শনকারী:</span>
+                    </strong>
+                    <span data-lang="en"> When you arrive, let someone know it's your first time! Our greeters will be happy to help you find a seat and answer any questions.</span>
+                    <span data-lang="bn" style="display:none;"> আপনি এলে কাউকে জানান এটা আপনার প্রথমবার! আমাদের স্বাগতকারীরা আপনাকে সাহায্য করতে খুশি হবে।</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Closing CTA -->
+        <section class="plan-visit-cta">
+            <h2>
+                <span data-lang="en">Ready to Take the Next Step?</span>
+                <span data-lang="bn" style="display:none;">পরবর্তী পদক্ষেপ নিতে প্রস্তুত?</span>
+            </h2>
+            <p>
+                <span data-lang="en">We would love to meet you in person. If you have prayer needs or questions, we're here for you.</span>
+                <span data-lang="bn" style="display:none;">আমরা আপনার সাথে সরাসরি দেখা করতে চাই। যদি আপনার প্রার্থনার প্রয়োজন বা প্রশ্ন থাকে, আমরা আপনার জন্য আছি।</span>
+            </p>
+            <div class="cta-buttons">
+                <a href="prayer-req.html" class="btn btn-secondary">
+                    <span data-lang="en">Request Prayer</span>
+                    <span data-lang="bn" style="display:none;">প্রার্থনা সহায়তা</span>
+                </a>
+                <a href="calendar.html" class="btn btn-primary">
+                    <span data-lang="en">View Full Calendar</span>
+                    <span data-lang="bn" style="display:none;">সম্পূর্ণ ক্যালেন্ডার দেখুন</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Talk to a Pastor -->
+        <section class="pastor-connect">
+            <h3>
+                <span data-lang="en">Would you like to talk to a pastor?</span>
+                <span data-lang="bn" style="display:none;">আপনি কি একজন যাজকের সাথে কথা বলতে চান?</span>
+            </h3>
+            <p>
+                <span data-lang="en">If you have questions, need guidance, or simply want to talk, we are here for you.</span>
+                <span data-lang="bn" style="display:none;">আপনার প্রশ্ন, নির্দেশনার প্রয়োজন, বা কথা বলার ইচ্ছা থাকলে, আমরা আপনার জন্য আছি।</span>
+            </p>
+            <a href="mailto:info@gracepraise.church" class="pastor-contact-link">
+                <span data-lang="en">📧 Email a Pastor</span>
+                <span data-lang="bn" style="display:none;">📧 যাজককে ইমেল করুন</span>
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="plan-visit.html">Plan Your Visit</a></li>
+                    <li><a href="prayer-req.html">Prayer Request</a></li>
+                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
+                    <li><a href="give.html">Give</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <address>
+                    1325 Richardson Street<br>
+                    CA 92408<br>
+                    <a href="mailto:info@gracepraise.church">info@gracepraise.church</a>
+                </address>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Service Times</h3>
+                <p>Sunday Worship<br>5:00 PM</p>
+                <p>Prayer Meeting<br>Available upon request</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Grace and Praise Bangladeshi Church. All rights reserved.</p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></p>
+        </div>
+    </footer>
+
+    <script src="modern.js" defer></script>
+    <script src="mobile-menu.js" defer></script>
+    <script src="events.js" defer></script>
+    <script defer>
+        // Language Toggle Functionality
+        (function() {
+            const STORAGE_KEY = 'gpbc-language';
+            let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
+            
+            function switchLanguage(lang) {
+                currentLang = lang;
+                localStorage.setItem(STORAGE_KEY, lang);
+                
+                // Hide all language elements
+                document.querySelectorAll('[data-lang]').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Show selected language elements
+                document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+                    el.style.display = '';
+                });
+                
+                // Update button active state
+                document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+                    if (btn.dataset.langBtn === lang) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // Update HTML lang attribute
+                document.documentElement.lang = lang;
+            }
+            
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set up toggle button click handler
+                const toggleBtn = document.getElementById('langToggleBtn');
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', function() {
+                        const newLang = currentLang === 'en' ? 'bn' : 'en';
+                        switchLanguage(newLang);
+                    });
+                }
+                
+                // Apply saved language preference
+                switchLanguage(currentLang);
+            });
+        })();
+        
+        // Populate upcoming highlights with next 2 important events
+        document.addEventListener('DOMContentLoaded', function() {
+            const highlightsContainer = document.getElementById('upcomingHighlights');
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Category emoji mapping
+            const categoryEmoji = {
+                'christian': '✝️',
+                'gpbc': '🎉',
+                'bangladeshi': '🇧🇩',
+                'american': '🇺🇸',
+                'special': '⭐'
+            };
+            
+            // Filter and sort upcoming events
+            const upcomingEvents = events
+                .filter(event => {
+                    const eventDate = new Date(event.date);
+                    return eventDate >= today;
+                })
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .slice(0, 2); // Get next 2 events
+            
+            // Add each event to the highlights
+            upcomingEvents.forEach(event => {
+                const eventDate = new Date(event.date);
+                const dateStr = eventDate.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                
+                const highlightItem = document.createElement('div');
+                highlightItem.className = 'highlight-item';
+                highlightItem.innerHTML = `
+                    <div class="highlight-icon">${categoryEmoji[event.category] || '📅'}</div>
+                    <div class="highlight-content">
+                        <h3>${event.name}</h3>
+                        <p class="highlight-date">${dateStr}</p>
+                        <p class="highlight-desc">${event.description || ''}</p>
+                    </div>
+                `;
+                highlightsContainer.appendChild(highlightItem);
+            });
+        });
+        
+        // Add to Calendar Functionality
+        (function() {
+            // Event details for Sunday Worship
+            const eventDetails = {
+                title: 'Sunday Worship Service – Grace and Praise Bangladeshi Church',
+                description: 'Join us for worship, prayer, and Bible-based message. Everyone is welcome!',
+                location: '1325 Richardson Street, CA 92408',
+                // Using next Sunday as start date, then recurring weekly
+                startTime: getNextSunday(),
+                duration: 90 // minutes
+            };
+            
+            // Get next Sunday at 5:00 PM
+            function getNextSunday() {
+                const now = new Date();
+                const daysUntilSunday = (7 - now.getDay()) % 7 || 7;
+                const nextSunday = new Date(now);
+                nextSunday.setDate(now.getDate() + daysUntilSunday);
+                nextSunday.setHours(17, 0, 0, 0); // 5:00 PM
+                return nextSunday;
+            }
+            
+            // Format date for Google Calendar (yyyyMMddTHHmmss)
+            function formatGoogleDate(date) {
+                return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            }
+            
+            // Generate Google Calendar URL
+            function generateGoogleCalendarUrl() {
+                const startDate = eventDetails.startTime;
+                const endDate = new Date(startDate.getTime() + eventDetails.duration * 60000);
+                
+                const params = new URLSearchParams({
+                    action: 'TEMPLATE',
+                    text: eventDetails.title,
+                    details: eventDetails.description,
+                    location: eventDetails.location,
+                    dates: `${formatGoogleDate(startDate)}/${formatGoogleDate(endDate)}`,
+                    recur: 'RRULE:FREQ=WEEKLY;BYDAY=SU' // Recurring weekly on Sunday
+                });
+                
+                return `https://calendar.google.com/calendar/render?${params.toString()}`;
+            }
+            
+            // Generate ICS file content for Apple/Outlook
+            function generateICS() {
+                const startDate = eventDetails.startTime;
+                const endDate = new Date(startDate.getTime() + eventDetails.duration * 60000);
+                
+                // Format date for ICS (yyyyMMddTHHmmss)
+                function formatICSDate(date) {
+                    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                }
+                
+                const ics = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'PRODID:-//Grace and Praise Bangladeshi Church//Sunday Worship//EN',
+                    'CALSCALE:GREGORIAN',
+                    'METHOD:PUBLISH',
+                    'BEGIN:VEVENT',
+                    `DTSTART:${formatICSDate(startDate)}`,
+                    `DTEND:${formatICSDate(endDate)}`,
+                    'RRULE:FREQ=WEEKLY;BYDAY=SU',
+                    `SUMMARY:${eventDetails.title}`,
+                    `DESCRIPTION:${eventDetails.description}`,
+                    `LOCATION:${eventDetails.location}`,
+                    `UID:sunday-worship-${Date.now()}@gracepraise.church`,
+                    'STATUS:CONFIRMED',
+                    'SEQUENCE:0',
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ].join('\\r\\n');
+                
+                return ics;
+            }
+            
+            // Set up calendar links when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                // Google Calendar link
+                const googleLink = document.getElementById('addToGoogleCal');
+                if (googleLink) {
+                    googleLink.href = generateGoogleCalendarUrl();
+                }
+                
+                // Apple/iCal and Outlook links (ICS file)
+                const icsContent = generateICS();
+                const icsBlob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                const icsUrl = URL.createObjectURL(icsBlob);
+                
+                const appleLink = document.getElementById('addToAppleCal');
+                if (appleLink) {
+                    appleLink.href = icsUrl;
+                }
+                
+                const outlookLink = document.getElementById('addToOutlookCal');
+                if (outlookLink) {
+                    outlookLink.href = icsUrl;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

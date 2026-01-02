@@ -6,13 +6,38 @@
 class HomepageEvents {
     constructor() {
         this.container = document.getElementById('dynamic-events-container');
+        // Default address fallback; updated from content.json when available
+        this.churchAddress = {
+            display: '1325 Richardson Street, CA 92408',
+            mapsUrl: 'https://maps.google.com/?q=1325+Richardson+Street+CA+92408'
+        };
         if (this.container) {
             this.init();
+            this.loadAddressFromContent();
         }
     }
 
     init() {
         this.renderUpcomingEvents();
+    }
+
+    async loadAddressFromContent() {
+        try {
+            const response = await fetch('content.json');
+            if (!response.ok) return;
+            const content = await response.json();
+            const addr = content?.church?.address;
+            if (addr?.fullAddress) {
+                this.churchAddress = {
+                    display: addr.fullAddress,
+                    mapsUrl: addr.mapsUrl || `https://maps.google.com/?q=${encodeURIComponent(addr.fullAddress)}`
+                };
+                // Re-render with corrected address if cards already rendered
+                this.renderUpcomingEvents();
+            }
+        } catch (err) {
+            console.warn('Could not load address from content.json, using fallback:', err);
+        }
     }
 
     convertTo24Hour(timeStr) {
@@ -62,13 +87,21 @@ class HomepageEvents {
         return gpbcEvents.slice(0, 1);
     }
 
-    formatEventDate(dateString) {
-        const date = new Date(dateString);
-        const options = { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+    buildLocalDateTime(dateString, timeString = '00:00') {
+        // Construct a Date in local time (avoids UTC shift from Date parsing)
+        const [year, month, day] = dateString.split('-').map(Number);
+        const time24 = this.convertTo24Hour(timeString);
+        const [hours, minutes] = time24.split(':').map(Number);
+        return new Date(year, month - 1, day, hours || 0, minutes || 0, 0);
+    }
+
+    formatEventDate(dateString, timeString) {
+        const date = this.buildLocalDateTime(dateString, timeString);
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         };
         return date.toLocaleDateString('en-US', options);
     }
@@ -89,10 +122,12 @@ class HomepageEvents {
 
     getEventDetails(event) {
         // Extract or generate event details
+        const eventTime = event.eventTime || 'TBA';
         const details = {
-            when: this.formatEventDate(event.date),
-            time: event.eventTime || 'TBA',
-            where: '1325 Richardson St, San Bernardino, CA 92408',
+            when: this.formatEventDate(event.date, eventTime),
+            time: eventTime,
+            where: this.churchAddress.display,
+            mapsUrl: this.churchAddress.mapsUrl,
             whatToExpect: this.getWhatToExpect(event),
             whosInvited: 'Everyone! Bring family and friends. All ages welcome.'
         };
@@ -170,8 +205,8 @@ class HomepageEvents {
                         <span class="info-icon">📍</span>
                         <div>
                             <h3>Where</h3>
-                            <address>${details.where.split(',')[0]}<br>${details.where.split(',').slice(1).join(',')}</address>
-                            <a href="https://maps.google.com/?q=1325+Richardson+St,+San+Bernardino,+CA+92408" target="_blank" rel="noopener noreferrer" class="map-link">Get Directions →</a>
+                            <address>${details.where}</address>
+                            <a href="${details.mapsUrl}" target="_blank" rel="noopener noreferrer" class="map-link">Get Directions →</a>
                         </div>
                     </div>
                     

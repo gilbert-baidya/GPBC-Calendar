@@ -162,25 +162,31 @@ function initializeCalendar() {
 
 function setupEventListeners() {
     // Navigation buttons
-    document.getElementById('prevMonth').addEventListener('click', () => {
-        currentMonth--;
-        if (currentMonth < 0) {
-            currentMonth = 11;
-            currentYear--;
-        }
-        renderCalendar();
-        renderMonthEvents();
-    });
+    const prevMonthBtn = document.getElementById('prevMonth');
+    if (prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+            renderMonthEvents();
+        });
+    }
 
-    document.getElementById('nextMonth').addEventListener('click', () => {
-        currentMonth++;
-        if (currentMonth > 11) {
-            currentMonth = 0;
-            currentYear++;
-        }
-        renderCalendar();
-        renderMonthEvents();
-    });
+    const nextMonthBtn = document.getElementById('nextMonth');
+    if (nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+            renderMonthEvents();
+        });
+    }
 
     // Filter checkboxes (advanced filters)
     document.querySelectorAll('.filter').forEach(checkbox => {
@@ -222,15 +228,24 @@ function setupEventListeners() {
     updatePresetButtons();
 
     // Print button
-    document.getElementById('printBtn').addEventListener('click', () => {
-        window.print();
-    });
+    const printBtn = document.getElementById('printBtn');
+    if (printBtn) {
+        printBtn.addEventListener('click', () => {
+            window.print();
+        });
+    }
 
     // Download as image button
-    document.getElementById('downloadImageBtn').addEventListener('click', downloadCalendarAsImage);
+    const downloadImageBtn = document.getElementById('downloadImageBtn');
+    if (downloadImageBtn) {
+        downloadImageBtn.addEventListener('click', downloadCalendarAsImage);
+    }
 
     // Share button
-    document.getElementById('shareBtn').addEventListener('click', shareEvents);
+    const shareBtn = document.getElementById('shareBtn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', shareEvents);
+    }
 
     // Close modals
     document.querySelectorAll('.close').forEach(closeBtn => {
@@ -247,27 +262,45 @@ function setupEventListeners() {
     });
 
     // Add event form
-    document.getElementById('addEventForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        addGPBCEvent();
-    });
+    const addEventForm = document.getElementById('addEventForm');
+    if (addEventForm) {
+        addEventForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            addGPBCEvent();
+        });
+    }
 
-    document.getElementById('cancelAddEvent').addEventListener('click', () => {
-        document.getElementById('addEventModal').style.display = 'none';
-    });
+    const cancelAddEvent = document.getElementById('cancelAddEvent');
+    if (cancelAddEvent) {
+        cancelAddEvent.addEventListener('click', () => {
+            const addEventModal = document.getElementById('addEventModal');
+            if (addEventModal) {
+                addEventModal.style.display = 'none';
+            }
+        });
+    }
 
     // Delete event button
-    document.getElementById('deleteEventBtn').addEventListener('click', deleteCurrentEvent);
+    const deleteEventBtn = document.getElementById('deleteEventBtn');
+    if (deleteEventBtn) {
+        deleteEventBtn.addEventListener('click', deleteCurrentEvent);
+    }
     
     // Donation button
-    document.getElementById('donationBtn').addEventListener('click', showDonationModal);
+    const donationBtn = document.getElementById('donationBtn');
+    if (donationBtn) {
+        donationBtn.addEventListener('click', showDonationModal);
+    }
 }
 
 function renderCalendar() {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
                        'July', 'August', 'September', 'October', 'November', 'December'];
     
-    document.getElementById('currentMonth').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    const currentMonthEl = document.getElementById('currentMonth');
+    if (currentMonthEl) {
+        currentMonthEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    }
 
     const firstDay = new Date(currentYear, currentMonth, 1);
     const lastDay = new Date(currentYear, currentMonth + 1, 0);

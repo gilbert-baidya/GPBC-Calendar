@@ -1,26 +1,26 @@
 // Comprehensive Events Database for 2026-2036 (10 years)
 const events = [
     // GPBC RECURRING WEEKLY EVENTS (Generated for next 10 years from Jan 2026)
-    // Friday 5:30 PM - Praise & Worship
+    // ✨ Friday 5:30 PM - Friday Connection (Prayer)
     ...Array.from({length: 520}, (_, i) => { // 52 weeks * 10 years
         const date = new Date(2026, 0, 2 + (i * 7)); // Start Jan 2, 2026 (Friday)
         return {
             date: date.toISOString().split('T')[0],
-            name: 'Praise & Worship',
+            name: '✨ Friday Connection (Prayer)',
             category: 'gpbc',
             eventCategory: 'GPBC',
             eventType: 'prayer',
             eventDay: 'Friday',
             eventTime: '5:30 PM',
-            description: 'Friday evening praise and worship session'
+            description: 'Friday evening prayer and worship connection'
         };
     }),
-    // Saturday 12:00 PM - Fasting Prayer
+    // 🙌 Saturday 12:00 PM - Fasting Prayer
     ...Array.from({length: 520}, (_, i) => { // 52 weeks * 10 years
         const date = new Date(2026, 0, 3 + (i * 7)); // Start Jan 3, 2026 (Saturday)
         return {
             date: date.toISOString().split('T')[0],
-            name: 'Fasting Prayer',
+            name: '🙌 Fasting Prayer',
             category: 'gpbc',
             eventCategory: 'GPBC',
             eventType: 'prayer',
@@ -29,12 +29,26 @@ const events = [
             description: 'Saturday fasting and prayer meeting'
         };
     }),
-    // Sunday 5:00 PM - Regular Service
+    // 🙏 Sunday 4:30 PM - Sunday Connection
     ...Array.from({length: 520}, (_, i) => { // 52 weeks * 10 years
         const date = new Date(2026, 0, 4 + (i * 7)); // Start Jan 4, 2026 (Sunday)
         return {
             date: date.toISOString().split('T')[0],
-            name: 'Regular Service',
+            name: '🙏 Sunday Connection',
+            category: 'gpbc',
+            eventCategory: 'GPBC',
+            eventType: 'worship',
+            eventDay: 'Sunday',
+            eventTime: '4:30 PM',
+            description: 'Sunday Connection - fellowship and spiritual connection time'
+        };
+    }),
+    // Sunday 5:00 PM - Worship Service
+    ...Array.from({length: 520}, (_, i) => { // 52 weeks * 10 years
+        const date = new Date(2026, 0, 4 + (i * 7)); // Start Jan 4, 2026 (Sunday)
+        return {
+            date: date.toISOString().split('T')[0],
+            name: 'Worship Service',
             category: 'gpbc',
             eventCategory: 'GPBC',
             eventType: 'worship',
@@ -138,7 +152,7 @@ const categoryEmojis = {
 };
 
 // Events database version - increment when structure changes
-const EVENTS_VERSION = '2.0';
+const EVENTS_VERSION = '3.0';
 
 // Load custom GPBC events from localStorage
 function loadCustomEvents() {

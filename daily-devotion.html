@@ -19,7 +19,7 @@
     <meta property="og:url" content="https://gilbert-baidya.github.io/gracepraise.church/daily-devotion.html">
     <meta property="og:title" content="Daily Devotion | Grace and Praise Bangladeshi Church">
     <meta property="og:description" content="Read today's Bible-based daily devotion and prayer from Grace and Praise Bangladeshi Church.">
-    <meta property="og:image" content="https://gilbert-baidya.github.io/gracepraise.church/images/devotion-og-image.jpg" id="ogImage">
+    <meta property="og:image" content="https://gilbert-baidya.github.io/gracepraise.church/images/devotion-placeholder.jpg" id="ogImage">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     
@@ -28,7 +28,7 @@
     <meta property="twitter:url" content="https://gilbert-baidya.github.io/gracepraise.church/daily-devotion.html">
     <meta property="twitter:title" content="Daily Devotion | Grace and Praise Bangladeshi Church">
     <meta property="twitter:description" content="Read today's Bible-based daily devotion and prayer from Grace and Praise Bangladeshi Church.">
-    <meta property="twitter:image" content="https://gilbert-baidya.github.io/gracepraise.church/images/devotion-og-image.jpg" id="twitterImage">
+    <meta property="twitter:image" content="https://gilbert-baidya.github.io/gracepraise.church/images/devotion-placeholder.jpg" id="twitterImage">
     
     <link rel="stylesheet" href="redesign-styles.css">
     <link rel="stylesheet" href="countdown.css">
@@ -573,7 +573,7 @@
         <section class="devotion-hero">
             <h1>Daily Devotion</h1>
             <h2>A Daily Word from Scripture</h2>
-            <p class="devotion-date" id="devotionDate">{{devotion_date}}</p>
+            <p class="devotion-date" id="devotionDate">Loading...</p>
         </section>
 
         <!-- Hero Image Section -->
@@ -594,9 +594,9 @@
             <div id="devotionContent">
                 <!-- Scripture Section -->
                 <article class="devotion-section scripture-section">
-                    <h3 id="bibleReference">{{bible_reference}}</h3>
+                    <h3 id="bibleReference">Philippians 4:6-7 (NIV)</h3>
                     <blockquote class="scripture-text" id="bibleText">
-                        {{bible_text}}
+                        Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.
                     </blockquote>
                     
                     <!-- Simple Share Section (directly below Scripture) -->
@@ -633,7 +633,13 @@
                 <article class="devotion-section reflection-section">
                     <h3>Reflection</h3>
                     <div class="devotion-text" id="devotionMessage">
-                        <p>{{devotion_message}}</p>
+                        <p>In our fast-paced world, worry and anxiety can easily consume us. Bills to pay, relationships to maintain, work pressures, health concerns—the list seems endless. Yet God's Word offers us a powerful antidote: prayer with thanksgiving.</p>
+                        
+                        <p>Notice that Paul doesn't say "don't worry if everything is going well." He says "in every situation"—whether you're facing challenges or celebrating victories. The key is to bring everything to God in prayer, not with complaints, but with thanksgiving.</p>
+                        
+                        <p>When we choose gratitude in the midst of our struggles, something supernatural happens. God's peace—a peace that defies human logic—guards our hearts and minds. This isn't about pretending problems don't exist; it's about acknowledging that God is bigger than any problem we face.</p>
+                        
+                        <p>Today, instead of dwelling on what's troubling you, pause and thank God for what He's already done. Watch how His peace transforms your perspective and protects your heart.</p>
                     </div>
                 </article>
 
@@ -641,22 +647,32 @@
                 <article class="devotion-section prayer-section">
                     <h3>Prayer</h3>
                     <div class="devotion-text" id="devotionPrayer">
-                        <p>{{devotion_prayer}}</p>
+                        <p>Heavenly Father, thank You for the promise of Your peace. Today, I choose to bring my worries and anxieties to You instead of carrying them alone. I acknowledge that You are sovereign over every situation I face.</p>
+                        
+                        <p>Help me to cultivate a heart of thanksgiving, even when circumstances are difficult. Teach me to see Your hand at work in my life, both in the blessings and in the trials. Guard my heart and mind with Your supernatural peace that surpasses all understanding.</p>
+                        
+                        <p>When anxiety tries to creep in, remind me to turn to You in prayer. Replace my worry with worship, my fear with faith, and my anxiety with assurance of Your unfailing love.</p>
+                        
+                        <p>In Jesus' precious name, Amen.</p>
                     </div>
                 </article>
 
                 <!-- Devotion Navigation (Previous/Next) -->
                 <nav class="devotion-navigation" aria-label="Navigate between devotions">
-                    <a href="{{previous_devotion_url}}" 
+                    <a href="#" 
                        class="devotion-nav-btn prev" 
                        id="prevDevotionBtn"
-                       aria-label="Go to previous devotion">
+                       aria-label="Go to previous devotion"
+                       style="opacity: 0.4; cursor: not-allowed;"
+                       onclick="return false;">
                         <span aria-hidden="true">←</span> Previous Devotion
                     </a>
-                    <a href="{{next_devotion_url}}" 
+                    <a href="#" 
                        class="devotion-nav-btn next" 
                        id="nextDevotionBtn"
-                       aria-label="Go to next devotion">
+                       aria-label="Go to next devotion"
+                       style="opacity: 0.4; cursor: not-allowed;"
+                       onclick="return false;">
                         Next Devotion <span aria-hidden="true">→</span>
                     </a>
                 </nav>

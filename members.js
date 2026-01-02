@@ -8,29 +8,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setupMemberRegistration() {
     // Member registration button
-    document.getElementById('specialDaysRegistrationBtn').addEventListener('click', showMemberRegistrationModal);
+    const specialDaysRegistrationBtn = document.getElementById('specialDaysRegistrationBtn');
+    if (specialDaysRegistrationBtn) {
+        specialDaysRegistrationBtn.addEventListener('click', showMemberRegistrationModal);
+    }
     
     // Show registration form button
-    document.getElementById('showRegistrationForm').addEventListener('click', () => {
-        document.getElementById('memberRegistrationModal').style.display = 'none';
-        document.getElementById('registrationFormModal').style.display = 'block';
-    });
+    const showRegistrationForm = document.getElementById('showRegistrationForm');
+    if (showRegistrationForm) {
+        showRegistrationForm.addEventListener('click', () => {
+            const memberRegistrationModal = document.getElementById('memberRegistrationModal');
+            const registrationFormModal = document.getElementById('registrationFormModal');
+            if (memberRegistrationModal) {
+                memberRegistrationModal.style.display = 'none';
+            }
+            if (registrationFormModal) {
+                registrationFormModal.style.display = 'block';
+            }
+        });
+    }
     
     // Cancel registration
-    document.getElementById('cancelRegistration').addEventListener('click', () => {
-        document.getElementById('registrationFormModal').style.display = 'none';
-    });
+    const cancelRegistration = document.getElementById('cancelRegistration');
+    if (cancelRegistration) {
+        cancelRegistration.addEventListener('click', () => {
+            const registrationFormModal = document.getElementById('registrationFormModal');
+            if (registrationFormModal) {
+                registrationFormModal.style.display = 'none';
+            }
+        });
+    }
     
     // Member registration form submission
-    document.getElementById('memberRegistrationForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        submitMemberRegistration();
-    });
+    const memberRegistrationForm = document.getElementById('memberRegistrationForm');
+    if (memberRegistrationForm) {
+        memberRegistrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitMemberRegistration();
+        });
+    }
     
     // Anniversary checkbox toggle
-    document.getElementById('hasAnniversary').addEventListener('change', (e) => {
-        document.getElementById('anniversarySection').style.display = e.target.checked ? 'block' : 'none';
-    });
+    const hasAnniversary = document.getElementById('hasAnniversary');
+    if (hasAnniversary) {
+        hasAnniversary.addEventListener('change', (e) => {
+            const anniversarySection = document.getElementById('anniversarySection');
+            if (anniversarySection) {
+                anniversarySection.style.display = e.target.checked ? 'block' : 'none';
+            }
+        });
+    }
 }
 
 function showMemberRegistrationModal() {

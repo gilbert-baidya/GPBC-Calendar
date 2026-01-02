@@ -43,7 +43,7 @@ async function loadEventsFromGoogleSheets() {
                         description: event.description || '',
                         addedBy: event.addedBy || '',
                         contact: event.contact || '',
-                        owner: event.owner || '',
+                        owner: event.owner || CODE_OWNER,
                         timestamp: event.timestamp || '',
                         imageUrl: event.imageUrl || ''
                     });

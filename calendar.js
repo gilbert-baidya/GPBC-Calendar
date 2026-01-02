@@ -1,7 +1,7 @@
 // Calendar Logic
 let currentMonth = 0; // January 2026
 let currentYear = 2026;
-let activeFilters = new Set(); // Empty by default - user must check filters to see events
+let activeFilters = new Set(['gpbc', 'christian']); // Default to church + Christian events
 let currentPreset = ''; // No preset active by default
 let selectedDate = null;
 let currentEvent = null;
@@ -27,16 +27,19 @@ if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') 
     emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
-// Initialize calendar on page load
-document.addEventListener('DOMContentLoaded', async function() {
-    // Generate Calendar Access QR Code
-    generateCalendarAccessQR();
-    
-    // Load events from Google Sheets if configured
-    if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
-        showLoadingIndicator('Loading events from database...');
-        const loaded = await loadEventsFromGoogleSheets();
-        hideLoadingIndicator();
+    // Initialize calendar on page load
+    document.addEventListener('DOMContentLoaded', async function() {
+        // Generate Calendar Access QR Code
+        generateCalendarAccessQR();
+        
+        // Ensure filters are set to show GPBC/Christian events by default
+        updateAdvancedCheckboxes();
+        
+        // Load events from Google Sheets if configured
+        if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
+            showLoadingIndicator('Loading events from database...');
+            const loaded = await loadEventsFromGoogleSheets();
+            hideLoadingIndicator();
         
         if (!loaded) {
             // Fallback to localStorage if Google Sheets fails
@@ -572,9 +575,9 @@ function showEventDetail(event) {
         categoryDiv.appendChild(friendlyBadge);
     }
     
-    // Show delete button only for GPBC events created by code owner
+    // Show delete button for GPBC events created by code owner (or missing owner defaults to code owner)
     const deleteContainer = document.getElementById('deleteButtonContainer');
-    if (event.category === 'gpbc' && event.owner === CODE_OWNER) {
+    if (event.category === 'gpbc' && (!event.owner || event.owner === CODE_OWNER)) {
         deleteContainer.style.display = 'block';
     } else {
         deleteContainer.style.display = 'none';
@@ -770,8 +773,9 @@ async function addGPBCEvent() {
 }
 
 async function deleteCurrentEvent() {
-    if (!currentEvent || currentEvent.category !== 'gpbc' || currentEvent.owner !== CODE_OWNER) {
-        alert('Only events created by the code owner can be deleted.');
+    const eventOwner = currentEvent?.owner || CODE_OWNER;
+    if (!currentEvent || currentEvent.category !== 'gpbc' || (eventOwner !== CODE_OWNER)) {
+        alert('Only GPBC events created by the code owner can be deleted.');
         return;
     }
     
@@ -780,7 +784,9 @@ async function deleteCurrentEvent() {
         
         // Try to delete from Google Sheets first
         if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
-            const deleted = await deleteEventFromGoogleSheets(currentEvent);
+            // Ensure owner is sent for legacy events missing owner
+            const eventToDelete = { ...currentEvent, owner: eventOwner };
+            const deleted = await deleteEventFromGoogleSheets(eventToDelete);
             if (deleted) {
                 // Reload all events from Google Sheets to get the latest data
                 await loadEventsFromGoogleSheets();
@@ -791,7 +797,7 @@ async function deleteCurrentEvent() {
                     e.date === currentEvent.date && 
                     e.name === currentEvent.name && 
                     e.category === 'gpbc' &&
-                    e.owner === CODE_OWNER
+                    (e.owner || CODE_OWNER) === CODE_OWNER
                 );
                 
                 if (index !== -1) {
@@ -805,7 +811,7 @@ async function deleteCurrentEvent() {
                 e.date === currentEvent.date && 
                 e.name === currentEvent.name && 
                 e.category === 'gpbc' &&
-                e.owner === CODE_OWNER
+                (e.owner || CODE_OWNER) === CODE_OWNER
             );
             
             if (index !== -1) {

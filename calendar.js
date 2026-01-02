@@ -107,7 +107,7 @@ function updateAdvancedCheckboxes() {
 // Helper function to check if an event should be displayed based on active filters
 function shouldDisplayEvent(event) {
     if (activeFilters.size === 0) {
-        return true;
+        return false; // Don't show any events when no filters are active
     }
     
     // Handle dedicated service-specific filters

@@ -1438,6 +1438,53 @@ header.scrolled nav {
 }
 
 /* ========================================
+   Next Service Section
+   ======================================== */
+
+.next-service-section {
+    padding: var(--spacing-3xl) var(--spacing-md);
+    background: var(--color-surface);
+    text-align: center;
+}
+
+.next-service-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.next-service-content h2 {
+    font-size: var(--font-4xl);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+}
+
+.next-service-intro {
+    font-size: var(--font-lg);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Countdown container for Next Service section */
+.next-service-section .countdown-top-strip {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .next-service-content h2 {
+        font-size: var(--font-3xl);
+    }
+    
+    .next-service-intro {
+        font-size: var(--font-base);
+    }
+}
+
+/* ========================================
    Welcome Section - Style C
    ======================================== */
 

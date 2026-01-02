@@ -248,24 +248,14 @@
         .devotion-container {
             position: relative;
             z-index: 1;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Hide the interim header box to keep the layout clean */
+        #devotionHeader {
+            display: none;
         }
         
-        /* Hero Image Section */
-        .devotion-hero-image {
-            max-width: 1200px;
-            margin: 0 auto var(--spacing-xl);
-            padding: 0 var(--spacing-md);
-        }
-        
-        .devotion-hero-image img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-            display: block;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-xl);
-        }
         
         .devotion-container {
             max-width: 800px;
@@ -730,8 +720,8 @@
                     <span></span>
                 </button>
                 <ul class="nav-links">
-                    <li><a href="https://www.youtube.com/@gracepraisejesus" target="_blank">LIVE</a></li>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#live">LIVE</a></li>
+                    <li><a href="index.html#home">Home</a></li>
                     <li class="nav-dropdown">
                         <a href="about.html" aria-haspopup="true" aria-expanded="false">About <span class="dropdown-arrow">▼</span></a>
                         <ul class="dropdown-menu">
@@ -745,10 +735,10 @@
                             <li><a href="songbook.html">GPBC Song Book</a></li>
                         </ul>
                     </li>
-                    <li><a href="calendar.html">Next Service</a></li>
+                    <li><a href="index.html#next-service">Next Service</a></li>
                     <li><a href="calendar.html">Calendar</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="calendar.html#prayer">Prayer</a></li>
+                    <li><a href="index.html#prayer">Prayer</a></li>
                     <li><a href="daily-devotion.html" class="active">Daily Devotion</a></li>
                     <li><a href="give.html">Give</a></li>
                 </ul>
@@ -795,18 +785,6 @@
                     <button type="button" id="todayBtn">Today</button>
                 </div>
             </div>
-        </section>
-
-        <!-- Hero Image Section -->
-        <section class="devotion-hero-image">
-            <!-- Image placeholder (only show if image exists) -->
-            <img 
-                src="/images/devotion-placeholder.jpg" 
-                alt="Daily devotion image"
-                loading="lazy"
-                width="1200"
-                height="400"
-                id="devotionImage">
         </section>
 
         <!-- Devotion Content Container -->
@@ -1045,7 +1023,6 @@
             const prayerEl = document.getElementById('devotionPrayer');
             const contentEl = document.getElementById('devotionContent');
             const fallbackEl = document.getElementById('devotionFallback');
-            const imageEl = document.getElementById('devotionImage');
             const prevBtn = document.getElementById('prevDevotionBtn');
             const nextBtn = document.getElementById('nextDevotionBtn');
             const dateStrip = document.getElementById('dateStrip');
@@ -1076,6 +1053,11 @@
                 return `${y}-${m}-${day}`;
             }
 
+            function parseDateKey(key) {
+                const [y, m, d] = key.split('-').map(Number);
+                return new Date(y, m - 1, d);
+            }
+
             function formatDisplayDate(d) {
                 return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
             }
@@ -1084,29 +1066,31 @@
                 return `${monthNames[d.getMonth()]} ${d.getDate()}`;
             }
 
-            // Build lookup
+            // Build lookup and ensure today has content
             const devotionByKey = new Map();
             DEVOTIONS.forEach(item => devotionByKey.set(item.date, item));
-            const availableDates = [...devotionByKey.keys()].sort();
 
-            function closestAvailableDate(target) {
-                if (availableDates.length === 0) return target;
-                const targetKey = toDateKey(target);
-                if (devotionByKey.has(targetKey)) return target;
-                // find nearest date
-                let nearest = availableDates[0];
-                let minDiff = Math.abs(new Date(targetKey) - new Date(availableDates[0]));
-                availableDates.forEach(k => {
-                    const diff = Math.abs(new Date(targetKey) - new Date(k));
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        nearest = k;
-                    }
-                });
-                return new Date(nearest);
+            function defaultDevotion(key) {
+                return {
+                    date: key,
+                    title: 'God So Loved',
+                    titleBn: 'ঈশ্বর এত ভালোবাসলেন',
+                    verse: 'John 3:16',
+                    verseText: '“For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life.”',
+                    verseTextBn: '“কারণ ঈশ্বর পৃথিবীকে এত ভালোবাসলেন যে তিনি তাঁর একমাত্র পুত্র দিলেন, যেন যে কেউ তাঁর প্রতি বিশ্বাস করে সে বিনাশ না হয় বরং অনন্ত জীবন পায়।”',
+                    reflection: 'Today we rest in the simple, life-changing truth that God loves you personally. His love is proven in Jesus, given so you can live. Whatever else is uncertain, His love is not. Receive it, trust it, and let it shape your steps today.',
+                    reflectionBn: 'আজ আমরা সহজ কিন্তু জীবন-বদলানো সত্যে বিশ্রাম নিই: ঈশ্বর তোমাকে ব্যক্তিগতভাবে ভালোবাসেন। তাঁর ভালোবাসার প্রমাণ যিশু, তোমার জীবনের জন্য দেওয়া। অন্য সব কিছু অনিশ্চিত হলেও তাঁর ভালোবাসা নয়। এটি গ্রহণ করো, বিশ্বাস করো এবং আজ তোমার পদক্ষেপ গড়তে দাও।',
+                    prayer: 'Father, thank You for loving me in Jesus. Help me live from Your love and share it freely today.',
+                    prayerBn: 'পিতা, যিশুতে আমাকে ভালোবাসার জন্য ধন্যবাদ। আপনার ভালোবাসা থেকে বাঁচতে এবং আজ তা উদারভাবে ভাগ করতে আমাকে সাহায্য করুন।'
+                };
             }
 
-            selectedDate = closestAvailableDate(today);
+            const todayKey = toDateKey(today);
+            if (!devotionByKey.has(todayKey)) {
+                devotionByKey.set(todayKey, defaultDevotion(todayKey));
+            }
+
+            let availableDates = [...devotionByKey.keys()].sort();
 
             // Populate month/day selects
             function populateSelectors() {
@@ -1131,9 +1115,15 @@
             // Render date strip
             function renderDateStrip() {
                 dateStrip.innerHTML = '';
-                const sourceDates = availableDates.length ? availableDates : generateRangeKeys(selectedDate, 7);
+                // Always include today, plus nearby days, plus available content dates
+                const set = new Set();
+                const baseRange = generateRangeKeys(today, 3);
+                baseRange.forEach(k => set.add(k));
+                availableDates.forEach(k => set.add(k));
+                const sourceDates = Array.from(set).sort();
+
                 sourceDates.forEach(key => {
-                    const d = new Date(key);
+                    const d = parseDateKey(key);
                     const pill = document.createElement('button');
                     pill.className = 'date-pill';
                     pill.setAttribute('data-date', key);
@@ -1153,8 +1143,7 @@
             function generateRangeKeys(centerDate, radius) {
                 const keys = [];
                 for (let i = -radius; i <= radius; i++) {
-                    const d = new Date(centerDate);
-                    d.setDate(centerDate.getDate() + i);
+                    const d = new Date(centerDate.getFullYear(), centerDate.getMonth(), centerDate.getDate() + i);
                     keys.push(toDateKey(d));
                 }
                 return keys;
@@ -1162,6 +1151,8 @@
 
             // Render devotion
             function renderDevotion() {
+                // Snap selectedDate to an existing key if it was regenerated from string
+                selectedDate = typeof selectedDate === 'string' ? parseDateKey(selectedDate) : new Date(selectedDate);
                 const key = toDateKey(selectedDate);
                 const data = devotionByKey.get(key);
                 const hasData = !!data;
@@ -1171,11 +1162,6 @@
                 if (metaLabel) metaLabel.textContent = formatMonthDay(selectedDate);
 
                 if (!hasData) {
-                    if (availableDates.length) {
-                        selectedDate = new Date(availableDates[0]);
-                        renderAll();
-                        return;
-                    }
                     contentEl.style.display = 'none';
                     fallbackEl.style.display = 'block';
                     return;
@@ -1200,14 +1186,6 @@
 
                 // Update sharing meta
                 updateSocialMetaTags(title, verse, reflection);
-
-                // Update image fallback
-                if (imageEl) {
-                    imageEl.onerror = function() {
-                        this.src = 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1200&h=400&fit=crop&q=80';
-                        this.alt = 'Open Bible with morning light, symbolizing daily spiritual reflection and God\'s Word';
-                    };
-                }
             }
 
             // Meta tags update
@@ -1283,7 +1261,7 @@
                 goToDateBtn.addEventListener('click', () => {
                     const monthIdx = parseInt(monthSelect.value, 10);
                     const day = parseInt(daySelect.value, 10);
-                    const year = selectedDate.getFullYear(); // keep current year; year hidden in UI
+                    const year = today.getFullYear(); // keep current year; year hidden in UI
                     const d = new Date(year, monthIdx, day);
                     if (!isNaN(d)) {
                         selectedDate = d;
@@ -1306,6 +1284,21 @@
                 populateSelectors();
                 renderDateStrip();
                 renderDevotion();
+                highlightSelected();
+            }
+
+            function highlightSelected() {
+                const pills = dateStrip.querySelectorAll('.date-pill');
+                pills.forEach(p => {
+                    const key = p.getAttribute('data-date');
+                    if (key === toDateKey(selectedDate)) {
+                        p.classList.add('active');
+                        p.setAttribute('aria-current', 'date');
+                    } else {
+                        p.classList.remove('active');
+                        p.removeAttribute('aria-current');
+                    }
+                });
             }
 
             populateSelectors();

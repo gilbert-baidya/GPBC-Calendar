@@ -21,9 +21,8 @@ class HomepageEvents {
     }
 
     getSpecialGPBCEvents() {
-        // Get current date
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        // Get current date and time
+        const now = new Date();
         
         // Get events from the global events array (from events.js)
         if (typeof events === 'undefined') {
@@ -31,37 +30,21 @@ class HomepageEvents {
             return [];
         }
 
-        // Filter for special events that haven't passed
-        const specialEvents = events.filter(event => {
-            const eventDate = new Date(event.date);
-            eventDate.setHours(0, 0, 0, 0);
-            
-            // Event must be in the future or today
-            if (eventDate < today) return false;
-            
-            // Include GPBC special events (not recurring weekly services)
-            const isGPBCSpecial = event.category === 'gpbc' && 
-                                 event.eventType === 'worship' &&
-                                 event.description && 
-                                 event.description.includes('Special service');
-            
-            // Include Christian holidays that the church celebrates
-            const isChristianHoliday = event.category === 'christian' && 
-                                      (event.name.includes('Easter') || 
-                                       event.name.includes('Christmas') || 
-                                       event.name.includes('Good Friday') || 
-                                       event.name.includes('Holy Thursday') ||
-                                       event.name.includes('Pentecost') ||
-                                       event.name.includes('Advent'));
-            
-            return isGPBCSpecial || isChristianHoliday;
+        // Get ALL upcoming GPBC events (regular + special)
+        const gpbcEvents = events.filter(event => {
+            const eventDateTime = new Date(event.date + 'T' + (event.eventTime || '17:00'));
+            return event.category === 'gpbc' && eventDateTime > now;
         });
 
-        // Sort by date (earliest first)
-        specialEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+        // Sort by date/time (earliest first)
+        gpbcEvents.sort((a, b) => {
+            const dateA = new Date(a.date + 'T' + (a.eventTime || '17:00'));
+            const dateB = new Date(b.date + 'T' + (b.eventTime || '17:00'));
+            return dateA - dateB;
+        });
 
-        // Return up to 3 upcoming events
-        return specialEvents.slice(0, 3);
+        // Return the next upcoming event (to match countdown banner)
+        return gpbcEvents.slice(0, 1);
     }
 
     formatEventDate(dateString) {
@@ -108,6 +91,18 @@ class HomepageEvents {
             return event.description;
         }
 
+        // Regular weekly services
+        if (event.name.includes('Praise') || event.name.includes('Worship')) {
+            return 'Join us for an evening of heartfelt praise and worship. Experience contemporary worship music, prayer, and fellowship with believers.';
+        }
+        if (event.name.includes('Fasting')) {
+            return 'A dedicated time of fasting, prayer, and seeking God together. Bring your prayer requests and join us in intercession.';
+        }
+        if (event.name.includes('Regular Service')) {
+            return 'Our weekly Sunday worship service featuring praise and worship, biblical teaching, prayer, and fellowship. Come as you are!';
+        }
+
+        // Special events
         if (event.name.includes('Christmas')) {
             return 'Celebrate the birth of Jesus with Christmas carols, a special message, candlelight service, and fellowship';
         }
@@ -123,11 +118,8 @@ class HomepageEvents {
         if (event.name.includes('Holy Thursday') || event.name.includes('Maundy')) {
             return 'A beautiful service commemorating the Last Supper, including foot washing ceremony and communion';
         }
-        if (event.name.includes('Prayer') || event.name.includes('Fasting')) {
-            return 'Dedicated time of corporate prayer, worship, and seeking God\'s guidance';
-        }
 
-        return 'Special worship service with music, prayer, biblical teaching, and fellowship';
+        return 'Join us for worship, prayer, biblical teaching, and fellowship';
     }
 
     createEventCard(event) {

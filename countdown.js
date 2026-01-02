@@ -506,11 +506,18 @@ class CountdownSystem {
         // Update event name and icon in banner
         const eventLabelEl = banner.querySelector('.event-label strong');
         const eventIconEl = banner.querySelector('.event-icon');
+        const bannerLink = banner.querySelector('.banner-link');
+        
         if (eventLabelEl) {
             eventLabelEl.textContent = specialEvent.name;
         }
         if (eventIconEl) {
             eventIconEl.textContent = specialEvent.icon;
+        }
+        if (bannerLink) {
+            // Link to the specific event card using event date as ID
+            bannerLink.href = `#event-${specialEvent.date}`;
+            bannerLink.setAttribute('aria-label', `View ${specialEvent.name} details`);
         }
 
         // Update countdown values

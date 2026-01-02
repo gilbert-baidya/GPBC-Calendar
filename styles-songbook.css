@@ -8,7 +8,7 @@ body {
     font-family: 'Hind Siliguri', 'Noto Sans Bengali', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--color-background, #faf8f5);
     min-height: 100vh;
 }
 
@@ -29,9 +29,10 @@ body.copy-protected .presentation-lyrics {
 
 header {
     text-align: center;
-    color: white;
+    color: var(--color-primary, #1e3a5f);
     margin-bottom: 30px;
     padding: 20px;
+    background: transparent;
 }
 
 .header-content {
@@ -57,7 +58,7 @@ header {
     padding: 8px 16px;
     background: white;
     border-radius: 20px;
-    color: #722f37;
+    color: var(--color-primary, #1e3a5f);
     font-weight: bold;
 }
 
@@ -65,40 +66,41 @@ header {
     padding: 10px 20px;
     border: none;
     border-radius: 25px;
-    background: white;
-    color: #667eea;
+    background: var(--color-primary, #1e3a5f);
+    color: white;
     cursor: pointer;
     font-weight: bold;
     font-size: 1em;
 }
 
 .btn-auth:hover {
-    background: #f0f0f0;
+    background: var(--color-primary-dark, #152b47);
 }
 
 .btn-auth-small {
     padding: 6px 12px;
     border: none;
     border-radius: 15px;
-    background: rgba(255,255,255,0.3);
+    background: var(--color-secondary, #c9a961);
     color: white;
     cursor: pointer;
     font-size: 0.85em;
 }
 
 .btn-auth-small:hover {
-    background: rgba(255,255,255,0.4);
+    background: var(--color-accent, #d4af6a);
 }
 
 .saved-playlists-section {
     margin: 30px 0;
     padding: 20px;
-    background: rgba(255,255,255,0.1);
+    background: var(--color-surface, #ffffff);
     border-radius: 15px;
+    box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(30, 58, 95, 0.08));
 }
 
 .saved-playlists-section h3 {
-    color: white;
+    color: var(--color-primary, #1e3a5f);
     margin-bottom: 15px;
     text-align: center;
 }
@@ -110,15 +112,15 @@ header {
 }
 
 .saved-playlist-card {
-    background: white;
+    background: var(--color-background, #faf8f5);
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(30, 58, 95, 0.08));
 }
 
 .saved-playlist-card h4 {
     margin: 0 0 8px 0;
-    color: #667eea;
+    color: var(--color-primary, #1e3a5f);
     font-size: 1.1em;
 }
 
@@ -151,11 +153,13 @@ header {
 header h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: none;
     line-height: 1.2;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--color-primary, #1e3a5f);
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 header h1 .icon {
@@ -165,8 +169,9 @@ header h1 .icon {
 
 .subtitle {
     font-size: 1.2em;
-    opacity: 0.9;
+    opacity: 0.8;
     margin-top: 5px;
+    color: var(--color-text-light, #6b6b6b);
 }
 
 .search-container {
@@ -177,10 +182,11 @@ header h1 .icon {
     width: 100%;
     padding: 15px 20px;
     font-size: 1.1em;
-    border: none;
+    border: 1px solid var(--color-border, #e8e4dd);
     border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(30, 58, 95, 0.08));
     outline: none;
+    background: var(--color-surface, #ffffff);
 }
 
 .filter-tabs {
@@ -192,24 +198,26 @@ header h1 .icon {
 
 .tab-btn {
     padding: 12px 30px;
-    border: none;
+    border: 1px solid var(--color-border, #e8e4dd);
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+    background: var(--color-surface, #ffffff);
+    color: var(--color-text, #2c2c2c);
     cursor: pointer;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: 600;
     transition: all 0.3s;
 }
 
 .tab-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--color-background, #faf8f5);
+    border-color: var(--color-secondary, #c9a961);
     transform: translateY(-2px);
 }
 
 .tab-btn.active {
-    background: white;
-    color: #667eea;
+    background: var(--color-primary, #1e3a5f);
+    color: white;
+    border-color: var(--color-primary, #1e3a5f);
 }
 
 .alphabet-index {
@@ -219,32 +227,35 @@ header h1 .icon {
     margin-bottom: 30px;
     justify-content: center;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-surface, #ffffff);
     border-radius: 15px;
+    box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(30, 58, 95, 0.08));
 }
 
 .alphabet-btn {
     padding: 8px 15px;
-    border: 2px solid white;
+    border: 1px solid var(--color-border, #e8e4dd);
     border-radius: 8px;
-    background: transparent;
-    color: white;
+    background: var(--color-background, #faf8f5);
+    color: var(--color-text, #2c2c2c);
     cursor: pointer;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: 600;
     transition: all 0.3s;
     min-width: 45px;
 }
 
 .alphabet-btn:hover {
-    background: white;
-    color: #667eea;
+    background: var(--color-secondary, #c9a961);
+    color: white;
+    border-color: var(--color-secondary, #c9a961);
     transform: scale(1.1);
 }
 
 .alphabet-btn.active {
-    background: white;
-    color: #667eea;
+    background: var(--color-primary, #1e3a5f);
+    color: white;
+    border-color: var(--color-primary, #1e3a5f);
 }
 
 .song-list {
@@ -255,28 +266,31 @@ header h1 .icon {
 }
 
 .song-card {
-    background: white;
+    background: var(--color-surface, #ffffff);
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(30, 58, 95, 0.1));
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
     min-height: 160px;
+    border: 1px solid var(--color-border, #e8e4dd);
 }
 
 .song-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-lg, 0 10px 20px -5px rgba(30, 58, 95, 0.12));
+    border-color: var(--color-secondary, #c9a961);
 }
 
 .song-card h3 {
-    color: #667eea;
+    color: var(--color-primary, #1e3a5f);
     margin-bottom: 8px;
     font-size: 1.2em;
     min-height: 2.4em;
     line-height: 1.2em;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 .song-card p {
@@ -348,11 +362,12 @@ header h1 .icon {
     font-weight: 700 !important;
     line-height: 1.4 !important;
     word-wrap: break-word !important;
-    background: #667eea !important;
-    border-bottom: 2px solid #5568d3 !important;
+    background: var(--color-primary, #1e3a5f) !important;
+    border-bottom: 2px solid var(--color-primary-dark, #152b47) !important;
     flex-shrink: 0 !important;
     display: block !important;
     min-height: 60px !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
 }
 
 .controls {
@@ -369,15 +384,16 @@ header h1 .icon {
     padding: 10px 20px;
     border: none;
     border-radius: 25px;
-    background: #667eea;
+    background: var(--color-primary, #1e3a5f);
     color: white;
     cursor: pointer;
     font-size: 0.9em;
     transition: background 0.3s;
+    font-weight: 600;
 }
 
 .btn:hover {
-    background: #5568d3;
+    background: var(--color-primary-dark, #152b47);
 }
 
 .song-content {
@@ -392,7 +408,7 @@ header h1 .icon {
 }
 
 .chord {
-    color: #d63031;
+    color: var(--color-secondary, #c9a961);
     font-weight: bold;
     display: inline-block;
 }
@@ -412,21 +428,22 @@ header h1 .icon {
     padding: 8px 15px;
     border: none;
     border-radius: 20px;
-    background: #667eea;
+    background: var(--color-primary, #1e3a5f);
     color: white;
     cursor: pointer;
     font-size: 0.85em;
     transition: all 0.3s;
     width: 100%;
+    font-weight: 600;
 }
 
 .add-to-service-btn:hover {
-    background: #5568d3;
+    background: var(--color-primary-dark, #152b47);
     transform: translateY(-2px);
 }
 
 .add-to-service-btn.in-playlist {
-    background: #00b894;
+    background: var(--color-secondary, #c9a961);
 }
 
 .service-playlist-panel {
@@ -435,11 +452,12 @@ header h1 .icon {
     right: 20px;
     width: 350px;
     max-height: 400px;
-    background: white;
+    background: var(--color-surface, #ffffff);
     border-radius: 15px 15px 0 0;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-xl, 0 20px 30px -8px rgba(30, 58, 95, 0.15));
     transition: bottom 0.3s;
     z-index: 999;
+    border: 1px solid var(--color-border, #e8e4dd);
 }
 
 .service-playlist-panel.visible {
@@ -448,7 +466,7 @@ header h1 .icon {
 
 .playlist-header {
     padding: 15px 20px;
-    background: #667eea;
+    background: var(--color-primary, #1e3a5f);
     color: white;
     border-radius: 15px 15px 0 0;
     display: flex;
@@ -459,6 +477,7 @@ header h1 .icon {
 .playlist-header h3 {
     margin: 0;
     font-size: 1.1em;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 .playlist-actions {
@@ -471,14 +490,14 @@ header h1 .icon {
     border: none;
     border-radius: 15px;
     background: white;
-    color: #667eea;
+    color: var(--color-primary, #1e3a5f);
     cursor: pointer;
     font-size: 0.85em;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .btn-small:hover {
-    background: #f0f0f0;
+    background: var(--color-background, #faf8f5);
 }
 
 .playlist-songs {
@@ -493,12 +512,13 @@ header h1 .icon {
     gap: 10px;
     padding: 10px;
     margin-bottom: 5px;
-    background: #f8f9fa;
+    background: var(--color-background, #faf8f5);
     border-radius: 8px;
+    border: 1px solid var(--color-border, #e8e4dd);
 }
 
 .playlist-number {
-    background: #667eea;
+    background: var(--color-secondary, #c9a961);
     color: white;
     width: 25px;
     height: 25px;
@@ -612,12 +632,12 @@ header h1 .icon {
 }
 
 .presentation-lyrics::-webkit-scrollbar-thumb {
-    background: #667eea;
+    background: var(--color-secondary, #c9a961);
     border-radius: 6px;
 }
 
 .presentation-lyrics::-webkit-scrollbar-thumb:hover {
-    background: #5568d3;
+    background: var(--color-accent, #d4af6a);
 }
 
 .presentation-controls {
@@ -632,15 +652,15 @@ header h1 .icon {
     padding: 15px 30px;
     border: none;
     border-radius: 8px;
-    background: #667eea;
+    background: var(--color-primary, #1e3a5f);
     color: white;
     cursor: pointer;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .pres-btn:hover {
-    background: #5568d3;
+    background: var(--color-primary-dark, #152b47);
 }
 
 /* Copyright Modal */
@@ -663,12 +683,13 @@ header h1 .icon {
     border-radius: 10px;
     text-align: center;
     max-width: 500px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-xl, 0 20px 30px -8px rgba(30, 58, 95, 0.15));
 }
 
 .copyright-content h2 {
-    color: #667eea;
+    color: var(--color-primary, #1e3a5f);
     margin-top: 0;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 .copyright-content p {
@@ -678,18 +699,19 @@ header h1 .icon {
 }
 
 .copyright-content button {
-    background: #667eea;
+    background: var(--color-primary, #1e3a5f);
     color: white;
     border: none;
     padding: 12px 30px;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+    font-weight: 600;
 }
 
 .copyright-content button:hover {
-    background: #764ba2;
+    background: var(--color-primary-dark, #152b47);
 }
 
 /* Presentation Mode */
@@ -734,9 +756,10 @@ header h1 .icon {
 }
 
 .presentation-modal .title {
-    color: #667eea;
+    color: var(--color-primary, #1e3a5f);
     margin-bottom: 20px;
     font-size: 1.8em;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 .presentation-modal .subtitle {
@@ -753,7 +776,7 @@ header h1 .icon {
 }
 
 .presentation-modal .chord {
-    color: #d63031;
+    color: var(--color-secondary, #c9a961);
     font-weight: bold;
     display: inline-block;
 }
@@ -772,15 +795,16 @@ header h1 .icon {
     padding: 10px 20px;
     border: none;
     border-radius: 25px;
-    background: #667eea;
+    background: var(--color-primary, #1e3a5f);
     color: white;
     cursor: pointer;
     font-size: 0.9em;
     transition: background 0.3s;
+    font-weight: 600;
 }
 
 .presentation-modal .btn:hover {
-    background: #5568d3;
+    background: var(--color-primary-dark, #152b47);
 }
 
 @media (max-width: 768px) {

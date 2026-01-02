@@ -684,6 +684,8 @@ header.scrolled nav {
     top: 100%;
     left: 0;
     min-width: 200px;
+    max-height: none;
+    overflow: visible;
     background: var(--color-surface);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-xl);

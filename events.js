@@ -137,8 +137,20 @@ const categoryEmojis = {
     gpbc: '⛪'
 };
 
+// Events database version - increment when structure changes
+const EVENTS_VERSION = '2.0';
+
 // Load custom GPBC events from localStorage
 function loadCustomEvents() {
+    // Check version and clear old data if outdated
+    const savedVersion = localStorage.getItem('gpbcEventsVersion');
+    if (savedVersion !== EVENTS_VERSION) {
+        console.log('Events database updated - clearing old localStorage data');
+        localStorage.removeItem('gpbcEvents');
+        localStorage.setItem('gpbcEventsVersion', EVENTS_VERSION);
+        return;
+    }
+    
     const saved = localStorage.getItem('gpbcEvents');
     if (saved) {
         const customEvents = JSON.parse(saved);

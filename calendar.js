@@ -1,8 +1,8 @@
 // Calendar Logic
 let currentMonth = 0; // January 2026
 let currentYear = 2026;
-let activeFilters = new Set(['gpbc-sunday-worship']); // Smart defaults: Show only Sunday worship services
-let currentPreset = 'sunday-services'; // Track active preset
+let activeFilters = new Set(['gpbc', 'christian']); // Show all GPBC and Christian events by default
+let currentPreset = 'this-week'; // Track active preset
 let selectedDate = null;
 let currentEvent = null;
 

@@ -36,62 +36,76 @@ class CountdownSystem {
             }
         ];
 
-        // Special events (YYYY-MM-DD format)
-        this.specialEvents = [
-            {
-                name: 'Holy Thursday Feet Washing Service',
-                date: '2026-04-02',
-                time: '19:00', // 7:00 PM
-                icon: '✝️',
-                badge: 'Holy Week',
-                type: 'event'
-            },
-            {
-                name: 'Good Friday Service',
-                date: '2026-04-03',
-                time: '19:00', // 7:00 PM
-                icon: '✝️',
-                badge: 'Holy Week',
-                type: 'event'
-            },
-            {
-                name: 'Easter Sunday Service',
-                date: '2026-04-05',
-                time: '10:00', // 10:00 AM
-                icon: '🐣',
-                badge: 'Easter',
-                type: 'event'
-            },
-            {
-                name: 'Pre-Christmas Celebration Service',
-                date: '2026-12-13',
-                time: '17:00', // 5:00 PM
-                icon: '🎄',
-                badge: 'Christmas Season',
-                type: 'event'
-            },
-            {
-                name: 'Christmas Eve Candlelight Service',
-                date: '2026-12-24',
-                time: '19:00', // 7:00 PM
-                icon: '🌟',
-                badge: 'Christmas',
-                type: 'event'
-            },
-            {
-                name: 'Gratitude & New Year Celebration',
-                date: '2026-12-31',
-                time: '22:30', // 10:30 PM
-                icon: '🎉',
-                badge: 'New Year',
-                type: 'event'
-            }
-        ];
+        // Get special events dynamically from events.js
+        this.loadSpecialEventsFromGlobal();
 
         // Auto-init on home page OR About page
         if (document.querySelector('.hero') || document.getElementById('nextServiceCountdown')) {
             this.init();
         }
+    }
+
+    loadSpecialEventsFromGlobal() {
+        // Check if global events array exists (from events.js)
+        if (typeof events !== 'undefined') {
+            const now = new Date();
+            
+            // Get ALL upcoming GPBC events from events.js (including special services)
+            const gpbcEvents = events.filter(event => {
+                const eventDate = new Date(event.date);
+                return event.category === 'gpbc' && 
+                       event.description && 
+                       event.description.toLowerCase().includes('special') &&
+                       eventDate > now;
+            }).sort((a, b) => new Date(a.date) - new Date(b.date))
+              .slice(0, 10); // Get next 10 special events
+            
+            // Convert to countdown format
+            this.specialEvents = gpbcEvents.map(event => {
+                return {
+                    name: event.name,
+                    date: event.date,
+                    time: this.convertTo24Hour(event.eventTime || '17:00'),
+                    icon: this.getEventIcon(event),
+                    badge: 'Special Event',
+                    type: 'event'
+                };
+            });
+            
+            console.log('Loaded special events from events.js:', this.specialEvents.length);
+        } else {
+            console.warn('events.js not loaded - using empty special events array');
+            this.specialEvents = [];
+        }
+    }
+
+    convertTo24Hour(timeStr) {
+        // Convert "5:00 PM" to "17:00"
+        if (timeStr.includes('PM') || timeStr.includes('AM')) {
+            const [time, period] = timeStr.split(' ');
+            let [hours, minutes] = time.split(':');
+            hours = parseInt(hours);
+            
+            if (period === 'PM' && hours !== 12) {
+                hours += 12;
+            } else if (period === 'AM' && hours === 12) {
+                hours = 0;
+            }
+            
+            return `${String(hours).padStart(2, '0')}:${minutes || '00'}`;
+        }
+        return timeStr;
+    }
+
+    getEventIcon(event) {
+        const name = event.name.toLowerCase();
+        if (name.includes('easter')) return '🐣';
+        if (name.includes('christmas')) return '🎄';
+        if (name.includes('new year')) return '🎉';
+        if (name.includes('good friday')) return '✝️';
+        if (name.includes('holy thursday') || name.includes('maundy')) return '✝️';
+        if (name.includes('pentecost')) return '🕊️';
+        return '⛪';
     }
 
     init() {

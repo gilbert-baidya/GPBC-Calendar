@@ -1,60 +1,46 @@
-// Comprehensive Events Database for 2026
+// Comprehensive Events Database for 2026-2036 (10 years)
 const events = [
-    // GPBC RECURRING WEEKLY EVENTS (Generated for 2026)
-    // Sunday Worship Services - Every Sunday at 5:00 PM
-    ...Array.from({length: 52}, (_, i) => {
-        const date = new Date(2026, 0, 4 + (i * 7)); // Start Jan 4, 2026 (Sunday)
-        return {
-            date: date.toISOString().split('T')[0],
-            name: 'Sunday Worship Service',
-            category: 'gpbc',
-            eventCategory: 'GPBC',
-            eventType: 'worship',
-            eventDay: 'Sunday',
-            eventTime: '5:00 PM',
-            description: 'Weekly worship service at Grace and Praise Bangladeshi Church'
-        };
-    }),
-    // Sunday Connection - Every Sunday at 4:30 PM
-    ...Array.from({length: 52}, (_, i) => {
-        const date = new Date(2026, 0, 4 + (i * 7)); // Start Jan 4, 2026 (Sunday)
-        return {
-            date: date.toISOString().split('T')[0],
-            name: 'Sunday Connection',
-            category: 'gpbc',
-            eventCategory: 'GPBC',
-            eventType: 'fellowship',
-            eventDay: 'Sunday',
-            eventTime: '4:30 PM',
-            description: 'A time of fellowship and spiritual preparation before worship'
-        };
-    }),
-    // Friday Connection - Every Friday at 5:30 PM
-    ...Array.from({length: 52}, (_, i) => {
+    // GPBC RECURRING WEEKLY EVENTS (Generated for next 10 years from Jan 2026)
+    // Friday 5:30 PM - Praise & Worship
+    ...Array.from({length: 520}, (_, i) => { // 52 weeks * 10 years
         const date = new Date(2026, 0, 2 + (i * 7)); // Start Jan 2, 2026 (Friday)
         return {
             date: date.toISOString().split('T')[0],
-            name: 'Friday Connection',
+            name: 'Praise & Worship',
             category: 'gpbc',
             eventCategory: 'GPBC',
             eventType: 'prayer',
             eventDay: 'Friday',
             eventTime: '5:30 PM',
-            description: 'Preparing our hearts for worship through prayer'
+            description: 'Friday evening praise and worship session'
         };
     }),
-    // Saturday Fasting Prayer - Every Saturday at 12:00 PM
-    ...Array.from({length: 52}, (_, i) => {
+    // Saturday 12:00 PM - Fasting Prayer
+    ...Array.from({length: 520}, (_, i) => { // 52 weeks * 10 years
         const date = new Date(2026, 0, 3 + (i * 7)); // Start Jan 3, 2026 (Saturday)
         return {
             date: date.toISOString().split('T')[0],
-            name: 'Saturday Fasting Prayer',
+            name: 'Fasting Prayer',
             category: 'gpbc',
             eventCategory: 'GPBC',
             eventType: 'prayer',
             eventDay: 'Saturday',
             eventTime: '12:00 PM',
-            description: 'A dedicated time of fasting and prayer'
+            description: 'Saturday fasting and prayer meeting'
+        };
+    }),
+    // Sunday 5:00 PM - Regular Service
+    ...Array.from({length: 520}, (_, i) => { // 52 weeks * 10 years
+        const date = new Date(2026, 0, 4 + (i * 7)); // Start Jan 4, 2026 (Sunday)
+        return {
+            date: date.toISOString().split('T')[0],
+            name: 'Regular Service',
+            category: 'gpbc',
+            eventCategory: 'GPBC',
+            eventType: 'worship',
+            eventDay: 'Sunday',
+            eventTime: '5:00 PM',
+            description: 'Sunday regular worship service at Grace and Praise Bangladeshi Church'
         };
     }),
     
@@ -148,59 +134,3 @@ function saveCustomEvents() {
 
 // Load custom events on initialization
 loadCustomEvents();
-
-// Function to add recurring Sunday church services for entire year
-function addRecurringSundayServices() {
-    const year = 2026;
-    
-    // Remove all existing Sunday services first
-    for (let i = events.length - 1; i >= 0; i--) {
-        if (events[i].category === 'gpbc' && 
-            (events[i].name === 'GPBC Bangla Church Service' || events[i].name === 'Holy Communion Service')) {
-            events.splice(i, 1);
-        }
-    }
-    
-    // Loop through all months
-    for (let month = 0; month < 12; month++) {
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-        
-        let firstSundayFound = false;
-        
-        // Find all Sundays in this month
-        for (let day = 1; day <= lastDay.getDate(); day++) {
-            const currentDate = new Date(year, month, day);
-            
-            // Check if it's Sunday (0 = Sunday)
-            if (currentDate.getDay() === 0) {
-                const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                
-                // First Sunday of the month - Holy Communion Service
-                if (!firstSundayFound) {
-                    events.push({
-                        date: dateString,
-                        name: 'Holy Communion Service',
-                        category: 'gpbc',
-                        description: 'Holy Communion Service at 5:00 PM - Grace and Praise Bangladeshi Church, 1325 Richardson Street, CA 92408'
-                    });
-                    firstSundayFound = true;
-                } else {
-                    // Regular Sunday service
-                    events.push({
-                        date: dateString,
-                        name: 'GPBC Bangla Church Service',
-                        category: 'gpbc',
-                        description: 'Bangla Church Service at 5:00 PM - Grace and Praise Bangladeshi Church, 1325 Richardson Street, CA 92408'
-                    });
-                }
-            }
-        }
-    }
-    
-    // Save to localStorage
-    saveCustomEvents();
-}
-
-// Add Sunday services when page loads
-addRecurringSundayServices();

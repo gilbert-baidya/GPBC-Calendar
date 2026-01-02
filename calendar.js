@@ -1,8 +1,8 @@
 // Calendar Logic
 let currentMonth = 0; // January 2026
 let currentYear = 2026;
-let activeFilters = new Set(['gpbc', 'christian']); // Show all GPBC and Christian events by default
-let currentPreset = 'this-week'; // Track active preset
+let activeFilters = new Set(); // Empty by default - user must check filters to see events
+let currentPreset = ''; // No preset active by default
 let selectedDate = null;
 let currentEvent = null;
 

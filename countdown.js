@@ -3,11 +3,8 @@
  * GPBC Next Upcoming Service/Event Banner
  */
 
-console.log('Countdown.js loaded');
-
 class CountdownSystem {
     constructor() {
-        console.log('CountdownSystem constructor called');
         // Regular weekly services
         this.services = [
             {
@@ -126,14 +123,7 @@ class CountdownSystem {
 
     createCountdownBanner() {
         // Element already exists in HTML - skip creation
-        const existing = document.getElementById('nextEventBanner');
-        if (existing) {
-            console.log('Countdown banner element found, will populate via updateCountdown()');
-            return;
-        }
-
-        // Do not auto-create countdown banner - it should be explicitly in HTML
-        console.log('nextEventBanner element not found - skipping countdown creation');
+        // Countdown will be populated via updateCountdown() if container exists
         return;
 
         /* Disabled auto-creation - keeping code for reference
@@ -535,12 +525,10 @@ class CountdownSystem {
 
 // Initialize countdown system when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded - initializing countdown');
     new CountdownSystem();
 });
 
 // Also try immediate initialization if DOM is already loaded
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    console.log('DOM already loaded - initializing countdown immediately');
     setTimeout(() => new CountdownSystem(), 1);
 }

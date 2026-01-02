@@ -52,10 +52,15 @@ class CountdownSystem {
             
             // Get ALL upcoming GPBC events from events.js (regular + special services)
             const gpbcEvents = events.filter(event => {
-                const eventDate = new Date(event.date);
-                return event.category === 'gpbc' && eventDate > now;
-            }).sort((a, b) => new Date(a.date) - new Date(b.date))
-              .slice(0, 50); // Get next 50 events to ensure we have upcoming ones
+                // Create full date+time for accurate comparison
+                const timeIn24 = this.convertTo24Hour(event.eventTime || '17:00');
+                const eventDateTime = new Date(event.date + 'T' + timeIn24);
+                return event.category === 'gpbc' && eventDateTime > now;
+            }).sort((a, b) => {
+                const timeA = this.convertTo24Hour(a.eventTime || '17:00');
+                const timeB = this.convertTo24Hour(b.eventTime || '17:00');
+                return new Date(a.date + 'T' + timeA) - new Date(b.date + 'T' + timeB);
+            }).slice(0, 50); // Get next 50 events to ensure we have upcoming ones
             
             // Convert to countdown format
             this.specialEvents = gpbcEvents.map(event => {

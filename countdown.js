@@ -50,29 +50,32 @@ class CountdownSystem {
         if (typeof events !== 'undefined') {
             const now = new Date();
             
-            // Get ALL upcoming GPBC events from events.js (including special services)
+            // Get ALL upcoming GPBC events from events.js (regular + special services)
             const gpbcEvents = events.filter(event => {
                 const eventDate = new Date(event.date);
-                return event.category === 'gpbc' && 
-                       event.description && 
-                       event.description.toLowerCase().includes('special') &&
-                       eventDate > now;
+                return event.category === 'gpbc' && eventDate > now;
             }).sort((a, b) => new Date(a.date) - new Date(b.date))
-              .slice(0, 10); // Get next 10 special events
+              .slice(0, 50); // Get next 50 events to ensure we have upcoming ones
             
             // Convert to countdown format
             this.specialEvents = gpbcEvents.map(event => {
+                // Determine badge based on description
+                let badge = 'Regular Service';
+                if (event.description && event.description.toLowerCase().includes('special')) {
+                    badge = 'Special Event';
+                }
+                
                 return {
                     name: event.name,
                     date: event.date,
                     time: this.convertTo24Hour(event.eventTime || '17:00'),
                     icon: this.getEventIcon(event),
-                    badge: 'Special Event',
+                    badge: badge,
                     type: 'event'
                 };
             });
             
-            console.log('Loaded special events from events.js:', this.specialEvents.length);
+            console.log('Loaded GPBC events from events.js:', this.specialEvents.length);
         } else {
             console.warn('events.js not loaded - using empty special events array');
             this.specialEvents = [];

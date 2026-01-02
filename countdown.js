@@ -39,24 +39,48 @@ class CountdownSystem {
         // Special events (YYYY-MM-DD format)
         this.specialEvents = [
             {
-                name: 'Pre-Christmas Service',
-                date: '2025-12-13',
-                time: '17:00', // 5:00 PM
-                icon: '🎄',
-                badge: 'Special Event',
+                name: 'Holy Thursday Feet Washing Service',
+                date: '2026-04-02',
+                time: '19:00', // 7:00 PM
+                icon: '✝️',
+                badge: 'Holy Week',
                 type: 'event'
             },
             {
-                name: 'Christmas Eve Service',
-                date: '2025-12-24',
+                name: 'Good Friday Service',
+                date: '2026-04-03',
+                time: '19:00', // 7:00 PM
+                icon: '✝️',
+                badge: 'Holy Week',
+                type: 'event'
+            },
+            {
+                name: 'Easter Sunday Service',
+                date: '2026-04-05',
+                time: '10:00', // 10:00 AM
+                icon: '🐣',
+                badge: 'Easter',
+                type: 'event'
+            },
+            {
+                name: 'Pre-Christmas Celebration Service',
+                date: '2026-12-13',
                 time: '17:00', // 5:00 PM
+                icon: '🎄',
+                badge: 'Christmas Season',
+                type: 'event'
+            },
+            {
+                name: 'Christmas Eve Candlelight Service',
+                date: '2026-12-24',
+                time: '19:00', // 7:00 PM
                 icon: '🌟',
                 badge: 'Christmas',
                 type: 'event'
             },
             {
                 name: 'Gratitude & New Year Celebration',
-                date: '2025-12-31',
+                date: '2026-12-31',
                 time: '22:30', // 10:30 PM
                 icon: '🎉',
                 badge: 'New Year',
@@ -436,26 +460,41 @@ class CountdownSystem {
         const banner = document.getElementById('specialEventBanner');
         if (!banner) return;
 
-        // Find the Gratitude & New Year Celebration event
-        const specialEvent = this.specialEvents.find(e => e.name === 'Gratitude & New Year Celebration');
-        if (!specialEvent) {
+        const now = new Date();
+        
+        // Find the next upcoming special event
+        const upcomingEvents = this.specialEvents.filter(event => {
+            const eventDate = new Date(event.date + 'T' + event.time);
+            return eventDate > now;
+        }).sort((a, b) => {
+            const dateA = new Date(a.date + 'T' + a.time);
+            const dateB = new Date(b.date + 'T' + b.time);
+            return dateA - dateB;
+        });
+
+        // If no upcoming events, hide banner
+        if (upcomingEvents.length === 0) {
             banner.style.display = 'none';
             return;
         }
 
-        const now = new Date();
+        const specialEvent = upcomingEvents[0];
         const eventDate = new Date(specialEvent.date + 'T' + specialEvent.time);
-        
-        // Hide banner if event has passed
-        if (eventDate <= now) {
-            banner.style.display = 'none';
-            return;
-        }
 
         // Show banner and calculate countdown
         banner.style.display = 'block';
         const timeUntil = eventDate - now;
         const countdown = this.formatCountdown(timeUntil);
+
+        // Update event name and icon in banner
+        const eventLabelEl = banner.querySelector('.event-label strong');
+        const eventIconEl = banner.querySelector('.event-icon');
+        if (eventLabelEl) {
+            eventLabelEl.textContent = specialEvent.name;
+        }
+        if (eventIconEl) {
+            eventIconEl.textContent = specialEvent.icon;
+        }
 
         // Update countdown values
         const daysEl = banner.querySelector('[data-unit="days"]');

@@ -2762,3 +2762,112 @@ footer p.footer-copyright {
 footer p.footer-links {
     margin-top: 20px;
 }
+
+/* ========================================
+   Content Pages (Privacy Policy, Terms, etc.)
+   ======================================== */
+
+.content-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-3xl) var(--spacing-md);
+}
+
+.content-page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.content-page-header h1 {
+    font-size: var(--font-5xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    line-height: var(--leading-tight);
+}
+
+.content-meta {
+    font-size: var(--font-sm);
+    color: var(--color-text-light);
+    line-height: var(--leading-relaxed);
+}
+
+.content-page-body {
+    line-height: var(--leading-relaxed);
+}
+
+.content-page-body h2 {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+}
+
+.content-page-body h2:first-child {
+    margin-top: 0;
+}
+
+.content-page-body p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+    line-height: var(--leading-relaxed);
+}
+
+.content-page-body ul {
+    margin: var(--spacing-md) 0;
+    padding-left: var(--spacing-xl);
+}
+
+.content-page-body li {
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+}
+
+.content-page-body strong {
+    font-weight: var(--font-semibold);
+    color: var(--color-primary-dark);
+}
+
+.content-page-body a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.content-page-body a:hover {
+    border-bottom-color: var(--color-secondary);
+}
+
+@media (max-width: 768px) {
+    .content-page {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .content-page-header h1 {
+        font-size: var(--font-3xl);
+    }
+    
+    .content-page-body h2 {
+        font-size: var(--font-xl);
+    }
+    
+    .content-page-body ul {
+        padding-left: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .content-page {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+    
+    .content-page-header h1 {
+        font-size: var(--font-2xl);
+    }
+}

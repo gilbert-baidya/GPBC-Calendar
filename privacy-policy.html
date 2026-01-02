@@ -4,44 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Grace and Praise Bangladeshi Church</title>
-    <link rel="stylesheet" href="modern.css">
-    <link rel="stylesheet" href="mobile-menu.css">
-    <style>
-        .content-wrapper {
-            max-width: 900px;
-            margin: 900px auto 100px auto;
-            padding: 3rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        h1 { color: #667eea; margin-bottom: 1rem; }
-        h2 { color: #764ba2; margin-top: 2rem; margin-bottom: 1rem; }
-        p { line-height: 1.8; margin-bottom: 1rem; color: #374151; }
-        ul { margin-left: 2rem; margin-bottom: 1rem; }
-        li { margin-bottom: 0.5rem; line-height: 1.8; color: #374151; }
-    </style>
+    <link rel="stylesheet" href="redesign-styles.css">
 </head>
 <body>
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Sticky Header/Nav -->
     <header>
         <nav>
             <div class="nav-container">
-                <a href="index.html" class="logo">⛪ GPBC</a>
+                <a href="index.html" class="logo">GPBC</a>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <ul class="nav-links">
+                    <li><a href="index.html#live">LIVE</a></li>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li class="nav-dropdown">
+                        <a href="about.html" aria-haspopup="true" aria-expanded="false">About <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="history.html">Our History</a></li>
+                            <li><a href="mission.html">Our Mission</a></li>
+                            <li><a href="leadership.html">Our Leadership</a></li>
+                            <li><a href="beliefs.html">Our Beliefs</a></li>
+                            <li><a href="core-values.html">Our Core Values</a></li>
+                            <li><a href="position-papers.html">Position Papers</a></li>
+                            <li><a href="testimonies.html">Testimonies</a></li>
+                            <li><a href="songbook.html">GPBC Song Book</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#next-service">Next Service</a></li>
                     <li><a href="calendar.html">Calendar</a></li>
-                    <li><a href="calendar.html#prayer">Prayer</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="prayer-request.html">Prayer</a></li>
                     <li><a href="give.html">Give</a></li>
                 </ul>
             </div>
         </nav>
+        <div class="mobile-overlay"></div>
     </header>
 
-    <div class="content-wrapper">
-        <h1>Privacy Policy</h1>
-        <p><strong>Effective Date:</strong> January 1, 2026</p>
-        <p><strong>Last Updated:</strong> December 30, 2025</p>
+    <main id="main-content">
+        <div class="content-page">
+            <div class="content-page-header">
+                <h1>Privacy Policy</h1>
+                <p class="content-meta">
+                    <strong>Effective Date:</strong> January 1, 2026<br>
+                    <strong>Last Updated:</strong> December 30, 2025
+                </p>
+            </div>
+
+            <div class="content-page-body">
 
         <h2>1. Introduction</h2>
         <p>Grace and Praise Bangladeshi Church ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website gracepraise.church.</p>
@@ -116,7 +132,50 @@
             Email: <a href="mailto:info@gracepraise.church">info@gracepraise.church</a><br>
             Email: <a href="mailto:bangladeshi.church@gmail.com">bangladeshi.church@gmail.com</a>
         </p>
-    </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="prayer-request.html">Prayer</a></li>
+                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
+                    <li><a href="give.html">Give</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <address>
+                    <p><strong>Grace and Praise Bangladeshi Church</strong></p>
+                    <p>1325 Richardson Street, CA 92408</p>
+                    <p>Email: <a href="mailto:info@gracepraise.church">info@gracepraise.church</a></p>
+                    <p>Email: <a href="mailto:bangladeshi.church@gmail.com">bangladeshi.church@gmail.com</a></p>
+                </address>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                    <li><a href="#" aria-label="YouTube">YouTube</a></li>
+                    <li><a href="#" aria-label="Instagram">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Grace and Praise Bangladeshi Church. All rights reserved.</p>
+            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms &amp; Conditions</a></p>
+        </div>
+    </footer>
 
     <script src="mobile-menu.js"></script>
 </body>

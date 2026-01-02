@@ -575,9 +575,9 @@ function showEventDetail(event) {
         categoryDiv.appendChild(friendlyBadge);
     }
     
-    // Show delete button for GPBC events created by code owner (or missing owner defaults to code owner)
+    // Show delete button for all GPBC events
     const deleteContainer = document.getElementById('deleteButtonContainer');
-    if (event.category === 'gpbc' && (!event.owner || event.owner === CODE_OWNER)) {
+    if (event.category === 'gpbc') {
         deleteContainer.style.display = 'block';
     } else {
         deleteContainer.style.display = 'none';
@@ -773,25 +773,8 @@ async function addGPBCEvent() {
 }
 
 async function deleteCurrentEvent() {
-    const eventOwner = currentEvent?.owner || CODE_OWNER;
-    
-    // Debug logging
-    console.log('Delete attempt:', {
-        currentEvent,
-        eventOwner,
-        CODE_OWNER,
-        category: currentEvent?.category,
-        ownerMatch: eventOwner === CODE_OWNER
-    });
-    
     if (!currentEvent || currentEvent.category !== 'gpbc') {
         alert('Only GPBC events can be deleted.');
-        return;
-    }
-    
-    // Allow deletion if owner matches CODE_OWNER OR if owner is missing (legacy events)
-    if (eventOwner !== CODE_OWNER) {
-        alert(`You can only delete events created by ${CODE_OWNER}. This event was created by ${eventOwner}.`);
         return;
     }
     
@@ -800,9 +783,7 @@ async function deleteCurrentEvent() {
         
         // Try to delete from Google Sheets first
         if (USE_GOOGLE_SHEETS && GOOGLE_SHEETS_URL !== 'YOUR_WEB_APP_URL_HERE') {
-            // Ensure owner is sent for legacy events missing owner
-            const eventToDelete = { ...currentEvent, owner: eventOwner };
-            const deleted = await deleteEventFromGoogleSheets(eventToDelete);
+            const deleted = await deleteEventFromGoogleSheets(currentEvent);
             if (deleted) {
                 // Reload all events from Google Sheets to get the latest data
                 await loadEventsFromGoogleSheets();
@@ -812,8 +793,7 @@ async function deleteCurrentEvent() {
                 const index = events.findIndex(e => 
                     e.date === currentEvent.date && 
                     e.name === currentEvent.name && 
-                    e.category === 'gpbc' &&
-                    (e.owner || CODE_OWNER) === CODE_OWNER
+                    e.category === 'gpbc'
                 );
                 
                 if (index !== -1) {
@@ -826,8 +806,7 @@ async function deleteCurrentEvent() {
             const index = events.findIndex(e => 
                 e.date === currentEvent.date && 
                 e.name === currentEvent.name && 
-                e.category === 'gpbc' &&
-                (e.owner || CODE_OWNER) === CODE_OWNER
+                e.category === 'gpbc'
             );
             
             if (index !== -1) {

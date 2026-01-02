@@ -79,10 +79,7 @@ class CountdownSystem {
                     type: 'event'
                 };
             });
-            
-            console.log('Loaded GPBC events from events.js:', this.specialEvents.length);
         } else {
-            console.warn('events.js not loaded - using empty special events array');
             this.specialEvents = [];
         }
     }
@@ -276,12 +273,8 @@ class CountdownSystem {
     updateCountdown() {
         const container = document.getElementById('nextEventBanner');
         
-        console.log('Countdown update:', {
-            mainContainer: !!container
-        });
-        
         if (!container) {
-            console.warn('No countdown container found');
+            // Container doesn't exist on this page - silently skip
             return;
         }
 

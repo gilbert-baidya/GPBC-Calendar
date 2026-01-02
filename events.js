@@ -44,6 +44,30 @@ const events = [
         };
     }),
     
+    // HOLY COMMUNION SERVICE - First Sunday of every month (10 years: 2026-2036)
+    ...Array.from({length: 120}, (_, i) => { // 12 months * 10 years
+        const year = 2026 + Math.floor(i / 12);
+        const month = i % 12;
+        
+        // Find the first Sunday of the month
+        const firstDay = new Date(year, month, 1);
+        const dayOfWeek = firstDay.getDay();
+        const firstSunday = dayOfWeek === 0 ? 1 : (7 - dayOfWeek) + 1;
+        
+        const date = new Date(year, month, firstSunday);
+        
+        return {
+            date: date.toISOString().split('T')[0],
+            name: 'Holy Communion Service',
+            category: 'gpbc',
+            eventCategory: 'GPBC',
+            eventType: 'worship',
+            eventDay: 'Sunday',
+            eventTime: '5:00 PM',
+            description: 'Special monthly communion service - partaking in the Lord\'s Supper together as we remember Christ\'s sacrifice'
+        };
+    }),
+    
     // BANGLADESHI NATIONAL EVENTS
     { date: '2026-02-21', name: 'International Mother Language Day', category: 'bangladeshi', description: 'UNESCO declared day celebrating martyrs who fought for Bengali language rights' },
     { date: '2026-03-17', name: 'Birthday of Bangabandhu Sheikh Mujibur Rahman', category: 'bangladeshi', description: 'National Children\'s Day - Birth anniversary of Father of the Nation' },

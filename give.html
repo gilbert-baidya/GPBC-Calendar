@@ -4,105 +4,655 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary Meta Tags -->
-    <title>Give Online - Church Donations | Grace and Praise Bangladeshi Church</title>
-    <meta name="title" content="Give Online - Church Donations | Grace and Praise Bangladeshi Church">
-    <meta name="description" content="Support our Bangladeshi Christian church in San Bernardino through secure online donations. Tax-deductible giving helps fund ministry, worship, community outreach, and nonprofit mission work. Multiple payment options available.">
-    <meta name="keywords" content="church donations, online giving, nonprofit donation, Bangladeshi Christian church, church tithes offerings, tax deductible church donation, San Bernardino church giving, secure online donation, ministry support, community outreach funding">
-    <meta name="robots" content="index, follow">
+    <!-- SEO Meta Tags -->
+    <title>Give | Support Our Ministry | Grace and Praise Bangladeshi Church</title>
+    <meta name="description" content="Support Grace and Praise Bangladeshi Church through secure online giving. Multiple convenient payment options including online payment, QR code, bank transfer, and check.">
+    <meta name="keywords" content="church giving, donate GPBC, online donation, church support, tax-deductible donation">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://gilbert-baidya.github.io/gracepraise.church/give.html">
-    
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="Give | Grace and Praise Bangladeshi Church">
+    <meta property="og:description" content="Support our ministry through secure, convenient giving options">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gilbert-baidya.github.io/gracepraise.church/give.html">
-    <meta property="og:title" content="Give - Support Grace and Praise Bangladeshi Church">
-    <meta property="og:description" content="Support GPBC through tithes, offerings, and donations. Multiple giving options available to help serve our community.">
+    <meta property="og:url" content="https://gracepraise.church/give">
     
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="https://gilbert-baidya.github.io/gracepraise.church/give.html">
-    <meta property="twitter:title" content="Give - Support GPBC">
-    <meta property="twitter:description" content="Support GPBC through tithes and offerings. Multiple giving options available.">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://gracepraise.church/give">
     
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="redesign-styles.css">
-    <link rel="stylesheet" href="countdown.css">
     
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAWMwhMkl8vYEf72tWcWD1YYF7D1LkudwwjyWdOCJBwgvYrJ2uTshXERm7DvP4TkT4rTjMzMLA6rmCK60&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+    <!-- Tailwind CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a5f',
+                        'primary-dark': '#152b47',
+                        secondary: '#c9a961',
+                        accent: '#d4af6a',
+                        background: '#faf8f5',
+                        border: '#e8e4dd'
+                    }
+                }
+            }
+        }
+    </script>
     
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <style>
-        /* Give Page Specific Styles - Professional & Compact */
-        
-        /* Reduce vertical spacing throughout */
-        .welcome {
-            padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md) var(--spacing-md) !important;
-        }
-        
-        .next-step {
-            padding: var(--spacing-md) var(--spacing-md) var(--spacing-xl) var(--spacing-md) !important;
-        }
-        
-        /* Subtle cross watermark */
-        .welcome-content::before {
-            content: '✝';
+        /* Skip link for accessibility */
+        .skip-link {
             position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            color: var(--color-border);
-            opacity: 0.15;
-            pointer-events: none;
+            top: -40px;
+            left: 0;
+            background: var(--color-primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
         }
         
-        .welcome-content {
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Hero Section */
+        .give-hero {
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.02) 0%, rgba(201, 169, 97, 0.05) 100%);
+            padding: var(--spacing-2xl) var(--spacing-md) var(--spacing-xl);
+        }
+        
+        .give-hero-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .give-hero h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: var(--font-5xl);
+            font-weight: var(--font-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .give-hero-subtitle {
+            font-size: var(--font-xl);
+            color: var(--color-text);
+            line-height: var(--leading-relaxed);
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xl);
+        }
+        
+        /* Bible Verse Card - Prominently Displayed */
+        .verse-card {
+            background: var(--color-surface);
+            border-left: 5px solid var(--color-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            max-width: 750px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .verse-text {
+            font-size: var(--font-2xl);
+            font-style: italic;
+            color: var(--color-primary);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--spacing-md);
+            font-weight: var(--font-medium);
+        }
+        
+        .verse-reference {
+            font-size: var(--font-lg);
+            color: var(--color-text-light);
+            text-align: right;
+            font-style: normal;
+        }
+        
+        /* Method Selection Section */
+        .method-selection {
+            padding: var(--spacing-2xl) var(--spacing-md);
+            background: var(--color-background);
+        }
+        
+        .method-selection-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: var(--font-3xl);
+            font-weight: var(--font-bold);
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        /* Method Cards Grid */
+        .method-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        @media (max-width: 768px) {
+            .method-cards {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+        }
+        
+        /* Individual Method Card */
+        .method-card {
+            background: var(--color-surface);
+            border: 3px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
         
-        /* Amount Button Interactions */
-        .amount-btn:hover {
-            background: var(--color-primary) !important;
-            color: white !important;
+        .method-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .method-card:focus {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 3px;
+        }
+        
+        .method-card.active {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            border-color: var(--color-primary-dark);
+            color: var(--color-text-inverse);
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-6px);
+        }
+        
+        .method-card.active h3,
+        .method-card.active p {
+            color: var(--color-secondary);
+        }
+        
+        .method-card.active .method-icon {
+            transform: scale(1.1);
+        }
+        
+        .method-icon {
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: var(--spacing-md);
+            transition: transform var(--transition-base);
+        }
+        
+        .method-card h3 {
+            font-size: var(--font-2xl);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .method-card p {
+            font-size: var(--font-base);
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Content Area */
+        .content-area {
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            min-height: 400px;
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeInUp 0.4s ease-out;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content-section h2 {
+            font-family: Georgia, serif;
+            font-size: var(--font-3xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        /* Online Payment Form */
+        .payment-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: var(--font-base);
+            font-weight: var(--font-semibold);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: var(--spacing-md);
+            font-size: var(--font-lg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(30, 58, 95, 0.1);
+        }
+        
+        .amount-wrapper {
+            position: relative;
+        }
+        
+        .amount-wrapper::before {
+            content: '$';
+            position: absolute;
+            left: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: var(--font-xl);
+            font-weight: var(--font-bold);
+            color: var(--color-text-light);
+            pointer-events: none;
+        }
+        
+        .amount-wrapper input {
+            padding-left: 2.5rem;
+        }
+        
+        /* Preset Amount Buttons */
+        .preset-amounts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+        
+        @media (max-width: 480px) {
+            .preset-amounts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .preset-btn {
+            padding: var(--spacing-md);
+            background: var(--color-background);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--font-base);
+            font-weight: var(--font-semibold);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .preset-btn:hover {
+            border-color: var(--color-primary);
+            background: var(--color-primary);
+            color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.2);
         }
         
-        .amount-btn.active {
-            background: var(--color-primary) !important;
-            color: white !important;
+        .preset-btn:active {
+            transform: translateY(0);
         }
-
-        /* Mobile Responsive */
+        
+        /* Payment Buttons */
+        .payment-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .btn-payment {
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: var(--font-lg);
+            font-weight: var(--font-semibold);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* QR Code Section */
+        .qr-section {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .qr-container {
+            background: var(--color-background);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .qr-code-placeholder {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto var(--spacing-md);
+            background: white;
+            border: 4px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-2xl);
+            color: var(--color-text-light);
+            font-weight: var(--font-medium);
+        }
+        
+        .qr-instructions {
+            font-size: var(--font-lg);
+            color: var(--color-text-light);
+            line-height: var(--leading-relaxed);
+        }
+        
+        /* Bank Transfer Section */
+        .bank-details {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .detail-card {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: white;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .detail-label {
+            font-weight: var(--font-semibold);
+            color: var(--color-text);
+            font-size: var(--font-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .detail-value {
+            font-size: var(--font-base);
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .copy-btn {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-xs);
+            font-weight: var(--font-semibold);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .copy-btn:hover {
+            background: var(--color-accent);
+            transform: scale(1.05);
+        }
+        
+        .copy-btn.copied {
+            background: #22c55e;
+        }
+        
+        /* Check Section */
+        .check-section {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mailing-address {
+            background: var(--color-background);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .mailing-address h3 {
+            font-size: var(--font-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .address-text {
+            font-size: var(--font-lg);
+            line-height: var(--leading-relaxed);
+            color: var(--color-text);
+        }
+        
+        .memo-note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .memo-note strong {
+            color: #92400e;
+        }
+        
+        /* Trust Section */
+        .trust-section {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--spacing-xl) var(--spacing-md);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .trust-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: var(--font-base);
+            font-weight: var(--font-medium);
+        }
+        
+        .trust-icon {
+            font-size: var(--font-2xl);
+        }
+        
+        .trust-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: var(--font-base);
+            line-height: var(--leading-relaxed);
+            opacity: 0.95;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: var(--spacing-2xl) var(--spacing-md);
+            background: var(--color-background);
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: var(--spacing-lg);
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: var(--font-lg);
+            font-weight: var(--font-semibold);
+            color: var(--color-text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background var(--transition-fast);
+        }
+        
+        .faq-question:hover {
+            background: var(--color-background);
+        }
+        
+        .faq-icon {
+            font-size: var(--font-2xl);
+            transition: transform var(--transition-base);
+        }
+        
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-base);
+        }
+        
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            color: var(--color-text-light);
+            line-height: var(--leading-relaxed);
+            font-size: var(--font-base);
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            [style*="grid-template-columns: repeat(4"] {
-                grid-template-columns: repeat(2, 1fr) !important;
+            .give-hero h1 {
+                font-size: var(--font-4xl);
             }
             
-            [style*="grid-template-columns: 1fr 1fr"] {
-                grid-template-columns: 1fr !important;
+            .give-hero-subtitle {
+                font-size: var(--font-lg);
             }
             
-            [style*="grid-template-columns: repeat(auto-fit"] {
-                grid-template-columns: 1fr !important;
+            .verse-text {
+                font-size: var(--font-xl);
             }
-        }
-        
-        /* Print friendly */
-        @media print {
-            header, footer, .mobile-overlay {
-                display: none;
+            
+            .section-title {
+                font-size: var(--font-2xl);
+            }
+            
+            .content-area {
+                padding: var(--spacing-lg);
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-xs);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Skip to main content for keyboard users -->
+    <!-- Skip Link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <!-- Sticky Header/Nav -->
+    <!-- Header -->
     <header>
         <nav>
             <div class="nav-container">
@@ -113,7 +663,7 @@
                     <span></span>
                 </button>
                 <ul class="nav-links">
-                    <li><a href="redesign-mockup.html#live">LIVE</a></li>
+                    <li><a href="#live">LIVE</a></li>
                     <li><a href="redesign-mockup.html">Home</a></li>
                     <li class="nav-dropdown">
                         <a href="about.html" aria-haspopup="true" aria-expanded="false">About <span class="dropdown-arrow">▼</span></a>
@@ -128,387 +678,327 @@
                             <li><a href="songbook.html">GPBC Song Book</a></li>
                         </ul>
                     </li>
-                    <li><a href="redesign-mockup.html#next-service">Next Service</a></li>
+                    <li><a href="#next-service">Next Service</a></li>
                     <li><a href="calendar.html">Calendar</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="prayer-request.html">Prayer</a></li>
-                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
-                    <li><a href="give.html" class="active">Give</a></li>
+                    <li><a href="give-professional.html" class="active">Give</a></li>
                 </ul>
             </div>
         </nav>
         <div class="mobile-overlay"></div>
     </header>
 
+    <!-- Main Content -->
     <main id="main-content">
-
-    <!-- PAGE INTRO (Ultra Compact) -->
-    <section class="welcome">
-        <div class="welcome-content">
-            <h1 style="margin-bottom: var(--spacing-sm);">Give</h1>
-            <p class="intro" style="margin-bottom: var(--spacing-xs);">Giving is an act of worship. Your generosity supports God's work through our church.</p>
-            <p style="font-size: var(--font-xs); color: var(--color-text-light); font-style: italic; margin: 0;">"Each of you should give what you have decided in your heart to give." — 2 Corinthians 9:7</p>
-        </div>
-    </section>
-
-    <!-- PAYMENT METHOD SELECTION (CORE UX) -->
-    <section class="next-step">
-        <div style="max-width: 500px; margin: 0 auto; position: relative;">
-            
-            <!-- Subtle cross icon -->
-            <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); font-size: 1rem; color: var(--color-border); opacity: 0.2;" aria-hidden="true">✝</div>
-            
-            <!-- Payment Method Tabs -->
-            <div class="payment-tabs" role="tablist">
-                <button class="payment-tab active" role="tab" aria-selected="true" aria-controls="online-panel" id="online-tab" data-panel="online">
-                    💳 Online Payment
-                </button>
-                <button class="payment-tab" role="tab" aria-selected="false" aria-controls="qr-panel" id="qr-tab" data-panel="qr">
-                    📱 QR Code
-                </button>
-                <button class="payment-tab" role="tab" aria-selected="false" aria-controls="bank-panel" id="bank-tab" data-panel="bank">
-                    🏦 Bank Transfer
-                </button>
+        <!-- Hero Section -->
+        <section class="give-hero">
+            <div class="give-hero-container">
+                <h1>Give</h1>
+                <p class="give-hero-subtitle">
+                    Giving is an act of worship. Your generosity supports our church family and God's work in our community.
+                </p>
+                
+                <!-- Bible Verse - Prominently Displayed -->
+                <div class="verse-card">
+                    <p class="verse-text">
+                        "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."
+                    </p>
+                    <p class="verse-reference">— 2 Corinthians 9:7</p>
+                </div>
             </div>
+        </section>
 
-            <!-- ONLINE PAYMENT PANEL -->
-            <div id="online-panel" class="payment-panel active" role="tabpanel" aria-labelledby="online-tab">
-                <div style="background: white; padding: var(--spacing-xl); border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-                    
-                    <!-- Amount Selection -->
-                    <div class="form-group" style="margin-bottom: var(--spacing-md);">
-                        <label style="margin-bottom: var(--spacing-xs);">Amount</label>
-                        <div class="amount-grid">
-                            <button class="amount-btn" data-amount="25">$25</button>
-                            <button class="amount-btn" data-amount="50">$50</button>
-                            <button class="amount-btn" data-amount="100">$100</button>
-                            <button class="amount-btn" data-amount="custom">Custom</button>
+        <!-- Method Selection Section -->
+        <section class="method-selection">
+            <div class="method-selection-container">
+                <h2 class="section-title">Choose Your Giving Method</h2>
+                
+                <!-- Method Cards -->
+                <div class="method-cards">
+                    <!-- Online Payment Card -->
+                    <button 
+                        class="method-card active" 
+                        data-method="online"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="online-content"
+                        id="tab-online">
+                        <div class="method-icon" aria-hidden="true">💳</div>
+                        <h3>Online Payment</h3>
+                        <p>Credit card, PayPal, or Venmo</p>
+                    </button>
+
+                    <!-- QR Code Card -->
+                    <button 
+                        class="method-card" 
+                        data-method="qr"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="qr-content"
+                        id="tab-qr">
+                        <div class="method-icon" aria-hidden="true">📱</div>
+                        <h3>QR Code</h3>
+                        <p>Scan to give instantly</p>
+                    </button>
+
+                    <!-- Bank Transfer Card -->
+                    <button 
+                        class="method-card" 
+                        data-method="bank"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="bank-content"
+                        id="tab-bank">
+                        <div class="method-icon" aria-hidden="true">🏦</div>
+                        <h3>Bank Transfer</h3>
+                        <p>Zelle or direct transfer</p>
+                    </button>
+
+                    <!-- Check Card -->
+                    <button 
+                        class="method-card" 
+                        data-method="check"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="check-content"
+                        id="tab-check">
+                        <div class="method-icon" aria-hidden="true">✉️</div>
+                        <h3>Check (Mail)</h3>
+                        <p>Send by mail</p>
+                    </button>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area">
+                    <!-- Online Payment Content -->
+                    <div id="online-content" class="content-section active" role="tabpanel" aria-labelledby="tab-online">
+                        <h2>Complete Your Gift</h2>
+                        <form class="payment-form" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="amount" class="form-label">Amount</label>
+                                <div class="amount-wrapper">
+                                    <input 
+                                        type="number" 
+                                        id="amount" 
+                                        name="amount" 
+                                        class="form-input"
+                                        placeholder="0.00" 
+                                        min="1" 
+                                        step="0.01"
+                                        aria-label="Donation amount in dollars"
+                                        required>
+                                </div>
+                                <div class="preset-amounts">
+                                    <button type="button" class="preset-btn" data-amount="25">$25</button>
+                                    <button type="button" class="preset-btn" data-amount="50">$50</button>
+                                    <button type="button" class="preset-btn" data-amount="100">$100</button>
+                                    <button type="button" class="preset-btn" data-amount="custom">Custom</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="purpose" class="form-label">Purpose (Optional)</label>
+                                <select id="purpose" name="purpose" class="form-select" aria-label="Select donation purpose">
+                                    <option value="">General Offering</option>
+                                    <option value="tithe">Tithe</option>
+                                    <option value="missions">Missions</option>
+                                    <option value="building">Building Fund</option>
+                                    <option value="benevolence">Benevolence</option>
+                                    <option value="special">Special Projects</option>
+                                </select>
+                            </div>
+
+                            <div class="payment-buttons">
+                                <button type="button" class="btn-payment btn-primary" aria-label="Continue with PayPal">
+                                    <span>Continue with PayPal</span>
+                                </button>
+                                <button type="button" class="btn-payment btn-primary" aria-label="Continue with credit or debit card">
+                                    <span>Continue with Card</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- QR Code Content -->
+                    <div id="qr-content" class="content-section qr-section" role="tabpanel" aria-labelledby="tab-qr">
+                        <h2>Scan to Give</h2>
+                        <div class="qr-container">
+                            <div class="qr-code-placeholder" role="img" aria-label="QR code for mobile giving">
+                                QR Code<br>Here
+                            </div>
+                            <p class="qr-instructions">
+                                Point your phone camera at the QR code above or use your payment app to scan and give instantly.
+                            </p>
                         </div>
-                        <input type="number" id="customAmount" class="custom-amount-input" placeholder="Enter amount" style="display: none; margin-top: var(--spacing-xs);" min="1">
                     </div>
 
-                    <!-- Purpose Selection -->
-                    <div class="form-group" style="margin-bottom: var(--spacing-md);">
-                        <label for="purpose" style="margin-bottom: var(--spacing-xs);">Purpose</label>
-                        <select id="purpose">
-                            <option value="general">Offering</option>
-                            <option value="tithe">Tithe</option>
-                            <option value="missions">Mission</option>
-                        </select>
+                    <!-- Bank Transfer Content -->
+                    <div id="bank-content" class="content-section" role="tabpanel" aria-labelledby="tab-bank">
+                        <h2>Bank Transfer Details</h2>
+                        <div class="bank-details">
+                            <div class="detail-card">
+                                <div class="detail-row">
+                                    <span class="detail-label">Payment Method</span>
+                                    <span class="detail-value">Zelle</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Recipient Email</span>
+                                    <span class="detail-value">
+                                        <span id="email-value">gracepraisebangladeshichurch@gmail.com</span>
+                                        <button 
+                                            class="copy-btn" 
+                                            onclick="copyToClipboard('email-value', this)"
+                                            aria-label="Copy email address">
+                                            Copy
+                                        </button>
+                                    </span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Recipient Name</span>
+                                    <span class="detail-value">Grace and Praise Bangladeshi Church</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Memo (Optional)</span>
+                                    <span class="detail-value">GPBC Giving</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- PayPal Button Container -->
-                    <div style="margin-top: var(--spacing-md);">
-                        <div id="paypal-container-V3AF32ZHJSAME"></div>
-                        <script>
-                          paypal.HostedButtons({
-                            hostedButtonId: "V3AF32ZHJSAME",
-                          }).render("#paypal-container-V3AF32ZHJSAME")
-                        </script>
-                    </div>
-
-                    <!-- Accepted Payment Methods -->
-                    <div style="text-align: center; margin-top: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid var(--color-border);">
-                        <p style="font-size: var(--font-xs); color: var(--color-text-light); margin: 0; opacity: 0.7;">Visa • Mastercard • Amex • PayPal</p>
+                    <!-- Check Content -->
+                    <div id="check-content" class="content-section check-section" role="tabpanel" aria-labelledby="tab-check">
+                        <h2>Give by Check</h2>
+                        <div class="mailing-address">
+                            <h3>Mail Your Check To:</h3>
+                            <address class="address-text">
+                                <strong>Grace and Praise Bangladeshi Church</strong><br>
+                                1325 Richardson Street<br>
+                                San Bernardino, CA 92408
+                            </address>
+                        </div>
+                        <div class="memo-note">
+                            <strong>Important:</strong> Please write "GPBC Giving" in the memo line of your check.
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- QR CODE PANEL -->
-            <div id="qr-panel" class="payment-panel" role="tabpanel" aria-labelledby="qr-tab">
-                <div class="qr-container">
-                    <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-xs); font-size: var(--font-lg);">Scan to Give</h3>
-                    <p style="color: var(--color-text-light); margin-bottom: var(--spacing-md); font-size: var(--font-sm);">Scan with your phone camera or payment app</p>
-                    
-                    <div class="qr-code" id="paypalQR"></div>
-                    
-                    <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: white; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
-                        <p style="font-size: var(--font-xs); color: var(--color-text); margin-bottom: var(--spacing-xs);"><strong>PayPal Email</strong></p>
-                        <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap;">
-                            <code style="font-size: var(--font-sm); color: var(--color-text-light); word-break: break-all;">gracepraisebangladeshichurch@gmail.com</code>
-                            <button class="copy-btn" onclick="copyToClipboard('gracepraisebangladeshichurch@gmail.com')">Copy</button>
+        <!-- Trust & Assurance Section -->
+        <section class="trust-section">
+            <div class="trust-container">
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <span class="trust-icon" aria-hidden="true">🔒</span>
+                        <span>Secure & Encrypted</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-icon" aria-hidden="true">✓</span>
+                        <span>Tax-Deductible</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-icon" aria-hidden="true">📋</span>
+                        <span>501(c)(3) Nonprofit</span>
+                    </div>
+                </div>
+                <p class="trust-text">
+                    All contributions are handled with integrity and transparency. Your donation supports worship, ministry, and outreach in our community. We never share your personal information. You will receive a receipt for tax purposes.
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="faq-container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span>Is my gift tax-deductible?</span>
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <div class="faq-answer-content">
+                            Yes! Grace and Praise Bangladeshi Church is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the full extent allowed by law. You will receive a receipt for your records at the end of each year or upon request.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span>Can I give monthly or set up recurring donations?</span>
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <div class="faq-answer-content">
+                            Yes! You can set up recurring monthly donations through PayPal, or contact our office to arrange automatic bank transfers. Monthly giving helps us plan and sustain ministry throughout the year and ensures consistent support for our programs.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span>Who can I contact if I need help or have questions?</span>
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <div class="faq-answer-content">
+                            If you have questions about giving or need assistance, please contact us at <a href="mailto:info@gracepraise.church" style="color: var(--color-primary); font-weight: 600; text-decoration: underline;">info@gracepraise.church</a> or <a href="mailto:bangladeshi.church@gmail.com" style="color: var(--color-primary); font-weight: 600; text-decoration: underline;">bangladeshi.church@gmail.com</a>. We're here to help!
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- BANK TRANSFER PANEL -->
-            <div id="bank-panel" class="payment-panel" role="tabpanel" aria-labelledby="bank-tab">
-                <div class="bank-details">
-                    <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-md); text-align: center; font-size: var(--font-lg);">Bank Transfer</h3>
-                    
-                    <div class="detail-row">
-                        <span class="detail-label">Recipient Email:</span>
-                        <div class="detail-value">
-                            <span id="zelle-email">gracepraisebangladeshichurch@gmail.com</span>
-                            <button class="copy-btn" onclick="copyToClipboard('gracepraisebangladeshichurch@gmail.com')">Copy</button>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <span class="detail-label">Recipient Name:</span>
-                        <div class="detail-value">
-                            <span>Grace and Praise Bangladeshi Church</span>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: var(--spacing-md); text-align: center;">
-                        <p style="font-size: var(--font-xs); color: var(--color-text-light); line-height: var(--leading-normal);">
-                            Open your banking app, select Zelle, and use the email above.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- TRUST & TRANSPARENCY (Ultra Compact) -->
-    <section style="background: var(--color-surface); padding: var(--spacing-md);">
-        <div style="max-width: 500px; margin: 0 auto; text-align: center;">
-            <!-- Compact trust badges row -->
-            <div style="display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap; margin-bottom: var(--spacing-sm);">
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--font-xs); color: var(--color-text-light);">
-                    <span style="font-size: 1rem;">🔒</span> Secure
-                </span>
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--font-xs); color: var(--color-text-light);">
-                    <span style="font-size: 1rem;">📋</span> Tax-Deductible
-                </span>
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: var(--font-xs); color: var(--color-text-light);">
-                    <span style="font-size: 1rem;">✓</span> Transparent
-                </span>
-            </div>
-            <p style="color: var(--color-text-light); font-size: var(--font-xs); line-height: var(--leading-normal); margin: 0;">
-                501(c)(3) Nonprofit • Questions? <a href="mailto:gracepraisebangladeshichurch@gmail.com" style="color: var(--color-primary); text-decoration: underline;">Contact us</a>
-            </p>
-        </div>
-    </section>
-
+        </section>
     </main>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-col">
-                <h3>Grace and Praise Bangladeshi Church</h3>
-                <address>
-                    1325 Richardson Street<br>
-                    San Bernardino, CA 92408
-                </address>
-                <p>📧 gracepraisebangladeshichurch@gmail.com</p>
-            </div>
-
-            <div class="footer-col">
+            <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="redesign-mockup.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="calendar.html">Calendar</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="prayer-request.html">Prayer</a></li>
+                    <li><a href="give-professional.html">Give</a></li>
                 </ul>
             </div>
 
-            <div class="footer-col">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <address>
+                    <p><strong>Grace and Praise Bangladeshi Church</strong></p>
+                    <p>1325 Richardson Street, CA 92408</p>
+                    <p>Email: <a href="mailto:info@gracepraise.church">info@gracepraise.church</a></p>
+                    <p>Email: <a href="mailto:bangladeshi.church@gmail.com">bangladeshi.church@gmail.com</a></p>
+                </address>
+            </div>
+
+            <div class="footer-section">
                 <h3>Connect</h3>
-                <ul>
-                    <li><a href="prayer-request.html">Prayer Requests</a></li>
-                    <li><a href="daily-devotion.html">Daily Devotion</a></li>
-                    <li><a href="give.html">Give</a></li>
-                    <li><a href="testimonies.html">Testimonies</a></li>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                    <li><a href="#" aria-label="YouTube">YouTube</a></li>
+                    <li><a href="#" aria-label="Instagram">Instagram</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 Grace and Praise Bangladeshi Church. All rights reserved.</p>
+            <p>&copy; 2025 Grace and Praise Bangladeshi Church. All rights reserved.</p>
             <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms &amp; Conditions</a></p>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // Tab switching functionality
-        const tabs = document.querySelectorAll('.payment-tab');
-        const panels = document.querySelectorAll('.payment-panel');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and panels
-                tabs.forEach(t => {
-                    t.classList.remove('active');
-                    t.setAttribute('aria-selected', 'false');
-                });
-                panels.forEach(p => p.classList.remove('active'));
-
-                // Add active class to clicked tab and corresponding panel
-                tab.classList.add('active');
-                tab.setAttribute('aria-selected', 'true');
-                const panelId = tab.getAttribute('data-panel') + '-panel';
-                document.getElementById(panelId).classList.add('active');
-            });
-        });
-
-        // Amount button interactions
-        document.querySelectorAll('.amount-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // Show/hide custom amount input
-                const customInput = document.getElementById('customAmount');
-                if (this.dataset.amount === 'custom') {
-                    customInput.style.display = 'block';
-                    customInput.focus();
-                } else {
-                    customInput.style.display = 'none';
-                }
-            });
-        });
-
-        // Copy to clipboard function
-        function copyToClipboard(text) {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(() => {
-                    // Show success feedback
-                    const btn = event.target;
-                    const originalText = btn.textContent;
-                    btn.textContent = 'Copied!';
-                    btn.style.background = 'var(--color-secondary)';
-                    btn.style.color = 'white';
-                    
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.background = '';
-                        btn.style.color = '';
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Copy failed:', err);
-                    alert('Could not copy to clipboard. Please copy manually.');
-                });
-            } else {
-                // Fallback for older browsers
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    const btn = event.target;
-                    const originalText = btn.textContent;
-                    btn.textContent = 'Copied!';
-                    setTimeout(() => { btn.textContent = originalText; }, 2000);
-                } catch (err) {
-                    alert('Could not copy to clipboard. Please copy manually.');
-                }
-                document.body.removeChild(textarea);
-            }
-        }
-        
-        // Generate QR code on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const paypalQRDiv = document.getElementById('paypalQR');
-            if (paypalQRDiv && typeof QRCode !== 'undefined') {
-                new QRCode(paypalQRDiv, {
-                    text: 'gracepraisebangladeshichurch@gmail.com',
-                    width: 150,
-                    height: 150,
-                    colorDark: '#1e3a5f',
-                    colorLight: '#ffffff'
-                });
-            }
-        });
-    </script>
-    
-    <!-- Schema.org Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "DonateAction",
-        "name": "Donate to Grace and Praise Bangladeshi Church",
-        "description": "Support our nonprofit ministry through secure online church donations. Tax-deductible giving helps fund worship, community outreach, and missions.",
-        "recipient": {
-            "@type": "NGO",
-            "name": "Grace and Praise Bangladeshi Church",
-            "alternateName": "GPBC",
-            "url": "https://gilbert-baidya.github.io/gracepraise.church/",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "1325 Richardson Street",
-                "addressLocality": "San Bernardino",
-                "addressRegion": "CA",
-                "postalCode": "92408",
-                "addressCountry": "US"
-            },
-            "email": "gracepraisebangladeshichurch@gmail.com"
-        }
-    }
-    </script>
-    
-    <script src="logo-loader.js"></script>
-    
-    <!-- Dropdown menu accessibility script -->
-    <script>
-        // Dropdown menu accessibility and keyboard navigation
-        const navDropdown = document.querySelector('.nav-dropdown');
-        if (navDropdown) {
-            const dropdownToggle = navDropdown.querySelector('a[aria-haspopup]');
-            const dropdownMenu = navDropdown.querySelector('.dropdown-menu');
-            const dropdownLinks = dropdownMenu ? dropdownMenu.querySelectorAll('a') : [];
-
-            if (dropdownToggle) {
-                dropdownToggle.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        const isExpanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
-                        dropdownToggle.setAttribute('aria-expanded', !isExpanded);
-                        
-                        if (!isExpanded && dropdownLinks.length > 0) {
-                            dropdownLinks[0].focus();
-                        }
-                    } else if (e.key === 'Escape') {
-                        dropdownToggle.setAttribute('aria-expanded', 'false');
-                        dropdownToggle.focus();
-                    }
-                });
-
-                navDropdown.addEventListener('mouseenter', () => {
-                    dropdownToggle.setAttribute('aria-expanded', 'true');
-                });
-
-                navDropdown.addEventListener('mouseleave', () => {
-                    dropdownToggle.setAttribute('aria-expanded', 'false');
-                });
-            }
-
-            dropdownLinks.forEach((link, index) => {
-                link.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        if (index < dropdownLinks.length - 1) {
-                            dropdownLinks[index + 1].focus();
-                        }
-                    } else if (e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        if (index > 0) {
-                            dropdownLinks[index - 1].focus();
-                        } else {
-                            dropdownToggle.focus();
-                        }
-                    } else if (e.key === 'Escape') {
-                        e.preventDefault();
-                        dropdownToggle.setAttribute('aria-expanded', 'false');
-                        dropdownToggle.focus();
-                    }
-                });
-            });
-        }
-
-        // Mobile menu toggle
-        const header = document.querySelector('header');
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
         const mobileOverlay = document.querySelector('.mobile-overlay');
@@ -527,22 +1017,117 @@
             mobileOverlay.addEventListener('click', toggleMobileMenu);
         }
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('mobile-open')) {
-                    toggleMobileMenu();
+        // Method Card Selection
+        const methodCards = document.querySelectorAll('.method-card');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        methodCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const method = card.dataset.method;
+                
+                // Update cards
+                methodCards.forEach(c => {
+                    c.classList.remove('active');
+                    c.setAttribute('aria-selected', 'false');
+                });
+                
+                card.classList.add('active');
+                card.setAttribute('aria-selected', 'true');
+                
+                // Update content
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                document.getElementById(`${method}-content`).classList.add('active');
+                
+                // Smooth scroll to content area
+                document.querySelector('.content-area').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+            });
+
+            // Keyboard support
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
                 }
             });
         });
 
+        // Preset Amount Buttons
+        const presetBtns = document.querySelectorAll('.preset-btn');
+        const amountInput = document.getElementById('amount');
+
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const amount = btn.dataset.amount;
+                if (amount === 'custom') {
+                    amountInput.value = '';
+                    amountInput.focus();
+                } else {
+                    amountInput.value = amount;
+                }
+            });
+        });
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isOpen = faqItem.classList.contains('open');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('open');
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                
+                // Toggle current item
+                if (!isOpen) {
+                    faqItem.classList.add('open');
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // Copy to Clipboard Function
+        function copyToClipboard(elementId, button) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2500);
+            }).catch(err => {
+                alert('Unable to copy. Please copy manually: ' + text);
+            });
+        }
+
         // Header scroll effect
+        const header = document.querySelector('header');
+        let lastScroll = 0;
+
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
+            
             if (currentScroll > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+            
+            lastScroll = currentScroll;
         });
     </script>
 </body>

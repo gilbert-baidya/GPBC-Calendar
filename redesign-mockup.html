@@ -99,7 +99,7 @@
                 <span class="countdown-value" data-unit="minutes">30</span><span class="countdown-unit">m</span>
                 <span class="countdown-value" data-unit="seconds">47</span><span class="countdown-unit">s</span>
             </time>
-            <a href="#event-details" class="banner-link" aria-label="View Gratitude & New Year Celebration details">Details →</a>
+            <a href="#dynamic-events-container" class="banner-link" aria-label="View Gratitude & New Year Celebration details">Details →</a>
         </div>
     </div>
 
@@ -227,59 +227,9 @@
             </div>
         </section>
 
-        <!-- Special Event Details -->
-        <section class="special-event-details" id="event-details" aria-labelledby="event-details-heading">
-            <div class="event-details-content">
-                <div class="event-header-section">
-                    <span class="event-icon-large" aria-hidden="true">🎉</span>
-                    <div>
-                        <h2 id="event-details-heading">Gratitude & New Year Celebration</h2>
-                        <p class="event-tagline">Join us for a special evening of worship, thanksgiving, and hope</p>
-                    </div>
-                </div>
-                
-                <div class="event-info-grid">
-                    <div class="event-info-item">
-                        <span class="info-icon">📅</span>
-                        <div>
-                            <h3>When</h3>
-                            <time datetime="2025-12-31T22:30:00">December 31, 2025 at 10:30 PM</time>
-                            <p class="info-subtext">Ring in the New Year with us!</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-info-item">
-                        <span class="info-icon">📍</span>
-                        <div>
-                            <h3>Where</h3>
-                            <address>1325 Richardson St<br>San Bernardino, CA 92408</address>
-                            <a href="https://maps.google.com/?q=1325+Richardson+St,+San+Bernardino,+CA+92408" target="_blank" rel="noopener noreferrer" class="map-link">Get Directions →</a>
-                        </div>
-                    </div>
-                    
-                    <div class="event-info-item">
-                        <span class="info-icon">🎵</span>
-                        <div>
-                            <h3>What to Expect</h3>
-                            <p>Worship music, testimonies of gratitude, prayer for the new year, and fellowship</p>
-                        </div>
-                    </div>
-                    
-                    <div class="event-info-item">
-                        <span class="info-icon">👥</span>
-                        <div>
-                            <h3>Who's Invited</h3>
-                            <p>Everyone! Bring family and friends. All ages welcome.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="event-cta">
-                    <a href="give.html" class="btn btn-primary">RSVP / Support Event</a>
-                    <a href="calendar.html" class="btn btn-secondary">View Full Calendar</a>
-                </div>
-            </div>
-        </section>
+        <!-- Dynamic Upcoming Events Container -->
+        <!-- Events are dynamically loaded from events.js by homepage-events.js -->
+        <div id="dynamic-events-container"></div>
 
         <!-- Next Service Section -->
         <section class="next-service-section" id="next-service" aria-labelledby="next-service-heading">
@@ -590,6 +540,8 @@
             }
         });
     </script>
+    <script src="events.js"></script>
+    <script src="homepage-events.js"></script>
     <script src="countdown.js"></script>
 </body>
 </html>

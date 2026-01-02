@@ -57,12 +57,197 @@
             font-weight: var(--font-normal);
             margin-bottom: var(--spacing-md);
         }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
         
         .devotion-date {
             font-size: var(--font-lg);
             font-weight: var(--font-medium);
             color: var(--color-text-inverse);
             opacity: 0.9;
+        }
+
+        /* Controls */
+        .devotion-controls {
+            max-width: 1000px;
+            margin: calc(var(--spacing-xl) * -1) auto var(--spacing-xl);
+            padding: var(--spacing-md);
+            background: var(--color-surface);
+            box-shadow: var(--shadow-md);
+            border-radius: var(--radius-lg);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        .devotion-controls-row {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .language-toggle {
+            display: inline-flex;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            background: var(--color-background);
+        }
+
+        .language-toggle button {
+            border: none;
+            background: transparent;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            font-weight: var(--font-semibold);
+            cursor: pointer;
+            color: var(--color-text);
+            transition: all var(--transition-base);
+        }
+
+        .language-toggle button.active {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+        }
+
+        .language-toggle button:focus-visible {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+
+        .date-strip-wrapper {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            width: 100%;
+        }
+
+        .date-strip {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(88px, 1fr);
+            gap: var(--spacing-sm);
+            overflow-x: auto;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            scrollbar-width: thin;
+        }
+
+        .date-pill {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            background: var(--color-surface);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            min-width: 82px;
+            color: var(--color-text);
+        }
+
+        .date-pill strong {
+            display: block;
+            color: var(--color-primary);
+            font-size: var(--font-base);
+        }
+
+        .date-pill span {
+            font-size: var(--font-sm);
+            color: var(--color-text-light);
+        }
+
+        .date-pill.active {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-inverse);
+            border-color: transparent;
+            box-shadow: var(--shadow-md);
+        }
+
+        .date-pill.active span,
+        .date-pill.active strong {
+            color: var(--color-text-inverse);
+        }
+
+        .date-pill:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-1px);
+        }
+
+        .date-nav-btn {
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            border-radius: var(--radius-full);
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            color: var(--color-text);
+        }
+
+        .date-nav-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .jump-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .jump-controls select,
+        .jump-controls button {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            color: var(--color-text);
+            cursor: pointer;
+            font-weight: var(--font-medium);
+            transition: all var(--transition-base);
+        }
+
+        .jump-controls button.primary {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            border: none;
+        }
+
+        .jump-controls button.primary:hover {
+            filter: brightness(0.96);
+        }
+
+        .jump-controls button:focus-visible,
+        .jump-controls select:focus-visible {
+            outline: 3px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+
+        .devotion-meta {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: var(--font-sm);
+        }
+
+        /* Layout helpers */
+        .devotion-container {
+            position: relative;
+            z-index: 1;
         }
         
         /* Hero Image Section */
@@ -503,6 +688,10 @@
                 font-size: var(--font-lg);
             }
             
+            .devotion-controls {
+                margin-top: calc(var(--spacing-lg) * -1);
+            }
+            
             .devotion-container {
                 padding: var(--spacing-lg) var(--spacing-sm);
             }
@@ -576,6 +765,38 @@
             <p class="devotion-date" id="devotionDate">Loading...</p>
         </section>
 
+        <!-- Controls -->
+        <section class="devotion-controls" aria-label="Devotion controls">
+            <div class="devotion-controls-row">
+                <div class="language-toggle" role="group" aria-label="Language toggle">
+                    <button type="button" id="langEn" class="active">English</button>
+                    <button type="button" id="langBn">বাংলা</button>
+                </div>
+                <div class="devotion-meta" id="devotionMeta">
+                    <span id="selectedDateLabel">—</span>
+                </div>
+            </div>
+
+            <div class="devotion-controls-row">
+                <div class="date-strip-wrapper">
+                    <button class="date-nav-btn" id="prevDayBtn" aria-label="Previous day">←</button>
+                    <div class="date-strip" id="dateStrip" aria-label="Choose a date"></div>
+                    <button class="date-nav-btn" id="nextDayBtn" aria-label="Next day">→</button>
+                </div>
+            </div>
+
+            <div class="devotion-controls-row">
+                <div class="jump-controls" aria-label="Jump to date">
+                    <label class="sr-only" for="monthSelect">Month</label>
+                    <select id="monthSelect" aria-label="Select month"></select>
+                    <label class="sr-only" for="daySelect">Day</label>
+                    <select id="daySelect" aria-label="Select day"></select>
+                    <button type="button" class="primary" id="goToDateBtn">Go</button>
+                    <button type="button" id="todayBtn">Today</button>
+                </div>
+            </div>
+        </section>
+
         <!-- Hero Image Section -->
         <section class="devotion-hero-image">
             <!-- Image placeholder (only show if image exists) -->
@@ -592,6 +813,12 @@
         <div class="devotion-container">
             <!-- Content will be dynamically loaded here -->
             <div id="devotionContent">
+                <!-- Header -->
+                <article class="devotion-section" id="devotionHeader">
+                    <p class="devotion-meta"><span aria-hidden="true">📖</span> <span id="devotionSubtitle">Devotion of the day</span></p>
+                    <h2 id="devotionTitle" style="margin: 0;">Loading devotion...</h2>
+                </article>
+
                 <!-- Scripture Section -->
                 <article class="devotion-section scripture-section">
                     <h3 id="bibleReference">Philippians 4:6-7 (NIV)</h3>
@@ -662,17 +889,13 @@
                     <a href="#" 
                        class="devotion-nav-btn prev" 
                        id="prevDevotionBtn"
-                       aria-label="Go to previous devotion"
-                       style="opacity: 0.4; cursor: not-allowed;"
-                       onclick="return false;">
+                       aria-label="Go to previous devotion">
                         <span aria-hidden="true">←</span> Previous Devotion
                     </a>
                     <a href="#" 
                        class="devotion-nav-btn next" 
                        id="nextDevotionBtn"
-                       aria-label="Go to next devotion"
-                       style="opacity: 0.4; cursor: not-allowed;"
-                       onclick="return false;">
+                       aria-label="Go to next devotion">
                         Next Devotion <span aria-hidden="true">→</span>
                     </a>
                 </nav>
@@ -777,243 +1000,316 @@
 
     <!-- Scripts -->
     <script>
-        // ================================================================
-        // DAILY DEVOTION PAGE - SOCIAL SHARING & CONTENT INJECTION
-        // ================================================================
-        
-        /**
-         * This script handles:
-         * 1. Dynamic content injection (placeholders ready for backend)
-         * 2. Social sharing functionality
-         * 3. Graceful fallback when content unavailable
-         */
-        
+        // Daily Devotion: dynamic navigation, language toggle, date jump, and graceful fallback.
         document.addEventListener('DOMContentLoaded', function() {
-            // ============================================================
-            // AUTO-GENERATE CURRENT DATE
-            // ============================================================
-            
-            function formatDevotionDate() {
-                const date = new Date();
-                const options = { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                };
-                return date.toLocaleDateString('en-US', options);
-            }
-            
-            // Set current date if placeholder is still present
+            // -----------------------------
+            // Data: replace or inject window.DEVOTIONS with your full dataset
+            // -----------------------------
+            const DEVOTIONS = (window.DEVOTIONS && window.DEVOTIONS.length ? window.DEVOTIONS : [
+                {
+                    date: '2026-01-01',
+                    title: 'He Knows Your Name',
+                    titleBn: 'তিনি তোমার নাম জানেন',
+                    verse: 'Isaiah 43:1',
+                    verseText: '“Fear not, for I have redeemed you; I have called you by name, you are mine.”',
+                    verseTextBn: '“ভয় করোনা, কারণ আমি তোমাকে মুক্ত করেছি; আমি তোমাকে নামে ডেকেছি, তুমি আমার।”',
+                    reflection: 'God’s personal call means you are never anonymous to Him. He loves you in particular, not just the crowd. Redemption is His decisive act to claim you as His own. Let this quiet fear and shame: you belong. Because you are His, you can walk through uncertainty with confidence that He will guard and guide.',
+                    reflectionBn: 'ঈশ্বরের ডাকে তুমি কখনো অচেনা নও। তিনি ভিড় নয়, তোমাকে ব্যক্তিগতভাবে ভালোবাসেন। মুক্তি তাঁর সিদ্ধান্ত তোমাকে নিজের করার। এই সত্য ভয় ও লজ্জা শান্ত করুক: তুমি তাঁর। তুমি তাঁর বলেই অনিশ্চয়তায়ও আত্মবিশ্বাসে চলতে পারো; তিনি রক্ষা ও দিশা দেবেন।',
+                    prayer: 'Father, thank You for calling me by name. Silence every lie that says I’m forgotten and let my heart rest in belonging to You.',
+                    prayerBn: 'পিতা, আমাকে নামে ডাকার জন্য ধন্যবাদ। যে সব মিথ্যা বলে আমি ভুলে গেছি সেগুলো নীরব করুন, এবং আমার হৃদয়কে আপনার মধ্যে থাকার নিশ্চিন্ততায় বিশ্রাম দিন.'
+                },
+                {
+                    date: '2026-12-25',
+                    title: 'Christ Is Born',
+                    titleBn: 'খ্রিস্ট জন্মেছেন',
+                    verse: 'Luke 2:11',
+                    verseText: '“For unto you is born this day… a Savior, who is Christ the Lord.”',
+                    verseTextBn: '“কারণ আজ তোমাদের জন্য জন্মালেন… উদ্ধারকর্তা, যিনি খ্রিস্ট প্রভু।”',
+                    reflection: 'We celebrate God’s gift—Jesus our Savior. He is Christ the Lord, worthy of worship. Receive Him anew with faith and joy. Let gratitude shape your day: the Lord Himself has come near to save.',
+                    reflectionBn: 'আজ আমরা ঈশ্বরের দান উদযাপন করি—যিশু আমাদের উদ্ধারকর্তা। তিনি খ্রিস্ট প্রভু, উপাসনাযোগ্য। বিশ্বাস ও আনন্দে তাঁকে নতুন করে গ্রহণ করো। কৃতজ্ঞতা তোমার দিন গড়ুক: প্রভু নিজেই রক্ষা করতে কাছে এসেছেন।',
+                    prayer: 'Savior and Lord, thank You for coming. I worship You with joy today.',
+                    prayerBn: 'উদ্ধারকর্তা ও প্রভু, আসার জন্য ধন্যবাদ। আজ আনন্দে আপনাকে উপাসনা করি।'
+                }
+            ]);
+
+            // -----------------------------
+            // Elements
+            // -----------------------------
             const dateElement = document.getElementById('devotionDate');
-            if (dateElement && dateElement.textContent.includes('{{')) {
-                dateElement.textContent = formatDevotionDate();
+            const metaLabel = document.getElementById('selectedDateLabel') || document.getElementById('devotionMetaText');
+            const headerTitle = document.getElementById('devotionTitle');
+            const headerSubtitle = document.getElementById('devotionSubtitle');
+            const referenceEl = document.getElementById('bibleReference');
+            const verseEl = document.getElementById('bibleText');
+            const reflectionEl = document.getElementById('devotionMessage');
+            const prayerEl = document.getElementById('devotionPrayer');
+            const contentEl = document.getElementById('devotionContent');
+            const fallbackEl = document.getElementById('devotionFallback');
+            const imageEl = document.getElementById('devotionImage');
+            const prevBtn = document.getElementById('prevDevotionBtn');
+            const nextBtn = document.getElementById('nextDevotionBtn');
+            const dateStrip = document.getElementById('dateStrip');
+            const prevDayBtn = document.getElementById('prevDayBtn');
+            const nextDayBtn = document.getElementById('nextDayBtn');
+            const monthSelect = document.getElementById('monthSelect');
+            const daySelect = document.getElementById('daySelect');
+            const goToDateBtn = document.getElementById('goToDateBtn');
+            const todayBtn = document.getElementById('todayBtn');
+            const langEnBtn = document.getElementById('langEn');
+            const langBnBtn = document.getElementById('langBn');
+
+            // -----------------------------
+            // State
+            // -----------------------------
+            let currentLang = 'en';
+            const today = new Date();
+            let selectedDate = today;
+
+            // Helper: format dates
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const monthNamesLong = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+            function toDateKey(d) {
+                const y = d.getFullYear();
+                const m = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${y}-${m}-${day}`;
             }
-            
-            // ============================================================
-            // DYNAMIC IMAGE HANDLING WITH FALLBACK
-            // ============================================================
-            
-            const imageElement = document.getElementById('devotionImage');
-            
-            // Default fallback image if file doesn't exist
-            const defaultImageUrl = '/images/devotion-placeholder.jpg';
-            const defaultImageAlt = 'Daily devotion image';
-            
-            // Image error handling - use Unsplash if local image fails to load
-            if (imageElement) {
-                imageElement.onerror = function() {
-                    this.src = 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1200&h=400&fit=crop&q=80';
-                    this.alt = 'Open Bible with morning light, symbolizing daily spiritual reflection and God\'s Word';
-                };
+
+            function formatDisplayDate(d) {
+                return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
             }
-            
-            // ============================================================
-            // CONTENT INJECTION POINT
-            // ============================================================
-            // Backend/CMS can inject devotional content here by replacing
-            // placeholders or directly updating these elements
-            
-            const devotionData = {
-                date: dateElement.textContent,
-                bibleReference: '{{bible_reference}}',
-                bibleText: '{{bible_text}}',
-                message: '{{devotion_message}}',
-                prayer: '{{devotion_prayer}}'
-            };
-            
-            // Check if content is available (not placeholder)
-            const isContentAvailable = !devotionData.bibleReference.includes('{{');
-            
-            if (!isContentAvailable) {
-                // Show fallback message if content not loaded
-                showFallback();
-            } else {
-                // Content is available, ensure it's displayed
-                document.getElementById('devotionContent').style.display = 'block';
-                document.getElementById('devotionFallback').style.display = 'none';
-                
-                // Update Open Graph meta tags with actual content for better sharing
-                updateSocialMetaTags();
+
+            function formatMonthDay(d) {
+                return `${monthNames[d.getMonth()]} ${d.getDate()}`;
             }
-            
-            // ============================================================
-            // UPDATE SOCIAL META TAGS FOR SHARING
-            // ============================================================
-            
-            function updateSocialMetaTags() {
-                const reference = document.getElementById('bibleReference').textContent;
-                if (reference && !reference.includes('{{')) {
-                    const title = `Today's Devotion: ${reference} | Grace and Praise Bangladeshi Church`;
-                    const description = getShareText().substring(0, 160);
-                    
-                    // Update OG tags
-                    document.querySelector('meta[property="og:title"]').setAttribute('content', title);
-                    document.querySelector('meta[property="og:description"]').setAttribute('content', description);
-                    
-                    // Update Twitter tags
-                    document.querySelector('meta[property="twitter:title"]').setAttribute('content', title);
-                    document.querySelector('meta[property="twitter:description"]').setAttribute('content', description);
+
+            // Build lookup
+            const devotionByKey = new Map();
+            DEVOTIONS.forEach(item => devotionByKey.set(item.date, item));
+            const availableDates = [...devotionByKey.keys()].sort();
+
+            function closestAvailableDate(target) {
+                if (availableDates.length === 0) return target;
+                const targetKey = toDateKey(target);
+                if (devotionByKey.has(targetKey)) return target;
+                // find nearest date
+                let nearest = availableDates[0];
+                let minDiff = Math.abs(new Date(targetKey) - new Date(availableDates[0]));
+                availableDates.forEach(k => {
+                    const diff = Math.abs(new Date(targetKey) - new Date(k));
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        nearest = k;
+                    }
+                });
+                return new Date(nearest);
+            }
+
+            selectedDate = closestAvailableDate(today);
+
+            // Populate month/day selects
+            function populateSelectors() {
+                monthSelect.innerHTML = '';
+                monthNamesLong.forEach((name, idx) => {
+                    const opt = document.createElement('option');
+                    opt.value = idx;
+                    opt.textContent = name;
+                    monthSelect.appendChild(opt);
+                });
+                daySelect.innerHTML = '';
+                for (let d = 1; d <= 31; d++) {
+                    const opt = document.createElement('option');
+                    opt.value = d;
+                    opt.textContent = d;
+                    daySelect.appendChild(opt);
+                }
+                monthSelect.value = selectedDate.getMonth();
+                daySelect.value = selectedDate.getDate();
+            }
+
+            // Render date strip
+            function renderDateStrip() {
+                dateStrip.innerHTML = '';
+                const sourceDates = availableDates.length ? availableDates : generateRangeKeys(selectedDate, 7);
+                sourceDates.forEach(key => {
+                    const d = new Date(key);
+                    const pill = document.createElement('button');
+                    pill.className = 'date-pill';
+                    pill.setAttribute('data-date', key);
+                    pill.innerHTML = `<strong>${monthNames[d.getMonth()]} ${d.getDate()}</strong><span>${d.toLocaleDateString('en-US',{weekday:'short'})}</span>`;
+                    if (toDateKey(selectedDate) === key) {
+                        pill.classList.add('active');
+                        pill.setAttribute('aria-current', 'date');
+                    }
+                    pill.addEventListener('click', () => {
+                        selectedDate = d;
+                        renderAll();
+                    });
+                    dateStrip.appendChild(pill);
+                });
+            }
+
+            function generateRangeKeys(centerDate, radius) {
+                const keys = [];
+                for (let i = -radius; i <= radius; i++) {
+                    const d = new Date(centerDate);
+                    d.setDate(centerDate.getDate() + i);
+                    keys.push(toDateKey(d));
+                }
+                return keys;
+            }
+
+            // Render devotion
+            function renderDevotion() {
+                const key = toDateKey(selectedDate);
+                const data = devotionByKey.get(key);
+                const hasData = !!data;
+
+                // Update hero date (no year in display)
+                if (dateElement) dateElement.textContent = formatDisplayDate(selectedDate);
+                if (metaLabel) metaLabel.textContent = formatMonthDay(selectedDate);
+
+                if (!hasData) {
+                    if (availableDates.length) {
+                        selectedDate = new Date(availableDates[0]);
+                        renderAll();
+                        return;
+                    }
+                    contentEl.style.display = 'none';
+                    fallbackEl.style.display = 'block';
+                    return;
+                }
+
+                contentEl.style.display = 'block';
+                fallbackEl.style.display = 'none';
+
+                const lang = currentLang === 'bn' ? 'Bn' : '';
+                const title = data[`title${lang}`] || data.title || 'Daily Devotion';
+                const verse = data.verse || '';
+                const verseText = data[`verseText${lang}`] || data.verseText || '';
+                const reflection = data[`reflection${lang}`] || data.reflection || '';
+                const prayer = data[`prayer${lang}`] || data.prayer || '';
+
+                headerTitle.textContent = title;
+                headerSubtitle.textContent = `${formatDisplayDate(selectedDate)} — ${verse}`;
+                referenceEl.textContent = verse;
+                verseEl.textContent = verseText;
+                reflectionEl.innerHTML = `<p>${reflection}</p>`;
+                prayerEl.innerHTML = `<p>${prayer}</p>`;
+
+                // Update sharing meta
+                updateSocialMetaTags(title, verse, reflection);
+
+                // Update image fallback
+                if (imageEl) {
+                    imageEl.onerror = function() {
+                        this.src = 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1200&h=400&fit=crop&q=80';
+                        this.alt = 'Open Bible with morning light, symbolizing daily spiritual reflection and God\'s Word';
+                    };
                 }
             }
-            
-            // ============================================================
-            // SOCIAL SHARING FUNCTIONALITY (Simple)
-            // ============================================================
-            
-            // Get page URL
+
+            // Meta tags update
+            function updateSocialMetaTags(title, verse, reflection) {
+                const shareTitle = `Devotion: ${verse} | Grace and Praise Bangladeshi Church`;
+                const desc = `${title} — ${reflection}`.substring(0, 160);
+                const ogTitle = document.querySelector('meta[property="og:title"]');
+                const ogDesc = document.querySelector('meta[property="og:description"]');
+                const twTitle = document.querySelector('meta[property="twitter:title"]');
+                const twDesc = document.querySelector('meta[property="twitter:description"]');
+                if (ogTitle) ogTitle.setAttribute('content', shareTitle);
+                if (ogDesc) ogDesc.setAttribute('content', desc);
+                if (twTitle) twTitle.setAttribute('content', shareTitle);
+                if (twDesc) twDesc.setAttribute('content', desc);
+            }
+
+            // Share handlers
             const pageUrl = encodeURIComponent(window.location.href);
-            
-            // Prepare share content
             function getShareText() {
-                const reference = document.getElementById('bibleReference').textContent;
-                const message = document.getElementById('devotionMessage').textContent;
-                
-                // Extract first 100 chars of message as excerpt
-                let excerpt = message.trim().substring(0, 100);
-                if (message.length > 100) {
-                    excerpt += '...';
-                }
-                
-                return `Today's Devotion – ${reference}\n\n${excerpt}\n\nRead more: ${window.location.href}`;
+                const ref = referenceEl.textContent || '';
+                const msg = reflectionEl.textContent || '';
+                let excerpt = msg.trim().substring(0, 100);
+                if (msg.length > 100) excerpt += '...';
+                return `Today's Devotion – ${ref}\n\n${excerpt}\n\nRead more: ${window.location.href}`;
             }
-            
             function getShareTextEncoded() {
                 return encodeURIComponent(getShareText());
             }
-            
-            // Simple Facebook Share
+
             const simpleFbBtn = document.getElementById('shareSimpleFacebook');
             if (simpleFbBtn) {
                 simpleFbBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const url = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-                    window.open(url, '_blank', 'noopener,noreferrer,width=600,height=400');
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank', 'noopener,noreferrer,width=600,height=400');
                 });
             }
-            
-            // Simple WhatsApp Share
             const simpleWaBtn = document.getElementById('shareSimpleWhatsApp');
             if (simpleWaBtn) {
                 simpleWaBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const url = `https://wa.me/?text=${getShareTextEncoded()}`;
-                    window.open(url, '_blank', 'noopener,noreferrer');
+                    window.open(`https://wa.me/?text=${getShareTextEncoded()}`, '_blank', 'noopener,noreferrer');
                 });
             }
-            
-            // Simple Copy Link
             const simpleCopyBtn = document.getElementById('copySimpleLink');
             const simpleCopyText = document.getElementById('copySimpleLinkText');
             if (simpleCopyBtn && simpleCopyText) {
                 simpleCopyBtn.addEventListener('click', function() {
                     navigator.clipboard.writeText(window.location.href).then(function() {
                         simpleCopyText.textContent = 'Copied!';
-                        setTimeout(function() {
-                            simpleCopyText.textContent = 'Copy Link';
-                        }, 2000);
+                        setTimeout(() => simpleCopyText.textContent = 'Copy Link', 2000);
                     }).catch(function() {
                         simpleCopyText.textContent = 'Unable to copy';
-                        setTimeout(function() {
-                            simpleCopyText.textContent = 'Copy Link';
-                        }, 2000);
+                        setTimeout(() => simpleCopyText.textContent = 'Copy Link', 2000);
                     });
                 });
             }
-            
-            // ============================================================
-            // DEVOTION NAVIGATION (Previous/Next)
-            // ============================================================
-            
-            const prevBtn = document.getElementById('prevDevotionBtn');
-            const nextBtn = document.getElementById('nextDevotionBtn');
-            
-            // Check if navigation URLs are placeholders and disable if needed
-            if (prevBtn && prevBtn.href.includes('{{')) {
-                prevBtn.setAttribute('disabled', 'true');
-                prevBtn.style.opacity = '0.4';
-                prevBtn.style.cursor = 'not-allowed';
-                prevBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
+
+            // Navigation day +/- 1
+            function shiftDay(delta) {
+                const d = new Date(selectedDate);
+                d.setDate(selectedDate.getDate() + delta);
+                selectedDate = d;
+                renderAll();
+            }
+            if (prevDayBtn) prevDayBtn.addEventListener('click', () => shiftDay(-1));
+            if (nextDayBtn) nextDayBtn.addEventListener('click', () => shiftDay(1));
+            if (prevBtn) prevBtn.addEventListener('click', e => { e.preventDefault(); shiftDay(-1); });
+            if (nextBtn) nextBtn.addEventListener('click', e => { e.preventDefault(); shiftDay(1); });
+            if (todayBtn) todayBtn.addEventListener('click', () => { selectedDate = today; renderAll(); });
+
+            // Jump controls
+            if (goToDateBtn) {
+                goToDateBtn.addEventListener('click', () => {
+                    const monthIdx = parseInt(monthSelect.value, 10);
+                    const day = parseInt(daySelect.value, 10);
+                    const year = selectedDate.getFullYear(); // keep current year; year hidden in UI
+                    const d = new Date(year, monthIdx, day);
+                    if (!isNaN(d)) {
+                        selectedDate = d;
+                        renderAll();
+                    }
                 });
             }
-            
-            if (nextBtn && nextBtn.href.includes('{{')) {
-                nextBtn.setAttribute('disabled', 'true');
-                nextBtn.style.opacity = '0.4';
-                nextBtn.style.cursor = 'not-allowed';
-                nextBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                });
+
+            // Language toggle
+            function setLang(lang) {
+                currentLang = lang;
+                langEnBtn.classList.toggle('active', lang === 'en');
+                langBnBtn.classList.toggle('active', lang === 'bn');
+                renderDevotion();
             }
-            
-            // ============================================================
-            // FALLBACK DISPLAY FUNCTION
-            // ============================================================
-            
-            function showFallback() {
-                document.getElementById('devotionContent').style.display = 'none';
-                document.getElementById('devotionFallback').style.display = 'block';
+            if (langEnBtn) langEnBtn.addEventListener('click', () => setLang('en'));
+            if (langBnBtn) langBnBtn.addEventListener('click', () => setLang('bn'));
+
+            function renderAll() {
+                populateSelectors();
+                renderDateStrip();
+                renderDevotion();
             }
-            
-            // ============================================================
-            // EXAMPLE: BACKEND CONTENT INJECTION
-            // ============================================================
-            // Backend services can call this function to inject devotional content:
-            /*
-            window.loadDevotionContent = function(data) {
-                // Update text content
-                document.getElementById('devotionDate').textContent = data.date;
-                document.getElementById('bibleReference').textContent = data.bibleReference;
-                document.getElementById('bibleText').textContent = data.bibleText;
-                document.getElementById('devotionMessage').innerHTML = data.message;
-                document.getElementById('devotionPrayer').innerHTML = data.prayer;
-                
-                // Update hero image if provided
-                if (data.imageUrl) {
-                    document.getElementById('devotionImage').src = data.imageUrl;
-                    document.getElementById('devotionImage').alt = data.imageAlt || 'Daily devotion image';
-                }
-                
-                // Show content and hide fallback
-                document.getElementById('devotionContent').style.display = 'block';
-                document.getElementById('devotionFallback').style.display = 'none';
-                
-                // Update social sharing meta tags
-                updateSocialMetaTags();
-            };
-            
-            // Example usage:
-            // window.loadDevotionContent({
-            //     date: 'Wednesday, January 1, 2026',
-            //     bibleReference: 'Philippians 4:6-7',
-            //     bibleText: 'Do not be anxious about anything...',
-            //     message: '<p>Today we are reminded...</p>',
-            //     prayer: '<p>Heavenly Father, thank You...</p>',
-            //     imageUrl: 'https://example.com/devotion-images/2026-01-01.jpg',
-            //     imageAlt: 'Peaceful morning sunrise over mountains'
-            // });
-            */
+
+            populateSelectors();
+            renderAll();
         });
     </script>
     

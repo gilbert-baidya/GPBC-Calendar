@@ -100,6 +100,11 @@
             justify-content: space-between;
         }
 
+        .devotion-controls-row.date-row,
+        .devotion-controls-row.jump-row {
+            justify-content: center;
+        }
+
         .language-toggle {
             display: inline-flex;
             border: 1px solid var(--color-border);
@@ -133,16 +138,19 @@
             align-items: center;
             gap: var(--spacing-sm);
             width: 100%;
+            justify-content: center;
         }
 
         .date-strip {
             display: grid;
             grid-auto-flow: column;
-            grid-auto-columns: minmax(88px, 1fr);
+            grid-auto-columns: auto;
             gap: var(--spacing-sm);
             overflow-x: auto;
             padding: var(--spacing-xs) var(--spacing-sm);
             scrollbar-width: thin;
+            justify-content: center;
+            justify-items: center;
         }
 
         .date-pill {
@@ -670,6 +678,11 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+            /* Reduce hero height on mobile so content starts higher */
+            .devotion-hero {
+                padding: var(--spacing-md) var(--spacing-sm) var(--spacing-sm);
+            }
+
             .devotion-hero h1 {
                 font-size: var(--font-3xl);
             }
@@ -679,7 +692,77 @@
             }
             
             .devotion-controls {
-                margin-top: calc(var(--spacing-lg) * -1);
+                /* Avoid heavy overlap with hero and tighten padding */
+                margin-top: var(--spacing-sm);
+                padding: var(--spacing-sm);
+                gap: var(--spacing-sm);
+            }
+            
+            .devotion-controls-row {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: var(--spacing-xs);
+            }
+
+            .devotion-controls-row.date-row,
+            .devotion-controls-row.jump-row {
+                flex-direction: column;
+            }
+
+            .devotion-meta {
+                justify-content: center;
+                margin-top: var(--spacing-xs);
+            }
+
+            .date-strip-wrapper {
+                justify-content: center;
+                padding: 0 var(--spacing-xs);
+                overflow: visible; /* ensure pills are not clipped */
+            }
+
+            .date-strip {
+                grid-auto-columns: minmax(70px, 1fr);
+                justify-content: center;
+                overflow: visible; /* keep pills fully visible */
+            }
+
+            .date-strip .date-pill {
+                min-width: auto;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            .language-toggle button {
+                padding: var(--spacing-xs) var(--spacing-md);
+            }
+
+            .jump-controls {
+                width: 100%;
+                justify-content: center;
+                gap: var(--spacing-sm);
+                flex-wrap: wrap;
+            }
+
+            /* Keep dropdowns and Go button aligned and touch-friendly */
+            .jump-controls select,
+            .jump-controls button {
+                min-height: 44px;
+            }
+
+            .jump-controls select {
+                flex: 1 1 42%;
+                min-width: 120px;
+            }
+
+            .jump-controls button {
+                flex: 0 0 auto;
+                min-width: 64px;
+            }
+
+            /* Reduce excess space before first card */
+            .devotion-container {
+                padding-top: var(--spacing-sm);
+                margin-top: var(--spacing-md);
             }
             
             .devotion-container {
@@ -767,7 +850,7 @@
                 </div>
             </div>
 
-            <div class="devotion-controls-row">
+            <div class="devotion-controls-row date-row">
                 <div class="date-strip-wrapper">
                     <button class="date-nav-btn" id="prevDayBtn" aria-label="Previous day">←</button>
                     <div class="date-strip" id="dateStrip" aria-label="Choose a date"></div>
@@ -775,7 +858,7 @@
                 </div>
             </div>
 
-            <div class="devotion-controls-row">
+            <div class="devotion-controls-row jump-row">
                 <div class="jump-controls" aria-label="Jump to date">
                     <label class="sr-only" for="monthSelect">Month</label>
                     <select id="monthSelect" aria-label="Select month"></select>
@@ -989,10 +1072,14 @@
         </div>
     </footer>
 
+    <!-- Load devotions data from external JSON file -->
+    <script src="devotions-data.js"></script>
+
     <!-- Scripts -->
     <script>
         // Daily Devotion: dynamic navigation, language toggle, date jump, and graceful fallback.
-        document.addEventListener('DOMContentLoaded', function() {
+        
+        function initializeDevotions() {
             // -----------------------------
             // Data: replace or inject window.DEVOTIONS with your full dataset
             // -----------------------------
@@ -1028,7 +1115,7 @@
                     verse: 'Lamentations 3:22-23',
                     verseText: '"The steadfast love of the LORD never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness."',
                     verseTextBn: '"সদাপ্রভুর করুণা শেষ হয় না, তাঁর দয়া ফুরায় না; প্রতি প্রভাতে তা নতুন, তোমার বিশ্বস্ততা মহান।"',
-                    reflection: 'Every morning is proof that God's mercy toward you is fresh and abundant. Yesterday's failures do not define today's opportunities. His faithfulness means you can begin again with hope. Let this truth lift any discouragement: God has not given up on you. His love endures, His mercies are endless, and today He offers you a new start.',
+                    reflection: `Every morning is proof that God's mercy toward you is fresh and abundant. Yesterday's failures do not define today's opportunities. His faithfulness means you can begin again with hope. Let this truth lift any discouragement: God has not given up on you. His love endures, His mercies are endless, and today He offers you a new start.`,
                     reflectionBn: 'প্রতিটি সকাল প্রমাণ যে ঈশ্বরের দয়া তোমার প্রতি তাজা এবং প্রচুর। গতকালের ব্যর্থতা আজকের সুযোগ সংজ্ঞায়িত করে না। তাঁর বিশ্বস্ততা মানে তুমি আশা নিয়ে আবার শুরু করতে পারো। এই সত্য যেকোনো হতাশা দূর করুক: ঈশ্বর তোমাকে ছেড়ে দেননি। তাঁর ভালোবাসা স্থায়ী, তাঁর দয়া অন্তহীন, এবং আজ তিনি তোমাকে একটি নতুন শুরু দিচ্ছেন।',
                     prayer: 'Faithful Father, thank You for new mercies this morning. Help me to receive Your grace and walk in the freshness of Your love today.',
                     prayerBn: 'বিশ্বস্ত পিতা, এই সকালে নতুন দয়ার জন্য ধন্যবাদ। আপনার অনুগ্রহ গ্রহণ করতে এবং আজ আপনার ভালোবাসার সতেজতায় চলতে আমাকে সাহায্য করুন।'
@@ -1152,14 +1239,10 @@
             // Render date strip
             function renderDateStrip() {
                 dateStrip.innerHTML = '';
-                // Always include today, plus nearby days, plus available content dates
-                const set = new Set();
-                const baseRange = generateRangeKeys(today, 3);
-                baseRange.forEach(k => set.add(k));
-                availableDates.forEach(k => set.add(k));
-                const sourceDates = Array.from(set).sort();
+                // Show only a 5-day window centered on the selected date
+                const windowKeys = generateRangeKeys(selectedDate, 2);
 
-                sourceDates.forEach(key => {
+                windowKeys.forEach(key => {
                     const d = parseDateKey(key);
                     const pill = document.createElement('button');
                     pill.className = 'date-pill';
@@ -1340,7 +1423,25 @@
 
             populateSelectors();
             renderAll();
-        });
+        }
+
+        // Wait for devotions to load (or fail) then initialize once.
+        let initialized = false;
+        function startDevotions() {
+            if (initialized) return;
+            initialized = true;
+            initializeDevotions();
+        }
+
+        if (window.DEVOTIONS && window.DEVOTIONS.length) {
+            startDevotions();
+        } else {
+            window.addEventListener('devotionsLoaded', startDevotions);
+            window.addEventListener('devotionsLoadError', startDevotions);
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window.DEVOTIONS) startDevotions();
+            });
+        }
     </script>
     
     <!-- Mobile Menu Script -->

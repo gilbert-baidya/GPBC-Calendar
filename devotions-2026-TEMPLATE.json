@@ -1,0 +1,43 @@
+[
+  {
+    "date": "2026-01-01",
+    "title": "He Knows Your Name",
+    "titleBn": "তিনি তোমার নাম জানেন",
+    "verse": "Isaiah 43:1",
+    "verseText": "Fear not, for I have redeemed you; I have called you by name, you are mine.",
+    "verseTextBn": "ভয় করোনা, কারণ আমি তোমাকে মুক্ত করেছি; আমি তোমাকে নামে ডেকেছি, তুমি আমার।",
+    "reflection": "God's personal call means you are never anonymous to Him. He loves you in particular, not just the crowd. Redemption is His decisive act to claim you as His own. Let this quiet fear and shame: you belong. Because you are His, you can walk through uncertainty with confidence that He will guard and guide.",
+    "reflectionBn": "ঈশ্বরের ডাকে তুমি কখনো অচেনা নও। তিনি ভিড় নয়, তোমাকে ব্যক্তিগতভাবে ভালোবাসেন। মুক্তি তাঁর সিদ্ধান্ত তোমাকে নিজের করার। এই সত্য ভয় ও লজ্জা শান্ত করুক: তুমি তাঁর। তুমি তাঁর বলেই অনিশ্চয়তায়ও আত্মবিশ্বাসে চলতে পারো; তিনি রক্ষা ও দিশা দেবেন।",
+    "prayer": "Father, thank You for calling me by name. Silence every lie that says I'm forgotten and let my heart rest in belonging to You.",
+    "prayerBn": "পিতা, আমাকে নামে ডাকার জন্য ধন্যবাদ। যে সব মিথ্যা বলে আমি ভুলে গেছি সেগুলো নীরব করুন, এবং আমার হৃদয়কে আপনার মধ্যে থাকার নিশ্চিন্ততায় বিশ্রাম দিন."
+  },
+  {
+    "date": "2026-01-02",
+    "title": "PASTE JANUARY 2 TITLE HERE",
+    "titleBn": "PASTE BENGALI TITLE HERE",
+    "verse": "PASTE VERSE REFERENCE HERE",
+    "verseText": "PASTE ENGLISH VERSE HERE",
+    "verseTextBn": "PASTE BENGALI VERSE HERE",
+    "reflection": "PASTE ENGLISH REFLECTION HERE",
+    "reflectionBn": "PASTE BENGALI REFLECTION HERE",
+    "prayer": "PASTE ENGLISH PRAYER HERE",
+    "prayerBn": "PASTE BENGALI PRAYER HERE"
+  }
+  
+  NOTE: Continue this pattern for all 365 days through December 31, 2026.
+  
+  IMPORTANT:
+  - Each entry is separated by a comma
+  - The LAST entry (Dec 31) should NOT have a comma after it
+  - All text must be properly escaped (quotes, backslashes)
+  - Bengali characters must be in UTF-8 encoding
+  - Dates must follow YYYY-MM-DD format exactly
+  
+  To build this file:
+  1. Start with opening bracket: [
+  2. Add January entries (31 days)
+  3. Add comma after each entry EXCEPT the last one
+  4. Continue through all months
+  5. End with closing bracket: ]
+  6. Validate at jsonlint.com before saving
+]

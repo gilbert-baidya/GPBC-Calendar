@@ -2704,6 +2704,15 @@ footer {
     /* Footer dropdown handling on mobile */
     .footer-col .nav-dropdown {
         position: static;
+        list-style: none;
+    }
+    
+    .footer-col .nav-dropdown > a {
+        display: block;
+        padding: 0;
+        margin-bottom: var(--spacing-xs);
+        color: #4a4a4a;
+        font-weight: var(--font-medium);
     }
     
     .footer-col .dropdown-menu {
@@ -2717,16 +2726,24 @@ footer {
         padding: 0;
         padding-left: var(--spacing-md);
         margin-top: var(--spacing-xs);
+        list-style: none;
     }
     
     .footer-col .dropdown-arrow {
         display: none;
     }
     
+    .footer-col .dropdown-menu li {
+        list-style: none;
+        margin-bottom: var(--spacing-xs);
+    }
+    
     .footer-col .dropdown-menu a {
+        display: block;
         padding: var(--spacing-xs) 0;
         font-size: var(--font-sm);
         color: #4a4a4a;
+        font-weight: var(--font-normal);
     }
     
     .footer-col .dropdown-menu a:hover {

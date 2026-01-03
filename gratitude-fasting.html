@@ -6,10 +6,160 @@
     <title>Gratitude Fasting 2026 | Grace and Praise Bangladeshi Church</title>
     <link rel="stylesheet" href="redesign-styles.css">
     <link rel="stylesheet" href="countdown.css">
+    <style>
+        .devotion-hero {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 3rem 1.5rem 2rem;
+            text-align: center;
+        }
+        
+        .devotion-hero h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .devotion-controls {
+            max-width: 1000px;
+            margin: -2rem auto 2rem;
+            padding: 1.5rem;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .controls-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .day-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .day-nav button, .lang-toggle button {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .day-nav button:hover, .lang-toggle button:hover {
+            background: #f3f4f6;
+        }
+        
+        .day-nav button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .day-nav select {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            font-weight: 500;
+        }
+        
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lang-toggle button.active {
+            background: #f59e0b;
+            color: white;
+            border-color: #f59e0b;
+        }
+        
+        .devotion-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .devotion-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .scripture-section {
+            background: linear-gradient(to bottom right, #fef9c3, #fef3c7);
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .scripture-section h3 {
+            color: #92400e;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .scripture-text {
+            font-family: Georgia, serif;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            font-style: italic;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .scripture-ref {
+            text-align: right;
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        
+        .reflection-section h3, .prayer-section h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .reflection-text, .prayer-text {
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        
+        .promise-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-top: 1rem;
+        }
+        
+        .promise-box strong {
+            color: #1e40af;
+        }
+        
+        #loadingMsg, #errorMsg {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.125rem;
+        }
+        
+        #errorMsg {
+            color: #dc2626;
+        }
+    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <header>
         <nav>
             <div class="nav-container">
@@ -50,7 +200,7 @@
                             <li><a href="fasting-21days.html">21 Days Fasting</a></li>
                             <li><a href="fasting-30days.html">30 Days Fasting</a></li>
                             <li><a href="fasting-40days.html">40 Days Fasting</a></li>
-                            <li><a href="gratitude-fasting.html" class="active">Gratitude Fasting (<span id="year-display">2026</span> - <span id="days-display">26</span> Days)</a></li>
+                            <li><a href="gratitude-fasting.html" class="active">Gratitude Fasting (<span class="year-display"></span> - <span class="days-display"></span> Days)</a></li>
                         </ul>
                     </li>
                     <li><a href="give.html">Give</a></li>
@@ -61,93 +211,60 @@
     </header>
 
     <main id="main-content">
-        <section class="content-page">
-            <div class="content-page-header">
-                <h1>✨ Gratitude Fasting <span id="header-year">2026</span></h1>
-                <p class="subtitle">A Divine Pattern: <span id="header-days">26</span> Days of Thanksgiving and Fasting</p>
+        <div class="devotion-hero">
+            <h1>✨ Gratitude Fasting <span class="year-display"></span></h1>
+            <p style="font-size: 1.25rem; opacity: 0.95;"><span class="days-display"></span> Days of Thanksgiving and Consecration</p>
+        </div>
+
+        <div class="devotion-controls">
+            <div class="controls-row">
+                <div class="day-nav">
+                    <button id="prevDay" aria-label="Previous day">← Prev</button>
+                    <select id="daySelect" aria-label="Select day">
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                    <button id="nextDay" aria-label="Next day">Next →</button>
+                </div>
+                <div class="lang-toggle">
+                    <button id="langEn" class="active">English</button>
+                    <button id="langBn">বাংলা</button>
+                </div>
             </div>
+        </div>
 
-            <div class="content-page-body">
-                <div style="text-align: center; padding: 3rem 0;">
-                    <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&h=500&fit=crop&q=80" 
-                         alt="Hands raised in gratitude at sunset" 
-                         style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <div class="devotion-container">
+            <div id="loadingMsg">Loading devotional...</div>
+            <div id="errorMsg" style="display: none;">Unable to load devotional content. Please try again later.</div>
+            
+            <div id="devotionContent" style="display: none;">
+                <div class="devotion-section">
+                    <h2 id="devotionTopic" style="color: #f59e0b; font-size: 2rem; margin-bottom: 1rem;"></h2>
+                    <p id="devotionDate" style="color: #6b7280; margin-bottom: 1rem;"></p>
                 </div>
 
-                <div style="background: linear-gradient(135deg, #fef9c3 0%, #fffef0 100%); padding: 2rem; border-radius: 12px; border-left: 4px solid #eab308; margin: 2rem 0;">
-                    <p style="font-family: Georgia, serif; font-size: 1.25rem; font-style: italic; line-height: 1.8; color: #1e3a8a; margin-bottom: 1rem;">
-                        "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name. For the Lord is good and his love endures forever; his faithfulness continues through all generations."
-                    </p>
-                    <p style="text-align: right; color: #eab308; font-weight: 600; font-size: 1rem;">
-                        — Psalm 100:4-5 (NIV)
-                    </p>
+                <div class="devotion-section scripture-section">
+                    <h3>📖 Key Verse</h3>
+                    <p class="scripture-text" id="verseText"></p>
+                    <p class="scripture-ref" id="verseRef"></p>
                 </div>
 
-                <div style="background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%); padding: 2rem; border-radius: 12px; border: 2px solid #3b82f6; margin: 2rem 0;">
-                    <h3 style="color: #1e40af; margin-bottom: 1rem;">🕊️ A God-Inspired Vision</h3>
-                    <p style="color: #1e3a8a; line-height: 1.8; font-size: 1.05rem;">
-                        God spoke to our hearts with a beautiful pattern: Each year, we fast for the number of days that matches the year. In <span id="vision-year" style="font-weight: 600;">2026</span>, we fast <span id="vision-days" style="font-weight: 600;">26 days</span>. In 2027, we will fast 27 days. This divine pattern combines the spiritual discipline of fasting with the overflow of gratitude for God's faithfulness through the years.
-                    </p>
+                <div class="devotion-section reflection-section">
+                    <h3>💭 Reflection</h3>
+                    <div class="reflection-text" id="reflectionText"></div>
                 </div>
 
-                <div style="text-align: center; padding: 3rem 0;">
-                    <h2 style="color: #667eea; font-size: 2rem; margin-bottom: 1.5rem;">🚧 Coming Soon</h2>
-                    <p style="font-size: 1.125rem; color: #4b5563; line-height: 1.8; max-width: 600px; margin: 0 auto 2rem;">
-                        We are prayerfully preparing this unique, God-breathed fasting devotional that combines thanksgiving with consecration. This year's <span id="content-days" style="font-weight: 600;">26-day</span> journey will transform how you see God's faithfulness.
-                    </p>
-                    <p style="font-size: 1rem; color: #6b7280; max-width: 600px; margin: 0 auto;">
-                        This isn't just a fast—it's a celebration of gratitude! Each day focuses on thanking God for His provision, protection, and promises while seeking His direction for the new year ahead.
-                    </p>
-                </div>
-
-                <div style="background: #f3f4f6; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
-                    <h3 style="color: #667eea; margin-bottom: 1rem;">What This Unique Fast Will Include:</h3>
-                    <ul style="color: #4b5563; line-height: 2; font-size: 1rem;">
-                        <li>🙏 <span id="list-days">26</span> days of gratitude-focused devotions</li>
-                        <li>📖 Daily Scripture readings on thanksgiving and God's faithfulness</li>
-                        <li>✍️ Gratitude journaling prompts for each day</li>
-                        <li>🎵 Worship and praise declarations</li>
-                        <li>💭 Reflection on God's goodness through the years</li>
-                        <li>🎯 Vision-casting for the year ahead</li>
-                        <li>🤝 Community testimonies of God's provision</li>
-                        <li>💪 Prayer strategies combining gratitude with breakthrough</li>
-                    </ul>
-                </div>
-
-                <div style="background: linear-gradient(135deg, #fef3c7 0%, #fef9e6 100%); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
-                    <h4 style="color: #92400e; margin-bottom: 0.5rem;">📌 Why This Pattern?</h4>
-                    <p style="color: #78350f; line-height: 1.8;">
-                        God's ways are higher than ours! This pattern reminds us that with each passing year, we have more reasons to be grateful. The number of days increases as our testimony grows. It's a living memorial of God's faithfulness—a spiritual discipline that grows with us through life.
-                    </p>
-                </div>
-
-                <div style="background: #f0fdf4; border: 2px solid #86efac; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
-                    <h4 style="color: #15803d; margin-bottom: 0.5rem;">💡 Perfect Timing</h4>
-                    <p style="color: #166534; line-height: 1.8;">
-                        We recommend starting this Gratitude Fast at the beginning of each year (January) or during a significant season in your life. It sets the spiritual tone for the entire year ahead while honoring God for what He's already done.
-                    </p>
-                </div>
-
-                <div style="text-align: center; padding: 2rem 0;">
-                    <div style="background: linear-gradient(45deg, #fbbf24, #f59e0b); padding: 2rem; border-radius: 12px; color: white; margin: 2rem 0;">
-                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">This Year's Fast</h3>
-                        <p style="font-size: 3rem; font-weight: 700; margin: 1rem 0;"><span id="main-days">26</span> Days</p>
-                        <p style="font-size: 1.25rem; opacity: 0.95;">of Gratitude and Consecration</p>
-                        <p style="font-size: 1rem; margin-top: 1rem; opacity: 0.9;">🗓️ Year <span id="main-year">2026</span></p>
+                <div class="devotion-section prayer-section">
+                    <h3>🙏 Prayer</h3>
+                    <div class="prayer-text" id="prayerText"></div>
+                    <div class="promise-box">
+                        <strong>God's Promise:</strong>
+                        <p id="promiseText" style="margin-top: 0.5rem; font-style: italic;"></p>
                     </div>
                 </div>
-
-                <div style="text-align: center; padding: 2rem 0;">
-                    <p style="font-size: 1rem; color: #6b7280; margin-bottom: 1.5rem;">
-                        Begin your journey of thanksgiving with our Daily Devotion:
-                    </p>
-                    <a href="daily-devotion.html" style="display: inline-block; background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); transition: transform 0.3s;">
-                        📖 Read Daily Devotion
-                    </a>
-                </div>
             </div>
-        </section>
+        </div>
     </main>
+                    </p>
 
     <footer>
         <div class="footer-content">
@@ -184,25 +301,127 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; <span id="footer-year">2026</span> Grace and Praise Bangladeshi Church. All rights reserved.</p>
+            <p>&copy; <span class="year-display"></span> Grace and Praise Bangladeshi Church. All rights reserved.</p>
             <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms &amp; Conditions</a></p>
         </div>
     </footer>
 
     <script>
-        // Auto-update year and days based on current year
+        // Gratitude Fasting Devotional Application
+        let devotionalData = null;
+        let currentDay = 1;
+        let currentLang = 'en';
         const currentYear = new Date().getFullYear();
-        const lastTwoDigits = currentYear % 100; // Gets last 2 digits (e.g., 2026 -> 26)
-        
-        // Update all year displays
-        document.querySelectorAll('#year-display, #header-year, #vision-year, #main-year, #footer-year').forEach(el => {
-            el.textContent = currentYear;
+        const totalDays = currentYear % 100;
+
+        // Update year and days displays
+        document.querySelectorAll('.year-display').forEach(el => el.textContent = currentYear);
+        document.querySelectorAll('.days-display').forEach(el => el.textContent = totalDays);
+
+        // Load devotional data
+        async function loadDevotionalData() {
+            try {
+                const response = await fetch('gratitude-fasting-devotions.json');
+                if (!response.ok) throw new Error('Failed to load devotional data');
+                devotionalData = await response.json();
+                
+                // Populate day selector
+                const daySelect = document.getElementById('daySelect');
+                devotionalData.devotions.forEach(dev => {
+                    const option = document.createElement('option');
+                    option.value = dev.day;
+                    option.textContent = `Day ${dev.day}`;
+                    daySelect.appendChild(option);
+                });
+                
+                // Load first day or day from URL parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const dayParam = urlParams.get('day');
+                currentDay = dayParam ? parseInt(dayParam) : 1;
+                
+                displayDevotion(currentDay);
+                document.getElementById('loadingMsg').style.display = 'none';
+                document.getElementById('devotionContent').style.display = 'block';
+            } catch (error) {
+                console.error('Error loading devotional:', error);
+                document.getElementById('loadingMsg').style.display = 'none';
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        function displayDevotion(day) {
+            if (!devotionalData) return;
+            
+            const devotion = devotionalData.devotions.find(d => d.day === day);
+            if (!devotion) {
+                document.getElementById('errorMsg').textContent = `Day ${day} content is not yet available. Please check back soon!`;
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('devotionContent').style.display = 'none';
+                return;
+            }
+
+            currentDay = day;
+            
+            // Update URL without reload
+            const url = new URL(window.location);
+            url.searchParams.set('day', day);
+            window.history.pushState({}, '', url);
+            
+            // Update day selector
+            document.getElementById('daySelect').value = day;
+            
+            // Update navigation buttons
+            document.getElementById('prevDay').disabled = (day === 1);
+            document.getElementById('nextDay').disabled = (day === totalDays);
+            
+            // Display content based on language
+            updateContent(devotion);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateContent(devotion) {
+            const isEnglish = currentLang === 'en';
+            
+            document.getElementById('devotionTopic').textContent = isEnglish ? devotion.topic : devotion.topicBn;
+            document.getElementById('devotionDate').textContent = `Day ${devotion.day} - ${devotion.date}`;
+            
+            document.getElementById('verseText').textContent = isEnglish ? devotion.keyVerseText : devotion.keyVerseTextBn;
+            document.getElementById('verseRef').textContent = `— ${devotion.keyVerse}`;
+            
+            document.getElementById('reflectionText').textContent = isEnglish ? devotion.reflection : devotion.reflectionBn;
+            document.getElementById('prayerText').textContent = isEnglish ? devotion.prayer : devotion.prayerBn;
+            document.getElementById('promiseText').textContent = isEnglish ? devotion.biblePromise : devotion.biblePromiseBn;
+        }
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update button states
+            document.getElementById('langEn').classList.toggle('active', lang === 'en');
+            document.getElementById('langBn').classList.toggle('active', lang === 'bn');
+            
+            // Update content
+            const devotion = devotionalData.devotions.find(d => d.day === currentDay);
+            if (devotion) updateContent(devotion);
+        }
+
+        // Event Listeners
+        document.getElementById('prevDay').addEventListener('click', () => {
+            if (currentDay > 1) displayDevotion(currentDay - 1);
         });
-        
-        // Update all days displays
-        document.querySelectorAll('#days-display, #header-days, #vision-days, #content-days, #list-days, #main-days').forEach(el => {
-            el.textContent = lastTwoDigits;
+
+        document.getElementById('nextDay').addEventListener('click', () => {
+            if (currentDay < totalDays) displayDevotion(currentDay + 1);
         });
+
+        document.getElementById('daySelect').addEventListener('change', (e) => {
+            displayDevotion(parseInt(e.target.value));
+        });
+
+        document.getElementById('langEn').addEventListener('click', () => switchLanguage('en'));
+        document.getElementById('langBn').addEventListener('click', () => switchLanguage('bn'));
 
         // Navigation menu functionality
         const header = document.querySelector('header');
@@ -239,6 +458,9 @@
                 }
             });
         });
+
+        // Initialize on page load
+        loadDevotionalData();
     </script>
 </body>
 </html>
